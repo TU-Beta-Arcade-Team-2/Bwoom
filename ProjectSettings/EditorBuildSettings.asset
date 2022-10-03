@@ -10,5 +10,8 @@ EditorBuildSettings:
     guid: f02953bdfc905a24ab458f0a1d5a0e88
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    guid: aacb53254ca56ff408daecb5411ca9da
+  - enabled: 1
+    path: Assets/Scenes/TitleScreen.unity
+    guid: df01d0d450f914c498e02385451de6ec
   m_configObjects: {}

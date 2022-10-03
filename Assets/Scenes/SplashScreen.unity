@@ -928,7 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skipTime: 6
-  sceneToSkipTo: SampleScene
+  sceneToSkipTo: TitleScreen
   transitionType: 0
   anims: {fileID: 1322089303}
 --- !u!114 &1954720084
