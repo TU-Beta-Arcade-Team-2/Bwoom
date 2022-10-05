@@ -63,7 +63,9 @@ public class Controller : MonoBehaviour
         rb.velocity = clamper;
 
         if ((playerInput.actions["Horizontal"].ReadValue<float>() > 0 && !facingRight) || (playerInput.actions["Horizontal"].ReadValue<float>() < 0 && facingRight))
+        {
             Flip();
+        }
     }
 
     private float HorizontalDrag()
@@ -72,11 +74,19 @@ public class Controller : MonoBehaviour
         horizontalVelocity += playerInput.actions["Horizontal"].ReadValue<float>();
 
         if (Mathf.Abs(playerInput.actions["Horizontal"].ReadValue<float>()) < 0.01f)
+        {
             horizontalVelocity *= Mathf.Pow(movementSpeed - dampingStop, Time.fixedDeltaTime * -drag);
+        }
+            
         else if (Mathf.Sign(playerInput.actions["Horizontal"].ReadValue<float>()) != Mathf.Sign(horizontalVelocity))
+        {
             horizontalVelocity *= Mathf.Pow(movementSpeed - dampingTurn, Time.fixedDeltaTime * -drag);
+        }
+
         else
+        {
             horizontalVelocity *= Mathf.Pow(movementSpeed - dampingNormal, Time.fixedDeltaTime * -drag);
+        }
 
         return horizontalVelocity;
     }
@@ -105,11 +115,16 @@ public class Controller : MonoBehaviour
             }
 
             else
+            {
                 jumpInputTimer -= Time.fixedDeltaTime;
+            }
+                
         }
 
         if (!IsGrounded() && ungroundedTimer > 0)
+        {
             ungroundedTimer -= Time.fixedDeltaTime;
+        }
 
         if (!IsGrounded())
         {
@@ -124,28 +139,19 @@ public class Controller : MonoBehaviour
 
     private bool JumpAvaliable()
     {
-        if (IsGrounded())
-            return true;
-
-        else if (!IsGrounded() && ungroundedTimer > 0)
-            return true;
-
-        else
-            return false;
+        return IsGrounded() || (!IsGrounded() && ungroundedTimer > 0);
     }
 
     private bool IsGrounded()
     {
-        if (Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer))
-        {
-            ungroundedTimer = 0.2f;
-            holdTimer = 0f;
-            return true;
-        }
-
-        else
+        if (!Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer))
         {
             return false;
         }
+
+        ungroundedTimer = 0.2f;
+        holdTimer = 0f;
+        return true;
     }
+
 }
