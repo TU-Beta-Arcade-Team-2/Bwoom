@@ -41,10 +41,14 @@ public class Controller : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     private void Update()
     {
         Jumping();
+    }
+
+    // Update is called once per frame
+    private void FixedUpdate()
+    {
         Movement();
     }
 
@@ -68,11 +72,11 @@ public class Controller : MonoBehaviour
         horizontalVelocity += playerInput.actions["Horizontal"].ReadValue<float>();
 
         if (Mathf.Abs(playerInput.actions["Horizontal"].ReadValue<float>()) < 0.01f)
-            horizontalVelocity *= Mathf.Pow(movementSpeed - dampingStop, Time.deltaTime * -drag);
+            horizontalVelocity *= Mathf.Pow(movementSpeed - dampingStop, Time.fixedDeltaTime * -drag);
         else if (Mathf.Sign(playerInput.actions["Horizontal"].ReadValue<float>()) != Mathf.Sign(horizontalVelocity))
-            horizontalVelocity *= Mathf.Pow(movementSpeed - dampingTurn, Time.deltaTime * -drag);
+            horizontalVelocity *= Mathf.Pow(movementSpeed - dampingTurn, Time.fixedDeltaTime * -drag);
         else
-            horizontalVelocity *= Mathf.Pow(movementSpeed - dampingNormal, Time.deltaTime * -drag);
+            horizontalVelocity *= Mathf.Pow(movementSpeed - dampingNormal, Time.fixedDeltaTime * -drag);
 
         return horizontalVelocity;
     }
@@ -101,15 +105,15 @@ public class Controller : MonoBehaviour
             }
 
             else
-                jumpInputTimer -= Time.deltaTime;
+                jumpInputTimer -= Time.fixedDeltaTime;
         }
 
         if (!IsGrounded() && ungroundedTimer > 0)
-            ungroundedTimer -= Time.deltaTime;
+            ungroundedTimer -= Time.fixedDeltaTime;
 
         if (!IsGrounded())
         {
-            holdTimer += Time.deltaTime;
+            holdTimer += Time.fixedDeltaTime;
         }
 
         if (playerInput.actions["Jump"].ReadValue<float>() == 0 || holdTimer > 0.5f)

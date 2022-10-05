@@ -8,6 +8,8 @@ public class Manager : MonoBehaviour
 
     private void Start()
     {
+        GameObject.DontDestroyOnLoad(gameObject);
+
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = frameRate;
     }
