@@ -3,8 +3,8 @@ using TMPro;
 
 public class EnemyStats : MonoBehaviour
 {
-    [SerializeField] public int health;
-    public int maxHealth;
+    [SerializeField] private int health;
+    private int maxHealth;
 
     [SerializeField] GameObject floatingText;
     [SerializeField] GameObject deathFx;
@@ -26,11 +26,9 @@ public class EnemyStats : MonoBehaviour
 
         if (health <= 0)
         {
-            GameObject ex = Instantiate(deathFx, transform.position, transform.rotation);
-            GameObject.Destroy(ex, 2);
-
             // Add Points
-            GameObject.Destroy(gameObject);
+            // Die
+            GameObject.Destroy(gameObject); // just here to temp kill the enemy will be replaced with an actual death anim once made
         }
     }
 }

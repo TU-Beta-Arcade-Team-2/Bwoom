@@ -34,6 +34,25 @@ public class Controller : MonoBehaviour
     private float ungroundedTimer;
     private float holdTimer;
 
+    /// <summary> Abilitiy Booleans </summary>
+    [SerializeField] private bool wallSlideOn;
+    [SerializeField] private bool groundPoundOn;
+    [SerializeField] private bool shootingOn;
+    [SerializeField] private bool doubleJumpOn;
+    [SerializeField] private bool healingOn;
+
+    /// <summary> Wall Jump Values </summary>
+    [SerializeField] private float wallSlidingSpeed;
+    [SerializeField] private float xWallForce;
+    [SerializeField] private float yWallForce;
+    [SerializeField] private float wallJumpTime;
+
+    [SerializeField] private Transform frontCheck;
+    [SerializeField] private LayerMask wallLayer;
+    private bool isTouchingFront;
+    private bool wallSliding;
+    
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -44,6 +63,31 @@ public class Controller : MonoBehaviour
     private void Update()
     {
         Jumping();
+
+        if (wallSlideOn)
+        {
+            WallSlide();
+        }
+
+        if (groundPoundOn)
+        {
+
+        }
+
+        if (shootingOn)
+        {
+
+        }
+
+        if (doubleJumpOn)
+        {
+
+        }
+
+        if (healingOn)
+        {
+
+        }
     }
 
     // Update is called once per frame
@@ -117,8 +161,7 @@ public class Controller : MonoBehaviour
             else
             {
                 jumpInputTimer -= Time.fixedDeltaTime;
-            }
-                
+            }  
         }
 
         if (!IsGrounded() && ungroundedTimer > 0)
@@ -133,9 +176,33 @@ public class Controller : MonoBehaviour
 
         if (playerInput.actions["Jump"].ReadValue<float>() == 0 || holdTimer > 0.5f)
         {
-            rb.AddForce(new Vector2(0, -0.5f), ForceMode2D.Impulse);
+            if (wallSliding)
+            {
+                rb.velocity = new Vector2(xWallForce * -playerInput.actions["Horizontal"].ReadValue<float>(), yWallForce);
+            }
+
+            else
+            {
+                rb.AddForce(new Vector2(0, -0.5f), ForceMode2D.Impulse);
+            }
         }
     }
+
+    private void WallSlide()
+    {
+        isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, 0.1f, wallLayer);
+
+        if (isTouchingFront == true && IsGrounded() == false && playerInput.actions["Horizontal"].ReadValue<float>() != 0)
+            wallSliding = true;
+        else
+            wallSliding = false;
+
+        if (wallSliding)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+        }
+    }
+
 
     private bool JumpAvaliable()
     {
@@ -153,5 +220,4 @@ public class Controller : MonoBehaviour
         holdTimer = 0f;
         return true;
     }
-
 }
