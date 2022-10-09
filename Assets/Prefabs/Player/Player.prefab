@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 5badf423a4df5334bb4ba4f556bec3d2, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -84,6 +84,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7477433693578160932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5556730394396911537}
+  m_Layer: 0
+  m_Name: FrontCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5556730394396911537
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7477433693578160932}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.89, y: -0.046, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8171535325487749776}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8171535323873281223
 GameObject:
   m_ObjectHideFlags: 0
@@ -741,7 +772,7 @@ Transform:
   - {fileID: 8171535323873281222}
   - {fileID: 8171535324248535221}
   m_Father: {fileID: 8171535325487749776}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8171535325410661209
 SpriteRenderer:
@@ -807,10 +838,11 @@ GameObject:
   - component: {fileID: 8171535325487749778}
   - component: {fileID: 8171535325487749779}
   - component: {fileID: 8171535325487749790}
+  - component: {fileID: 675374325409127699}
   - component: {fileID: 8171535325487749789}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -828,6 +860,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8171535324326012344}
+  - {fileID: 5556730394396911537}
   - {fileID: 8171535325410661210}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -874,7 +907,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: bd6019b2ba952e44bb670fc8e4239a6e, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -909,6 +942,37 @@ MonoBehaviour:
   m_DefaultActionMap: Actions
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &675374325409127699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171535325487749780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a983bf2f61e66f419a6d1ad03d2d04e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: 5
+  maxPlayerHealth: 5
+  mask:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  fullMask: {fileID: 21300000, guid: 204b47e265b136f4288188c51ca5ae15, type: 3}
+  brokenMask: {fileID: 21300000, guid: 1dc523e2ac4e5144bb17e7414d4ca156, type: 3}
+  maskSelected: 1
+  playerMask: {fileID: 7005303163513494748}
+  maskSprite1: {fileID: 21300000, guid: 5badf423a4df5334bb4ba4f556bec3d2, type: 3}
+  maskSprite2: {fileID: 21300000, guid: 9a90649ec35ed8743ad1b565f5bd2e23, type: 3}
+  maskSprite3: {fileID: 21300000, guid: a60a1ec9eb2671f40b4c2074cc5f0809, type: 3}
+  maskSprite4: {fileID: 21300000, guid: 999bd3ad00a12c04bad539b3252945a6, type: 3}
 --- !u!114 &8171535325487749789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -928,7 +992,21 @@ MonoBehaviour:
   movementSpeed: 7.5
   fallingSpeed: 10
   jumpHeight: 10
+  slippery: {fileID: 6200000, guid: bd6019b2ba952e44bb670fc8e4239a6e, type: 2}
+  sticky: {fileID: 6200000, guid: f58e38f3fbbe38d44bbfdbae03021fed, type: 2}
   dampingNormal: 0.5
   dampingStop: 0.2
   dampingTurn: 0.75
   drag: 1
+  wallSlideOn: 0
+  groundPoundOn: 0
+  shootingOn: 0
+  doubleJumpOn: 1
+  healingOn: 0
+  xWallForce: 20
+  yWallForce: 10
+  wallJumpTime: 1
+  frontCheck: {fileID: 5556730394396911537}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 8
