@@ -1,3 +1,4 @@
+#define WALL_SLIDE
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -78,11 +79,12 @@ public class Controller : MonoBehaviour
         Jumping();
         Attack();
 
+#if WALL_SLIDE
         if (wallSlideOn)
         {
             WallSlide();
         }
-
+#endif
         if (groundPoundOn)
         {
 

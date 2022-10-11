@@ -8,6 +8,14 @@ public class PlayerStats : MonoBehaviour
     private LevelManager lvlManager;
     private Animator cameraAnim;
 
+    private enum Masks
+    {
+        warMask = 1,
+        natureMask,
+        seaMask,
+        energyMask
+    }
+
     [Header("Health Variables")]
     [Range(0, 8)]
     [SerializeField] private int playerHealth;
@@ -20,13 +28,12 @@ public class PlayerStats : MonoBehaviour
     [Space(10)]
 
     [Header("Mask Ability Variables")]
-    [Range(1, 4)]
-    [SerializeField] private int maskSelected;
+    [SerializeField] private Masks maskSelected;
     [SerializeField] private SpriteRenderer playerMask;
-    [SerializeField] private Sprite maskSprite1;
-    [SerializeField] private Sprite maskSprite2;
-    [SerializeField] private Sprite maskSprite3;
-    [SerializeField] private Sprite maskSprite4;
+    [SerializeField] private Sprite warMaskSprite;
+    [SerializeField] private Sprite natureMaskSprite;
+    [SerializeField] private Sprite seaMaskSprite;
+    [SerializeField] private Sprite energyMaskSprite;
 
     #region Main Functions
 
@@ -41,8 +48,8 @@ public class PlayerStats : MonoBehaviour
 
     private void Update()
     {
-        //This update is just for testing in inspector will be removed onced finalised
-        MaskChange(maskSelected);
+        //This update function is just for testing purposes in inspector will be removed onced mask switch feature is finalised
+        MaskChange((int)maskSelected);
     }
 
     #endregion
@@ -100,21 +107,23 @@ public class PlayerStats : MonoBehaviour
 
     public void MaskChange(int maskNo)
     {
-        maskSelected = maskNo;
-
         switch (maskNo)
         {
             case 1:
-                playerMask.sprite = maskSprite1;
+                playerMask.sprite = warMaskSprite;
+                maskSelected = Masks.warMask;
                 break;
             case 2:
-                playerMask.sprite = maskSprite2;
+                playerMask.sprite = natureMaskSprite;
+                maskSelected = Masks.natureMask;
                 break;
             case 3:
-                playerMask.sprite = maskSprite3;
+                playerMask.sprite = seaMaskSprite;
+                maskSelected = Masks.seaMask;
                 break;
             case 4:
-                playerMask.sprite = maskSprite4;
+                playerMask.sprite = energyMaskSprite;
+                maskSelected = Masks.energyMask;
                 break;
         }
     }

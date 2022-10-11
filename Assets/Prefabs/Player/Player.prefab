@@ -969,10 +969,10 @@ MonoBehaviour:
   brokenMask: {fileID: 21300000, guid: 1dc523e2ac4e5144bb17e7414d4ca156, type: 3}
   maskSelected: 1
   playerMask: {fileID: 7005303163513494748}
-  maskSprite1: {fileID: 21300000, guid: 5badf423a4df5334bb4ba4f556bec3d2, type: 3}
-  maskSprite2: {fileID: 21300000, guid: 9a90649ec35ed8743ad1b565f5bd2e23, type: 3}
-  maskSprite3: {fileID: 21300000, guid: a60a1ec9eb2671f40b4c2074cc5f0809, type: 3}
-  maskSprite4: {fileID: 21300000, guid: 999bd3ad00a12c04bad539b3252945a6, type: 3}
+  warMaskSprite: {fileID: 21300000, guid: 9a90649ec35ed8743ad1b565f5bd2e23, type: 3}
+  natureMaskSprite: {fileID: 21300000, guid: a60a1ec9eb2671f40b4c2074cc5f0809, type: 3}
+  seaMaskSprite: {fileID: 21300000, guid: 5badf423a4df5334bb4ba4f556bec3d2, type: 3}
+  energyMaskSprite: {fileID: 21300000, guid: 999bd3ad00a12c04bad539b3252945a6, type: 3}
 --- !u!114 &8171535325487749789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -992,12 +992,12 @@ MonoBehaviour:
   movementSpeed: 7.5
   fallingSpeed: 10
   jumpHeight: 10
-  slippery: {fileID: 6200000, guid: bd6019b2ba952e44bb670fc8e4239a6e, type: 2}
-  sticky: {fileID: 6200000, guid: f58e38f3fbbe38d44bbfdbae03021fed, type: 2}
   dampingNormal: 0.5
   dampingStop: 0.2
   dampingTurn: 0.75
   drag: 1
+  slipperyMat: {fileID: 6200000, guid: bd6019b2ba952e44bb670fc8e4239a6e, type: 2}
+  stickyMat: {fileID: 6200000, guid: f58e38f3fbbe38d44bbfdbae03021fed, type: 2}
   wallSlideOn: 0
   groundPoundOn: 0
   shootingOn: 0

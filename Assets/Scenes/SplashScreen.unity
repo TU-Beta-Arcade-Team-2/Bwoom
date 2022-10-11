@@ -211,6 +211,7 @@ GameObject:
   - component: {fileID: 412820962}
   - component: {fileID: 412820961}
   - component: {fileID: 412820960}
+  - component: {fileID: 412820963}
   m_Layer: 5
   m_Name: EX
   m_TagString: Untagged
@@ -297,6 +298,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412820958}
   m_CullTransparentMesh: 0
+--- !u!114 &412820963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412820958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 295009ad45b91d8448462e16f973962b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &489308783
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,7 +904,6 @@ GameObject:
   - component: {fileID: 1954720082}
   - component: {fileID: 1954720081}
   - component: {fileID: 1954720080}
-  - component: {fileID: 1954720083}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -959,19 +971,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1954720083
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1954720079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 808604fa86fbcfe4eab6a6033129e93d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skipTime: 6
-  sceneToSkipTo: TitleScreen
-  transitionType: 0
-  anims: {fileID: 1322089303}
