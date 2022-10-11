@@ -1,4 +1,4 @@
-#define WALL_SLIDE
+#undef WALL_SLIDE
 using UnityEngine;
 using UnityEngine.InputSystem;
 
