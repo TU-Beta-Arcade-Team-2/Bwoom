@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class MaskClass
+public class MaskClass : MonoBehaviour
 {
-    [SerializeField]
-    private Sprite m_maskSprite;
+    protected Sprite m_maskSprite;
 
-    public Sprite MaskSprite
+    [SerializeField] private SpriteRenderer maskRenderer;
+
+    public void GetMaskSprite (string path)
     {
-        get { return m_maskSprite; }
-        set { m_maskSprite = value; }
+        m_maskSprite = Resources.Load<Sprite>(path);
+
+        Debug.Log(m_maskSprite);
+
+        maskRenderer.sprite = m_maskSprite;
     }
 
     [SerializeField]
@@ -26,5 +30,7 @@ public class MaskClass
     public void MaskChange(int maskNo)
     {
         //TODO : Add child mask components
+
+        gameObject.AddComponent(typeof(WarMask));
     }
 }
