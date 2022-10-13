@@ -7,6 +7,7 @@ public class Controller : MonoBehaviour
     /// <summary> Player References </summary>
     private PlayerInput playerInput;
     private PlayerStats playerStats;
+    private MaskClass maskClass;
     private Rigidbody2D rb;
     private Animator anim;
 
@@ -78,6 +79,7 @@ public class Controller : MonoBehaviour
         /// values that may cause weird behaviours in future </Note>
         Jumping();
         Attack();
+        MaskInputs();
 
 #if WALL_SLIDE
         if (wallSlideOn)
@@ -112,6 +114,30 @@ public class Controller : MonoBehaviour
         Movement();
     }
 
+    #endregion
+    #region Mask Input Function
+    private void MaskInputs()
+    {
+        if (playerInput.actions["OptionOne"].triggered) //will also include an if statement checking if the selected mask has been unlocked
+        {
+            maskClass.MaskChange(0);
+        }
+
+        if (playerInput.actions["OptionTwo"].triggered) //will also include an if statement checking if the selected mask has been unlocked
+        {
+            maskClass.MaskChange(1);
+        }
+
+        if (playerInput.actions["OptionThree"].triggered) //will also include an if statement checking if the selected mask has been unlocked
+        {
+            maskClass.MaskChange(2);
+        }
+
+        if (playerInput.actions["OptionFour"].triggered) //will also include an if statement checking if the selected mask has been unlocked
+        {
+           maskClass.MaskChange(3);
+        }
+    }
     #endregion
 
     #region Basic Movement Functions

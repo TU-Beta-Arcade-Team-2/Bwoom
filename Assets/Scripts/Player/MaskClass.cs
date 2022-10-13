@@ -22,4 +22,9 @@ public class MaskClass
         get { return m_unlocked; }
         set { m_unlocked = value; }
     }
+
+    public void MaskChange(int maskNo)
+    {
+        //TODO : Add child mask components
+    }
 }
