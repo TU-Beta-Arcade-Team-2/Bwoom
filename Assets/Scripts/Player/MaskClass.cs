@@ -7,13 +7,11 @@ public class MaskClass : MonoBehaviour
 {
     protected Sprite m_maskSprite;
 
-    [SerializeField] private SpriteRenderer maskRenderer;
+    protected SpriteRenderer maskRenderer;
 
     public void GetMaskSprite (string path)
     {
         m_maskSprite = Resources.Load<Sprite>(path);
-
-        Debug.Log(m_maskSprite);
 
         maskRenderer.sprite = m_maskSprite;
     }
