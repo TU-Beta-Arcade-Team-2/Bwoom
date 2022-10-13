@@ -27,8 +27,22 @@ public class MaskClass : MonoBehaviour
 
     public void MaskChange(int maskNo)
     {
-        //TODO : Add child mask components
+        //TODO : Add other masks
 
-        gameObject.AddComponent(typeof(WarMask));
+        switch(maskNo)
+        {
+            case 0:
+                if (!gameObject.GetComponent<WarMask>())
+                {
+                    gameObject.AddComponent(typeof(WarMask));
+                }
+                break;
+           case 1:
+                if (!gameObject.GetComponent<NatureMask>())
+                {
+                    gameObject.AddComponent(typeof(NatureMask));
+                }
+                break;
+        }
     }
 }
