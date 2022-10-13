@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerHitbox : MonoBehaviour
 {
-    public int Damage { get; set; }
-    public ushort DamageType { get; set; }
+    [SerializeField] private int Damage { get; set; }
 
     void OnTriggerEnter2D(Collider2D other)
     {

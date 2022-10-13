@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class PlayerStats : MonoBehaviour
 {
-    private LevelManager lvlManager;
-    private Animator cameraAnim;
+    private LevelManager m_lvlManager;
+    private PlayerInput m_playerInput;
+    private Animator m_cameraAnim;
 
-    private enum Masks
+    private enum eMasks
     {
-        warMask = 1,
+        warMask,
         natureMask,
         seaMask,
         energyMask
@@ -18,38 +20,53 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Health Variables")]
     [Range(0, 8)]
-    [SerializeField] private int playerHealth;
+    [SerializeField] private int m_playerHealth;
     [Range(1, 8)]
-    [SerializeField] private int maxPlayerHealth;
+    [SerializeField] private int m_maxPlayerHealth;
 
-    [SerializeField] private Image[] mask;
-    [SerializeField] private Sprite fullMask;
-    [SerializeField] private Sprite brokenMask;
+    [SerializeField] private Image[] m_lives;
+    [SerializeField] private Sprite m_fullMaskSprite;
+    [SerializeField] private Sprite m_brokenMaskSprite;
     [Space(10)]
 
     [Header("Mask Ability Variables")]
-    [SerializeField] private Masks maskSelected;
-    [SerializeField] private SpriteRenderer playerMask;
-    [SerializeField] private Sprite warMaskSprite;
-    [SerializeField] private Sprite natureMaskSprite;
-    [SerializeField] private Sprite seaMaskSprite;
-    [SerializeField] private Sprite energyMaskSprite;
+    [SerializeField] private eMasks m_maskSelected;
+    [SerializeField] private SpriteRenderer m_playerMask;
+    public MaskClass[] masks;
 
     #region Main Functions
 
     private void Start()
     {
-        playerHealth = Mathf.Clamp(playerHealth, 0, maxPlayerHealth);
+        m_playerHealth = Mathf.Clamp(m_playerHealth, 0, m_maxPlayerHealth);
         DisplayUIMasks();
 
-        lvlManager = FindObjectOfType<LevelManager>();
-        cameraAnim = Camera.main.gameObject.GetComponent<Animator>();
+        m_lvlManager = FindObjectOfType<LevelManager>();
+        m_cameraAnim = Camera.main.gameObject.GetComponent<Animator>();
+        m_playerInput = GetComponent<PlayerInput>();
     }
 
     private void Update()
     {
-        //This update function is just for testing purposes in inspector will be removed onced mask switch feature is finalised
-        MaskChange((int)maskSelected);
+        if (m_playerInput.actions["OptionOne"].triggered) //will also include an if statement checking if the selected mask has been unlocked
+        {
+            MaskChange(0);
+        }
+
+        if (m_playerInput.actions["OptionTwo"].triggered) //will also include an if statement checking if the selected mask has been unlocked
+        {
+            MaskChange(1);
+        }
+
+        if (m_playerInput.actions["OptionThree"].triggered) //will also include an if statement checking if the selected mask has been unlocked
+        {
+            MaskChange(2);
+        }
+
+        if (m_playerInput.actions["OptionFour"].triggered) //will also include an if statement checking if the selected mask has been unlocked
+        {
+            MaskChange(3);
+        }
     }
 
     #endregion
@@ -58,15 +75,15 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeDMG(int incomingDMG)
     {
-        playerHealth -= incomingDMG;
+        m_playerHealth -= incomingDMG;
 
         DisplayUIMasks();
 
-        cameraAnim.SetTrigger("LightShake");
+        m_cameraAnim.SetTrigger("LightShake");
 
-        if (playerHealth <= 0)
+        if (m_playerHealth <= 0)
         {
-            lvlManager.Death();
+            m_lvlManager.Death();
             Destroy(gameObject);
             return;
         }
@@ -76,7 +93,7 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeHEAL(int incomingHEAL)
     {
-        playerHealth = Mathf.Clamp(playerHealth + incomingHEAL, 0, maxPlayerHealth);
+        m_playerHealth = Mathf.Clamp(m_playerHealth + incomingHEAL, 0, m_maxPlayerHealth);
 
         DisplayUIMasks();
 
@@ -85,19 +102,19 @@ public class PlayerStats : MonoBehaviour
 
     private void DisplayUIMasks()
     {
-        for (int i = 0; i < mask.Length; i++)
+        for (int i = 0; i < m_lives.Length; i++)
         {
-            if (i < playerHealth)
+            if (i < m_playerHealth)
             {
-                mask[i].sprite = fullMask;
+                m_lives[i].sprite = m_fullMaskSprite;
             }
 
             else
             {
-                mask[i].sprite = brokenMask;
+                m_lives[i].sprite = m_brokenMaskSprite;
             }
 
-            mask[i].enabled = (i < maxPlayerHealth);
+            m_lives[i].enabled = (i < m_maxPlayerHealth);
         }
     }
 
@@ -107,25 +124,14 @@ public class PlayerStats : MonoBehaviour
 
     public void MaskChange(int maskNo)
     {
-        switch (maskNo)
+        if (masks[maskNo].Unlocked)
         {
-            case 1:
-                playerMask.sprite = warMaskSprite;
-                maskSelected = Masks.warMask;
-                break;
-            case 2:
-                playerMask.sprite = natureMaskSprite;
-                maskSelected = Masks.natureMask;
-                break;
-            case 3:
-                playerMask.sprite = seaMaskSprite;
-                maskSelected = Masks.seaMask;
-                break;
-            case 4:
-                playerMask.sprite = energyMaskSprite;
-                maskSelected = Masks.energyMask;
-                break;
+            m_playerMask.sprite = masks[maskNo].MaskSprite;
+            m_maskSelected = eMasks.natureMask;
+            return;
         }
+
+        //Play an locked mask sound to signal the player that there isn't an option here
     }
 
     #endregion
