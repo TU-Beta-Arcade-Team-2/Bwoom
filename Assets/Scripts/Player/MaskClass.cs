@@ -34,15 +34,23 @@ public class MaskClass : MonoBehaviour
             case 0:
                 if (!gameObject.GetComponent<WarMask>())
                 {
+                    RemoveMasks();
                     gameObject.AddComponent(typeof(WarMask));
                 }
                 break;
            case 1:
                 if (!gameObject.GetComponent<NatureMask>())
                 {
+                    RemoveMasks();
                     gameObject.AddComponent(typeof(NatureMask));
                 }
                 break;
         }
+    }
+
+    private void RemoveMasks()
+    {
+        Destroy(gameObject.GetComponent<WarMask>());
+        Destroy(gameObject.GetComponent<NatureMask>());
     }
 }
