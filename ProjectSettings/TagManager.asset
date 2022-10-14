@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Wall
+  - End_Of_Platform
   layers:
   - Default
   - TransparentFX
