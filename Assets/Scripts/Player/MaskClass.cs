@@ -13,10 +13,10 @@ public class MaskClass : MonoBehaviour
 
     public enum eMasks
     {
-        warMask,
-        natureMask,
-        seaMask,
-        energyMask
+        war,
+        nature,
+        sea,
+        energy
     }
 
     [SerializeField]
