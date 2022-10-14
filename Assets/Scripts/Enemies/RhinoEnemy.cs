@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public sealed class RhinoEnemy : EnemyBase
 {
     [SerializeField] private float m_chargeDuration;
     [SerializeField] private float m_coolDownDuration;
-    [SerializeField] private float m_minDistanceToPlayer;
+    [SerializeField] private Vector2 m_minDistanceToPlayer;
 
     public enum eState
     {
@@ -22,14 +23,15 @@ public sealed class RhinoEnemy : EnemyBase
     private float m_chargeTimer;
     private float m_coolDownTimer;
 
-    [SerializeField] private float m_chargeMultiplier;
     [SerializeField] private AnimationCurve m_chargeCurve;
+
+    [SerializeField] private float m_chargeSpeed;
 
     // Start is called before the first frame update
     private void Start()
     {
         Init();
-        FacingDirection = eDirection.eLeft;
+        TurnAround();
         m_state = eState.Idle;
     }
 
@@ -41,26 +43,32 @@ public sealed class RhinoEnemy : EnemyBase
             case eState.Idle:
                 {
                     // If the player is within range, begin charging
-                    if (FindSqrDistanceToPlayer() <= m_minDistanceToPlayer * m_minDistanceToPlayer)
+                    if (FindSqrDistanceToPlayer() <= m_minDistanceToPlayer.x * m_minDistanceToPlayer.x)
                     {
                         Debug.Log("RHINO: PLAYER IS IN RANGE!");
                         Vector2 vectorToPlayer = GetVectorToPlayer();
 
                         Debug.Log($"RHINO: PLAYER VECTOR {vectorToPlayer.x}  {vectorToPlayer.y}");
 
-                        // If we are facing the correct direction, charge at the player
-                        if (vectorToPlayer.x >= 0 && FacingDirection == eDirection.eLeft ||
-                            vectorToPlayer.x <= 0 && FacingDirection == eDirection.eRight)
+                        // If we are facing the correct direction, and around the right height
+                        // range, charge at the player
+                        if ((vectorToPlayer.x <= 0 && m_facingDirection == eDirection.eLeft ||
+                            vectorToPlayer.x >= 0 && m_facingDirection == eDirection.eRight) &&
+                            vectorToPlayer.y <= m_minDistanceToPlayer.y)
                         {
                             // If we've started charging, reset the cooldown timer
                             m_coolDownTimer = 0f;
 
                             StartCharge();
                         }
+                        else
+                        {
+                            Debug.Log("RHINO: PLAYER ISN'T IN FRONT");
+                            Move();
+                        }
                     }
                     else
                     {
-                        // TODO: Idly walk around
                         Debug.Log("RHINO: PLAYER ISN'T IN RANGE!");
                         Move();
                     }
@@ -112,7 +120,7 @@ public sealed class RhinoEnemy : EnemyBase
         float valueFromCurve = m_chargeCurve.Evaluate(m_chargeTimer / m_chargeDuration);
 
         m_rigidbody.velocity = new Vector2(
-            (int)FacingDirection * (m_speed + m_chargeMultiplier * valueFromCurve),
+            (int)m_facingDirection * (m_chargeSpeed * valueFromCurve),
             m_rigidbody.velocity.y
         );
     }
@@ -124,15 +132,18 @@ public sealed class RhinoEnemy : EnemyBase
 
     protected override void Move()
     {
-        // TODO: Walk side to side
+        m_rigidbody.velocity = new Vector2(
+            (int)m_facingDirection * m_speed,
+            0f
+        );
     }
 
     // Return a vector pointing to the player
     private Vector2 GetVectorToPlayer()
     {
         return new Vector2(
-            transform.position.x - m_playerStats.gameObject.transform.position.x,
-            transform.position.y - m_playerStats.gameObject.transform.position.y
+            m_playerStats.gameObject.transform.position.x - transform.position.x,
+            m_playerStats.gameObject.transform.position.y - transform.position.y
         );
     }
 
@@ -148,16 +159,39 @@ public sealed class RhinoEnemy : EnemyBase
     {
         m_state = eState.Charging;
         m_chargeTimer = 0f;
-        // Play animation
-        // Play sound effect
+        // TODO: Play animation
+        // TODO: Play sound effect
         Debug.Log("RHINO: STARTING TO CHARGE");
     }
 
     private void StopCharge()
     {
         m_state = eState.CoolDown;
-        // Come to a stop
+        // TODO: Play animation
+        // TODO: Play sound effect
         Debug.Log("RHINO: STOPPING THE CHARGE");
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Wall"))
+        {
+            TurnAround();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("End_Of_Platform"))
+        {
+            TurnAround();
+
+            // Not sure if we want him to stop at the end of the platform
+            // when we reach the end, or if we want him to continue charging
+            if (m_state == eState.Charging)
+            {
+                m_state = eState.CoolDown;
+            }
+        }
+    }
 }

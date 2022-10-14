@@ -15,17 +15,7 @@ public abstract class EnemyBase : MonoBehaviour
         eRight = 1
     }
 
-    public eDirection FacingDirection
-    {
-        get => m_facingDirection;
-        set
-        {
-            m_facingDirection = value;
-            FlipSprite();
-        }
-    }
-
-    private eDirection m_facingDirection;
+    protected eDirection m_facingDirection;
 
     private SpriteRenderer m_spriteRenderer;
 
@@ -62,9 +52,10 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
-    private void FlipSprite()
+    protected void TurnAround()
     {
         m_spriteRenderer.flipX = !m_spriteRenderer.flipX;
+        m_facingDirection = m_facingDirection == eDirection.eLeft ? eDirection.eRight : eDirection.eLeft;
     }
 
     // Every enemy has unique Movement, attacking, and events on death
