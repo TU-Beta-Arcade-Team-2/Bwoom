@@ -5,13 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class NatureMask : MaskClass
 {
-    [SerializeField] private string pathName = "Sprites/TempSprites/ExampleMask2@4x";
-
-    // Start is called before the first frame update
-    void Start()
+    private void OnEnable()
     {
         maskRenderer = GameObject.Find("Mask").GetComponent<SpriteRenderer>();
 
-        GetMaskSprite(pathName);
+        maskRenderer.sprite = m_maskSprite;
     }
 }

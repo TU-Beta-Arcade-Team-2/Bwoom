@@ -5,15 +5,18 @@ using UnityEngine;
 [System.Serializable]
 public class MaskClass : MonoBehaviour
 {
-    protected Sprite m_maskSprite;
-
+    [SerializeField] protected Sprite m_maskSprite;
     protected SpriteRenderer maskRenderer;
 
-    public void GetMaskSprite (string path)
-    {
-        m_maskSprite = Resources.Load<Sprite>(path);
+    [SerializeField] private WarMask warMask;
+    [SerializeField] private NatureMask natureMask;
 
-        maskRenderer.sprite = m_maskSprite;
+    public enum eMasks
+    {
+        warMask,
+        natureMask,
+        seaMask,
+        energyMask
     }
 
     [SerializeField]
@@ -25,24 +28,30 @@ public class MaskClass : MonoBehaviour
         set { m_unlocked = value; }
     }
 
-    public void MaskChange(int maskNo)
+    private void Start()
+    {
+        RemoveMasks();
+        warMask.enabled = true;
+    }
+
+    public void MaskChange(eMasks maskNo)
     {
         //TODO : Add other masks
 
         switch(maskNo)
         {
-            case 0:
-                if (!gameObject.GetComponent<WarMask>())
+            case eMasks.warMask:
+                if (!warMask.enabled)
                 {
                     RemoveMasks();
-                    gameObject.AddComponent(typeof(WarMask));
+                    warMask.enabled = true;
                 }
                 break;
-           case 1:
-                if (!gameObject.GetComponent<NatureMask>())
+           case eMasks.natureMask:
+                if (!natureMask.enabled)
                 {
                     RemoveMasks();
-                    gameObject.AddComponent(typeof(NatureMask));
+                    natureMask.enabled = true;
                 }
                 break;
         }
@@ -50,7 +59,7 @@ public class MaskClass : MonoBehaviour
 
     private void RemoveMasks()
     {
-        Destroy(gameObject.GetComponent<WarMask>());
-        Destroy(gameObject.GetComponent<NatureMask>());
+        warMask.enabled = false;
+        natureMask.enabled = false;
     }
 }

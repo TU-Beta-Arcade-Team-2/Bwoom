@@ -7,7 +7,7 @@ public class Controller : MonoBehaviour
     /// <summary> Player References </summary>
     private PlayerInput playerInput;
     private PlayerStats playerStats;
-    private MaskClass maskClass;
+    [SerializeField] private MaskClass maskClass;
     private Rigidbody2D rb;
     private Animator anim;
 
@@ -121,22 +121,22 @@ public class Controller : MonoBehaviour
     {
         if (playerInput.actions["OptionOne"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            maskClass.MaskChange(0);
+            maskClass.MaskChange(MaskClass.eMasks.warMask);
         }
 
         if (playerInput.actions["OptionTwo"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            maskClass.MaskChange(1);
+            maskClass.MaskChange(MaskClass.eMasks.natureMask);
         }
 
         if (playerInput.actions["OptionThree"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            maskClass.MaskChange(2);
+            maskClass.MaskChange(MaskClass.eMasks.energyMask);
         }
 
         if (playerInput.actions["OptionFour"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-           maskClass.MaskChange(3);
+           maskClass.MaskChange(MaskClass.eMasks.seaMask);
         }
     }
     #endregion

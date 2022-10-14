@@ -5,12 +5,10 @@ using UnityEngine;
 [System.Serializable]
 public class WarMask : MaskClass
 {
-    [SerializeField] private string pathName = "Sprites/TempSprites/ExampleMask1@4x";
-
-    void Start()
+    private void OnEnable()
     {
         maskRenderer = GameObject.Find("Mask").GetComponent<SpriteRenderer>();
 
-        GetMaskSprite(pathName);
+        maskRenderer.sprite = m_maskSprite;
     }
 }
