@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using TMPro;
 public abstract class EnemyBase : MonoBehaviour
 {
 #if UNITY_EDITOR 
-    public GameObject DamageText;
+    public TextMeshPro DebugText;
 #endif
     public enum eDirection
     {
@@ -26,6 +27,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     private eDirection m_facingDirection;
 
+    private SpriteRenderer m_spriteRenderer;
 
     // In order to damage the player, we'll give the Enemies each a reference to him
     [SerializeField] protected PlayerStats m_playerStats;
@@ -38,14 +40,20 @@ public abstract class EnemyBase : MonoBehaviour
     protected Animator m_animator;
     protected Rigidbody2D m_rigidbody;
 
+    // TO BE CALLED ON START OR AWAKE OF THE CHILD CLASSES
+    protected void Init()
+    {
+        m_animator = GetComponent<Animator>();
+        m_spriteRenderer = GetComponent<SpriteRenderer>();
+        m_rigidbody = GetComponent<Rigidbody2D>();
+    }
+
     public virtual void TakeDamage(int damageAmount)
     {
         m_health = m_health -= damageAmount;
 
 #if UNITY_EDITOR 
-        GameObject text = GameObject.Instantiate(DamageText, transform.position, transform.rotation);
-        text.GetComponent<TextMeshPro>().text = damageAmount.ToString();
-        GameObject.Destroy(text, 0.5f);
+        ShowDebugText($"DAMAGE: {damageAmount}", true);
 #endif
 
         if (m_health <= 0)
@@ -56,7 +64,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     private void FlipSprite()
     {
-        transform.localRotation = Quaternion.Euler(0f, -180f, 0f);
+        m_spriteRenderer.flipX = !m_spriteRenderer.flipX;
     }
 
     // Every enemy has unique Movement, attacking, and events on death
@@ -65,4 +73,23 @@ public abstract class EnemyBase : MonoBehaviour
     protected abstract void OnDeath();
 
     protected abstract void Move();
+
+#if UNITY_EDITOR
+    public void ShowDebugText(string debugString, bool hideAfterTime)
+    {
+        DebugText.text = debugString;
+        DebugText.gameObject.SetActive(true);
+
+        if (hideAfterTime)
+        {
+            StartCoroutine("HideDebugTextAfterTime", 3f);
+        }
+    }
+
+    public IEnumerator HideDebugTextAfterTime(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        DebugText.gameObject.SetActive(false);
+    }
+#endif
 }

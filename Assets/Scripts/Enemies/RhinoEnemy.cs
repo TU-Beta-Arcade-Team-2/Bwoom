@@ -1,6 +1,6 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public sealed class RhinoEnemy : EnemyBase
@@ -9,10 +9,18 @@ public sealed class RhinoEnemy : EnemyBase
     [SerializeField] private float m_coolDownDuration;
     [SerializeField] private float m_minDistanceToPlayer;
 
+    public enum eState
+    {
+        Idle,
+        Charging,
+        CoolDown,
+        Dead
+    }
+
+    private eState m_state;
+
     private float m_chargeTimer;
     private float m_coolDownTimer;
-
-    private bool m_isCharging;
 
     [SerializeField] private float m_chargeMultiplier;
     [SerializeField] private AnimationCurve m_chargeCurve;
@@ -20,65 +28,77 @@ public sealed class RhinoEnemy : EnemyBase
     // Start is called before the first frame update
     private void Start()
     {
-        m_animator = GetComponent<Animator>();
-        m_rigidbody = GetComponent<Rigidbody2D>();
-
+        Init();
         FacingDirection = eDirection.eLeft;
+        m_state = eState.Idle;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (m_isCharging)
+        switch (m_state)
         {
-            Debug.Log("RHINO: CHARGING!");
-
-            m_chargeTimer += Time.deltaTime;
-
-            Attack();
-
-            if (m_chargeTimer >= m_chargeDuration)
-            {
-                Debug.Log("RHINO: CHARGE DURATION ENDED!");
-
-                StopCharge();
-            }
-        }
-        else
-        {
-            if (m_coolDownTimer >= m_coolDownDuration)
-            {
-                // If the player is within range, begin charging
-                if (FindSqrDistanceToPlayer() <= m_minDistanceToPlayer * m_minDistanceToPlayer)
+            case eState.Idle:
                 {
-                    Debug.Log("RHINO: PLAYER IS IN RANGE!");
-                    Vector2 vectorToPlayer = GetVectorToPlayer();
-
-                    Debug.Log($"RHINO: PLAYER VECTOR {vectorToPlayer.x}  {vectorToPlayer.y}");
-
-                    // If we are facing the correct direction, charge at the player
-                    if (vectorToPlayer.x >= 0 && FacingDirection == eDirection.eLeft ||
-                        vectorToPlayer.x <= 0 && FacingDirection == eDirection.eRight)
+                    // If the player is within range, begin charging
+                    if (FindSqrDistanceToPlayer() <= m_minDistanceToPlayer * m_minDistanceToPlayer)
                     {
-                        // If we've started charging, reset the cooldown timer
-                        m_coolDownTimer = 0f;
+                        Debug.Log("RHINO: PLAYER IS IN RANGE!");
+                        Vector2 vectorToPlayer = GetVectorToPlayer();
 
-                        StartCharge();
+                        Debug.Log($"RHINO: PLAYER VECTOR {vectorToPlayer.x}  {vectorToPlayer.y}");
+
+                        // If we are facing the correct direction, charge at the player
+                        if (vectorToPlayer.x >= 0 && FacingDirection == eDirection.eLeft ||
+                            vectorToPlayer.x <= 0 && FacingDirection == eDirection.eRight)
+                        {
+                            // If we've started charging, reset the cooldown timer
+                            m_coolDownTimer = 0f;
+
+                            StartCharge();
+                        }
+                    }
+                    else
+                    {
+                        // TODO: Idly walk around
+                        Debug.Log("RHINO: PLAYER ISN'T IN RANGE!");
+                        Move();
                     }
                 }
-                else
+                break;
+            case eState.Charging:
                 {
-                    // TODO: Idly walk around
-                    Debug.Log("RHINO: PLAYER ISN'T IN RANGE!");
-                    Move();
+                    Debug.Log("RHINO: CHARGING!");
+
+                    m_chargeTimer += Time.deltaTime;
+
+                    Attack();
+
+                    if (m_chargeTimer >= m_chargeDuration)
+                    {
+                        Debug.Log("RHINO: CHARGE DURATION ENDED!");
+
+                        StopCharge();
+                    }
                 }
-            }
-            else
-            {
+                break;
+            case eState.CoolDown:
                 m_coolDownTimer += Time.deltaTime;
                 Debug.Log("RHINO: COOLING DOWN AFTER A CHARGE!");
-            }
+
+                if (m_coolDownTimer >= m_coolDownDuration)
+                {
+                    m_state = eState.Idle;
+                }
+                break;
+            case eState.Dead:
+                break;
+            default:
+                Debug.Log("RHINO: UNHANDLED STATE IN UPDATE!");
+                break;
         }
+
+        ShowDebugText($"State: {m_state}", false);
     }
 
     // The Rhino's attack is to charge toward the player
@@ -126,7 +146,7 @@ public sealed class RhinoEnemy : EnemyBase
 
     private void StartCharge()
     {
-        m_isCharging = true;
+        m_state = eState.Charging;
         m_chargeTimer = 0f;
         // Play animation
         // Play sound effect
@@ -135,7 +155,7 @@ public sealed class RhinoEnemy : EnemyBase
 
     private void StopCharge()
     {
-        m_isCharging = false;
+        m_state = eState.CoolDown;
         // Come to a stop
         Debug.Log("RHINO: STOPPING THE CHARGE");
     }
