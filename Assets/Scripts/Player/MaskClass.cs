@@ -40,14 +40,14 @@ public class MaskClass : MonoBehaviour
 
         switch(maskNo)
         {
-            case eMasks.warMask:
+            case eMasks.war:
                 if (!warMask.enabled)
                 {
                     RemoveMasks();
                     warMask.enabled = true;
                 }
                 break;
-           case eMasks.natureMask:
+           case eMasks.nature:
                 if (!natureMask.enabled)
                 {
                     RemoveMasks();

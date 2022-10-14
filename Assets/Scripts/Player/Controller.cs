@@ -121,22 +121,22 @@ public class Controller : MonoBehaviour
     {
         if (playerInput.actions["OptionOne"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            maskClass.MaskChange(MaskClass.eMasks.warMask);
+            maskClass.MaskChange(MaskClass.eMasks.war);
         }
 
         if (playerInput.actions["OptionTwo"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            maskClass.MaskChange(MaskClass.eMasks.natureMask);
+            maskClass.MaskChange(MaskClass.eMasks.nature);
         }
 
         if (playerInput.actions["OptionThree"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            maskClass.MaskChange(MaskClass.eMasks.energyMask);
+            maskClass.MaskChange(MaskClass.eMasks.energy);
         }
 
         if (playerInput.actions["OptionFour"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-           maskClass.MaskChange(MaskClass.eMasks.seaMask);
+           maskClass.MaskChange(MaskClass.eMasks.sea);
         }
     }
     #endregion
