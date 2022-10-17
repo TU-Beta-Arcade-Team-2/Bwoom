@@ -7,7 +7,7 @@ public class Controller : MonoBehaviour
     /// <summary> Player References </summary>
     private PlayerInput playerInput;
     private PlayerStats playerStats;
-    [SerializeField] private MaskClass maskClass;
+    private MaskClass maskClass;
     private Rigidbody2D rb;
     private Animator anim;
 
@@ -63,6 +63,17 @@ public class Controller : MonoBehaviour
     private bool isTouchingFront;
     private bool wallSliding;
 
+    [Header("Wall Jumping Values")]
+    [SerializeField] private WarMask warMask;
+    [SerializeField] private NatureMask natureMask;
+    public enum eMasks
+    {
+        war,
+        nature,
+        sea,
+        energy
+    }
+
     #region Main Functions
     // Start is called before the first frame update
     private void Start()
@@ -72,6 +83,10 @@ public class Controller : MonoBehaviour
         maskClass = GetComponent<MaskClass>();
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        //set default mask
+        RemoveMasks();
+        warMask.enabled = true;
     }
 
     private void Update()
@@ -80,6 +95,7 @@ public class Controller : MonoBehaviour
         /// values that may cause weird behaviours in future </Note>
         Jumping();
         Attack();
+        SpecialAttack();
         MaskInputs();
 
 #if WALL_SLIDE
@@ -121,22 +137,45 @@ public class Controller : MonoBehaviour
     {
         if (playerInput.actions["OptionOne"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            maskClass.MaskChange(MaskClass.eMasks.war);
+            MaskChange(eMasks.war);
         }
 
         if (playerInput.actions["OptionTwo"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            maskClass.MaskChange(MaskClass.eMasks.nature);
+            MaskChange(eMasks.nature);
         }
 
         if (playerInput.actions["OptionThree"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            maskClass.MaskChange(MaskClass.eMasks.energy);
+            MaskChange(eMasks.energy);
         }
 
         if (playerInput.actions["OptionFour"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-           maskClass.MaskChange(MaskClass.eMasks.sea);
+           MaskChange(eMasks.sea);
+        }
+    }
+
+    public void MaskChange(eMasks maskNo)
+    {
+        //TODO : Add other masks
+
+        switch (maskNo)
+        {
+            case eMasks.war:
+                if (!warMask.enabled)
+                {
+                    RemoveMasks();
+                    warMask.enabled = true;
+                }
+                break;
+            case eMasks.nature:
+                if (!natureMask.enabled)
+                {
+                    RemoveMasks();
+                    natureMask.enabled = true;
+                }
+                break;
         }
     }
     #endregion
@@ -274,6 +313,14 @@ public class Controller : MonoBehaviour
         }
     }
 
+    private void SpecialAttack()
+    {
+        if (playerInput.actions["Special"].triggered)
+        {
+            warMask.SpecialAttack();
+        }
+    }
+
     #endregion
 
     #region Extra Movement Functions
@@ -303,5 +350,13 @@ public class Controller : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Mask Functions
+    private void RemoveMasks()
+    {
+        warMask.enabled = false;
+        natureMask.enabled = false;
+    }
     #endregion
 }

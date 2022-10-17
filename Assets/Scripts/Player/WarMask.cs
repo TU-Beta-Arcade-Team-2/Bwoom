@@ -11,4 +11,10 @@ public class WarMask : MaskClass
 
         maskRenderer.sprite = m_maskSprite;
     }
+
+    public override void SpecialAttack()
+    {
+        base.SpecialAttack();
+        Debug.Log("War");
+    }
 }

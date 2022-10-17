@@ -11,4 +11,10 @@ public class NatureMask : MaskClass
 
         maskRenderer.sprite = m_maskSprite;
     }
+
+    public override void SpecialAttack()
+    {
+        base.SpecialAttack();
+        Debug.Log("nature");
+    }
 }

@@ -8,17 +8,6 @@ public class MaskClass : MonoBehaviour
     [SerializeField] protected Sprite m_maskSprite;
     protected SpriteRenderer maskRenderer;
 
-    [SerializeField] private WarMask warMask;
-    [SerializeField] private NatureMask natureMask;
-
-    public enum eMasks
-    {
-        war,
-        nature,
-        sea,
-        energy
-    }
-
     [SerializeField]
     private bool m_unlocked;
 
@@ -28,38 +17,7 @@ public class MaskClass : MonoBehaviour
         set { m_unlocked = value; }
     }
 
-    private void Start()
+    public virtual void SpecialAttack()
     {
-        RemoveMasks();
-        warMask.enabled = true;
-    }
-
-    public void MaskChange(eMasks maskNo)
-    {
-        //TODO : Add other masks
-
-        switch(maskNo)
-        {
-            case eMasks.war:
-                if (!warMask.enabled)
-                {
-                    RemoveMasks();
-                    warMask.enabled = true;
-                }
-                break;
-           case eMasks.nature:
-                if (!natureMask.enabled)
-                {
-                    RemoveMasks();
-                    natureMask.enabled = true;
-                }
-                break;
-        }
-    }
-
-    private void RemoveMasks()
-    {
-        warMask.enabled = false;
-        natureMask.enabled = false;
     }
 }

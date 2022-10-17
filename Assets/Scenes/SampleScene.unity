@@ -221,6 +221,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 077fddd5ef6e8504ea32a4f839a4162f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_maskSprite: {fileID: 0}
+  m_unlocked: 0
+--- !u!114 &147302985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147302971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 543bec8060db7324e861e9f0f917c839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maskSprite: {fileID: 21300000, guid: 9a90649ec35ed8743ad1b565f5bd2e23, type: 3}
+  m_unlocked: 0
+--- !u!114 &147302986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 147302971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdb138e6a3f4d41489139b2483a8e3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_maskSprite: {fileID: 21300000, guid: 5badf423a4df5334bb4ba4f556bec3d2, type: 3}
   m_unlocked: 0
 --- !u!1 &168009814
 GameObject:
@@ -4195,6 +4224,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8171535325487749789, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: warMask
+      value: 
+      objectReference: {fileID: 147302986}
+    - target: {fileID: 8171535325487749789, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: natureMask
+      value: 
+      objectReference: {fileID: 147302985}
     - target: {fileID: 8171535325487749790, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_Camera
       value: 
