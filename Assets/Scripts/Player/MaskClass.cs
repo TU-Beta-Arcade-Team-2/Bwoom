@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class MaskClass : MonoBehaviour
+public abstract class MaskClass : MonoBehaviour
 {
     [SerializeField] protected Sprite m_maskSprite;
     protected SpriteRenderer maskRenderer;
@@ -17,7 +17,5 @@ public class MaskClass : MonoBehaviour
         set { m_unlocked = value; }
     }
 
-    public virtual void SpecialAttack()
-    {
-    }
+    public abstract void SpecialAttack();
 }

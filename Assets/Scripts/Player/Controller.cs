@@ -63,7 +63,7 @@ public class Controller : MonoBehaviour
     private bool isTouchingFront;
     private bool wallSliding;
 
-    [Header("Wall Jumping Values")]
+    [Header("Mask Values")]
     [SerializeField] private WarMask warMask;
     [SerializeField] private NatureMask natureMask;
     public enum eMasks
@@ -73,6 +73,8 @@ public class Controller : MonoBehaviour
         sea,
         energy
     }
+
+    [SerializeField] private eMasks masks;
 
     #region Main Functions
     // Start is called before the first frame update
@@ -137,30 +139,32 @@ public class Controller : MonoBehaviour
     {
         if (playerInput.actions["OptionOne"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            MaskChange(eMasks.war);
+            masks = eMasks.war;
         }
 
         if (playerInput.actions["OptionTwo"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            MaskChange(eMasks.nature);
+            masks = eMasks.nature;
         }
 
         if (playerInput.actions["OptionThree"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            MaskChange(eMasks.energy);
+            masks = eMasks.energy;;
         }
 
         if (playerInput.actions["OptionFour"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-           MaskChange(eMasks.sea);
+            masks = eMasks.sea;
         }
+
+        MaskChange();
     }
 
-    public void MaskChange(eMasks maskNo)
+    private void MaskChange()
     {
         //TODO : Add other masks
 
-        switch (maskNo)
+        switch (masks)
         {
             case eMasks.war:
                 if (!warMask.enabled)
@@ -317,7 +321,15 @@ public class Controller : MonoBehaviour
     {
         if (playerInput.actions["Special"].triggered)
         {
-            warMask.SpecialAttack();
+            switch (masks)
+            {
+                case eMasks.war:
+                    warMask.SpecialAttack();
+                    break;
+                case eMasks.nature:
+                    natureMask.SpecialAttack();
+                    break;
+            }
         }
     }
 

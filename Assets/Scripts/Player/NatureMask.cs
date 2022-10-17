@@ -14,7 +14,6 @@ public class NatureMask : MaskClass
 
     public override void SpecialAttack()
     {
-        base.SpecialAttack();
         Debug.Log("nature");
     }
 }
