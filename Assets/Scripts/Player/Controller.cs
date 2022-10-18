@@ -286,7 +286,7 @@ public class Controller : MonoBehaviour
         }
     }
 
-    private bool JumpAvaliable()
+    public bool JumpAvaliable()
     {
         return IsGrounded() || (!IsGrounded() && ungroundedTimer > 0);
     }
@@ -302,6 +302,8 @@ public class Controller : MonoBehaviour
         rb.sharedMaterial = stickyMat;
         ungroundedTimer = 0.2f;
         holdTimer = 0f;
+        m_warMask.isJumped = false;
+        doubleJumped = false;
         return true;
     }
 
