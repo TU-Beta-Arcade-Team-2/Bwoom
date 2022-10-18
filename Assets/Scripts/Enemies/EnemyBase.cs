@@ -73,6 +73,23 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected abstract void Move();
 
+    // Return a vector pointing to the player
+    protected Vector2 GetVectorToPlayer()
+    {
+        return new Vector2(
+            m_playerStats.gameObject.transform.position.x - transform.position.x,
+            m_playerStats.gameObject.transform.position.y - transform.position.y
+        );
+    }
+
+    // Return the SqrMag distance of the player, 
+    protected float FindSqrDistanceToPlayer()
+    {
+        Vector2 aToB = GetVectorToPlayer();
+
+        return aToB.x * aToB.x + aToB.y * aToB.y;
+    }
+
 #if UNITY_EDITOR
     public void ShowDebugText(string debugString, bool hideAfterTime)
     {
