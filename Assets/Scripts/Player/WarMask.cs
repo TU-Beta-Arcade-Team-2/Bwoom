@@ -7,7 +7,6 @@ public class WarMask : MaskClass
 {
     private float m_jumpHeight = 10;
     public bool isJumped;
-    private float m_ungroundedTimer;
     [SerializeField] private Rigidbody2D m_rb;
     [SerializeField] private Controller m_playerController;
     [SerializeField] private Animator attackAnim;

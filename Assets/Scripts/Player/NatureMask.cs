@@ -5,6 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class NatureMask : MaskClass
 {
+    [SerializeField] private GameObject m_projectile;
+
     private void OnEnable()
     {
         m_maskRenderer = GameObject.Find("Mask").GetComponent<SpriteRenderer>();
@@ -14,6 +16,8 @@ public class NatureMask : MaskClass
 
     public override void SpecialAttack()
     {
-        Debug.Log("nature");
+        Instantiate(m_projectile,transform.position,transform.rotation);
+
+        Debug.Log(transform.localEulerAngles);
     }
 }
