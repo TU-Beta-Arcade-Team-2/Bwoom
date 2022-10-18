@@ -8,19 +8,40 @@ public class WaspEnemy : EnemyBase
     [SerializeField] private float m_bobSpeed;
     [SerializeField] private bool m_limitedToPlatform;
 
+    [SerializeField] private float m_minDistanceToPlayer;
+
     private float m_sinCounter;
+
+    public enum eState
+    {
+        eFlying,
+        eDiveBomb,
+        eAttack,
+        eDead
+    }
+
+    private eState m_state;
 
     // Start is called before the first frame update
     void Start()
     {
         Init();
         m_facingDirection = eDirection.eRight;
+        m_state = eState.eFlying;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
+        switch(m_state)
+        {
+        case eState.eFlying:
+            Move();
+            break;
+        default:
+            Debug.Log($"WASP: UNHANDLED CASE {m_state}");
+            break;
+        }
     }
 
     protected override void Attack()
