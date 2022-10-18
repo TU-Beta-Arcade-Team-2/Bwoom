@@ -70,6 +70,23 @@ public class Controller : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
+
+        /*
+        BELOW IS SOME EXAMPLE USAGE OF HOW THE BETTERDEBUGGING CLASS WILL WORK 
+        HOPEFULLY IT SHOULD ALLEVIATE SOME OF THE ISSUES WE HAVE DOWN THE LINE WITH OUR CODE AS THIS GAME
+        EXPANDS ITS FEATURES. 
+
+
+        bool failed = playerInput == null || playerStats == null || anim == null || rb == null;
+        if (failed)
+        {
+            BetterDebugging.Instance.DebugLog("PLAYER FAILED TO GRAB COMPONENTS... CHECK THE GAMEOBJECT", BetterDebugging.eDebugLevel.Error);
+        }
+
+        BetterDebugging.Instance.SpawnDebugText("STARTING PLAYER", transform.position, 3f, BetterDebugging.eDebugLevel.Error);
+
+        BetterDebugging.Instance.Assert(rb != null, "RigidBody is null");
+        */
     }
 
     private void Update()
