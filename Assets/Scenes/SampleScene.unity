@@ -221,8 +221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 077fddd5ef6e8504ea32a4f839a4162f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_maskSprite: {fileID: 0}
-  m_unlocked: 0
 --- !u!114 &147302985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +249,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_maskSprite: {fileID: 21300000, guid: 5badf423a4df5334bb4ba4f556bec3d2, type: 3}
   m_unlocked: 0
+  m_rb: {fileID: 147302990}
+--- !u!50 &147302990 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 8171535325487749779, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+  m_PrefabInstance: {fileID: 8171535323749452087}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &168009814
 GameObject:
   m_ObjectHideFlags: 0
@@ -1323,27 +1327,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
 --- !u!95 &519420034
 Animator:
   serializedVersion: 4
@@ -3417,7 +3400,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
@@ -4229,7 +4211,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 147302986}
     - target: {fileID: 8171535325487749789, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_warMask
+      value: 
+      objectReference: {fileID: 147302986}
+    - target: {fileID: 8171535325487749789, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: natureMask
+      value: 
+      objectReference: {fileID: 147302985}
+    - target: {fileID: 8171535325487749789, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_natureMask
       value: 
       objectReference: {fileID: 147302985}
     - target: {fileID: 8171535325487749790, guid: 87cbc86813d78054387dd226c11cd974, type: 3}

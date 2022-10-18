@@ -7,9 +7,9 @@ public class NatureMask : MaskClass
 {
     private void OnEnable()
     {
-        maskRenderer = GameObject.Find("Mask").GetComponent<SpriteRenderer>();
+        m_maskRenderer = GameObject.Find("Mask").GetComponent<SpriteRenderer>();
 
-        maskRenderer.sprite = m_maskSprite;
+        m_maskRenderer.sprite = m_maskSprite;
     }
 
     public override void SpecialAttack()

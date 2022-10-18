@@ -64,8 +64,8 @@ public class Controller : MonoBehaviour
     private bool wallSliding;
 
     [Header("Mask Values")]
-    [SerializeField] private WarMask warMask;
-    [SerializeField] private NatureMask natureMask;
+    [SerializeField] private WarMask m_warMask;
+    [SerializeField] private NatureMask m_natureMask;
     public enum eMasks
     {
         war,
@@ -74,7 +74,7 @@ public class Controller : MonoBehaviour
         energy
     }
 
-    [SerializeField] private eMasks masks;
+    [SerializeField] private eMasks m_masks;
 
     #region Main Functions
     // Start is called before the first frame update
@@ -88,7 +88,7 @@ public class Controller : MonoBehaviour
 
         //set default mask
         RemoveMasks();
-        warMask.enabled = true;
+        m_warMask.enabled = true;
     }
 
     private void Update()
@@ -139,22 +139,22 @@ public class Controller : MonoBehaviour
     {
         if (playerInput.actions["OptionOne"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            masks = eMasks.war;
+            m_masks = eMasks.war;
         }
 
         if (playerInput.actions["OptionTwo"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            masks = eMasks.nature;
+            m_masks = eMasks.nature;
         }
 
         if (playerInput.actions["OptionThree"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            masks = eMasks.energy;;
+            m_masks = eMasks.energy;;
         }
 
         if (playerInput.actions["OptionFour"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            masks = eMasks.sea;
+            m_masks = eMasks.sea;
         }
 
         MaskChange();
@@ -162,22 +162,22 @@ public class Controller : MonoBehaviour
 
     private void MaskChange()
     {
-        //TODO : Add other masks
+        //TODO : Add other m_masks
 
-        switch (masks)
+        switch (m_masks)
         {
             case eMasks.war:
-                if (!warMask.enabled)
+                if (!m_warMask.enabled)
                 {
                     RemoveMasks();
-                    warMask.enabled = true;
+                    m_warMask.enabled = true;
                 }
                 break;
             case eMasks.nature:
-                if (!natureMask.enabled)
+                if (!m_natureMask.enabled)
                 {
                     RemoveMasks();
-                    natureMask.enabled = true;
+                    m_natureMask.enabled = true;
                 }
                 break;
         }
@@ -321,13 +321,13 @@ public class Controller : MonoBehaviour
     {
         if (playerInput.actions["Special"].triggered)
         {
-            switch (masks)
+            switch (m_masks)
             {
                 case eMasks.war:
-                    warMask.SpecialAttack();
+                    m_warMask.SpecialAttack();
                     break;
                 case eMasks.nature:
-                    natureMask.SpecialAttack();
+                    m_natureMask.SpecialAttack();
                     break;
             }
         }
@@ -367,8 +367,8 @@ public class Controller : MonoBehaviour
     #region Mask Functions
     private void RemoveMasks()
     {
-        warMask.enabled = false;
-        natureMask.enabled = false;
+        m_warMask.enabled = false;
+        m_natureMask.enabled = false;
     }
     #endregion
 }

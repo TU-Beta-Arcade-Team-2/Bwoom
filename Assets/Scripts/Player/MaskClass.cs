@@ -6,7 +6,7 @@ using UnityEngine;
 public abstract class MaskClass : MonoBehaviour
 {
     [SerializeField] protected Sprite m_maskSprite;
-    protected SpriteRenderer maskRenderer;
+    protected SpriteRenderer m_maskRenderer;
 
     [SerializeField]
     private bool m_unlocked;
