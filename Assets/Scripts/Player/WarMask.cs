@@ -10,6 +10,7 @@ public class WarMask : MaskClass
     private float m_ungroundedTimer;
     [SerializeField] private Rigidbody2D m_rb;
     [SerializeField] private Controller m_playerController;
+    [SerializeField] private Animator attackAnim;
 
     private void Start()
     {
@@ -31,6 +32,7 @@ public class WarMask : MaskClass
             m_rb.AddForce(new Vector2(0, m_jumpHeight), ForceMode2D.Impulse);
 
             isJumped = true;
+            attackAnim.Play("Warmask Special");
         }
     }
 }
