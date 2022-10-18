@@ -30,7 +30,7 @@ public sealed class RhinoEnemy : EnemyBase
     // Start is called before the first frame update
     private void Start()
     {
-        Init();
+        Init("RhinoEnemy");
         TurnAround();
         m_state = eState.Idle;
     }
@@ -45,10 +45,10 @@ public sealed class RhinoEnemy : EnemyBase
                     // If the player is within range, begin charging
                     if (FindSqrDistanceToPlayer() <= m_minDistanceToPlayer.x * m_minDistanceToPlayer.x)
                     {
-                        Debug.Log("RHINO: PLAYER IS IN RANGE!");
+                        DebugLog("PLAYER IS IN RANGE!");
                         Vector2 vectorToPlayer = GetVectorToPlayer();
 
-                        Debug.Log($"RHINO: PLAYER VECTOR {vectorToPlayer.x}  {vectorToPlayer.y}");
+                        DebugLog($"PLAYER VECTOR {vectorToPlayer.x}  {vectorToPlayer.y}");
 
                         // If we are facing the correct direction, and around the right height
                         // range, charge at the player
@@ -63,20 +63,20 @@ public sealed class RhinoEnemy : EnemyBase
                         }
                         else
                         {
-                            Debug.Log("RHINO: PLAYER ISN'T IN FRONT");
+                            DebugLog("PLAYER ISN'T IN FRONT");
                             Move();
                         }
                     }
                     else
                     {
-                        Debug.Log("RHINO: PLAYER ISN'T IN RANGE!");
+                        DebugLog("PLAYER ISN'T IN RANGE!");
                         Move();
                     }
                 }
                 break;
             case eState.Charging:
                 {
-                    Debug.Log("RHINO: CHARGING!");
+                    DebugLog("CHARGING!");
 
                     m_chargeTimer += Time.deltaTime;
 
@@ -84,7 +84,7 @@ public sealed class RhinoEnemy : EnemyBase
 
                     if (m_chargeTimer >= m_chargeDuration)
                     {
-                        Debug.Log("RHINO: CHARGE DURATION ENDED!");
+                        DebugLog("CHARGE DURATION ENDED!");
 
                         StopCharge();
                     }
@@ -92,7 +92,7 @@ public sealed class RhinoEnemy : EnemyBase
                 break;
             case eState.CoolDown:
                 m_coolDownTimer += Time.deltaTime;
-                Debug.Log("RHINO: COOLING DOWN AFTER A CHARGE!");
+                DebugLog("COOLING DOWN AFTER A CHARGE!");
 
                 if (m_coolDownTimer >= m_coolDownDuration)
                 {
@@ -102,11 +102,14 @@ public sealed class RhinoEnemy : EnemyBase
             case eState.Dead:
                 break;
             default:
-                Debug.Log("RHINO: UNHANDLED STATE IN UPDATE!");
+                DebugLog("UNHANDLED STATE IN UPDATE!", BetterDebugging.eDebugLevel.Warning);
                 break;
         }
+    }
 
-        ShowDebugText($"State: {m_state}", false);
+    void LateUpdate()
+    {
+        DebugLog($"State: {m_state}");
     }
 
     // The Rhino's attack is to charge toward the player
@@ -138,7 +141,7 @@ public sealed class RhinoEnemy : EnemyBase
         );
     }
 
-    
+
 
     private void StartCharge()
     {
@@ -146,7 +149,7 @@ public sealed class RhinoEnemy : EnemyBase
         m_chargeTimer = 0f;
         // TODO: Play animation
         // TODO: Play sound effect
-        Debug.Log("RHINO: STARTING TO CHARGE");
+        DebugLog("STARTING TO CHARGE");
     }
 
     private void StopCharge()
@@ -154,12 +157,12 @@ public sealed class RhinoEnemy : EnemyBase
         m_state = eState.CoolDown;
         // TODO: Play animation
         // TODO: Play sound effect
-        Debug.Log("RHINO: STOPPING THE CHARGE");
+        DebugLog("STOPPING THE CHARGE");
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.CompareTag("Wall"))
+        if (other.gameObject.CompareTag(StringConstants.WALL_TAG))
         {
             TurnAround();
         }
@@ -167,7 +170,7 @@ public sealed class RhinoEnemy : EnemyBase
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("End_Of_Platform"))
+        if (other.gameObject.CompareTag(StringConstants.END_OF_PLATFORM_TAG))
         {
             TurnAround();
 

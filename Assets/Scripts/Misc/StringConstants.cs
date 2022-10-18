@@ -5,6 +5,8 @@ public static class StringConstants
     public static string PLAYER_TAG = "Player";
     public static string GAME_CONTROLLER_TAG = "GameController";
     public static string GROUND_TAG = "Ground";
+    public static string WALL_TAG = "Wall";
+    public static string END_OF_PLATFORM_TAG = "End_Of_Platform";
     #endregion
 
     #region LAYER_STRINGS

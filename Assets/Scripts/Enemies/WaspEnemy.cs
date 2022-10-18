@@ -32,7 +32,7 @@ public class WaspEnemy : EnemyBase
     {
         m_origin = transform.position;
 
-        Init();
+        Init("WaspEnemy");
         m_facingDirection = eDirection.eRight;
         m_state = eState.eFlying;
     }
@@ -40,34 +40,37 @@ public class WaspEnemy : EnemyBase
     // Update is called once per frame
     void Update()
     {
-        switch(m_state)
+        switch (m_state)
         {
             case eState.eFlying:
-            {   
-                float distanceToPlayer = FindSqrDistanceToPlayer();
-                if(distanceToPlayer <= m_minDistanceToPlayer * m_minDistanceToPlayer)
                 {
-                    m_state = eState.eDiveBomb;
-                    DiveBomb();
+                    float distanceToPlayer = FindSqrDistanceToPlayer();
+                    if (distanceToPlayer <= m_minDistanceToPlayer * m_minDistanceToPlayer)
+                    {
+                        m_state = eState.eDiveBomb;
+                        DiveBomb();
+                    }
+                    else
+                    {
+                        Move();
+                    }
                 }
-                else
-                {
-                    Move();
-                }
-            }
-            break;
-        case eState.eDiveBomb:
-            DiveBomb();
-            break;
-        case eState.RiseUp:
-            RiseUp();
-            break;
-        default:
-            Debug.Log($"WASP: UNHANDLED CASE {m_state}");
-            break;
+                break;
+            case eState.eDiveBomb:
+                DiveBomb();
+                break;
+            case eState.eRiseUp:
+                RiseUp();
+                break;
+            default:
+                DebugLog($"UNHANDLED CASE {m_state}");
+                break;
         }
+    }
 
-        ShowDebugText($"State: {m_state}", false);
+    void LateUpdate()
+    {
+        DebugLog($"State: {m_state}");
     }
 
     private void DiveBomb()
@@ -75,16 +78,21 @@ public class WaspEnemy : EnemyBase
         // Find vector to player
         Vector2 pointTowardsPlayer = GetVectorToPlayer();
 
-        // Normalise to get direciton
+        // Normalise to get direction
         pointTowardsPlayer.Normalize();
 
         m_rigidbody.velocity = pointTowardsPlayer * m_diveBombSpeed;
 
         // TODO: Attack the player with the stinger
 
-        // TODO: Stop from hitting the ground
-        RaycastHit2D hit = Physics2D.RayCast(transform.position, Vector2.down, 0.3f);
-        if(hit.collider != null)
+        // Stop from hitting the ground
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 0.3f);
+
+#if UNITY_EDITOR
+        Debug.DrawRay(transform.position, Vector3.down, Color.cyan);
+#endif
+
+        if (hit.collider != null)
         {
             // Move back up to the flying Height
             m_state = eState.eRiseUp;
@@ -95,15 +103,15 @@ public class WaspEnemy : EnemyBase
     {
         // Fly diagonally upwards to get to the initial height
         Vector2 toOrigin = new Vector2(
-            m_origin.position.x - transform.position.x,
-            m_origin.position.y - transform.position.y
+            m_origin.x - transform.position.x,
+            m_origin.y - transform.position.y
         );
 
         toOrigin.Normalize();
 
-        m_rigidbody.velocity = new Vector2(toOrigin) * m_speed;
+        m_rigidbody.velocity = toOrigin * m_speed;
 
-        if(Vector2.Distance(transform.position, m_origin) <= 0.5)
+        if (Vector2.Distance(transform.position, m_origin) <= 0.5)
         {
             m_state = eState.eFlying;
         }
@@ -118,15 +126,15 @@ public class WaspEnemy : EnemyBase
     {
         // Make the wasp float in the air with a sine curve
         m_sinCounter += Time.deltaTime * m_bobSpeed;
-        if(m_sinCounter > 180f)
+        if (m_sinCounter > 180f)
         {
             m_sinCounter = -180f;
         }
 
         m_rigidbody.velocity = new Vector2(
-            (int)m_facingDirection * m_speed, 
+            (int)m_facingDirection * m_speed,
             Mathf.Sin(m_sinCounter) * m_speed * m_bobHeight
-    
+
         );
     }
 
@@ -135,22 +143,19 @@ public class WaspEnemy : EnemyBase
 
     }
 
-    private void OnCollisionEnter2D(Collision2D other) 
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.CompareTag("Wall"))
+        if (other.gameObject.CompareTag(StringConstants.WALL_TAG))
         {
             TurnAround();
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) 
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if(m_limitedToPlatform)
+        if (m_limitedToPlatform && other.gameObject.CompareTag(StringConstants.END_OF_PLATFORM_TAG))
         {
-            if (other.gameObject.CompareTag("End_Of_Platform"))
-            {
-                TurnAround();
-            }
+            TurnAround();
         }
     }
 }

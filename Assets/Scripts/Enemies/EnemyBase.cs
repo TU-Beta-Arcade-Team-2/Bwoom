@@ -6,9 +6,6 @@ using TMPro;
 
 public abstract class EnemyBase : MonoBehaviour
 {
-#if UNITY_EDITOR 
-    public TextMeshPro DebugText;
-#endif
     public enum eDirection
     {
         eLeft = -1,
@@ -22,6 +19,7 @@ public abstract class EnemyBase : MonoBehaviour
     // In order to damage the player, we'll give the Enemies each a reference to him
     [SerializeField] protected PlayerStats m_playerStats;
 
+    private string m_name;
     [SerializeField] protected int m_health;
     [SerializeField] protected int m_damage;
     [SerializeField] protected float m_speed;
@@ -31,8 +29,9 @@ public abstract class EnemyBase : MonoBehaviour
     protected Rigidbody2D m_rigidbody;
 
     // TO BE CALLED ON START OR AWAKE OF THE CHILD CLASSES
-    protected void Init()
+    protected void Init(string enemyName)
     {
+        m_name = enemyName;
         m_animator = GetComponent<Animator>();
         m_spriteRenderer = GetComponent<SpriteRenderer>();
         m_rigidbody = GetComponent<Rigidbody2D>();
@@ -42,9 +41,13 @@ public abstract class EnemyBase : MonoBehaviour
     {
         m_health = m_health -= damageAmount;
 
-#if UNITY_EDITOR 
-        ShowDebugText($"DAMAGE: {damageAmount}", true);
-#endif
+        BetterDebugging.Instance.SpawnDebugText(
+            $"{m_name.ToUpper()} TAKING {damageAmount} DAMAGE", 
+            transform.position + new Vector3(0, 2), 
+            0.3f, 
+            null,
+            BetterDebugging.eDebugLevel.Message
+        );
 
         if (m_health <= 0)
         {
@@ -90,22 +93,8 @@ public abstract class EnemyBase : MonoBehaviour
         return aToB.x * aToB.x + aToB.y * aToB.y;
     }
 
-#if UNITY_EDITOR
-    public void ShowDebugText(string debugString, bool hideAfterTime)
+    public void DebugLog(string debugMessage, BetterDebugging.eDebugLevel level = BetterDebugging.eDebugLevel.Log)
     {
-        DebugText.text = debugString;
-        DebugText.gameObject.SetActive(true);
-
-        if (hideAfterTime)
-        {
-            StartCoroutine("HideDebugTextAfterTime", 3f);
-        }
+        BetterDebugging.Instance.DebugLog($"{m_name.ToUpper()}:  {debugMessage}", level);
     }
-
-    public IEnumerator HideDebugTextAfterTime(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-        DebugText.gameObject.SetActive(false);
-    }
-#endif
 }

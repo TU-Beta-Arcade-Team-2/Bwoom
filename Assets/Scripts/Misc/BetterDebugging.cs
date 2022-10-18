@@ -48,13 +48,24 @@ public class BetterDebugging : Singleton<BetterDebugging>
         Debug.Log(debugString);
     }
 
+    // TODO: textOrigin doesn't need to be provided if parent is there, so I need to create
+    // some better overloads for this function... 
     public void SpawnDebugText(string debugText,
         Vector3 textOrigin,
         float lifeTime,
+        Transform parent = null,
         eDebugLevel debugLevel = eDebugLevel.Log)
     {
 #if INSTANTIATE_INGAME_TEXT
-        GameObject go = Instantiate(new GameObject("DebugText"), textOrigin, Quaternion.identity);
+        GameObject go;
+        if (parent)
+        {
+            go = Instantiate(new GameObject("DebugText"), textOrigin, Quaternion.identity, parent);
+        }
+        else
+        {
+            go = Instantiate(new GameObject("DebugText"), textOrigin, Quaternion.identity);
+        }
 
         go.transform.position = textOrigin;
 
