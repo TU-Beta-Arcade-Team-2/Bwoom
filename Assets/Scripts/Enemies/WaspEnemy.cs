@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,10 +24,10 @@ public class WaspEnemy : EnemyBase
 
     public enum eState
     {
-        eFlying,
-        eDiveBomb,
-        eCoolDown,
-        eAttack
+        Flying,
+        DiveBomb,
+        CoolDown,
+        Attack
     }
 
     private eState m_state;
@@ -37,8 +38,8 @@ public class WaspEnemy : EnemyBase
         m_origin = transform.position;
 
         Init("WaspEnemy");
-        m_facingDirection = eDirection.eRight;
-        m_state = eState.eFlying;
+        m_facingDirection = eDirection.Right;
+        SetWaspState(eState.Flying);
     }
 
     // Update is called once per frame
@@ -46,24 +47,14 @@ public class WaspEnemy : EnemyBase
     {
         switch (m_state)
         {
-            case eState.eFlying:
-                {
-                    float distanceToPlayer = FindSqrDistanceToPlayer();
-                    if (distanceToPlayer <= m_minDistanceToPlayer * m_minDistanceToPlayer)
-                    {
-                        m_state = eState.eDiveBomb;
-                    }
-                    else
-                    {
-                        Move();
-                    }
-                }
+            case eState.Flying:
+                FlyingState();
                 break;
-            case eState.eDiveBomb:
-                DiveBomb();
+            case eState.DiveBomb:
+                DiveBombState();
                 break;
-            case eState.eCoolDown:
-                CoolDown();
+            case eState.CoolDown:
+                CoolDownState();
                 break;
             default:
                 DebugLog($"UNHANDLED CASE {m_state}");
@@ -73,10 +64,45 @@ public class WaspEnemy : EnemyBase
 
     void LateUpdate()
     {
-        DebugLog($"State: {m_state}");
+        DebugLog($"m_stateProperty: {m_state}");
     }
 
-    private void DiveBomb()
+    public void SetWaspState(eState state)
+    {
+        m_state = state;
+
+        // TODO: FILL THESE IN WITH THE ANIMATION TRIGGERS!
+        switch (m_state)
+        {
+            case eState.Flying:
+                break;
+            case eState.DiveBomb:
+                break;
+            case eState.CoolDown:
+                break;
+            case eState.Attack:
+                break;
+            default:
+                DebugLog($"UNHANDLED CASE {m_state}");
+                break;
+        }
+    }
+
+    private void FlyingState()
+    {
+        float distanceToPlayer = FindSqrDistanceToPlayer();
+
+        if (distanceToPlayer <= m_minDistanceToPlayer * m_minDistanceToPlayer)
+        {
+            SetWaspState(eState.DiveBomb);
+        }
+        else
+        {
+            Move();
+        }
+    }
+
+    private void DiveBombState()
     {
         // Find vector to player
         Vector2 pointTowardsPlayer = GetVectorToPlayer();
@@ -99,18 +125,18 @@ public class WaspEnemy : EnemyBase
         {
             if (hit.collider.gameObject.CompareTag(StringConstants.PLAYER_TAG))
             {
-                m_state = eState.eAttack;
+                SetWaspState(eState.Attack);
                 Attack();
             }
             else if(hit.collider.gameObject.CompareTag(StringConstants.GROUND_TAG))
             {
                 // Move back up to the flying Height if we don't hit the player
-                m_state = eState.eCoolDown;
+                SetWaspState(eState.CoolDown);
             }
         }
     }
 
-    private void CoolDown()
+    private void CoolDownState()
     {
         m_attackCooldownTimer += Time.deltaTime;
 
@@ -146,7 +172,7 @@ public class WaspEnemy : EnemyBase
         {
             DebugLog("COOLED DOWN", BetterDebugging.eDebugLevel.Message);
             m_attackCooldownTimer = 0f;
-            m_state = eState.eFlying;
+            SetWaspState(eState.Flying);
         }
     }
 
@@ -165,7 +191,7 @@ public class WaspEnemy : EnemyBase
     {
         DebugLog("DAMAGING THE PLAYER!", BetterDebugging.eDebugLevel.Message);
         yield return new WaitForSeconds(1.0f);
-        m_state = eState.eCoolDown;
+        SetWaspState(eState.CoolDown);
         DebugLog("FINISHED ATTACKING, RISING BACK UP", BetterDebugging.eDebugLevel.Message);
     }
 
@@ -185,20 +211,15 @@ public class WaspEnemy : EnemyBase
         );
     }
 
-    protected override void OnDeath()
-    {
-
-    }
-
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag(StringConstants.WALL_TAG))
         {
             TurnAround();
         }
-        else if (m_state == eState.eDiveBomb && other.gameObject.CompareTag(StringConstants.PLAYER_TAG))
+        else if (m_state == eState.DiveBomb && other.gameObject.CompareTag(StringConstants.PLAYER_TAG))
         {
-            m_state = eState.eAttack;
+            SetWaspState(eState.Attack);
             Attack();
         }
     }

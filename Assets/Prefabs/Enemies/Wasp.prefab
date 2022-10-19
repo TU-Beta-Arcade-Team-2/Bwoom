@@ -146,13 +146,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd7d2f9aa760a9140a5b8ac937d5ad61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_facingDirection: 1
   m_playerStats: {fileID: 0}
   m_health: 10
   m_damage: 20
+  m_pointsToAward: 0
+  m_deathSoundFxName: 
   m_speed: 5
-  m_deathFx: {fileID: 0}
+  m_deathParticleFx: {fileID: 0}
+  m_deathDropItem: {fileID: 0}
   m_bobHeight: 1.2
   m_bobSpeed: 5
   m_limitedToPlatform: 0
-  m_minDistanceToPlayer: 0
-  m_diveBombSpeed: 0
+  m_minDistanceToPlayer: 5
+  m_diveBombSpeed: 7
+  m_attackCooldownDuration: 3.5

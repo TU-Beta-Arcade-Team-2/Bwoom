@@ -9,14 +9,11 @@ public class AntEnemy : EnemyBase
     void Start()
     {
         Init("AntEnemy");
-
-        m_facingDirection = eDirection.eRight;
     }
 
     // Update is called once per frame
     void Update()
     {
-        DebugLog("UPDATING!");
         Move();
     }
 
@@ -26,16 +23,8 @@ public class AntEnemy : EnemyBase
         // This could change though
     }
 
-    protected override void OnDeath()
-    {
-        // TODO: Play animation
-        // Play sound effect
-        // Award points
-    }
-
     protected override void Move()
     {
-        DebugLog("MOVING");
         m_rigidbody.velocity = new Vector2(
             (int)m_facingDirection * m_speed,
             0f

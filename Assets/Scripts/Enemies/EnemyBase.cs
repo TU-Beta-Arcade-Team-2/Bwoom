@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using JetBrains.Annotations;
 using UnityEngine;
 using TMPro;
 
@@ -8,11 +10,11 @@ public abstract class EnemyBase : MonoBehaviour
 {
     public enum eDirection
     {
-        eLeft = -1,
-        eRight = 1
+        Left = -1,
+        Right = 1
     }
 
-    protected eDirection m_facingDirection;
+    [SerializeField] protected eDirection m_facingDirection;
 
     private SpriteRenderer m_spriteRenderer;
 
@@ -22,8 +24,11 @@ public abstract class EnemyBase : MonoBehaviour
     private string m_name;
     [SerializeField] protected int m_health;
     [SerializeField] protected int m_damage;
+    [SerializeField] protected int m_pointsToAward;
+    [SerializeField] protected string m_deathSoundFxName; // This is probably going to change in the future, I'm just assuming we'll be using some sort of Dictionary to store the SFX with a string name being the key!
     [SerializeField] protected float m_speed;
-    [SerializeField] private GameObject m_deathFx;
+    [SerializeField] protected GameObject m_deathParticleFx;
+    [SerializeField] protected GameObject m_deathDropItem;
 
     protected Animator m_animator;
     protected Rigidbody2D m_rigidbody;
@@ -72,7 +77,7 @@ public abstract class EnemyBase : MonoBehaviour
 
         if (m_health <= 0)
         {
-            OnDeath();
+            OnDeath(m_deathSoundFxName, m_pointsToAward, m_deathParticleFx, m_deathDropItem);
         }
     }
 
@@ -93,20 +98,24 @@ public abstract class EnemyBase : MonoBehaviour
     {
         m_spriteRenderer.flipX = !m_spriteRenderer.flipX;
 
-        if (m_facingDirection == eDirection.eLeft)
+        if (m_facingDirection == eDirection.Left)
         {
-            m_facingDirection = eDirection.eRight;
+            m_facingDirection = eDirection.Right;
         }
         else
         {
-            m_facingDirection = eDirection.eLeft;
+            m_facingDirection = eDirection.Left;
         }
     }
 
     // Every enemy has unique Movement, attacking, and events on death
     protected abstract void Attack();
 
-    protected abstract void OnDeath();
+    protected void OnDeath(string soundFxName, int pointsToAward, GameObject deathParticleFx,
+        [CanBeNull] GameObject itemToDrop = null)
+    {
+        throw new NotImplementedException("DEATH NOT IMPLEMENTED");
+    }
 
     protected abstract void Move();
 
