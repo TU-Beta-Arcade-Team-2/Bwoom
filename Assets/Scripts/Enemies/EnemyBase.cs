@@ -32,9 +32,30 @@ public abstract class EnemyBase : MonoBehaviour
     protected void Init(string enemyName)
     {
         m_name = enemyName;
+
+        // Double check all the components have been set up!
+        if (m_playerStats == null)
+        {
+            DebugLog("PLAYER REFERENCE NOT SET UP!", BetterDebugging.eDebugLevel.Error);
+        }
+
         m_animator = GetComponent<Animator>();
+        if (m_animator == null)
+        {
+            DebugLog("NO ANIMATOR COMPONENT ON THE GAMEOBJECT", BetterDebugging.eDebugLevel.Error);
+        }
+
         m_spriteRenderer = GetComponent<SpriteRenderer>();
+        if (m_spriteRenderer == null)
+        {
+            DebugLog("NO SPRITE RENDERER COMPONENT ON THE GAMEOBJECT", BetterDebugging.eDebugLevel.Error);
+        }
+
         m_rigidbody = GetComponent<Rigidbody2D>();
+        if (m_rigidbody == null)
+        {
+            DebugLog("NO RIGID BODY 2D COMPONENT ON THE GAMEOBJECT", BetterDebugging.eDebugLevel.Error);
+        }
     }
 
     public virtual void TakeDamage(int damageAmount)

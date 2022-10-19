@@ -18,6 +18,34 @@ public sealed class RhinoEnemy : EnemyBase
         Dead
     }
 
+    private eState State
+    {
+        get => m_state;
+        set
+        {
+            m_state = value;
+            switch (value)
+            {
+                case eState.Idle:
+                    m_animator.SetTrigger(StringConstants.RHINO_WALK_CYCLE);
+                    break;
+                case eState.Charging:
+                    m_animator.SetTrigger(StringConstants.RHINO_CHARGE);
+                    break;
+                case eState.CoolDown:
+                    m_animator.SetTrigger(StringConstants.RHINO_COOL_DOWN);
+                    break;
+                case eState.Dead:
+                    m_animator.SetTrigger(StringConstants.RHINO_DEATH);
+                    break;
+                default:
+                    DebugLog($"UNKNOWN ENUM VALUE {nameof(value)}", BetterDebugging.eDebugLevel.Error);
+                    break;
+            }
+        }
+    }
+
+    // TODO: Better encapsulate this variable so that m_state can only be changed through the State property above
     private eState m_state;
 
     private float m_chargeTimer;
@@ -32,13 +60,13 @@ public sealed class RhinoEnemy : EnemyBase
     {
         Init("RhinoEnemy");
         TurnAround();
-        m_state = eState.Idle;
+        State = eState.Idle;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        switch (m_state)
+        switch (State)
         {
             case eState.Idle:
                 {
@@ -96,7 +124,7 @@ public sealed class RhinoEnemy : EnemyBase
 
                 if (m_coolDownTimer >= m_coolDownDuration)
                 {
-                    m_state = eState.Idle;
+                    State = eState.Idle;
                 }
                 break;
             case eState.Dead:
@@ -109,7 +137,7 @@ public sealed class RhinoEnemy : EnemyBase
 
     void LateUpdate()
     {
-        DebugLog($"State: {m_state}");
+        DebugLog($"State: {State}");
     }
 
     // The Rhino's attack is to charge toward the player
@@ -130,7 +158,10 @@ public sealed class RhinoEnemy : EnemyBase
 
     protected override void OnDeath()
     {
-        throw new System.NotImplementedException();
+        m_state = eState.Dead;
+        // TODO: PLAY SFX
+        // Award Points
+        // Drop Items
     }
 
     protected override void Move()
@@ -142,10 +173,9 @@ public sealed class RhinoEnemy : EnemyBase
     }
 
 
-
     private void StartCharge()
     {
-        m_state = eState.Charging;
+        State = eState.Charging;
         m_chargeTimer = 0f;
         // TODO: Play animation
         // TODO: Play sound effect
@@ -154,7 +184,7 @@ public sealed class RhinoEnemy : EnemyBase
 
     private void StopCharge()
     {
-        m_state = eState.CoolDown;
+        State = eState.CoolDown;
         // TODO: Play animation
         // TODO: Play sound effect
         DebugLog("STOPPING THE CHARGE");
@@ -176,9 +206,9 @@ public sealed class RhinoEnemy : EnemyBase
 
             // Not sure if we want him to stop at the end of the platform
             // when we reach the end, or if we want him to continue charging
-            if (m_state == eState.Charging)
+            if (State == eState.Charging)
             {
-                m_state = eState.CoolDown;
+                State = eState.CoolDown;
             }
         }
     }

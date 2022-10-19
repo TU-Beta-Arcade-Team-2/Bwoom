@@ -17,4 +17,13 @@ public static class StringConstants
     public static string WATER_LAYER = "Water";
     public static string UI_LAYER = "UI";
     #endregion
+
+    #region ANIMATION_TRIGGERS
+    #region RHINO_ENEMY
+    public static string RHINO_WALK_CYCLE = "Walk_Cycle";
+    public static string RHINO_CHARGE = "Charge";
+    public static string RHINO_COOL_DOWN = "Cool_Down";
+    public static string RHINO_DEATH = "Death";
+    #endregion
+    #endregion
 }
