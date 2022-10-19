@@ -8,6 +8,7 @@ public sealed class RhinoEnemy : EnemyBase
 {
     [SerializeField] private float m_preChargeDuration;
     [SerializeField] private float m_chargeDuration;
+    [SerializeField] private float m_headbuttDuration;
     [SerializeField] private float m_coolDownDuration;
     [SerializeField] private Vector2 m_minDistanceToPlayer;
 
@@ -16,11 +17,12 @@ public sealed class RhinoEnemy : EnemyBase
         Idle,
         PreCharge,
         Charging,
+        Headbutt,
         CoolDown,
         Dead
     }
 
-    private eState State
+    private eState m_stateProperty
     {
         get => m_state;
         set
@@ -37,7 +39,12 @@ public sealed class RhinoEnemy : EnemyBase
                 case eState.Charging:
                     m_animator.SetTrigger(StringConstants.RHINO_CHARGE);
                     break;
+                case eState.Headbutt:
+                    DebugLog("HEADBUTT!", BetterDebugging.eDebugLevel.Warning);
+                    m_animator.SetTrigger(StringConstants.RHINO_HEADBUTT);
+                    break;
                 case eState.CoolDown:
+                    m_animator.ResetTrigger(StringConstants.RHINO_WALK_CYCLE);
                     m_animator.SetTrigger(StringConstants.RHINO_COOL_DOWN);
                     break;
                 case eState.Dead:
@@ -50,11 +57,12 @@ public sealed class RhinoEnemy : EnemyBase
         }
     }
 
-    // TODO: Better encapsulate this variable so that m_state can only be changed through the State property above
+    // TODO: Better encapsulate this variable so that m_stateProperty can only be changed through the m_stateProperty property above
     private eState m_state;
 
     private float m_preChargeTimer;
     private float m_chargeTimer;
+    private float m_headbuttTimer;
     private float m_coolDownTimer;
 
     [SerializeField] private AnimationCurve m_chargeCurve;
@@ -66,23 +74,23 @@ public sealed class RhinoEnemy : EnemyBase
     {
         Init("RhinoEnemy");
         TurnAround();
-        State = eState.Idle;
+        m_stateProperty = eState.Idle;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        switch (State)
+        switch (m_stateProperty)
         {
             case eState.Idle:
                 {
                     // If the player is within range, begin charging
                     if (FindSqrDistanceToPlayer() <= m_minDistanceToPlayer.x * m_minDistanceToPlayer.x)
                     {
-                        DebugLog("PLAYER IS IN RANGE!");
+                        // DebugLog("PLAYER IS IN RANGE!");
                         Vector2 vectorToPlayer = GetVectorToPlayer();
 
-                        DebugLog($"PLAYER VECTOR {vectorToPlayer.x}  {vectorToPlayer.y}");
+                        // DebugLog($"PLAYER VECTOR {vectorToPlayer.x}  {vectorToPlayer.y}");
 
                         // If we are facing the correct direction, and around the right height
                         // range, charge at the player
@@ -114,7 +122,7 @@ public sealed class RhinoEnemy : EnemyBase
                     m_preChargeTimer += Time.deltaTime;
                     if (m_preChargeTimer >= m_preChargeDuration)
                     {
-                        m_state = eState.Charging;
+                        m_stateProperty = eState.Charging;
 
                         m_preChargeTimer = 0f;
                     }
@@ -128,10 +136,22 @@ public sealed class RhinoEnemy : EnemyBase
 
                     Attack();
 
+                    // If we have charged and not hit the player
                     if (m_chargeTimer >= m_chargeDuration)
                     {
                         DebugLog("CHARGE DURATION ENDED!");
 
+                        StopCharge();
+                    }
+                }
+                break;
+            case eState.Headbutt:
+                {
+                    m_headbuttTimer += Time.deltaTime;
+                    if (m_headbuttTimer >= m_headbuttDuration)
+                    {
+                        DebugLog("HEADBUTTING THE PLAYER!");
+                        m_headbuttTimer = 0f;
                         StopCharge();
                     }
                 }
@@ -142,7 +162,7 @@ public sealed class RhinoEnemy : EnemyBase
 
                 if (m_coolDownTimer >= m_coolDownDuration)
                 {
-                    State = eState.Idle;
+                    m_stateProperty = eState.Idle;
                 }
                 break;
             case eState.Dead:
@@ -155,7 +175,7 @@ public sealed class RhinoEnemy : EnemyBase
 
     void LateUpdate()
     {
-        DebugLog($"State: {State}");
+        DebugLog($"m_stateProperty: {m_stateProperty}");
     }
 
     // The Rhino's attack is to charge toward the player
@@ -176,7 +196,7 @@ public sealed class RhinoEnemy : EnemyBase
 
     protected override void OnDeath()
     {
-        m_state = eState.Dead;
+        m_stateProperty = eState.Dead;
         // TODO: PLAY SFX
         // Award Points
         // Drop Items
@@ -193,7 +213,7 @@ public sealed class RhinoEnemy : EnemyBase
 
     private void StartCharge()
     {
-        State = eState.PreCharge;
+        m_stateProperty = eState.PreCharge;
         m_chargeTimer = 0f;
         // TODO: Play animation
         // TODO: Play sound effect
@@ -202,7 +222,7 @@ public sealed class RhinoEnemy : EnemyBase
 
     private void StopCharge()
     {
-        State = eState.CoolDown;
+        m_stateProperty = eState.CoolDown;
         // TODO: Play animation
         // TODO: Play sound effect
         DebugLog("STOPPING THE CHARGE");
@@ -214,6 +234,12 @@ public sealed class RhinoEnemy : EnemyBase
         {
             TurnAround();
         }
+        else if (other.gameObject.CompareTag(StringConstants.PLAYER_TAG) && m_stateProperty == eState.Charging) // If we are attacking and hit the player, play the headbutt animation
+        {
+            DebugLog("HIT THE PLAYER WHILST CHARGING!");
+            m_stateProperty = eState.Headbutt;
+            DamagePlayer(m_damage);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -224,9 +250,9 @@ public sealed class RhinoEnemy : EnemyBase
 
             // Not sure if we want him to stop at the end of the platform
             // when we reach the end, or if we want him to continue charging
-            if (State == eState.Charging)
+            if (m_stateProperty == eState.Charging)
             {
-                State = eState.CoolDown;
+                m_stateProperty = eState.CoolDown;
             }
         }
     }

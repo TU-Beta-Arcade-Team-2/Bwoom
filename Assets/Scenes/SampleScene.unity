@@ -1529,6 +1529,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1226355918}
     - target: {fileID: 129577446047843074, guid: d74cd58b81dc58a4fa5ba64a067838a2, type: 3}
+      propertyPath: m_headbuttDuration
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 129577446047843074, guid: d74cd58b81dc58a4fa5ba64a067838a2, type: 3}
       propertyPath: m_preChargeDuration
       value: 1.5
       objectReference: {fileID: 0}
@@ -3682,6 +3686,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 128470994}
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_playerHealth
+      value: 1000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_fullMaskSprite
       value: 
       objectReference: {fileID: 21300000, guid: 204b47e265b136f4288188c51ca5ae15, type: 3}
@@ -3692,6 +3700,10 @@ PrefabInstance:
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_mask.Array.size
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_maxPlayerHealth
+      value: 1000000
       objectReference: {fileID: 0}
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_brokenMaskSprite

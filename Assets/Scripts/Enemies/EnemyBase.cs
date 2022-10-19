@@ -76,6 +76,19 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
+    public virtual void DamagePlayer(int damageAmount)
+    {
+        BetterDebugging.Instance.SpawnDebugText(
+            $"{m_name.ToUpper()} DEALING {damageAmount} DAMAGE",
+            transform.position + new Vector3(0, 2),
+            0.3f,
+            null,
+            BetterDebugging.eDebugLevel.Message
+        );
+
+        m_playerStats.TakeDMG(damageAmount);
+    }
+
     protected void TurnAround()
     {
         m_spriteRenderer.flipX = !m_spriteRenderer.flipX;

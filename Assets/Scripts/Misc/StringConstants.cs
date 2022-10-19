@@ -25,6 +25,7 @@ public static class StringConstants
     public static string RHINO_COOL_DOWN = "Cool_Down";
     public static string RHINO_DEATH = "Death";
     public static string RHINO_PRE_CHARGE = "Pre_Charge";
+    public static string RHINO_HEADBUTT = "Headbutt";
     #endregion
     #endregion
 }
