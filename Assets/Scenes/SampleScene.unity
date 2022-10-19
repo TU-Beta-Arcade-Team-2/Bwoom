@@ -1528,6 +1528,10 @@ PrefabInstance:
       propertyPath: m_playerStats
       value: 
       objectReference: {fileID: 1226355918}
+    - target: {fileID: 129577446047843074, guid: d74cd58b81dc58a4fa5ba64a067838a2, type: 3}
+      propertyPath: m_preChargeDuration
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 129577446047843075, guid: d74cd58b81dc58a4fa5ba64a067838a2, type: 3}
       propertyPath: m_RootOrder
       value: 1

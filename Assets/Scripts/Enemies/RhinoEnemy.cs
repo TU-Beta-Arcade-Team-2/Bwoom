@@ -6,6 +6,7 @@ using UnityEngine;
 
 public sealed class RhinoEnemy : EnemyBase
 {
+    [SerializeField] private float m_preChargeDuration;
     [SerializeField] private float m_chargeDuration;
     [SerializeField] private float m_coolDownDuration;
     [SerializeField] private Vector2 m_minDistanceToPlayer;
@@ -13,6 +14,7 @@ public sealed class RhinoEnemy : EnemyBase
     public enum eState
     {
         Idle,
+        PreCharge,
         Charging,
         CoolDown,
         Dead
@@ -28,6 +30,9 @@ public sealed class RhinoEnemy : EnemyBase
             {
                 case eState.Idle:
                     m_animator.SetTrigger(StringConstants.RHINO_WALK_CYCLE);
+                    break;
+                case eState.PreCharge:
+                    m_animator.SetTrigger(StringConstants.RHINO_PRE_CHARGE);
                     break;
                 case eState.Charging:
                     m_animator.SetTrigger(StringConstants.RHINO_CHARGE);
@@ -48,6 +53,7 @@ public sealed class RhinoEnemy : EnemyBase
     // TODO: Better encapsulate this variable so that m_state can only be changed through the State property above
     private eState m_state;
 
+    private float m_preChargeTimer;
     private float m_chargeTimer;
     private float m_coolDownTimer;
 
@@ -99,6 +105,18 @@ public sealed class RhinoEnemy : EnemyBase
                     {
                         DebugLog("PLAYER ISN'T IN RANGE!");
                         Move();
+                    }
+                }
+                break;
+            case eState.PreCharge:
+                {
+                    DebugLog("PRE-CHARGE");
+                    m_preChargeTimer += Time.deltaTime;
+                    if (m_preChargeTimer >= m_preChargeDuration)
+                    {
+                        m_state = eState.Charging;
+
+                        m_preChargeTimer = 0f;
                     }
                 }
                 break;
@@ -175,7 +193,7 @@ public sealed class RhinoEnemy : EnemyBase
 
     private void StartCharge()
     {
-        State = eState.Charging;
+        State = eState.PreCharge;
         m_chargeTimer = 0f;
         // TODO: Play animation
         // TODO: Play sound effect
