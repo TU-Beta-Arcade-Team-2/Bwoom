@@ -9,7 +9,8 @@ public class WarMask : MaskClass
     public bool isJumped;
     [SerializeField] private Rigidbody2D m_rb;
     [SerializeField] private Controller m_playerController;
-    [SerializeField] private Animator attackAnim;
+    [SerializeField] private Animator m_attackAnim;
+    [SerializeField] private float m_decreasedMovement;
 
     private void Start()
     {
@@ -21,17 +22,25 @@ public class WarMask : MaskClass
         m_maskRenderer = GameObject.Find("Mask").GetComponent<SpriteRenderer>();
 
         m_maskRenderer.sprite = m_maskSprite;
+
+        m_playerController.movementSpeed -= m_decreasedMovement;
     }
+
+    private void OnDisable()
+    {
+        m_playerController.movementSpeed += m_decreasedMovement;
+    }
+
     //Warmask special attack, an uppercut that sends the player and enemies up in the air
     public override void SpecialAttack()
     {
-        if (!m_playerController.JumpAvaliable() && !isJumped)
+        if (!isJumped)
         {
             m_rb.velocity = new Vector2(m_rb.velocity.x, 0);
             m_rb.AddForce(new Vector2(0, m_jumpHeight), ForceMode2D.Impulse);
 
             isJumped = true;
-            attackAnim.Play("Warmask Special");
+            m_attackAnim.Play("Warmask Special");
         }
     }
 }

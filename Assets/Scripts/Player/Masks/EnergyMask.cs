@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class EnergyMask : MaskClass
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Controller m_playerController;
+
+    private void OnEnable()
     {
-        
+        m_maskRenderer = GameObject.Find("Mask").GetComponent<SpriteRenderer>();
+
+        m_maskRenderer.sprite = m_maskSprite;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void SpecialAttack()
     {
-        
+
     }
 }

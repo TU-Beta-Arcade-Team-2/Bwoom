@@ -26,7 +26,7 @@ public class Controller : MonoBehaviour
 
     [Header("Speed Variables")]
     /// <summary> Player Movement Stats </summary>
-    [SerializeField] private float movementSpeed;
+    public float movementSpeed;
     [SerializeField] private float fallingSpeed;
     [SerializeField] private float jumpHeight;
     [Range(0, 1)]
@@ -137,22 +137,22 @@ public class Controller : MonoBehaviour
     #region Mask Input Function
     private void MaskInputs()
     {
-        if (playerInput.actions["OptionOne"].triggered) //will also include an if statement checking if the selected mask has been unlocked
+        if (playerInput.actions["WarMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
             m_masks = eMasks.war;
         }
 
-        if (playerInput.actions["OptionTwo"].triggered) //will also include an if statement checking if the selected mask has been unlocked
+        if (playerInput.actions["NatureMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
             m_masks = eMasks.nature;
         }
 
-        if (playerInput.actions["OptionThree"].triggered) //will also include an if statement checking if the selected mask has been unlocked
+        if (playerInput.actions["EnergyMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
             m_masks = eMasks.energy;;
         }
 
-        if (playerInput.actions["OptionFour"].triggered) //will also include an if statement checking if the selected mask has been unlocked
+        if (playerInput.actions["SeaMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
             m_masks = eMasks.sea;
         }
