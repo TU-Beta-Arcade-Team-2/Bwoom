@@ -61,3 +61,5 @@ Thumbs.db.meta
 
 # VS Code
 *.vscode
+Packages/packages-lock.json
+ProjectSettings/ProjectVersion.txt
