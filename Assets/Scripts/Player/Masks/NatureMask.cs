@@ -7,7 +7,6 @@ public class NatureMask : MaskClass
 {
     [SerializeField] private GameObject m_projectile;
     [SerializeField] private Controller m_playerController;
-    [SerializeField] private float m_increasedMovement;
 
     private void OnEnable()
     {
@@ -15,12 +14,12 @@ public class NatureMask : MaskClass
 
         m_maskRenderer.sprite = m_maskSprite;
 
-        m_playerController.movementSpeed += m_increasedMovement;
+        m_playerController.movementSpeed *= m_movementMultiplier;
     }
 
     private void OnDisable()
     {
-        m_playerController.movementSpeed -= m_increasedMovement;
+        m_playerController.SetDefaultValues();
     }
 
     public override void SpecialAttack()

@@ -24,6 +24,9 @@ public class PlayerStats : MonoBehaviour
     [Range(1, 8)]
     [SerializeField] private int m_maxPlayerHealth;
 
+    [Header ("Default Values")]
+    public float m_DefaultMovementSpeed;
+
     [SerializeField] private Image[] m_lives;
     [SerializeField] private Sprite m_fullMaskSprite;
     [SerializeField] private Sprite m_brokenMaskSprite;

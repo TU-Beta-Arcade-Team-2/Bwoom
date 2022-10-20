@@ -7,6 +7,7 @@ public abstract class MaskClass : MonoBehaviour
 {
     [SerializeField] protected Sprite m_maskSprite;
     protected SpriteRenderer m_maskRenderer;
+    [SerializeField] protected float m_movementMultiplier;
 
     [SerializeField]
     private bool m_unlocked;

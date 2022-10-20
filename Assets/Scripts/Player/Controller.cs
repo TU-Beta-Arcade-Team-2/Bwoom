@@ -91,6 +91,11 @@ public class Controller : MonoBehaviour
         m_warMask.enabled = true;
     }
 
+    public void SetDefaultValues()
+    {
+        movementSpeed = playerStats.m_DefaultMovementSpeed;
+    }
+
     private void Update()
     {
         ///<Note> An exit function will need to made when switching on and off the booleans so the variables return back to default
