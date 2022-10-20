@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeafProjectile : MonoBehaviour
+public class LeafProjectile : ProjectleBaseClass
 {
     [SerializeField] private float m_projectileSpeed;
     [SerializeField] private float m_maxProjectileLifetime;
