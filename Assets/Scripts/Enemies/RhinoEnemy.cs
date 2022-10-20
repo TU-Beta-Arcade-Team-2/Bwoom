@@ -10,6 +10,8 @@ public class RhinoEnemy : EnemyBase
     [SerializeField] private float m_preChargeDuration;
     [SerializeField] private float m_chargeDuration;
     [SerializeField] private float m_headbuttDuration;
+    [SerializeField] private float m_knockbackAmount;
+    [SerializeField] private float m_knockbackHeight;
     [SerializeField] private float m_coolDownDuration;
     [SerializeField] private Vector2 m_minDistanceToPlayer;
 
@@ -168,6 +170,8 @@ public class RhinoEnemy : EnemyBase
 
     private void HeadbuttState()
     {
+        // TODO: Make him slide to a halt instead of zeroing out
+        m_rigidbody.velocity = Vector2.zero;
         m_headbuttTimer += Time.deltaTime;
         if (m_headbuttTimer <= m_headbuttDuration) { return; }
 
@@ -184,6 +188,19 @@ public class RhinoEnemy : EnemyBase
         if (m_coolDownTimer <= m_coolDownDuration) { return; }
 
         SetRhinoState(eState.Idle);
+    }
+
+    private void HeadbuttPlayer()
+    {
+        Vector2 force = new Vector2(
+            (int)m_facingDirection * m_knockbackAmount,
+            m_knockbackHeight
+        );
+
+        // HACK - DON'T USE THIS IN FINAL GAME
+        m_playerStats.gameObject.GetComponent<Controller>().AddImpulse(force);
+
+        DamagePlayer(m_damage);
     }
 
     // The Rhino's attack is to charge toward the player
@@ -252,8 +269,8 @@ public class RhinoEnemy : EnemyBase
         else if (other.gameObject.CompareTag(StringConstants.PLAYER_TAG) && m_state == eState.Charging) // If we are attacking and hit the player, play the headbutt animation
         {
             DebugLog("HIT THE PLAYER WHILST CHARGING!");
+            HeadbuttPlayer();
             SetRhinoState(eState.Headbutt);
-            DamagePlayer(m_damage);
         }
     }
 

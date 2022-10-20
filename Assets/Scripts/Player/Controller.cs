@@ -7,7 +7,6 @@ public class Controller : MonoBehaviour
     /// <summary> Player References </summary>
     private PlayerInput playerInput;
     private PlayerStats playerStats;
-    private MaskClass maskClass;
     private Rigidbody2D rb;
     private Animator anim;
 
@@ -26,7 +25,7 @@ public class Controller : MonoBehaviour
 
     [Header("Speed Variables")]
     /// <summary> Player Movement Stats </summary>
-    public float movementSpeed;
+    [SerializeField] private float movementSpeed;
     [SerializeField] private float fallingSpeed;
     [SerializeField] private float jumpHeight;
     [Range(0, 1)]
@@ -63,26 +62,12 @@ public class Controller : MonoBehaviour
     private bool isTouchingFront;
     private bool wallSliding;
 
-    [Header("Mask Values")]
-    [SerializeField] private WarMask m_warMask;
-    [SerializeField] private NatureMask m_natureMask;
-    public enum eMasks
-    {
-        war,
-        nature,
-        sea,
-        energy
-    }
-
-    [SerializeField] private eMasks m_masks;
-
     #region Main Functions
     // Start is called before the first frame update
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
         playerStats = GetComponent<PlayerStats>();
-        maskClass = GetComponent<MaskClass>();
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -102,8 +87,6 @@ public class Controller : MonoBehaviour
         /// values that may cause weird behaviours in future </Note>
         Jumping();
         Attack();
-        SpecialAttack();
-        MaskInputs();
 
 #if WALL_SLIDE
         if (wallSlideOn)
@@ -138,55 +121,6 @@ public class Controller : MonoBehaviour
         Movement();
     }
 
-    #endregion
-    #region Mask Input Function
-    private void MaskInputs()
-    {
-        if (playerInput.actions["WarMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
-        {
-            m_masks = eMasks.war;
-        }
-
-        if (playerInput.actions["NatureMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
-        {
-            m_masks = eMasks.nature;
-        }
-
-        if (playerInput.actions["EnergyMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
-        {
-            m_masks = eMasks.energy;;
-        }
-
-        if (playerInput.actions["SeaMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
-        {
-            m_masks = eMasks.sea;
-        }
-
-        MaskChange();
-    }
-
-    private void MaskChange()
-    {
-        //TODO : Add other m_masks
-
-        switch (m_masks)
-        {
-            case eMasks.war:
-                if (!m_warMask.enabled)
-                {
-                    RemoveMasks();
-                    m_warMask.enabled = true;
-                }
-                break;
-            case eMasks.nature:
-                if (!m_natureMask.enabled)
-                {
-                    RemoveMasks();
-                    m_natureMask.enabled = true;
-                }
-                break;
-        }
-    }
     #endregion
 
     #region Basic Movement Functions
@@ -291,7 +225,7 @@ public class Controller : MonoBehaviour
         }
     }
 
-    public bool JumpAvaliable()
+    private bool JumpAvaliable()
     {
         return IsGrounded() || (!IsGrounded() && ungroundedTimer > 0);
     }
@@ -307,8 +241,6 @@ public class Controller : MonoBehaviour
         rb.sharedMaterial = stickyMat;
         ungroundedTimer = 0.2f;
         holdTimer = 0f;
-        m_warMask.m_IsJumped = false;
-        doubleJumped = false;
         return true;
     }
 
@@ -321,22 +253,6 @@ public class Controller : MonoBehaviour
         if (playerInput.actions["Attack"].triggered)
         {
             anim.SetTrigger("Attack");
-        }
-    }
-
-    private void SpecialAttack()
-    {
-        if (playerInput.actions["Special"].triggered)
-        {
-            switch (m_masks)
-            {
-                case eMasks.war:
-                    m_warMask.SpecialAttack();
-                    break;
-                case eMasks.nature:
-                    m_natureMask.SpecialAttack();
-                    break;
-            }
         }
     }
 
@@ -369,13 +285,10 @@ public class Controller : MonoBehaviour
         }
     }
 
-    #endregion
-
-    #region Mask Functions
-    private void RemoveMasks()
+    public void AddImpulse(Vector2 force)
     {
-        m_warMask.enabled = false;
-        m_natureMask.enabled = false;
+        rb.AddForce(force, ForceMode2D.Impulse);
     }
+
     #endregion
 }
