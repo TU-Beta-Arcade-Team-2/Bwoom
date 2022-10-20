@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using JetBrains.Annotations;
 using UnityEngine;
-using TMPro;
+using UnityEditor;
 
 public abstract class EnemyBase : MonoBehaviour
 {
@@ -14,7 +14,7 @@ public abstract class EnemyBase : MonoBehaviour
         Right = 1
     }
 
-    [SerializeField] protected eDirection m_facingDirection;
+    protected eDirection m_facingDirection = eDirection.Right;
 
     private SpriteRenderer m_spriteRenderer;
 
@@ -34,7 +34,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected Rigidbody2D m_rigidbody;
 
     // TO BE CALLED ON START OR AWAKE OF THE CHILD CLASSES
-    protected void Init(string enemyName)
+    public void Init(string enemyName)
     {
         m_name = enemyName;
 
@@ -61,6 +61,7 @@ public abstract class EnemyBase : MonoBehaviour
         {
             DebugLog("NO RIGID BODY 2D COMPONENT ON THE GAMEOBJECT", BetterDebugging.eDebugLevel.Error);
         }
+
     }
 
     public virtual void TakeDamage(int damageAmount)
@@ -94,7 +95,8 @@ public abstract class EnemyBase : MonoBehaviour
         m_playerStats.TakeDMG(damageAmount);
     }
 
-    protected void TurnAround()
+    [ExecuteInEditMode]
+    public void TurnAround()
     {
         m_spriteRenderer.flipX = !m_spriteRenderer.flipX;
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class WaspEnemy : EnemyBase
@@ -229,6 +230,48 @@ public class WaspEnemy : EnemyBase
         if (m_limitedToPlatform && other.gameObject.CompareTag(StringConstants.END_OF_PLATFORM_TAG))
         {
             TurnAround();
+        }
+    }
+
+    [CustomEditor(typeof(WaspEnemy))]
+    public class WaspEnemyEditor : Editor
+    {
+        private int m_animationIndex = 0;
+        private int m_previousAnimationIndex;
+
+        private readonly string[] m_states =
+        {
+            "Flying",
+            "DiveBomb",
+            "CoolDown",
+            "Attack"
+        };
+
+        public override void OnInspectorGUI()
+        {
+            WaspEnemy myTarget = (WaspEnemy)target;
+
+            // Needs to be initialised otherwise null reference exceptions happen for 
+            // components
+            myTarget.Init("Wasp");
+
+            // Turn around button for the wasp, sets the facing direction and also flips the sprite!
+            if (GUILayout.Button("Turn Around"))
+            {
+                myTarget.TurnAround();
+            }
+
+            // Change the animation state of the wasp
+            m_animationIndex = EditorGUILayout.Popup(m_animationIndex, m_states);
+
+            if (m_animationIndex != m_previousAnimationIndex)
+            {
+                myTarget.SetWaspState((WaspEnemy.eState)m_animationIndex);
+            }
+
+            m_previousAnimationIndex = m_animationIndex;
+
+            DrawDefaultInspector();
         }
     }
 }

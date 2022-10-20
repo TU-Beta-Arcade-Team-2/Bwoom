@@ -3,9 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEditor;
 using static UnityEngine.Rendering.DebugUI;
 
-public sealed class RhinoEnemy : EnemyBase
+public class RhinoEnemy : EnemyBase
 {
     [SerializeField] private float m_preChargeDuration;
     [SerializeField] private float m_chargeDuration;
@@ -71,6 +72,7 @@ public sealed class RhinoEnemy : EnemyBase
         DebugLog($"m_stateProperty: {m_state}");
     }
 
+    [ExecuteInEditMode]
     public void SetRhinoState(eState state)
     {
         m_state = state;
@@ -97,8 +99,16 @@ public sealed class RhinoEnemy : EnemyBase
                 DebugLog($"UNKNOWN ENUM VALUE {nameof(m_state)}", BetterDebugging.eDebugLevel.Error);
                 break;
         }
-    }
 
+        ResetTimers();
+    }
+    private void ResetTimers()
+    {
+        m_preChargeTimer = 0f;
+        m_chargeTimer = 0f;
+        m_headbuttTimer = 0f;
+        m_coolDownTimer = 0f;
+    }
 
     private void IdleState()
     {
@@ -117,8 +127,6 @@ public sealed class RhinoEnemy : EnemyBase
                 vectorToPlayer.y <= m_minDistanceToPlayer.y)
             {
                 // If we've started charging, reset the cooldown timer
-                m_coolDownTimer = 0f;
-
                 StartCharge();
             }
             else
@@ -166,7 +174,6 @@ public sealed class RhinoEnemy : EnemyBase
 
         DebugLog("HEADBUTTING THE PLAYER!");
 
-        m_headbuttTimer = 0f;
         StopCharge();
     }
 
@@ -208,7 +215,6 @@ public sealed class RhinoEnemy : EnemyBase
     private void StartCharge()
     {
         SetRhinoState(eState.PreCharge);
-        m_chargeTimer = 0f;
         // TODO: Play animation
         // TODO: Play sound effect
         DebugLog("STARTING TO CHARGE");
@@ -248,6 +254,49 @@ public sealed class RhinoEnemy : EnemyBase
             {
                 SetRhinoState(eState.CoolDown);
             }
+        }
+    }
+
+    [CustomEditor(typeof(RhinoEnemy))]
+    public class RhinoEnemyEditor : Editor
+    {
+        private int m_animationIndex = 0;
+        private int m_previousAnimationIndex;
+
+        private readonly string[] m_states =
+        {
+            "Idle",
+            "PreCharge",
+            "Charging",
+            "Headbutt",
+            "CoolDown"
+        };
+
+        public override void OnInspectorGUI()
+        {
+            RhinoEnemy myTarget = (RhinoEnemy)target;
+
+            // Needs to be initialised otherwise null reference exceptions happen for 
+            // components
+            myTarget.Init("Rhino");
+
+            // Turn around button for the rhino, sets the facing direction and also flips the sprite!
+            if (GUILayout.Button("Turn Around"))
+            {
+                myTarget.TurnAround();
+            }
+
+            // Change the animation state of the rhino
+            m_animationIndex = EditorGUILayout.Popup(m_animationIndex, m_states);
+
+            if (m_animationIndex != m_previousAnimationIndex)
+            {
+                myTarget.SetRhinoState((RhinoEnemy.eState)m_animationIndex);
+            }
+
+            m_previousAnimationIndex = m_animationIndex;
+
+            DrawDefaultInspector();
         }
     }
 }
