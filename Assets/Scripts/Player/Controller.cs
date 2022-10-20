@@ -293,5 +293,10 @@ public class Controller : MonoBehaviour
         }
     }
 
+    public void AddImpulse(Vector2 force)
+    {
+        rb.AddForce(force, ForceMode2D.Impulse);
+    }
+
     #endregion
 }

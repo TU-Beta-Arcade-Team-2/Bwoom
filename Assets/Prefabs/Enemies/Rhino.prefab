@@ -147,7 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5573f09459ab7e4db216ac340476ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_facingDirection: 1
   m_playerStats: {fileID: 0}
   m_health: 200
   m_damage: 50
@@ -159,6 +158,8 @@ MonoBehaviour:
   m_preChargeDuration: 1.5
   m_chargeDuration: 0.75
   m_headbuttDuration: 1
+  m_knockbackAmount: 5000
+  m_knockbackHeight: 1000
   m_coolDownDuration: 5
   m_minDistanceToPlayer: {x: 10, y: 3}
   m_chargeCurve:
