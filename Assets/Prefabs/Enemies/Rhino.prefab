@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 129577446047843086}
   - component: {fileID: 129577446047843074}
   - component: {fileID: 8908739928428552601}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rhino
   m_TagString: Untagged
   m_Icon: {fileID: 0}

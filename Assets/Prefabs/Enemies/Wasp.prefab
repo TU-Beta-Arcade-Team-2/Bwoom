@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 169322923249398931}
   - component: {fileID: 169322923249398930}
   - component: {fileID: 169322923249398929}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wasp
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
@@ -158,6 +158,6 @@ MonoBehaviour:
   m_bobHeight: 1.2
   m_bobSpeed: 5
   m_limitedToPlatform: 0
-  m_minDistanceToPlayer: 5
+  m_minDistanceToPlayer: 3
   m_diveBombSpeed: 7
   m_attackCooldownDuration: 3.5

@@ -16,6 +16,7 @@ public static class StringConstants
     public static string SURFACE_LAYER = "Surface";
     public static string WATER_LAYER = "Water";
     public static string UI_LAYER = "UI";
+    public static string ENEMY_LAYER = "Enemies";
     #endregion
 
     #region ANIMATION_TRIGGERS

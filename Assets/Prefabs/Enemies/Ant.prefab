@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 993018408025381348}
   - component: {fileID: 993018408025381371}
   - component: {fileID: 993018408025381370}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,7 +146,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09d4d30f8e443f84681d66fdd033bed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_facingDirection: 1
   m_playerStats: {fileID: 0}
   m_health: 50
   m_damage: 10
