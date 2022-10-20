@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "OptionOne",
+                    "name": "WarMask",
                     "type": "Button",
                     "id": "9e5b36df-ea2a-4cd3-ac70-627369176372",
                     "expectedControlType": "Button",
@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "OptionTwo",
+                    "name": "NatureMask",
                     "type": "Button",
                     "id": "1c137933-bdc9-4e61-b440-f13323da7854",
                     "expectedControlType": "Button",
@@ -69,7 +69,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "OptionThree",
+                    "name": "EnergyMask",
                     "type": "Button",
                     "id": "183a81a3-dd92-4b65-becd-9970d9c76ecd",
                     "expectedControlType": "Button",
@@ -78,7 +78,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "OptionFour",
+                    "name": "SeaMask",
                     "type": "Button",
                     "id": "b1435680-65f4-4cbb-b969-716f5a83e316",
                     "expectedControlType": "Button",
@@ -304,7 +304,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "OptionOne",
+                    "action": "WarMask",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -315,7 +315,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "OptionOne",
+                    "action": "WarMask",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -326,7 +326,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "OptionTwo",
+                    "action": "NatureMask",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -337,7 +337,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "OptionTwo",
+                    "action": "NatureMask",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -348,7 +348,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "OptionThree",
+                    "action": "EnergyMask",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -359,7 +359,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "OptionThree",
+                    "action": "EnergyMask",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -370,7 +370,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "OptionFour",
+                    "action": "SeaMask",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -381,7 +381,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "OptionFour",
+                    "action": "SeaMask",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -3,16 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class MaskClass
+public abstract class MaskClass : MonoBehaviour
 {
-    [SerializeField]
-    private Sprite m_maskSprite;
-
-    public Sprite MaskSprite
-    {
-        get { return m_maskSprite; }
-        set { m_maskSprite = value; }
-    }
+    [SerializeField] protected Sprite m_maskSprite;
+    protected SpriteRenderer m_maskRenderer;
 
     [SerializeField]
     private bool m_unlocked;
@@ -22,4 +16,6 @@ public class MaskClass
         get { return m_unlocked; }
         set { m_unlocked = value; }
     }
+
+    public abstract void SpecialAttack();
 }

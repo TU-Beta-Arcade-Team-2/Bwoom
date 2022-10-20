@@ -27,12 +27,6 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private Image[] m_lives;
     [SerializeField] private Sprite m_fullMaskSprite;
     [SerializeField] private Sprite m_brokenMaskSprite;
-    [Space(10)]
-
-    [Header("Mask Ability Variables")]
-    [SerializeField] private eMasks m_maskSelected;
-    [SerializeField] private SpriteRenderer m_playerMask;
-    public MaskClass[] masks;
 
     #region Main Functions
 
@@ -44,29 +38,6 @@ public class PlayerStats : MonoBehaviour
         m_lvlManager = FindObjectOfType<LevelManager>();
         m_cameraAnim = Camera.main.gameObject.GetComponent<Animator>();
         m_playerInput = GetComponent<PlayerInput>();
-    }
-
-    private void Update()
-    {
-        if (m_playerInput.actions["OptionOne"].triggered) //will also include an if statement checking if the selected mask has been unlocked
-        {
-            MaskChange(0);
-        }
-
-        if (m_playerInput.actions["OptionTwo"].triggered) //will also include an if statement checking if the selected mask has been unlocked
-        {
-            MaskChange(1);
-        }
-
-        if (m_playerInput.actions["OptionThree"].triggered) //will also include an if statement checking if the selected mask has been unlocked
-        {
-            MaskChange(2);
-        }
-
-        if (m_playerInput.actions["OptionFour"].triggered) //will also include an if statement checking if the selected mask has been unlocked
-        {
-            MaskChange(3);
-        }
     }
 
     #endregion
@@ -116,22 +87,6 @@ public class PlayerStats : MonoBehaviour
 
             m_lives[i].enabled = (i < m_maxPlayerHealth);
         }
-    }
-
-    #endregion
-
-    #region Mask Ability Functions
-
-    public void MaskChange(int maskNo)
-    {
-        if (masks[maskNo].Unlocked)
-        {
-            m_playerMask.sprite = masks[maskNo].MaskSprite;
-            m_maskSelected = eMasks.natureMask;
-            return;
-        }
-
-        //Play an locked mask sound to signal the player that there isn't an option here
     }
 
     #endregion
