@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEditor;
-using static UnityEngine.Rendering.DebugUI;
 
 public class RhinoEnemy : EnemyBase
 {
