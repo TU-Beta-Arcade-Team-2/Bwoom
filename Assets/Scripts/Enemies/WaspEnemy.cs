@@ -218,11 +218,6 @@ public class WaspEnemy : EnemyBase
         {
             TurnAround();
         }
-        else if (m_state == eState.DiveBomb && other.gameObject.CompareTag(StringConstants.PLAYER_TAG))
-        {
-            SetWaspState(eState.Attack);
-            Attack();
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -230,6 +225,12 @@ public class WaspEnemy : EnemyBase
         if (m_limitedToPlatform && other.gameObject.CompareTag(StringConstants.END_OF_PLATFORM_TAG))
         {
             TurnAround();
+        }
+        // TODO: ENSURE THAT THE PLAYER HAS A TRIGGER BOX THAT ISN'T ON THE PLAYER LAYER SINCE WE'RE IGNORING PHYSICS COLLISIONS NOW AND PREFERRING TRIGGERS!
+        else if (m_state == eState.DiveBomb && other.gameObject.CompareTag(StringConstants.PLAYER_TAG))
+        {
+            SetWaspState(eState.Attack);
+            Attack();
         }
     }
 

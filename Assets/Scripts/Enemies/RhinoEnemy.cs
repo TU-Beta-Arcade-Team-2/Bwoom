@@ -233,12 +233,6 @@ public class RhinoEnemy : EnemyBase
         {
             TurnAround();
         }
-        else if (other.gameObject.CompareTag(StringConstants.PLAYER_TAG) && m_state == eState.Charging) // If we are attacking and hit the player, play the headbutt animation
-        {
-            DebugLog("HIT THE PLAYER WHILST CHARGING!");
-            SetRhinoState(eState.Headbutt);
-            DamagePlayer(m_damage);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -253,6 +247,13 @@ public class RhinoEnemy : EnemyBase
             {
                 SetRhinoState(eState.CoolDown);
             }
+        }
+        // TODO: ENSURE THAT THE PLAYER HAS A TRIGGER BOX THAT ISN'T ON THE PLAYER LAYER SINCE WE'RE IGNORING PHYSICS COLLISIONS NOW AND PREFERRING TRIGGERS!
+        else if (other.gameObject.CompareTag(StringConstants.PLAYER_TAG) && m_state == eState.Charging) // If we are attacking and hit the player, play the headbutt animation
+        {
+            DebugLog("HIT THE PLAYER WHILST CHARGING!");
+            SetRhinoState(eState.Headbutt);
+            DamagePlayer(m_damage);
         }
     }
 
