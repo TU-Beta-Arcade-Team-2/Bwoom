@@ -6,7 +6,7 @@ using UnityEngine;
 public class WarMask : MaskClass
 {
     private float m_jumpHeight = 10;
-    public bool isJumped;
+    public bool m_IsJumped;
     [SerializeField] private Rigidbody2D m_rb;
     [SerializeField] private Controller m_playerController;
     [SerializeField] private Animator m_attackAnim;
@@ -14,7 +14,7 @@ public class WarMask : MaskClass
 
     private void Start()
     {
-        isJumped = false;
+        m_IsJumped = false;
     }
 
     private void OnEnable()
@@ -34,12 +34,12 @@ public class WarMask : MaskClass
     //Warmask special attack, an uppercut that sends the player and enemies up in the air
     public override void SpecialAttack()
     {
-        if (!isJumped)
+        if (!m_IsJumped)
         {
             m_rb.velocity = new Vector2(m_rb.velocity.x, 0);
             m_rb.AddForce(new Vector2(0, m_jumpHeight), ForceMode2D.Impulse);
 
-            isJumped = true;
+            m_IsJumped = true;
             m_attackAnim.Play("Warmask Special");
         }
     }

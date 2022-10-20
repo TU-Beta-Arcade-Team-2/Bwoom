@@ -302,7 +302,7 @@ public class Controller : MonoBehaviour
         rb.sharedMaterial = stickyMat;
         ungroundedTimer = 0.2f;
         holdTimer = 0f;
-        m_warMask.isJumped = false;
+        m_warMask.m_IsJumped = false;
         doubleJumped = false;
         return true;
     }
