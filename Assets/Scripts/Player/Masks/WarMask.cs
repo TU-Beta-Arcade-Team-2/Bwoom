@@ -9,7 +9,6 @@ public class WarMask : MaskClass
     public bool m_IsJumped;
     [SerializeField] private Rigidbody2D m_rb;
     [SerializeField] private Controller m_playerController;
-    [SerializeField] private PlayerStats m_playerStats;
     [SerializeField] private Animator m_attackAnim;
 
     private void Start()

@@ -26,6 +26,8 @@ public class PlayerStats : MonoBehaviour
 
     [Header ("Default Values")]
     public float m_DefaultMovementSpeed;
+    public float m_DefaultAttackDamage;
+    public float m_AttackDamage;
 
     [SerializeField] private Image[] m_lives;
     [SerializeField] private Sprite m_fullMaskSprite;

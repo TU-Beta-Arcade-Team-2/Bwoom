@@ -8,7 +8,6 @@ public class Controller : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerStats playerStats;
     private Rigidbody2D rb;
-    private MaskClass maskClass;
     private Animator anim;
 
     /// <summary> Player Hidden Variables </summary>
@@ -82,7 +81,6 @@ public class Controller : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         playerStats = GetComponent<PlayerStats>();
-        maskClass = GetComponent<MaskClass>();
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -94,6 +92,7 @@ public class Controller : MonoBehaviour
     public void SetDefaultValues()
     {
         movementSpeed = playerStats.m_DefaultMovementSpeed;
+        playerStats.m_AttackDamage = playerStats.m_DefaultAttackDamage;
     }
 
     private void Update()
@@ -312,6 +311,11 @@ public class Controller : MonoBehaviour
                 }
                 break;
         }
+    }
+
+    public eMasks GetSelectedMask()
+    {
+        return m_masks;
     }
 
     private void SpecialAttack()

@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public abstract class MaskClass : MonoBehaviour
 {
+    [SerializeField] protected PlayerStats m_playerStats;
     [SerializeField] protected Sprite m_maskSprite;
-    protected SpriteRenderer m_maskRenderer;
     [SerializeField] protected float m_movementMultiplier;
-
-    [SerializeField]
+    [SerializeField] protected float m_attackMultiplier;
+    public int m_specialAttackDamage;
+    protected SpriteRenderer m_maskRenderer;
     private bool m_unlocked;
 
     public bool Unlocked

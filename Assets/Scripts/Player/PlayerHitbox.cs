@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerHitbox : MonoBehaviour
 {
-    [SerializeField] private int Damage { get; set; }
+    [SerializeField] private PlayerStats m_playerStats;
+    [SerializeField] private WarMask m_warMask;
+    [SerializeField] private NatureMask m_natureMask;
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Enemy")
+        if (other.CompareTag(StringConstants.ENEMY_TAG))
         {
-            other.GetComponent<EnemyStats>().TakeDMG(Damage);
+            other.GetComponent<EnemyBase>().TakeDamage((int)m_playerStats.m_DefaultAttackDamage);
         }
     }
 }
