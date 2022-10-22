@@ -36,11 +36,11 @@ public class WarMask : MaskClass
     {
         if (!m_IsJumped)
         {
+            m_IsJumped = true;
+
             m_rb.velocity = new Vector2(m_rb.velocity.x, 0);
             m_rb.AddForce(new Vector2(0, m_jumpHeight), ForceMode2D.Impulse);
-
-            m_IsJumped = true;
-            //m_attackAnim.Play("Warmask Special");
+            m_attackAnim.Play("Warmask Special");
         }
     }
 }
