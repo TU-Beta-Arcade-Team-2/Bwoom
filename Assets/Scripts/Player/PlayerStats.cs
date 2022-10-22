@@ -28,6 +28,7 @@ public class PlayerStats : MonoBehaviour
     public float m_DefaultMovementSpeed;
     public float m_DefaultAttackDamage;
     public float m_AttackDamage;
+    public float m_DamageResistance;
 
     [SerializeField] private Image[] m_lives;
     [SerializeField] private Sprite m_fullMaskSprite;
@@ -39,6 +40,7 @@ public class PlayerStats : MonoBehaviour
     {
         m_playerHealth = Mathf.Clamp(m_playerHealth, 0, m_maxPlayerHealth);
         DisplayUIMasks();
+        m_DamageResistance = 1;
 
         m_lvlManager = FindObjectOfType<LevelManager>();
         m_cameraAnim = Camera.main.gameObject.GetComponent<Animator>();
@@ -51,7 +53,11 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeDMG(int incomingDMG)
     {
-        m_playerHealth -= incomingDMG;
+        int actualDamage = (int)(incomingDMG / m_DamageResistance);
+
+        Debug.Log("Actual Damage : " + actualDamage);
+
+        m_playerHealth -= actualDamage;
 
         DisplayUIMasks();
 

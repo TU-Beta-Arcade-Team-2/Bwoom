@@ -7,7 +7,6 @@ TagManager:
   - Ground
   - Wall
   - End_Of_Platform
-  - Enemy
   layers:
   - Default
   - TransparentFX

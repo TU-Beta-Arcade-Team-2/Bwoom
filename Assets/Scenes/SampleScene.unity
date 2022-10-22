@@ -1578,6 +1578,7 @@ GameObject:
   - component: {fileID: 825263949}
   - component: {fileID: 825263948}
   - component: {fileID: 825263947}
+  - component: {fileID: 825263950}
   m_Layer: 8
   m_Name: Uppercut Hitbox
   m_TagString: Untagged
@@ -1699,6 +1700,21 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &825263950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825263945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e452f42ee9de544a42ce5b5d73f7a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerController: {fileID: 1226355921}
+  m_warMask: {fileID: 1226355920}
+  m_natureMask: {fileID: 1226355919}
 --- !u!1 &829747436
 GameObject:
   m_ObjectHideFlags: 0
@@ -2330,6 +2346,7 @@ MonoBehaviour:
   m_rb: {fileID: 1226355923}
   m_playerController: {fileID: 1226355921}
   m_attackAnim: {fileID: 1538353621}
+  m_launchForce: 10
 --- !u!114 &1226355921 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8171535325487749789, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
@@ -3945,7 +3962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 129577446047843087, guid: d74cd58b81dc58a4fa5ba64a067838a2, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d74cd58b81dc58a4fa5ba64a067838a2, type: 3}

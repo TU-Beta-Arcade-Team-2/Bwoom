@@ -6,7 +6,6 @@ using UnityEngine;
 public class NatureMask : MaskClass
 {
     [SerializeField] private GameObject m_projectile;
-    [SerializeField] private Controller m_playerController;
 
     private void OnEnable()
     {
@@ -16,6 +15,7 @@ public class NatureMask : MaskClass
 
         m_playerController.movementSpeed *= m_movementMultiplier;
         m_playerStats.m_AttackDamage *= m_attackMultiplier;
+        m_playerStats.m_DamageResistance = m_damageResistanceMultiplier;
     }
 
     private void OnDisable()

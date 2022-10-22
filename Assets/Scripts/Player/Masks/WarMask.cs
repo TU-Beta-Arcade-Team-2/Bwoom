@@ -8,8 +8,8 @@ public class WarMask : MaskClass
     private float m_jumpHeight = 10;
     public bool m_IsJumped;
     [SerializeField] private Rigidbody2D m_rb;
-    [SerializeField] private Controller m_playerController;
     [SerializeField] private Animator m_attackAnim;
+    [SerializeField] private float m_launchForce;
 
     private void Start()
     {
@@ -24,6 +24,7 @@ public class WarMask : MaskClass
 
         m_playerController.movementSpeed *= m_movementMultiplier;
         m_playerStats.m_AttackDamage *= m_attackMultiplier;
+        m_playerStats.m_DamageResistance = m_damageResistanceMultiplier;
     }
 
     private void OnDisable()
@@ -42,5 +43,10 @@ public class WarMask : MaskClass
             m_rb.AddForce(new Vector2(0, m_jumpHeight), ForceMode2D.Impulse);
             m_attackAnim.Play("Warmask Special");
         }
+    }
+
+    public void SpecialAttackEffect(Rigidbody2D target)
+    {
+        target.AddForce(new Vector2(0,m_launchForce), ForceMode2D.Impulse);
     }
 }

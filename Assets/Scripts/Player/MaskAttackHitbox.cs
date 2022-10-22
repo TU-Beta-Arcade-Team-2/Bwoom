@@ -15,6 +15,7 @@ public class MaskAttackHitbox : MonoBehaviour
         {
             case Controller.eMasks.war:
                 other.GetComponent<EnemyBase>().TakeDamage(m_warMask.m_specialAttackDamage);
+                m_warMask.SpecialAttackEffect(other.GetComponent<Rigidbody2D>());
                 break;
             case Controller.eMasks.nature:
                 other.GetComponent<EnemyBase>().TakeDamage(m_natureMask.m_specialAttackDamage);

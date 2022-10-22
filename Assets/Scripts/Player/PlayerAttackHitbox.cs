@@ -8,7 +8,10 @@ public class PlayerAttackHitbox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        other.GetComponent<EnemyBase>().TakeDamage((int)(m_playerStats.m_AttackDamage));
-        Debug.Log("Player Damage : " + (int)(m_playerStats.m_AttackDamage));
+        if (other)
+        {
+            other.GetComponent<EnemyBase>().TakeDamage((int)(m_playerStats.m_AttackDamage));
+            Debug.Log("Player Damage : " + (int)(m_playerStats.m_AttackDamage));
+        }
     }
 }
