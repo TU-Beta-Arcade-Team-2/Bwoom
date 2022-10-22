@@ -7,7 +7,6 @@ public static class StringConstants
     public static string GROUND_TAG = "Ground";
     public static string WALL_TAG = "Wall";
     public static string END_OF_PLATFORM_TAG = "End_Of_Platform";
-    public static string ENEMY_TAG = "Enemy";
     #endregion
 
     #region LAYER_STRINGS

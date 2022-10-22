@@ -1578,7 +1578,7 @@ GameObject:
   - component: {fileID: 825263949}
   - component: {fileID: 825263948}
   - component: {fileID: 825263947}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Uppercut Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1712,7 +1712,7 @@ GameObject:
   - component: {fileID: 829747440}
   - component: {fileID: 829747439}
   - component: {fileID: 829747442}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

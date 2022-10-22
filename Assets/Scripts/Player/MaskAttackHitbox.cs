@@ -11,17 +11,14 @@ public class MaskAttackHitbox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag(StringConstants.ENEMY_TAG))
+        switch (m_playerController.GetSelectedMask())
         {
-            switch (m_playerController.GetSelectedMask())
-            {
-                case Controller.eMasks.war:
-                    other.GetComponent<EnemyBase>().TakeDamage(m_warMask.m_specialAttackDamage);
-                    break;
-                case Controller.eMasks.nature:
-                    other.GetComponent<EnemyBase>().TakeDamage(m_natureMask.m_specialAttackDamage);
-                    break;
-            }
+            case Controller.eMasks.war:
+                other.GetComponent<EnemyBase>().TakeDamage(m_warMask.m_specialAttackDamage);
+                break;
+            case Controller.eMasks.nature:
+                other.GetComponent<EnemyBase>().TakeDamage(m_natureMask.m_specialAttackDamage);
+                break;
         }
     }
 }
