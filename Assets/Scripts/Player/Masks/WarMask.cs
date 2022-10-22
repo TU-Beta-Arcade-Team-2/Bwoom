@@ -23,6 +23,7 @@ public class WarMask : MaskClass
         m_maskRenderer.sprite = m_maskSprite;
 
         m_playerController.movementSpeed *= m_movementMultiplier;
+        m_playerStats.m_AttackDamage *= m_attackMultiplier;
     }
 
     private void OnDisable()

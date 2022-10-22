@@ -1578,7 +1578,7 @@ GameObject:
   - component: {fileID: 825263949}
   - component: {fileID: 825263948}
   - component: {fileID: 825263947}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Uppercut Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1711,8 +1711,8 @@ GameObject:
   - component: {fileID: 829747441}
   - component: {fileID: 829747440}
   - component: {fileID: 829747439}
-  - component: {fileID: 829747438}
-  m_Layer: 7
+  - component: {fileID: 829747442}
+  m_Layer: 0
   m_Name: PlayerHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1734,18 +1734,6 @@ Transform:
   m_Father: {fileID: 1695292016}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &829747438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 829747436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92e81604f7d71c04fb2597eec36058d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!50 &829747439
 Rigidbody2D:
   serializedVersion: 4
@@ -1845,6 +1833,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &829747442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829747436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f1594067e694349abcf3fe85a5e73f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerStats: {fileID: 1226355918}
 --- !u!1 &844249665
 GameObject:
   m_ObjectHideFlags: 0
@@ -2301,9 +2302,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 543bec8060db7324e861e9f0f917c839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerStats: {fileID: 1226355918}
   m_maskSprite: {fileID: 21300000, guid: 9a90649ec35ed8743ad1b565f5bd2e23, type: 3}
   m_movementMultiplier: 1.5
-  m_unlocked: 0
+  m_attackMultiplier: 0.8
+  m_specialAttackDamage: 5
   m_projectile: {fileID: 4535511604616509338, guid: 253cb738d3f8ef6459e0176ca40a6900, type: 3}
   m_playerController: {fileID: 1226355921}
 --- !u!114 &1226355920
@@ -2318,13 +2321,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb138e6a3f4d41489139b2483a8e3f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerStats: {fileID: 1226355918}
   m_maskSprite: {fileID: 21300000, guid: 5badf423a4df5334bb4ba4f556bec3d2, type: 3}
   m_movementMultiplier: 0.75
-  m_unlocked: 0
+  m_attackMultiplier: 1.5
+  m_specialAttackDamage: 10
   m_IsJumped: 0
   m_rb: {fileID: 1226355923}
   m_playerController: {fileID: 1226355921}
-  m_playerStats: {fileID: 1226355918}
   m_attackAnim: {fileID: 1538353621}
 --- !u!114 &1226355921 stripped
 MonoBehaviour:
@@ -2662,7 +2666,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1538353620}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3939,6 +3943,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rhino
       objectReference: {fileID: 0}
+    - target: {fileID: 129577446047843087, guid: d74cd58b81dc58a4fa5ba64a067838a2, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d74cd58b81dc58a4fa5ba64a067838a2, type: 3}
 --- !u!1001 &8171535323749452087
@@ -4024,6 +4032,10 @@ PrefabInstance:
       propertyPath: m_mask.Array.data[0]
       value: 
       objectReference: {fileID: 1753134603}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_DefaultAttackDamage
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_lives.Array.data[0]
       value: 
