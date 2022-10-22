@@ -2319,12 +2319,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerStats: {fileID: 1226355918}
+  m_playerController: {fileID: 1226355921}
   m_maskSprite: {fileID: 21300000, guid: 9a90649ec35ed8743ad1b565f5bd2e23, type: 3}
   m_movementMultiplier: 1.5
   m_attackMultiplier: 0.8
+  m_damageResistanceMultiplier: 0
   m_specialAttackDamage: 5
   m_projectile: {fileID: 4535511604616509338, guid: 253cb738d3f8ef6459e0176ca40a6900, type: 3}
-  m_playerController: {fileID: 1226355921}
 --- !u!114 &1226355920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2338,13 +2339,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerStats: {fileID: 1226355918}
+  m_playerController: {fileID: 1226355921}
   m_maskSprite: {fileID: 21300000, guid: 5badf423a4df5334bb4ba4f556bec3d2, type: 3}
   m_movementMultiplier: 0.75
   m_attackMultiplier: 1.5
+  m_damageResistanceMultiplier: 0
   m_specialAttackDamage: 10
   m_IsJumped: 0
   m_rb: {fileID: 1226355923}
-  m_playerController: {fileID: 1226355921}
   m_attackAnim: {fileID: 1538353621}
   m_launchForce: 10
 --- !u!114 &1226355921 stripped
@@ -3985,6 +3987,10 @@ PrefabInstance:
       propertyPath: m_playerMask
       value: 
       objectReference: {fileID: 128470994}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_AttackDamage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_playerHealth
       value: 1000000
