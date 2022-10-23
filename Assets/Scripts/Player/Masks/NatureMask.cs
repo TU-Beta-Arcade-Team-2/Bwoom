@@ -6,6 +6,7 @@ using UnityEngine;
 public class NatureMask : MaskClass
 {
     [SerializeField] private GameObject m_projectile;
+    [SerializeField] private int m_healAmount;
 
     private void OnEnable()
     {
@@ -26,5 +27,10 @@ public class NatureMask : MaskClass
     public override void SpecialAttack()
     {
         Instantiate(m_projectile,transform.position,transform.rotation);
+    }
+
+    public void SpecialAttackEffect()
+    {
+        m_playerStats.TakeHEAL(m_healAmount);
     }
 }

@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 7721693614776183508}
   - component: {fileID: 292648064280677153}
   - component: {fileID: 3552612036911943732}
-  m_Layer: 0
+  - component: {fileID: 1802422197143329892}
+  m_Layer: 9
   m_Name: Leaf Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,3 +149,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_projectileSpeed: 10
   m_maxProjectileLifetime: 2
+--- !u!114 &1802422197143329892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4535511604616509338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54e452f42ee9de544a42ce5b5d73f7a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerController: {fileID: 0}
+  m_warMask: {fileID: 0}
+  m_natureMask: {fileID: 0}

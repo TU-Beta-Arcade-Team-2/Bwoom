@@ -75,6 +75,8 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeHEAL(int incomingHEAL)
     {
+        Debug.Log("HEAL TEST");
+
         m_playerHealth = Mathf.Clamp(m_playerHealth + incomingHEAL, 0, m_maxPlayerHealth);
 
         DisplayUIMasks();

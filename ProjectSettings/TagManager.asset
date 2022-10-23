@@ -17,8 +17,8 @@ TagManager:
   - Enemies
   - Player
   - Hitboxes
-  - 
-  - 
+  - PlayerProjectile
+  - EnemyProjectile
   - 
   - 
   - 

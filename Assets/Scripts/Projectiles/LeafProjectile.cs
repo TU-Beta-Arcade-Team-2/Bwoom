@@ -25,4 +25,9 @@ public class LeafProjectile : ProjectleBaseClass
             Destroy(gameObject);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Destroy(this.gameObject);
+    }
 }
