@@ -37,7 +37,7 @@ public class BetterDebugging : Singleton<BetterDebugging>
                 debugString = $"<color=yellow><b>WARNING:</b> <i>{debugText}</i></color>\tFile: {GetFileName(originFile)}::{functionName}():{originLineNumber}";
                 break;
             case eDebugLevel.Message:
-                debugString = $"<color=blue><b>WARNING:</b> <i>{debugText}</i></color>\tFile: {GetFileName(originFile)}::{functionName}():{originLineNumber}";
+                debugString = $"<color=blue><i>{debugText}</i></color>\tFile: {GetFileName(originFile)}::{functionName}():{originLineNumber}";
                 break;
             case eDebugLevel.Log:
             default:

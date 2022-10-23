@@ -44,8 +44,12 @@ public class CameraToolTip : MonoBehaviour
 
                 ct.SetCameraController(myTarget.Controller);
                 ct.Properties = myTarget.TriggerProperties;
+
                 ct.ZoomAmount = myTarget.TargetZoom;
                 ct.ZoomDuration = myTarget.ZoomDuration;
+
+                ct.LockedCoordX = myTarget.transform.position.x;
+                ct.LockedCoordY = myTarget.transform.position.y;
 
                 BoxCollider2D collider = newCameraTrigger.AddComponent<BoxCollider2D>();
                 collider.isTrigger = true;
