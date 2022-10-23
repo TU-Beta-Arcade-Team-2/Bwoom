@@ -23,12 +23,12 @@ public class WarMask : MaskClass
 
         m_maskRenderer.sprite = m_maskSprite;
 
-        m_playerController.movementSpeed -= m_decreasedMovement;
+        //m_playerController.movementSpeed -= m_decreasedMovement;
     }
 
     private void OnDisable()
     {
-        m_playerController.movementSpeed += m_decreasedMovement;
+        //m_playerController.movementSpeed += m_decreasedMovement;
     }
 
     //Warmask special attack, an uppercut that sends the player and enemies up in the air

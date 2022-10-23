@@ -15,12 +15,12 @@ public class NatureMask : MaskClass
 
         m_maskRenderer.sprite = m_maskSprite;
 
-        m_playerController.movementSpeed += m_increasedMovement;
+        //m_playerController.movementSpeed += m_increasedMovement;
     }
 
     private void OnDisable()
     {
-        m_playerController.movementSpeed -= m_increasedMovement;
+        //m_playerController.movementSpeed -= m_increasedMovement;
     }
 
     public override void SpecialAttack()
