@@ -7,7 +7,7 @@ using UnityEngine;
 // passes over them
 public class CameraTrigger : MonoBehaviour
 {
-    public enum eCameraTriggerType
+    public enum eTriggerProperty
     {
         Zoom,
         Pan,
@@ -17,35 +17,55 @@ public class CameraTrigger : MonoBehaviour
         LockY
     }
 
-    public eCameraTriggerType Type;
+    public List<eTriggerProperty> Properties;
 
     public float ZoomAmount;
     public float ZoomDuration;
 
-    [SerializeField] private CameraController m_cameraController;
+    public GameObject CameraControllerObject;
+    private CameraController m_cameraController;
+
+    void Start()
+    {
+        CameraController cameraController = CameraControllerObject.GetComponent<CameraController>();
+        m_cameraController = cameraController;
+
+        BetterDebugging.Instance.Assert(cameraController != null);
+    }
+
+    [ExecuteInEditMode] public void SetCameraController(GameObject cameraObject)
+    {
+        CameraControllerObject = cameraObject;
+        BetterDebugging.Instance.DebugLog("SETTING CAMERA CONTROLLER", BetterDebugging.eDebugLevel.Message);
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.gameObject.CompareTag(StringConstants.PLAYER_TAG)) { return; }
 
-        switch (Type)
+        foreach (eTriggerProperty property in Properties)
         {
-            case eCameraTriggerType.Zoom:
-                m_cameraController.SetCameraZoom(ZoomAmount, ZoomDuration);
-                BetterDebugging.Instance.DebugLog($"Setting camera zoom to {ZoomAmount} over {ZoomDuration} seconds", BetterDebugging.eDebugLevel.Message);
-                break;
-            case eCameraTriggerType.Pan:
-                break;
-            case eCameraTriggerType.Rotate:
-                break;
-            case eCameraTriggerType.Shake:
-                break;
-            case eCameraTriggerType.LockX:
-                break;
-            case eCameraTriggerType.LockY:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
+            switch (property)
+            {
+                case eTriggerProperty.Zoom:
+                    m_cameraController.SetCameraZoom(ZoomAmount, ZoomDuration);
+                    BetterDebugging.Instance.DebugLog(
+                        $"Setting camera zoom to {ZoomAmount} over {ZoomDuration} seconds",
+                        BetterDebugging.eDebugLevel.Message);
+                    break;
+                case eTriggerProperty.Pan:
+                    break;
+                case eTriggerProperty.Rotate:
+                    break;
+                case eTriggerProperty.Shake:
+                    break;
+                case eTriggerProperty.LockX:
+                    break;
+                case eTriggerProperty.LockY:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
         }
     }
 }

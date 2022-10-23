@@ -107,8 +107,12 @@ public class BetterDebugging : Singleton<BetterDebugging>
         [CallerMemberName] string functionName = null,
         [CallerLineNumber] int originLineNumber = 0)
     {
-        DebugLog(debugString, eDebugLevel.Error, originFile, functionName, originLineNumber);
-        UnityEngine.Assertions.Assert.IsTrue(condition, debugString);
+        if (!condition)
+        {
+            DebugLog($"ASSERTION FAILED: {debugString}", eDebugLevel.Error, originFile, functionName, originLineNumber);
+
+            Debug.Break();
+        }
     }
 
     private string GetFileName(string fullPath)
