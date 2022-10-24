@@ -8,10 +8,15 @@ public class PlayerAttackHitbox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<EnemyBase>() != null)
+        if (other.gameObject.layer == LayerMask.NameToLayer(StringConstants.ENEMY_LAYER))
         {
-            other.GetComponent<EnemyBase>().TakeDamage((int)(m_playerStats.m_AttackDamage));
-            Debug.Log("Player Damage : " + (int)(m_playerStats.m_AttackDamage));
+            EnemyBase enemy = other.GetComponent<EnemyBase>();
+            // This assert shouldn't ever be hit, if it is, the other code will 
+            // give NullReferenceExceptions anyway, so at least it will flag up where it happens! 
+            BetterDebugging.Instance.Assert(enemy != null, "Anything on the Enemy Layer should be an enemy!");
+
+            enemy.TakeDamage((int)(m_playerStats.m_AttackDamage));
+            BetterDebugging.Instance.DebugLog($"Player Damage:  {m_playerStats.m_AttackDamage}");
         }
     }
 }

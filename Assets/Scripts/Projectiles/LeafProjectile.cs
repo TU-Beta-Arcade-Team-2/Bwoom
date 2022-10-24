@@ -6,12 +6,23 @@ public class LeafProjectile : ProjectleBaseClass
 {
     [SerializeField] private float m_projectileSpeed;
     [SerializeField] private float m_maxProjectileLifetime;
+    [SerializeField] private PlayerStats m_playerStats;
+    [SerializeField] private NatureMask m_natureMask;
     private float m_lifeTimer;
 
     void Awake()
     {
         m_lifeTimer = m_maxProjectileLifetime;
+
+        GameObject player = GameObject.FindGameObjectWithTag(StringConstants.PLAYER_TAG);
+
+        m_playerStats = player.GetComponentInParent<PlayerStats>();
+        m_natureMask = player.GetComponentInParent<NatureMask>();
         gameObject.transform.parent = null;
+
+        collisionDelegate += OnProjectileHit;
+
+        Debug.Log("Delegate Name : " + collisionDelegate);
     }
 
     // Update is called once per frame
@@ -26,8 +37,16 @@ public class LeafProjectile : ProjectleBaseClass
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnProjectileHit(Collider2D other)
     {
-        Destroy(this.gameObject);
+        EnemyBase enemy = other.GetComponent<EnemyBase>();
+
+        BetterDebugging.Instance.Assert(enemy != null, "Not colliding with the Enemy!");
+
+        if (enemy != null)
+        {
+            enemy.TakeDamage(m_natureMask.m_specialAttackDamage);
+            m_playerStats.TakeHEAL(m_natureMask.m_HealAmount);
+        }
     }
 }

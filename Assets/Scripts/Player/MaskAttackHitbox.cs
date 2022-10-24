@@ -20,18 +20,29 @@ public class MaskAttackHitbox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<EnemyBase>() != null)
+        if (other.gameObject.layer == LayerMask.NameToLayer(StringConstants.ENEMY_LAYER))
         {
-            switch (m_playerController.GetSelectedMask())
+            EnemyBase enemy = other.GetComponent<EnemyBase>();
+            // This assert shouldn't ever be hit, if it is, the other code will 
+            // give NullReferenceExceptions anyway, so at least it will flag up where it happens! 
+            BetterDebugging.Instance.Assert(enemy != null, "Anything on the Enemy Layer should be an enemy!");
+
+            if (enemy != null)
             {
-                case Controller.eMasks.war:
-                    other.GetComponent<EnemyBase>().TakeDamage(m_warMask.m_specialAttackDamage);
-                    m_warMask.SpecialAttackEffect(other.GetComponent<Rigidbody2D>());
-                    break;
-                case Controller.eMasks.nature:
-                    other.GetComponent<EnemyBase>().TakeDamage(m_natureMask.m_specialAttackDamage);
-                    m_natureMask.SpecialAttackEffect();
-                    break;
+                switch (m_playerController.GetSelectedMask())
+                {
+                    case Controller.eMasks.war:
+                        enemy.TakeDamage(m_warMask.m_specialAttackDamage);
+                        m_warMask.SpecialAttackEffect(other.GetComponent<Rigidbody2D>());
+                        break;
+                    //case Controller.eMasks.nature:
+                    //    enemy.TakeDamage(m_natureMask.m_specialAttackDamage);
+                    //    m_natureMask.SpecialAttackEffect();
+                    //    break;
+                    default:
+                        BetterDebugging.Instance.DebugLog("Mask is either not added yet, or you messed up!", BetterDebugging.eDebugLevel.Error);
+                        break;
+                }
             }
         }
     }
