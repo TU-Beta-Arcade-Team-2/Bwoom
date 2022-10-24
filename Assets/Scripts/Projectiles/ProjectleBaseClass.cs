@@ -18,8 +18,6 @@ public abstract class ProjectleBaseClass : MonoBehaviour
             collisionDelegate(collision);
         }
 
-        Debug.Log("Delegate Name : " + collisionDelegate);
-
         Destroy(this.gameObject);
     }
 }
