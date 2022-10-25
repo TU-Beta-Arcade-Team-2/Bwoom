@@ -34,6 +34,9 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private Sprite m_fullMaskSprite;
     [SerializeField] private Sprite m_brokenMaskSprite;
 
+    private bool m_frenzyMode;
+    [SerializeField] private float m_frenzyModeTimer;
+
     #region Main Functions
 
     private void Start()
@@ -45,6 +48,16 @@ public class PlayerStats : MonoBehaviour
         m_lvlManager = FindObjectOfType<LevelManager>();
         m_cameraAnim = Camera.main.gameObject.GetComponent<Animator>();
         m_playerInput = GetComponent<PlayerInput>();
+    }
+
+    private void Update()
+    {
+        // TEMPORARY UPDATE FUNCTION JUST TO TEST IF FRENZY MODE WORKS WITHOUT NEEDING TO KILL AT THE MOMENT
+        // FUNCTION IS ALSO CALLED AT ENEMY DEATH
+        if (m_playerInput.actions["Attack"].triggered)
+        {
+            ActivateFrenzyMode();
+        }
     }
 
     #endregion
@@ -100,6 +113,30 @@ public class PlayerStats : MonoBehaviour
 
             m_lives[i].enabled = (i < m_maxPlayerHealth);
         }
+    }
+
+    #endregion
+
+    #region Frenzy Functions
+    public void ActivateFrenzyMode()
+    {
+        if (m_frenzyMode)
+        {
+            CancelInvoke("DeactivateFrenzyMode");
+            Invoke("DeactivateFrenzyMode", 3);
+            Debug.Log("Frenzy Mode Replenished");
+            return;
+        }
+
+        Invoke("DeactivateFrenzyMode", 3);
+        Debug.Log("Frenzy Mode On!");
+        m_frenzyMode = true;
+    }
+
+    private void DeactivateFrenzyMode()
+    {
+        Debug.Log("No More Frenzy");
+        m_frenzyMode = false;
     }
 
     #endregion

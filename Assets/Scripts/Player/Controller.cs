@@ -81,7 +81,7 @@ public class Controller : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         playerStats = GetComponent<PlayerStats>();
-        //anim = GetComponentInChildren<Animator>(); 
+        anim = GetComponentInChildren<Animator>(); 
         rb = GetComponent<Rigidbody2D>();
 
         //set default mask
@@ -347,7 +347,7 @@ public class Controller : MonoBehaviour
     {
         if (playerInput.actions["Attack"].triggered)
         {
-            //anim.SetTrigger("Attack");
+            anim.SetTrigger("Attack");
         }
     }
 

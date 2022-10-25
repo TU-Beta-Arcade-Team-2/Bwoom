@@ -116,7 +116,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected void OnDeath(string soundFxName, int pointsToAward, GameObject deathParticleFx,
         [CanBeNull] GameObject itemToDrop = null)
     {
-        throw new NotImplementedException("DEATH NOT IMPLEMENTED");
+        m_playerStats.ActivateFrenzyMode();
     }
 
     protected abstract void Move();
