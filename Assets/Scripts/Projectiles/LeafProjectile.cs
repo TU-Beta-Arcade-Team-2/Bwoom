@@ -39,14 +39,17 @@ public class LeafProjectile : ProjectleBaseClass
 
     private void OnProjectileHit(Collider2D other)
     {
-        EnemyBase enemy = other.GetComponent<EnemyBase>();
-
-        BetterDebugging.Instance.Assert(enemy != null, "Not colliding with the Enemy!");
-
-        if (enemy != null)
+        if (other.gameObject.layer == LayerMask.NameToLayer(StringConstants.ENEMY_LAYER))
         {
-            enemy.TakeDamage(m_natureMask.m_specialAttackDamage);
-            m_playerStats.TakeHEAL(m_natureMask.m_HealAmount);
+            EnemyBase enemy = other.GetComponent<EnemyBase>();
+
+            BetterDebugging.Instance.Assert(enemy != null, "Not colliding with the Enemy!");
+
+            if (enemy != null)
+            {
+                enemy.TakeDamage(m_natureMask.m_specialAttackDamage);
+                m_playerStats.TakeHEAL(m_natureMask.m_HealAmount);
+            }
         }
     }
 }
