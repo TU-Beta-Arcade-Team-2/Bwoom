@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1959386309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1959386310}
+  m_Layer: 0
+  m_Name: ProjectileSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1959386310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1959386309}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.412, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8171535325487749776}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &517762481085286622
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +43,7 @@ GameObject:
   - component: {fileID: 3997681120428832773}
   - component: {fileID: 7960563232963185284}
   - component: {fileID: 268298070582533582}
-  - component: {fileID: 6121808299831452230}
+  - component: {fileID: 1564724982}
   m_Layer: 7
   m_Name: PlayerHitbox
   m_TagString: Untagged
@@ -134,7 +165,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6121808299831452230
+--- !u!114 &1564724982
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,9 +174,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 517762481085286622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92e81604f7d71c04fb2597eec36058d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 41f1594067e694349abcf3fe85a5e73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerStats: {fileID: 675374325409127699}
 --- !u!1 &7477433693578160932
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,12 +282,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 631435071, guid: 3c11c7e9b47067e47bd748609115ee9a, type: 3}
+  m_Sprite: {fileID: 1105057892, guid: a2882edefa6cc1943ba5ee678be0dd0d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.625, y: 2.0625}
+  m_Size: {x: 0.875, y: 1.59375}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -417,6 +449,9 @@ GameObject:
   - component: {fileID: 8171535325487749790}
   - component: {fileID: 675374325409127699}
   - component: {fileID: 8171535325487749789}
+  - component: {fileID: 2145512436}
+  - component: {fileID: 2145512434}
+  - component: {fileID: 2145512435}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -441,6 +476,7 @@ Transform:
   - {fileID: 5556730394396911537}
   - {fileID: 8171535325410661210}
   - {fileID: 3682733235662808337}
+  - {fileID: 1959386310}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -489,7 +525,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: bd6019b2ba952e44bb670fc8e4239a6e, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &8171535325487749790
 MonoBehaviour:
@@ -533,11 +569,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a983bf2f61e66f419a6d1ad03d2d04e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerHealth: 0
-  m_maxPlayerHealth: 0
-  m_lives: []
-  m_fullMaskSprite: {fileID: 0}
-  m_brokenMaskSprite: {fileID: 0}
+  m_playerHealth: 1000000
+  m_maxPlayerHealth: 1000000
+  m_DefaultMovementSpeed: 5
+  m_DefaultAttackDamage: 2
+  m_AttackDamage: 2
+  m_DamageResistance: 1
+  m_lives:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_fullMaskSprite: {fileID: 21300000, guid: 204b47e265b136f4288188c51ca5ae15, type: 3}
+  m_brokenMaskSprite: {fileID: 21300000, guid: 1dc523e2ac4e5144bb17e7414d4ca156, type: 3}
 --- !u!114 &8171535325487749789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,3 +623,71 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 8
+  m_warMask: {fileID: 2145512435}
+  m_natureMask: {fileID: 2145512434}
+  m_masks: 1
+--- !u!95 &2145512436
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171535325487749780}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5a8039456fa3eae42a21eed33d957951, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2145512434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171535325487749780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 543bec8060db7324e861e9f0f917c839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerStats: {fileID: 675374325409127699}
+  m_playerController: {fileID: 8171535325487749789}
+  m_maskSprite: {fileID: 1105057892, guid: a2882edefa6cc1943ba5ee678be0dd0d, type: 3}
+  m_movementMultiplier: 2
+  m_attackMultiplier: 1
+  m_damageResistanceMultiplier: 1.1
+  m_specialAttackDamage: 2
+  m_projectile: {fileID: 4535511604616509338, guid: 253cb738d3f8ef6459e0176ca40a6900, type: 3}
+  m_projectileSpawner: {fileID: 1959386310}
+  m_HealAmount: 5
+--- !u!114 &2145512435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171535325487749780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdb138e6a3f4d41489139b2483a8e3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_playerStats: {fileID: 675374325409127699}
+  m_playerController: {fileID: 8171535325487749789}
+  m_maskSprite: {fileID: -1050699073, guid: 3c11c7e9b47067e47bd748609115ee9a, type: 3}
+  m_movementMultiplier: 0.5
+  m_attackMultiplier: 2
+  m_damageResistanceMultiplier: 2
+  m_specialAttackDamage: 2
+  m_IsJumped: 0
+  m_rb: {fileID: 8171535325487749779}
+  m_attackAnim: {fileID: 2145512436}
+  m_launchForce: 5
