@@ -19,8 +19,8 @@ TagManager:
   - Hitboxes
   - PlayerProjectile
   - EnemyProjectile
-  - 
-  - 
+  - Wall
+  - WaspEnemy
   - 
   - 
   - 

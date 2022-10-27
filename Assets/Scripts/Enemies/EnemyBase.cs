@@ -82,6 +82,11 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
+    public void SetPlayer(PlayerStats player)
+    {
+        m_playerStats = player;
+    }
+
     public virtual void DamagePlayer(int damageAmount)
     {
         BetterDebugging.Instance.SpawnDebugText(
