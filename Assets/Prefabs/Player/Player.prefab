@@ -143,9 +143,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 517762481085286622}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92e81604f7d71c04fb2597eec36058d4, type: 3}
+  m_Script: {fileID: 11500000, guid: 41f1594067e694349abcf3fe85a5e73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerStats: {fileID: 0}
 --- !u!1 &7477433693578160932
 GameObject:
   m_ObjectHideFlags: 0
@@ -412,12 +413,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8171535325487749776}
+  - component: {fileID: 670068135037751130}
   - component: {fileID: 8171535325487749778}
   - component: {fileID: 8171535325487749779}
   - component: {fileID: 8171535325487749790}
   - component: {fileID: 675374325409127699}
   - component: {fileID: 8171535325487749789}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -444,6 +446,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &670068135037751130
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8171535325487749780}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.05}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.6, y: 1.4}
+  m_EdgeRadius: 0
 --- !u!61 &8171535325487749778
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -535,9 +563,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerHealth: 0
   m_maxPlayerHealth: 0
+  m_DefaultMovementSpeed: 0
+  m_DefaultJumpHeight: 0
+  m_DefaultAttackDamage: 0
+  m_CurrentMovementSpeed: 0
+  m_CurrentJumpHeight: 0
+  m_AttackDamage: 0
+  m_DamageResistance: 0
   m_lives: []
   m_fullMaskSprite: {fileID: 0}
   m_brokenMaskSprite: {fileID: 0}
+  m_frenzyModeTimer: 0
+  m_frenzyTimerIncrement: 0
+  m_frenzySpeedMultiplier: 0
+  m_frenzyAttackMultiplier: 0
+  m_frenzyJumpMultiplier: 0
+  m_frenzyAttackSpeedMultiplier: 0
 --- !u!114 &8171535325487749789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -563,6 +604,7 @@ MonoBehaviour:
   drag: 1
   slipperyMat: {fileID: 6200000, guid: bd6019b2ba952e44bb670fc8e4239a6e, type: 2}
   stickyMat: {fileID: 6200000, guid: f58e38f3fbbe38d44bbfdbae03021fed, type: 2}
+  boxCollider: {fileID: 0}
   wallSlideOn: 0
   groundPoundOn: 0
   shootingOn: 0
@@ -575,3 +617,6 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 8
+  m_warMask: {fileID: 0}
+  m_natureMask: {fileID: 0}
+  m_masks: 0

@@ -41,15 +41,16 @@ public class Controller : MonoBehaviour
     ///<summary> Physic Materials </summary>
     [SerializeField] private PhysicsMaterial2D slipperyMat;
     [SerializeField] private PhysicsMaterial2D stickyMat;
+    [SerializeField] private BoxCollider2D boxCollider;
     [Space(5)]
 
     [Header("Ability Bools")]
     /// <summary> Abilitiy Booleans </summary>
-    [SerializeField] private bool wallSlideOn;
-    [SerializeField] private bool groundPoundOn;
-    [SerializeField] private bool shootingOn;
-    [SerializeField] private bool doubleJumpOn;
-    [SerializeField] private bool healingOn;
+    public bool wallSlideOn;
+    public bool groundPoundOn;
+    public bool shootingOn;
+    public bool doubleJumpOn;
+    public bool healingOn;
     [Space(5)]
 
     [Header("Wall Jumping Values")]
@@ -83,6 +84,7 @@ public class Controller : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         anim = GetComponentInChildren<Animator>(); 
         rb = GetComponent<Rigidbody2D>();
+        boxCollider = GetComponent<BoxCollider2D>();
 
         //set default mask
         RemoveMasks();
@@ -91,8 +93,9 @@ public class Controller : MonoBehaviour
 
     public void SetDefaultValues()
     {
-        movementSpeed = playerStats.m_DefaultMovementSpeed;
-        playerStats.m_AttackDamage = playerStats.m_DefaultAttackDamage;
+        movementSpeed = playerStats.m_CurrentMovementSpeed;
+        jumpHeight = playerStats.m_CurrentJumpHeight;
+        //playerStats.m_CurrentAttackDamage = playerStats.m_CurrentAttackDamage;
     }
 
     private void Update()
@@ -251,10 +254,20 @@ public class Controller : MonoBehaviour
         if (!Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer))
         {
             rb.sharedMaterial = slipperyMat;
+            boxCollider.sharedMaterial = slipperyMat;
+            Debug.Log("AIRBORNE");
             return false;
+            
         }
 
-        rb.sharedMaterial = stickyMat;
+        Debug.Log("GROUNDED");
+        
+        if (ungroundedTimer > 0)
+        {
+            rb.sharedMaterial = stickyMat;
+            boxCollider.sharedMaterial = stickyMat;
+        }
+        
         ungroundedTimer = 0.2f;
         holdTimer = 0f;
         m_warMask.m_IsJumped = false;
@@ -375,6 +388,7 @@ public class Controller : MonoBehaviour
             rb.AddForce(new Vector2(0, jumpHeight), ForceMode2D.Impulse);
 
             ungroundedTimer = 0;
+            holdTimer = 0f;
 
             doubleJumped = true;
         }
