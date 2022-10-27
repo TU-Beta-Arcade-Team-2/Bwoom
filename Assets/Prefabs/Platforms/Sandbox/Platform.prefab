@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8357854007081820726}
   - component: {fileID: 8357854007081820721}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Left_End
   m_TagString: End_Of_Platform
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -68,7 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8357854008911895162}
   - component: {fileID: 8357854008911895141}
-  m_Layer: 3
+  m_Layer: 0
   m_Name: Right_End
   m_TagString: End_Of_Platform
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
