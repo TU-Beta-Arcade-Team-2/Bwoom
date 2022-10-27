@@ -49,6 +49,11 @@ public class CameraTrigger : MonoBehaviour
     {
         if (!other.gameObject.CompareTag(StringConstants.PLAYER_TAG)) { return; }
 
+        BetterDebugging.Instance.DebugLog(
+            "Hit the player!",
+            BetterDebugging.eDebugLevel.Message
+        );
+
         // Keep track of whether we are locking or unlocking the XY coords in this trigger
         bool lockedX = false;
         bool lockedY = false;
