@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class WarMask : MaskClass
 {
-    private float m_jumpHeight = 10;
+    [SerializeField] private float m_jumpHeight = 10;
     public bool m_IsJumped;
     [SerializeField] private Rigidbody2D m_rb;
     [SerializeField] private Animator m_attackAnim;
