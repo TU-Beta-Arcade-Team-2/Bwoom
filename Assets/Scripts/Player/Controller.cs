@@ -386,7 +386,7 @@ public class Controller : MonoBehaviour
     {
         if (m_playerInput.actions["Attack"].triggered)
         {
-            //anim.SetTrigger("Attack");
+            m_bodyAnimator.SetTrigger("Attack");
         }
     }
 
