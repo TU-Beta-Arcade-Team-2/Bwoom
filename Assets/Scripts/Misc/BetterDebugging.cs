@@ -7,7 +7,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Assertions;
 
 
 public class BetterDebugging : Singleton<BetterDebugging>
@@ -20,6 +19,8 @@ public class BetterDebugging : Singleton<BetterDebugging>
         Message = 2
     }
 
+    public eDebugLevel OutputLevel = eDebugLevel.Message;
+
     public void DebugLog(
         string debugText, 
         eDebugLevel level = eDebugLevel.Log, 
@@ -27,25 +28,32 @@ public class BetterDebugging : Singleton<BetterDebugging>
         [CallerMemberName] string functionName = null,
         [CallerLineNumber] int originLineNumber = 0)
     {
-        string debugString;
-        switch (level)
+        // Only output the message if it is at or below the current OutPutLevel
+        if ((int) OutputLevel >= (int) level)
         {
-            case eDebugLevel.Error:
-                debugString = $"<color=red><b>ERROR:</b> {debugText}</color>\tFile: {GetFileName(originFile)}::{functionName}():{originLineNumber}";
-                break;
-            case eDebugLevel.Warning:
-                debugString = $"<color=yellow><b>WARNING:</b> <i>{debugText}</i></color>\tFile: {GetFileName(originFile)}::{functionName}():{originLineNumber}";
-                break;
-            case eDebugLevel.Message:
-                debugString = $"<color=blue><i>{debugText}</i></color>\tFile: {GetFileName(originFile)}::{functionName}():{originLineNumber}";
-                break;
-            case eDebugLevel.Log:
-            default:
-                debugString = debugText;
-                break;
-        }
+            string debugString;
+            switch (level)
+            {
+                case eDebugLevel.Error:
+                    debugString =
+                        $"<color=red><b>ERROR:</b> {debugText}</color>\tFile: {GetFileName(originFile)}::{functionName}():{originLineNumber}";
+                    break;
+                case eDebugLevel.Warning:
+                    debugString =
+                        $"<color=yellow><b>WARNING:</b> <i>{debugText}</i></color>\tFile: {GetFileName(originFile)}::{functionName}():{originLineNumber}";
+                    break;
+                case eDebugLevel.Message:
+                    debugString =
+                        $"<color=blue><i>{debugText}</i></color>\tFile: {GetFileName(originFile)}::{functionName}():{originLineNumber}";
+                    break;
+                case eDebugLevel.Log:
+                default:
+                    debugString = debugText;
+                    break;
+            }
 
-        Debug.Log(debugString);
+            Debug.Log(debugString);
+        }
     }
 
     // TODO: textOrigin doesn't need to be provided if parent is there, so I need to create

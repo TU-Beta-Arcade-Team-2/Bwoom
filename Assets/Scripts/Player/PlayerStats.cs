@@ -86,20 +86,20 @@ public class PlayerStats : MonoBehaviour
 
     private void DisplayUIMasks()
     {
-        for (int i = 0; i < m_lives.Length; i++)
-        {
-            if (i < m_playerHealth)
-            {
-                m_lives[i].sprite = m_fullMaskSprite;
-            }
+        //for (int i = 0; i < m_lives.Length; i++)
+        //{
+        //    if (i < m_playerHealth)
+        //    {
+        //        m_lives[i].sprite = m_fullMaskSprite;
+        //    }
 
-            else
-            {
-                m_lives[i].sprite = m_brokenMaskSprite;
-            }
+        //    else
+        //    {
+        //        m_lives[i].sprite = m_brokenMaskSprite;
+        //    }
 
-            m_lives[i].enabled = (i < m_maxPlayerHealth);
-        }
+        //    m_lives[i].enabled = (i < m_maxPlayerHealth);
+        //}
     }
 
     #endregion

@@ -8,7 +8,12 @@ public class Controller : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerStats playerStats;
     private Rigidbody2D rb;
-    private Animator anim;
+
+    [SerializeField] private GameObject m_bodyGameObject;
+    [SerializeField] private GameObject m_maskGameObject;
+    private Animator m_bodyAnimator;
+    private Animator m_maskAnimator;
+
 
     /// <summary> Player Hidden Variables </summary>
     private float jumpInputTimer;
@@ -81,7 +86,10 @@ public class Controller : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         playerStats = GetComponent<PlayerStats>();
-        //anim = GetComponentInChildren<Animator>(); 
+
+        m_bodyAnimator = m_bodyGameObject.GetComponent<Animator>();
+        m_maskAnimator = m_maskGameObject.GetComponent<Animator>();
+
         rb = GetComponent<Rigidbody2D>();
 
         //set default mask
@@ -128,6 +136,25 @@ public class Controller : MonoBehaviour
         if (healingOn)
         {
 
+        }
+
+        // HACK TO GET THE WALKING AND IDLE ANIMATIONS WORKING! REMOVE THIS AND DO PROPERLY AFTER THE CA MEETING PLEASE - TOM :)
+        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+        {
+            m_bodyAnimator.SetTrigger(StringConstants.PLAYER_RUN);
+
+            m_maskAnimator.SetTrigger(m_masks == eMasks.war
+                ? StringConstants.WAR_MASK_RUN
+                : StringConstants.NATURE_MASK_RUN);
+        }
+        
+        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        {
+            m_bodyAnimator.SetTrigger(StringConstants.PLAYER_IDLE);
+
+            m_maskAnimator.SetTrigger(m_masks == eMasks.war
+                ? StringConstants.WAR_MASK_IDLE
+                : StringConstants.NATURE_MASK_IDLE);
         }
     }
 
