@@ -8,6 +8,7 @@ public class PlayerStats : MonoBehaviour
 {
     private LevelManager m_lvlManager;
     private PlayerInput m_playerInput;
+    private Controller m_controller;
     private Animator m_cameraAnim;
 
     private enum eMasks
@@ -26,13 +27,28 @@ public class PlayerStats : MonoBehaviour
 
     [Header ("Default Values")]
     public float m_DefaultMovementSpeed;
+    public float m_DefaultJumpHeight;
     public float m_DefaultAttackDamage;
+    public float m_CurrentMovementSpeed;
+    public float m_CurrentJumpHeight;
     public float m_AttackDamage;
     public float m_DamageResistance;
 
     [SerializeField] private Image[] m_lives;
     [SerializeField] private Sprite m_fullMaskSprite;
     [SerializeField] private Sprite m_brokenMaskSprite;
+
+    [Space(10)]
+    [Header ("Frenzy Mode Values")]
+    private bool m_frenzyMode;
+    [SerializeField] private float m_frenzyModeDefaultTimer;
+    [SerializeField] private float m_frenzyTimerIncrement;
+    private float m_frenzyTimer;
+
+    [SerializeField] private float m_frenzySpeedMultiplier;
+    [SerializeField] private float m_frenzyAttackMultiplier;
+    [SerializeField] private float m_frenzyJumpMultiplier;
+    [SerializeField] private float m_frenzyAttackSpeedMultiplier;
 
     #region Main Functions
 
@@ -44,8 +60,23 @@ public class PlayerStats : MonoBehaviour
 
         m_lvlManager = FindObjectOfType<LevelManager>();
         m_cameraAnim = Camera.main.gameObject.GetComponent<Animator>();
+        m_controller = FindObjectOfType<Controller>();
         m_playerInput = GetComponent<PlayerInput>();
+        m_frenzyTimer = m_frenzyModeDefaultTimer;
+
+        DeactivateFrenzyMode();
     }
+    
+    /*  //TEMPORARY UPDATE FUNCTION JUST TO TEST IF FRENZY MODE WORKS WITHOUT NEEDING TO KILL AT THE MOMENT
+        // FUNCTION IS ALSO CALLED AT ENEMY DEATH
+    private void Update()
+    {
+        
+        if (m_playerInput.actions["Attack"].triggered)
+        {
+            ActivateFrenzyMode();
+        }
+    }*/
 
     #endregion
 
@@ -100,6 +131,45 @@ public class PlayerStats : MonoBehaviour
 
         //    m_lives[i].enabled = (i < m_maxPlayerHealth);
         //}
+    }
+
+    #endregion
+
+    #region Frenzy Functions
+    public void ActivateFrenzyMode()
+    {
+        if (m_frenzyMode)
+        {
+            m_frenzyTimer += m_frenzyTimerIncrement;
+            CancelInvoke("DeactivateFrenzyMode");
+            Invoke("DeactivateFrenzyMode", m_frenzyTimer);
+            Debug.Log("Frenzy Mode Replenished");
+
+            return;
+        }
+
+        m_CurrentMovementSpeed *= m_frenzySpeedMultiplier;
+        m_CurrentJumpHeight *= m_frenzyJumpMultiplier;
+        m_AttackDamage *= m_frenzyAttackMultiplier;
+        m_controller.doubleJumpOn = true;
+        m_controller.SetDefaultValues();
+
+        Invoke("DeactivateFrenzyMode", m_frenzyTimer);
+        Debug.Log("Frenzy Mode On!");
+        m_frenzyMode = true;
+    }
+
+    private void DeactivateFrenzyMode()
+    {
+        m_frenzyTimer = m_frenzyModeDefaultTimer;
+        m_CurrentMovementSpeed = m_DefaultMovementSpeed;
+        m_CurrentJumpHeight = m_DefaultJumpHeight;
+        m_AttackDamage = m_DefaultAttackDamage;
+        m_controller.doubleJumpOn = false;
+        m_controller.SetDefaultValues();
+
+        Debug.Log("No More Frenzy");
+        m_frenzyMode = false;
     }
 
     #endregion
