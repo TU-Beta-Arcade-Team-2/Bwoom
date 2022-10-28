@@ -60,14 +60,14 @@ public class PlayerStats : MonoBehaviour
 
         m_lvlManager = FindObjectOfType<LevelManager>();
         m_cameraAnim = Camera.main.gameObject.GetComponent<Animator>();
-        m_controller = FindObjectOfType<Controller>();
+        m_controller = GetComponent<Controller>();
         m_playerInput = GetComponent<PlayerInput>();
         m_frenzyTimer = m_frenzyModeDefaultTimer;
 
         DeactivateFrenzyMode();
     }
     
-    /*  //TEMPORARY UPDATE FUNCTION JUST TO TEST IF FRENZY MODE WORKS WITHOUT NEEDING TO KILL AT THE MOMENT
+      //TEMPORARY UPDATE FUNCTION JUST TO TEST IF FRENZY MODE WORKS WITHOUT NEEDING TO KILL AT THE MOMENT
         // FUNCTION IS ALSO CALLED AT ENEMY DEATH
     private void Update()
     {
@@ -76,7 +76,7 @@ public class PlayerStats : MonoBehaviour
         {
             ActivateFrenzyMode();
         }
-    }*/
+    }
 
     #endregion
 

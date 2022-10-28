@@ -95,7 +95,7 @@ public class Controller : MonoBehaviour
 
         m_rigidbody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
-
+        SetDefaultValues();
         //set default mask
         RemoveMasks();
         m_warMask.enabled = true;
@@ -103,9 +103,9 @@ public class Controller : MonoBehaviour
 
     public void SetDefaultValues()
     {
-        MovementSpeed = m_playerStats.m_DefaultMovementSpeed;
+        MovementSpeed = m_playerStats.m_CurrentMovementSpeed;
         m_playerStats.m_AttackDamage = m_playerStats.m_DefaultAttackDamage;
-        jumpHeight = playerStats.m_CurrentJumpHeight;
+        m_jumpHeight = m_playerStats.m_CurrentJumpHeight;
     }
 
     private void Update()
@@ -123,22 +123,22 @@ public class Controller : MonoBehaviour
             WallSlide();
         }
 #endif
-        if (m_groundPoundOn)
+        if (groundPoundOn)
         {
 
         }
 
-        if (m_shootingOn)
+        if (shootingOn)
         {
 
         }
 
-        if (m_doubleJumpOn)
+        if (doubleJumpOn)
         {
             DoubleJump();
         }
 
-        if (m_healingOn)
+        if (healingOn)
         {
 
         }
@@ -290,7 +290,7 @@ public class Controller : MonoBehaviour
     {
         if (!Physics2D.OverlapCircle(m_groundCheck.position, 0.1f, m_groundLayer))
         {
-            rb.sharedMaterial = slipperyMat;
+            m_rigidbody.sharedMaterial = slipperyMat;
             boxCollider.sharedMaterial = slipperyMat;
             Debug.Log("AIRBORNE");
             return false;
@@ -299,14 +299,14 @@ public class Controller : MonoBehaviour
 
         Debug.Log("GROUNDED");
         
-        if (ungroundedTimer > 0)
+        if (m_ungroundedTimer > 0)
         {
-            rb.sharedMaterial = stickyMat;
+            m_rigidbody.sharedMaterial = stickyMat;
             boxCollider.sharedMaterial = stickyMat;
         }
         
-        ungroundedTimer = 0.2f;
-        holdTimer = 0f;
+        m_ungroundedTimer = 0.2f;
+        m_holdTimer = 0f;
         m_warMask.m_IsJumped = false;
         m_doubleJumped = false;
         return true;
@@ -425,8 +425,8 @@ public class Controller : MonoBehaviour
             m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, 0);
             m_rigidbody.AddForce(new Vector2(0, m_jumpHeight), ForceMode2D.Impulse);
 
-            ungroundedTimer = 0;
-            holdTimer = 0f;
+            m_ungroundedTimer = 0;
+            m_holdTimer = 0f;
 
             m_doubleJumped = true;
         }

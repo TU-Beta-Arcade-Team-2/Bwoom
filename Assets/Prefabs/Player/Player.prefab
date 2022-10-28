@@ -843,9 +843,12 @@ MonoBehaviour:
   m_playerHealth: 1000000
   m_maxPlayerHealth: 1000000
   m_DefaultMovementSpeed: 5
+  m_DefaultJumpHeight: 10
   m_DefaultAttackDamage: 2
-  m_AttackDamage: 2
-  m_DamageResistance: 1
+  m_CurrentMovementSpeed: 5
+  m_CurrentJumpHeight: 10
+  m_AttackDamage: 4
+  m_DamageResistance: 2
   m_lives:
   - {fileID: 0}
   - {fileID: 0}
@@ -857,6 +860,12 @@ MonoBehaviour:
   - {fileID: 0}
   m_fullMaskSprite: {fileID: 21300000, guid: 204b47e265b136f4288188c51ca5ae15, type: 3}
   m_brokenMaskSprite: {fileID: 21300000, guid: 1dc523e2ac4e5144bb17e7414d4ca156, type: 3}
+  m_frenzyModeDefaultTimer: 3
+  m_frenzyTimerIncrement: 0.1
+  m_frenzySpeedMultiplier: 2
+  m_frenzyAttackMultiplier: 2
+  m_frenzyJumpMultiplier: 1.2
+  m_frenzyAttackSpeedMultiplier: 1
 --- !u!114 &8171535325487749789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -882,12 +891,14 @@ MonoBehaviour:
   m_dampingStop: 0.2
   m_dampingTurn: 0.75
   m_drag: 1
-  m_slipperyMat: {fileID: 6200000, guid: bd6019b2ba952e44bb670fc8e4239a6e, type: 2}
-  m_stickyMat: {fileID: 6200000, guid: f58e38f3fbbe38d44bbfdbae03021fed, type: 2}
-  m_groundPoundOn: 0
-  m_shootingOn: 0
-  m_doubleJumpOn: 1
-  m_healingOn: 0
+  slipperyMat: {fileID: 6200000, guid: bd6019b2ba952e44bb670fc8e4239a6e, type: 2}
+  stickyMat: {fileID: 6200000, guid: f58e38f3fbbe38d44bbfdbae03021fed, type: 2}
+  boxCollider: {fileID: 670068135037751130}
+  wallSlideOn: 0
+  groundPoundOn: 0
+  shootingOn: 0
+  doubleJumpOn: 0
+  healingOn: 0
   m_warMask: {fileID: 2145512435}
   m_natureMask: {fileID: 2145512434}
   m_masks: 0
