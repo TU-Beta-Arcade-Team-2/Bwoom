@@ -22,7 +22,19 @@ public static class StringConstants
     #endregion
 
     #region ANIMATION_TRIGGERS
-    #region RHINO_ENEMY
+    #region PLAYER_ANIMATIONS
+    public static string PLAYER_RUN = "Run";
+    public static string PLAYER_IDLE = "Idle";
+    #endregion
+    #region MASK_ANIMATIONS
+    public static string WAR_MASK_RUN = "WarMask_Run";
+    public static string NATURE_MASK_RUN = "NatureMask_Run";
+
+
+    public static string WAR_MASK_IDLE = "WarMask_Idle";
+    public static string NATURE_MASK_IDLE = "NatureMask_Idle";
+    #endregion
+    #region RHINO_ENEMY_ANIMATIONS
     public static string RHINO_WALK_CYCLE = "Walk_Cycle";
     public static string RHINO_CHARGE = "Charge";
     public static string RHINO_COOL_DOWN = "Cool_Down";

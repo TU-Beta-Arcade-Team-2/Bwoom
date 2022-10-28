@@ -31,7 +31,7 @@ public class MaskAttackHitbox : MonoBehaviour
             {
                 switch (m_playerController.GetSelectedMask())
                 {
-                    case Controller.eMasks.war:
+                    case Controller.eMasks.War:
                         enemy.TakeDamage(m_warMask.m_specialAttackDamage);
                         m_warMask.SpecialAttackEffect(other.GetComponent<Rigidbody2D>());
                         break;

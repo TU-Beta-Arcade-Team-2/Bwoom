@@ -93,7 +93,7 @@ public class WaspEnemy : EnemyBase
     {
         float distanceToPlayer = FindSqrDistanceToPlayer();
 
-        if (distanceToPlayer <= m_minDistanceToPlayer * m_minDistanceToPlayer)
+        if (distanceToPlayer <= m_minDistanceToPlayer * m_minDistanceToPlayer && (m_playerStats.gameObject.transform.position.y <= transform.position.y))
         {
             SetWaspState(eState.DiveBomb);
         }
@@ -129,7 +129,7 @@ public class WaspEnemy : EnemyBase
                 SetWaspState(eState.Attack);
                 Attack();
             }
-            else if(hit.collider.gameObject.CompareTag(StringConstants.GROUND_TAG))
+            else if (hit.collider.gameObject.CompareTag(StringConstants.GROUND_TAG))
             {
                 // Move back up to the flying Height if we don't hit the player
                 SetWaspState(eState.CoolDown);

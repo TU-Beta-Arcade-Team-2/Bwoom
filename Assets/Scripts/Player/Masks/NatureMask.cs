@@ -15,7 +15,7 @@ public class NatureMask : MaskClass
 
         m_maskRenderer.sprite = m_maskSprite;
 
-        m_playerController.movementSpeed *= m_movementMultiplier;
+        m_playerController.MovementSpeed *= m_movementMultiplier;
         m_playerStats.m_AttackDamage *= m_attackMultiplier;
         m_playerStats.m_DamageResistance = m_damageResistanceMultiplier;
     }
