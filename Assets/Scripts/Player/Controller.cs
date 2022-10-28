@@ -5,9 +5,9 @@ using UnityEngine.InputSystem;
 public class Controller : MonoBehaviour
 {
     /// <summary> Player References </summary>
-    private PlayerInput playerInput;
-    private PlayerStats playerStats;
-    private Rigidbody2D rb;
+    private PlayerInput m_playerInput;
+    private PlayerStats m_playerStats;
+    private Rigidbody2D m_rigidbody;
 
     [SerializeField] private GameObject m_bodyGameObject;
     [SerializeField] private GameObject m_maskGameObject;
@@ -16,81 +16,85 @@ public class Controller : MonoBehaviour
 
 
     /// <summary> Player Hidden Variables </summary>
-    private float jumpInputTimer;
-    private float ungroundedTimer;
-    private float holdTimer;
-    private bool doubleJumped;
-    private bool facingRight = true;
+    private float m_jumpInputTimer;
+    private float m_ungroundedTimer;
+    private float m_holdTimer;
+    private bool m_doubleJumped;
+    private bool m_facingRight = true;
 
     [Header("Ground Checking")]
     /// <summary> Player Physics </summary>
-    [SerializeField] private Transform groundCheck;
-    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Transform m_groundCheck;
+    [SerializeField] private LayerMask m_groundLayer;
     [Space(5)]
 
     [Header("Speed Variables")]
     /// <summary> Player Movement Stats </summary>
-    public float movementSpeed;
-    [SerializeField] private float fallingSpeed;
-    [SerializeField] private float jumpHeight;
+    public float MovementSpeed;
+    [SerializeField] private float m_fallingSpeed;
+    [SerializeField] private float m_jumpHeight;
     [Range(0, 1)]
-    [SerializeField] private float dampingNormal = 0.5f;
+    [SerializeField] private float m_dampingNormal = 0.5f;
     [Range(0, 1)]
-    [SerializeField] private float dampingStop = 0.5f;
+    [SerializeField] private float m_dampingStop = 0.5f;
     [Range(0, 1)]
-    [SerializeField] private float dampingTurn = 0.5f;
-    [SerializeField] private float drag;
+    [SerializeField] private float m_dampingTurn = 0.5f;
+    [SerializeField] private float m_drag;
     [Space(5)]
 
     [Header("Physics Materials")]
     ///<summary> Physic Materials </summary>
-    [SerializeField] private PhysicsMaterial2D slipperyMat;
-    [SerializeField] private PhysicsMaterial2D stickyMat;
+    [SerializeField] private PhysicsMaterial2D m_slipperyMat;
+    [SerializeField] private PhysicsMaterial2D m_stickyMat;
     [Space(5)]
 
     [Header("Ability Bools")]
     /// <summary> Abilitiy Booleans </summary>
-    [SerializeField] private bool wallSlideOn;
-    [SerializeField] private bool groundPoundOn;
-    [SerializeField] private bool shootingOn;
-    [SerializeField] private bool doubleJumpOn;
-    [SerializeField] private bool healingOn;
+#if WALL_SLIDE
+    [SerializeField] private bool m_wallSlideOn;
+#endif
+    [SerializeField] private bool m_groundPoundOn;
+    [SerializeField] private bool m_shootingOn;
+    [SerializeField] private bool m_doubleJumpOn;
+    [SerializeField] private bool m_healingOn;
     [Space(5)]
 
+#if WALL_SLIDE
     [Header("Wall Jumping Values")]
     /// <summary> Wall Jump Values </summary>
-    [SerializeField] private float xWallForce;
-    [SerializeField] private float yWallForce;
-    [SerializeField] private float wallJumpTime;
-    [SerializeField] private Transform frontCheck;
-    [SerializeField] private LayerMask wallLayer;
-    private bool isTouchingFront;
-    private bool wallSliding;
+    [SerializeField] private float m_xWallForce;
+    [SerializeField] private float m_yWallForce;
+    [SerializeField] private float m_wallJumpTime;
+    [SerializeField] private Transform m_frontCheck;
+    [SerializeField] private LayerMask m_wallLayer;
+    private bool m_isTouchingFront;
+    private bool m_wallSliding;
+#endif
 
     [Header("Mask Values")]
     [SerializeField] private WarMask m_warMask;
     [SerializeField] private NatureMask m_natureMask;
     public enum eMasks
     {
-        war,
-        nature,
-        sea,
-        energy
+        War,
+        Nature,
+        Sea,
+        Energy
     }
 
     [SerializeField] private eMasks m_masks;
 
-    #region Main Functions
+#region Main Functions
     // Start is called before the first frame update
     private void Start()
     {
-        playerInput = GetComponent<PlayerInput>();
-        playerStats = GetComponent<PlayerStats>();
+        m_playerInput = GetComponent<PlayerInput>();
+        m_playerStats = GetComponent<PlayerStats>();
 
         m_bodyAnimator = m_bodyGameObject.GetComponent<Animator>();
         m_maskAnimator = m_maskGameObject.GetComponent<Animator>();
 
-        rb = GetComponent<Rigidbody2D>();
+        m_rigidbody = GetComponent<Rigidbody2D>();
 
         //set default mask
         RemoveMasks();
@@ -99,8 +103,8 @@ public class Controller : MonoBehaviour
 
     public void SetDefaultValues()
     {
-        movementSpeed = playerStats.m_DefaultMovementSpeed;
-        playerStats.m_AttackDamage = playerStats.m_DefaultAttackDamage;
+        MovementSpeed = m_playerStats.m_DefaultMovementSpeed;
+        m_playerStats.m_AttackDamage = m_playerStats.m_DefaultAttackDamage;
     }
 
     private void Update()
@@ -118,22 +122,22 @@ public class Controller : MonoBehaviour
             WallSlide();
         }
 #endif
-        if (groundPoundOn)
+        if (m_groundPoundOn)
         {
 
         }
 
-        if (shootingOn)
+        if (m_shootingOn)
         {
 
         }
 
-        if (doubleJumpOn)
+        if (m_doubleJumpOn)
         {
             DoubleJump();
         }
 
-        if (healingOn)
+        if (m_healingOn)
         {
 
         }
@@ -143,7 +147,7 @@ public class Controller : MonoBehaviour
         {
             m_bodyAnimator.SetTrigger(StringConstants.PLAYER_RUN);
 
-            m_maskAnimator.SetTrigger(m_masks == eMasks.war
+            m_maskAnimator.SetTrigger(m_masks == eMasks.War
                 ? StringConstants.WAR_MASK_RUN
                 : StringConstants.NATURE_MASK_RUN);
         }
@@ -152,7 +156,7 @@ public class Controller : MonoBehaviour
         {
             m_bodyAnimator.SetTrigger(StringConstants.PLAYER_IDLE);
 
-            m_maskAnimator.SetTrigger(m_masks == eMasks.war
+            m_maskAnimator.SetTrigger(m_masks == eMasks.War
                 ? StringConstants.WAR_MASK_IDLE
                 : StringConstants.NATURE_MASK_IDLE);
         }
@@ -164,20 +168,20 @@ public class Controller : MonoBehaviour
         Movement();
     }
 
-    #endregion
+#endregion
 
-    #region Basic Movement Functions
+#region Basic Movement Functions
     private void Movement()
     {
-        rb.velocity = new Vector2(HorizontalDrag(), rb.velocity.y);
+        m_rigidbody.velocity = new Vector2(HorizontalDrag(), m_rigidbody.velocity.y);
 
-        Vector2 clamper = rb.velocity;
-        clamper.x = Mathf.Clamp(clamper.x, -movementSpeed, movementSpeed);
-        clamper.y = Mathf.Clamp(clamper.y, -fallingSpeed, jumpHeight);
+        Vector2 clamper = m_rigidbody.velocity;
+        clamper.x = Mathf.Clamp(clamper.x, -MovementSpeed, MovementSpeed);
+        clamper.y = Mathf.Clamp(clamper.y, -m_fallingSpeed, m_jumpHeight);
 
-        rb.velocity = clamper;
+        m_rigidbody.velocity = clamper;
 
-        if ((playerInput.actions["Horizontal"].ReadValue<float>() > 0 && !facingRight) || (playerInput.actions["Horizontal"].ReadValue<float>() < 0 && facingRight))
+        if ((m_playerInput.actions["Horizontal"].ReadValue<float>() > 0 && !m_facingRight) || (m_playerInput.actions["Horizontal"].ReadValue<float>() < 0 && m_facingRight))
         {
             Flip();
         }
@@ -185,22 +189,22 @@ public class Controller : MonoBehaviour
 
     private float HorizontalDrag()
     {
-        float horizontalVelocity = rb.velocity.x;
-        horizontalVelocity += playerInput.actions["Horizontal"].ReadValue<float>();
+        float horizontalVelocity = m_rigidbody.velocity.x;
+        horizontalVelocity += m_playerInput.actions["Horizontal"].ReadValue<float>();
 
-        if (Mathf.Abs(playerInput.actions["Horizontal"].ReadValue<float>()) < 0.01f)
+        if (Mathf.Abs(m_playerInput.actions["Horizontal"].ReadValue<float>()) < 0.01f)
         {
-            horizontalVelocity *= Mathf.Pow(movementSpeed - dampingStop, Time.fixedDeltaTime * -drag);
+            horizontalVelocity *= Mathf.Pow(MovementSpeed - m_dampingStop, Time.fixedDeltaTime * -m_drag);
         }
             
-        else if (Mathf.Sign(playerInput.actions["Horizontal"].ReadValue<float>()) != Mathf.Sign(horizontalVelocity))
+        else if (Mathf.Sign(m_playerInput.actions["Horizontal"].ReadValue<float>()) != Mathf.Sign(horizontalVelocity))
         {
-            horizontalVelocity *= Mathf.Pow(movementSpeed - dampingTurn, Time.fixedDeltaTime * -drag);
+            horizontalVelocity *= Mathf.Pow(MovementSpeed - m_dampingTurn, Time.fixedDeltaTime * -m_drag);
         }
 
         else
         {
-            horizontalVelocity *= Mathf.Pow(movementSpeed - dampingNormal, Time.fixedDeltaTime * -drag);
+            horizontalVelocity *= Mathf.Pow(MovementSpeed - m_dampingNormal, Time.fixedDeltaTime * -m_drag);
         }
 
         return horizontalVelocity;
@@ -208,110 +212,118 @@ public class Controller : MonoBehaviour
 
     private void Flip()
     {
-        facingRight = !facingRight;
+        m_facingRight = !m_facingRight;
         transform.Rotate(0f, 180f, 0f);
     }
 
-    #endregion
+#endregion
 
-    #region Jumping Functions
+#region Jumping Functions
 
     private void Jumping()
     {
-        if (playerInput.actions["Jump"].triggered)
+        if (m_playerInput.actions["Jump"].triggered)
         {
-            jumpInputTimer = 0.2f;
+            m_jumpInputTimer = 0.2f;
         }
 
-        if (jumpInputTimer > 0)
+
+        if (m_jumpInputTimer > 0)
         {
-            if (JumpAvaliable() && !wallSliding)
+            if (JumpAvaliable()
+#if WALL_SLIDE
+                && !m_wallSliding
+#endif
+                )
             {
-                rb.velocity = new Vector2(rb.velocity.x, 0);
-                rb.AddForce(new Vector2(0, jumpHeight), ForceMode2D.Impulse);
+                m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, 0);
+                m_rigidbody.AddForce(new Vector2(0, m_jumpHeight), ForceMode2D.Impulse);
 
-                ungroundedTimer = 0;
+                m_ungroundedTimer = 0;
             }
-
-            else if (wallSliding)
+#if WALL_SLIDE
+            else if (m_wallSliding)
             {
-                rb.velocity = new Vector2(xWallForce * -playerInput.actions["Horizontal"].ReadValue<float>(), yWallForce);
+                m_rigidbody.velocity = new Vector2(m_xWallForce * -m_playerInput.actions["Horizontal"].ReadValue<float>(), m_yWallForce);
             }
+#endif
 
             else
             {
-                jumpInputTimer -= Time.fixedDeltaTime;
+                m_jumpInputTimer -= Time.fixedDeltaTime;
             }  
-        }
-
-        if (!IsGrounded() && ungroundedTimer > 0)
-        {
-            ungroundedTimer -= Time.fixedDeltaTime;
-        }
-
+        } 
+        
         if (!IsGrounded())
         {
-            holdTimer += Time.fixedDeltaTime;
+            m_holdTimer += Time.fixedDeltaTime;
+
+            if (m_ungroundedTimer > 0)
+            {
+                m_ungroundedTimer -= Time.fixedDeltaTime;
+            }
         }
 
-        if (playerInput.actions["Jump"].ReadValue<float>() == 0 || holdTimer > 0.5f)
+        if (m_playerInput.actions["Jump"].ReadValue<float>() == 0 || m_holdTimer > 0.5f)
         {
-            if (!wallSliding)
+#if WALL_SLIDE
+            if (!m_wallSliding)
             {
-                rb.AddForce(new Vector2(0, -0.5f), ForceMode2D.Impulse);
+                m_rigidbody.AddForce(new Vector2(0, -0.5f), ForceMode2D.Impulse);
             }
 
             else
+#endif
             {
-                rb.AddForce(new Vector2(0, -0.25f), ForceMode2D.Impulse);
+                m_rigidbody.AddForce(new Vector2(0, -0.25f), ForceMode2D.Impulse);
             }
         }
     }
 
     private bool JumpAvaliable()
     {
-        return IsGrounded() || (!IsGrounded() && ungroundedTimer > 0);
+        return IsGrounded() || (!IsGrounded() && m_ungroundedTimer > 0);
     }
 
     private bool IsGrounded()
     {
-        if (!Physics2D.OverlapCircle(groundCheck.position, 0.1f, groundLayer))
+        if (!Physics2D.OverlapCircle(m_groundCheck.position, 0.1f, m_groundLayer))
         {
-            rb.sharedMaterial = slipperyMat;
+            m_rigidbody.sharedMaterial = m_slipperyMat;
             return false;
         }
 
-        rb.sharedMaterial = stickyMat;
-        ungroundedTimer = 0.2f;
-        holdTimer = 0f;
+        m_rigidbody.sharedMaterial = m_stickyMat;
+        m_ungroundedTimer = 0.2f;
+        m_holdTimer = 0f;
         m_warMask.m_IsJumped = false;
-        doubleJumped = false;
+        m_doubleJumped = false;
         return true;
     }
 
-    #endregion
+#endregion
 
-    #region Mask Input Function
+#region Mask Input Function
     private void MaskInputs()
     {
-        if (playerInput.actions["WarMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
+        if (m_playerInput.actions["WarMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            m_masks = eMasks.war;
+            m_masks = eMasks.War;
         }
 
-        if (playerInput.actions["NatureMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
+        if (m_playerInput.actions["NatureMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            m_masks = eMasks.nature;
+            m_masks = eMasks.Nature;
         }
 
-        if (playerInput.actions["EnergyMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
+        if (m_playerInput.actions["EnergyMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            m_masks = eMasks.energy; ;
+            m_masks = eMasks.Energy; ;
         }
 
-        if (playerInput.actions["SeaMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
+        if (m_playerInput.actions["SeaMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            m_masks = eMasks.sea;
+            m_masks = eMasks.Sea;
         }
 
         MaskChange();
@@ -323,14 +335,14 @@ public class Controller : MonoBehaviour
 
         switch (m_masks)
         {
-            case eMasks.war:
+            case eMasks.War:
                 if (!m_warMask.enabled)
                 {
                     RemoveMasks();
                     m_warMask.enabled = true;
                 }
                 break;
-            case eMasks.nature:
+            case eMasks.Nature:
                 if (!m_natureMask.enabled)
                 {
                     RemoveMasks();
@@ -347,14 +359,14 @@ public class Controller : MonoBehaviour
 
     private void SpecialAttack()
     {
-        if (playerInput.actions["Special"].triggered)
+        if (m_playerInput.actions["Special"].triggered)
         {
             switch (m_masks)
             {
-                case eMasks.war:
+                case eMasks.War:
                     m_warMask.SpecialAttack();
                     break;
-                case eMasks.nature:
+                case eMasks.Nature:
                     m_natureMask.SpecialAttack();
                     break;
             }
@@ -366,51 +378,52 @@ public class Controller : MonoBehaviour
         m_warMask.enabled = false;
         m_natureMask.enabled = false;
     }
-    #endregion
+#endregion
 
-    #region Base Combat Functions
+#region Base Combat Functions
 
     private void Attack()
     {
-        if (playerInput.actions["Attack"].triggered)
+        if (m_playerInput.actions["Attack"].triggered)
         {
             //anim.SetTrigger("Attack");
         }
     }
 
-    #endregion
+#endregion
 
-    #region Extra Movement Functions
-
+#region Extra Movement Functions
+#if WALL_SLIDE
     private void WallSlide()
     {
-        isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, 0.1f, wallLayer);
+        m_isTouchingFront = Physics2D.OverlapCircle(m_frontCheck.position, 0.1f, m_wallLayer);
 
-        if (isTouchingFront == true && IsGrounded() == false && playerInput.actions["Horizontal"].ReadValue<float>() != 0)
-            wallSliding = true;
+        if (m_isTouchingFront == true && IsGrounded() == false && m_playerInput.actions["Horizontal"].ReadValue<float>() != 0)
+            m_wallSliding = true;
         else
-            wallSliding = false;
+            m_wallSliding = false;
     }
-
+#endif
+    
     private void DoubleJump()
     {
-        if (!JumpAvaliable() && playerInput.actions["Jump"].triggered && !doubleJumped)
+        if (!JumpAvaliable() && m_playerInput.actions["Jump"].triggered && !m_doubleJumped)
         {
             Debug.Log("Double Jump Triggered");
 
-            rb.velocity = new Vector2(rb.velocity.x, 0);
-            rb.AddForce(new Vector2(0, jumpHeight), ForceMode2D.Impulse);
+            m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, 0);
+            m_rigidbody.AddForce(new Vector2(0, m_jumpHeight), ForceMode2D.Impulse);
 
-            ungroundedTimer = 0;
+            m_ungroundedTimer = 0;
 
-            doubleJumped = true;
+            m_doubleJumped = true;
         }
     }
 
     public void AddImpulse(Vector2 force)
     {
-        rb.AddForce(force, ForceMode2D.Impulse);
+        m_rigidbody.AddForce(force, ForceMode2D.Impulse);
     }
 
-    #endregion
+#endregion
 }
