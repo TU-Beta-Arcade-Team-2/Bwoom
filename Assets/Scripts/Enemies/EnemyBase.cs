@@ -62,6 +62,7 @@ public abstract class EnemyBase : MonoBehaviour
             DebugLog("NO RIGID BODY 2D COMPONENT ON THE GAMEOBJECT", BetterDebugging.eDebugLevel.Error);
         }
 
+        m_spriteRenderer.flipX = m_facingDirection == eDirection.Left;
     }
 
     public virtual void TakeDamage(int damageAmount)
