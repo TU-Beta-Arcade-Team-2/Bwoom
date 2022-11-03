@@ -20,10 +20,16 @@ public class PlayerStats : MonoBehaviour
     }
 
     [Header("Health Variables")]
-    [Range(0, 8)]
     [SerializeField] private int m_playerHealth;
-    [Range(1, 8)]
     [SerializeField] private int m_maxPlayerHealth;
+    [Space(10)]
+
+    [Header("Game HUD Variables")]
+    [SerializeField] private Image m_radialHealthBar;
+    public Image MaskIconImage;
+    public Sprite WarMaskIcon;
+    public Sprite NatureMaskIcon;
+    [Space(10)]
 
     [Header ("Default Values")]
     public float m_DefaultMovementSpeed;
@@ -33,12 +39,8 @@ public class PlayerStats : MonoBehaviour
     public float m_CurrentJumpHeight;
     public float m_AttackDamage;
     public float m_DamageResistance;
-
-    [SerializeField] private Image[] m_lives;
-    [SerializeField] private Sprite m_fullMaskSprite;
-    [SerializeField] private Sprite m_brokenMaskSprite;
-
     [Space(10)]
+
     [Header ("Frenzy Mode Values")]
     private bool m_frenzyMode;
     [SerializeField] private float m_frenzyModeDefaultTimer;
@@ -51,11 +53,11 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float m_frenzyAttackSpeedMultiplier;
 
     #region Main Functions
-
     private void Start()
     {
         m_playerHealth = Mathf.Clamp(m_playerHealth, 0, m_maxPlayerHealth);
-        DisplayUIMasks();
+        m_radialHealthBar.fillAmount = (float)m_playerHealth / (float)m_maxPlayerHealth;
+        MaskIconImage.sprite = WarMaskIcon;
         m_DamageResistance = 1;
 
         m_lvlManager = FindObjectOfType<LevelManager>();
@@ -66,22 +68,9 @@ public class PlayerStats : MonoBehaviour
 
         DeactivateFrenzyMode();
     }
-    
-      //TEMPORARY UPDATE FUNCTION JUST TO TEST IF FRENZY MODE WORKS WITHOUT NEEDING TO KILL AT THE MOMENT
-        // FUNCTION IS ALSO CALLED AT ENEMY DEATH
-    private void Update()
-    {
-        
-        if (m_playerInput.actions["Attack"].triggered)
-        {
-            ActivateFrenzyMode();
-        }
-    }
-
     #endregion
 
     #region Health Functions
-
     public void TakeDMG(int incomingDMG)
     {
         int actualDamage = (int)(incomingDMG / m_DamageResistance);
@@ -89,8 +78,7 @@ public class PlayerStats : MonoBehaviour
         Debug.Log("Actual Damage : " + actualDamage);
 
         m_playerHealth -= actualDamage;
-
-        DisplayUIMasks();
+        m_radialHealthBar.fillAmount = (float)m_playerHealth / (float)m_maxPlayerHealth;
 
         m_cameraAnim.SetTrigger("LightShake");
 
@@ -109,30 +97,10 @@ public class PlayerStats : MonoBehaviour
         Debug.Log("HEAL TEST");
 
         m_playerHealth = Mathf.Clamp(m_playerHealth + incomingHEAL, 0, m_maxPlayerHealth);
-
-        DisplayUIMasks();
+        m_radialHealthBar.fillAmount = (float)m_playerHealth / (float)m_maxPlayerHealth;
 
         //Play heal animation
     }
-
-    private void DisplayUIMasks()
-    {
-        //for (int i = 0; i < m_lives.Length; i++)
-        //{
-        //    if (i < m_playerHealth)
-        //    {
-        //        m_lives[i].sprite = m_fullMaskSprite;
-        //    }
-
-        //    else
-        //    {
-        //        m_lives[i].sprite = m_brokenMaskSprite;
-        //    }
-
-        //    m_lives[i].enabled = (i < m_maxPlayerHealth);
-        //}
-    }
-
     #endregion
 
     #region Frenzy Functions
