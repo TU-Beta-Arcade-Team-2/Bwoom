@@ -79,7 +79,7 @@ public class PlayerCombo : MonoBehaviour
     private void ComboAttack1()
     {
         m_playerAttackHitbox.GetDamage(m_playerStats.m_ComboAttackDamage1);
-        m_playerAnimator.SetTrigger("ComboAttack1");
+        m_playerAnimator.SetTrigger(StringConstants.COMBO_ATTACK_ONE);
     }
 
 }
