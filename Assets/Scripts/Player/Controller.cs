@@ -113,7 +113,6 @@ public class Controller : MonoBehaviour
         ///<Note> An exit function will need to made when switching on and off the booleans so the variables return back to default
         /// values that may cause weird behaviours in future </Note>
         Jumping();
-        Attack();
         SpecialAttack();
         MaskInputs();
 
@@ -389,18 +388,6 @@ public class Controller : MonoBehaviour
         m_warMask.enabled = false;
         m_natureMask.enabled = false;
     }
-#endregion
-
-#region Base Combat Functions
-
-    private void Attack()
-    {
-        if (m_playerInput.actions["Attack"].triggered)
-        {
-            m_bodyAnimator.SetTrigger("Attack");
-        }
-    }
-
 #endregion
 
 #region Extra Movement Functions

@@ -50,6 +50,16 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float m_frenzyJumpMultiplier;
     [SerializeField] private float m_frenzyAttackSpeedMultiplier;
 
+    [Header("Combo Attack 1")]
+    public float m_ComboAttackDamage1;
+    public float m_ComboAttackLaunchDistance1;
+    [Header("Combo Attack 2")]
+    public float m_ComboAttackDamage2;
+    public float m_ComboAttackLaunchDistance2;
+    [Header("Combo Attack 3")]
+    public float m_ComboAttackDamage3;
+    public float m_ComboAttackLaunchDistance3;
+
     #region Main Functions
 
     private void Start()

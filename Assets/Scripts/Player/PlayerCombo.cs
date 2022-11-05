@@ -10,7 +10,9 @@ public class PlayerCombo : MonoBehaviour
     private PlayerStats m_playerStats;
 
     [SerializeField] private float m_attackDelay;
-    [SerializeField] private float m_attackTimer;
+    [SerializeField] private Animator m_playerAnimator;
+    [SerializeField] private PlayerAttackHitbox m_playerAttackHitbox;
+    private float m_attackTimer;
 
     private enum eComboState
     {
@@ -35,6 +37,8 @@ public class PlayerCombo : MonoBehaviour
     void Update()
     {
         Attack();
+
+        Debug.Log("Combo State : " + m_comboState);
     }
     private void Attack()
     {
@@ -45,6 +49,7 @@ public class PlayerCombo : MonoBehaviour
                 {
                     m_comboState = eComboState.attack1;
                     m_attackTimer = m_attackDelay;
+                    ComboAttack1();
                 }
                 break;
             case eComboState.attack1:
@@ -69,6 +74,12 @@ public class PlayerCombo : MonoBehaviour
         {
             m_comboState = eComboState.none;
         }
+    }
+
+    private void ComboAttack1()
+    {
+        m_playerAttackHitbox.GetDamage(m_playerStats.m_ComboAttackDamage1);
+        m_playerAnimator.SetTrigger("ComboAttack1");
     }
 
 }

@@ -6,6 +6,13 @@ public class PlayerAttackHitbox : MonoBehaviour
 {
     [SerializeField] private PlayerStats m_playerStats;
 
+    private float m_damage;
+
+    public void GetDamage(float damage)
+    {
+        m_damage = damage;
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer(StringConstants.ENEMY_LAYER))

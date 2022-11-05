@@ -637,6 +637,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 224940091}
   m_CullTransparentMesh: 1
+--- !u!114 &243795709 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1564724982, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+  m_PrefabInstance: {fileID: 8171535323749452087}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f1594067e694349abcf3fe85a5e73f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &251962728
 GameObject:
   m_ObjectHideFlags: 0
@@ -2723,6 +2734,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8171535325487749776, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
   m_PrefabInstance: {fileID: 8171535323749452087}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1724814567 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 460804608, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+  m_PrefabInstance: {fileID: 8171535323749452087}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1753134601
 GameObject:
   m_ObjectHideFlags: 0
@@ -3804,7 +3820,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_attackDelay: 5
-  m_attackTimer: 0
+  m_playerAnimator: {fileID: 1724814567}
+  m_playerAttackHitbox: {fileID: 243795709}
 --- !u!1001 &1176481176381939964
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4170,10 +4187,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1376389577, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2145512435, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_attackAnim
       value: 
       objectReference: {fileID: 924812939}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_AttackRange1
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_AttackDamage1
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_lives.Array.data[0]
       value: 
