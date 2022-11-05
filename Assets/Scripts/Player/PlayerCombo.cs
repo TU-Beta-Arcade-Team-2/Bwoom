@@ -57,6 +57,7 @@ public class PlayerCombo : MonoBehaviour
                 {
                     m_comboState = eComboState.attack2;
                     m_attackTimer = m_attackDelay;
+                    ComboAttack2();
                 }
                 break;
             case eComboState.attack2:
@@ -64,6 +65,7 @@ public class PlayerCombo : MonoBehaviour
                 {
                     m_comboState = eComboState.attack3;
                     m_attackTimer = m_attackDelay;
+                    ComboAttack3();
                 }
                 break;
         }
@@ -80,6 +82,18 @@ public class PlayerCombo : MonoBehaviour
     {
         m_playerAttackHitbox.GetDamage(m_playerStats.m_ComboAttackDamage1);
         m_playerAnimator.SetTrigger(StringConstants.COMBO_ATTACK_ONE);
+    }
+
+    private void ComboAttack2()
+    {
+        m_playerAttackHitbox.GetDamage(m_playerStats.m_ComboAttackDamage2);
+        m_playerAnimator.SetTrigger(StringConstants.COMBO_ATTACK_TWO);
+    }
+
+    private void ComboAttack3()
+    {
+        m_playerAttackHitbox.GetDamage(m_playerStats.m_ComboAttackDamage3);
+        m_playerAnimator.SetTrigger(StringConstants.COMBO_ATTACK_THREE);
     }
 
 }
