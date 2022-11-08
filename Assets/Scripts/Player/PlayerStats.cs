@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class PlayerStats : MonoBehaviour
     [Space(10)]
 
     [Header("Game HUD Variables")]
+    [SerializeField] private int m_totalPoints;
+    [SerializeField] private TextMeshProUGUI m_pointText;
     [SerializeField] private Image m_radialHealthBar;
     public Image MaskIconImage;
     public Sprite WarMaskIcon;
@@ -57,6 +60,7 @@ public class PlayerStats : MonoBehaviour
     {
         m_playerHealth = Mathf.Clamp(m_playerHealth, 0, m_maxPlayerHealth);
         m_radialHealthBar.fillAmount = (float)m_playerHealth / (float)m_maxPlayerHealth;
+        m_pointText.text = m_totalPoints.ToString();
         MaskIconImage.sprite = WarMaskIcon;
         m_DamageResistance = 1;
 
@@ -70,7 +74,7 @@ public class PlayerStats : MonoBehaviour
     }
     #endregion
 
-    #region Health Functions
+    #region Health & Point Functions
     public void TakeDMG(int incomingDMG)
     {
         int actualDamage = (int)(incomingDMG / m_DamageResistance);
@@ -102,6 +106,12 @@ public class PlayerStats : MonoBehaviour
         //Play heal animation
     }
     #endregion
+
+    public void AddPoints(int pointsToAdd)
+    {
+        m_totalPoints += pointsToAdd;
+        m_pointText.text = m_totalPoints.ToString();
+    }
 
     #region Frenzy Functions
     public void ActivateFrenzyMode()
@@ -138,6 +148,18 @@ public class PlayerStats : MonoBehaviour
 
         Debug.Log("No More Frenzy");
         m_frenzyMode = false;
+    }
+
+    #endregion
+
+    #region Debug
+
+    public void Switch(Image healthBar, Image maskIcon)
+    {
+        m_radialHealthBar = healthBar;
+        MaskIconImage = maskIcon;
+        m_radialHealthBar.fillAmount = (float)m_playerHealth / (float)m_maxPlayerHealth;
+        MaskIconImage.sprite = WarMaskIcon;
     }
 
     #endregion
