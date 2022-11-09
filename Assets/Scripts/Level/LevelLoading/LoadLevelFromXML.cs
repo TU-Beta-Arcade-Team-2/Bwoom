@@ -57,12 +57,12 @@ public class LoadLevelFromXML : MonoBehaviour
         {
             if (node.Name.Equals("tile"))
             {
-                XmlElement tileElem = (XmlElement) node;
+                XmlElement tileElem = (XmlElement)node;
 
                 BetterDebugging.Instance.Assert(tileElem != null);
 
-                int id = int.Parse(tileElem.GetAttributeNode("id").InnerXml); 
-                
+                int id = int.Parse(tileElem.GetAttributeNode("id").InnerXml);
+
                 string @class = tileElem.GetAttributeNode("class").InnerXml;
 
                 m_tileSetIds.Add(id, @class);
@@ -95,33 +95,43 @@ public class LoadLevelFromXML : MonoBehaviour
 
                 for (int i = 0; i < height - 1; i++)
                 {
-                    for (int j =  0; j < width - 1; j++)
+                    for (int j = 0; j < width - 1; j++)
                     {
                         BetterDebugging.Instance.Assert(width * i + j < tiles.Length, $"{i}  {j}   {width}    {width * i + j}");
 
-                        // Because we have more than 1 tileset, we want to subtract the "gid" field from the appropriate one...
-                        // Hardcoding for now because I really CBA at the moment and just want this working. Future Tom can 
-                        // shout at me but present Tom is very very tired
-                        long subAmount = 0;
-                        if (layerName.Equals("debug_ground") || layerName.Equals("debug_tile_notations"))
+                        if (layerName.Equals("debug_tile_notations"))
                         {
-                            subAmount = 1L;
+                            BetterDebugging.Instance.DebugLog("TILE NOTATION LAYER ISN'T DONE YET...", BetterDebugging.eDebugLevel.Warning);
                         }
-                        else if (layerName.Equals("nature_ground"))
+                        else
                         {
-                            // Skipping nature_ground for now
-                            subAmount = 34L;
-                            //TODO: Remove skip
-                            continue;
-                        }
+                            long subAmount = 0;
+                            bool canCollide = false;
 
-                        // IDs are stored as longs because TILED is stupid and when a tile gets flipped it becomes a MASSIVE number...
-                        // Again, it will have to be a case of 
-                        long ID = long.Parse(tiles[width * i + j]) - subAmount;
+                            switch (layerName)
+                            {
+                                // Because we have more than 1 tileset, we want to subtract the "gid" field from the appropriate one...
+                                // Hardcoding for now because I really CBA at the moment and just want this working. Future Tom can 
+                                // shout at me but present Tom is very very tired
+                                case "debug_ground":
+                                    subAmount = 1L;
+                                    canCollide = true;
+                                    break;
+                                case "nature_ground":
+                                    // Skipping nature_ground for now
+                                    subAmount = 34L;
+                                    //TODO: Remove skip
+                                    continue;
+                            }
 
-                        if (ID != -1) // -1 is air!
-                        {
-                            PlaceTile(parent.transform, ID, j, i, height, width, layer, false);
+                            // IDs are stored as longs because TILED is stupid and when a tile gets flipped it becomes a MASSIVE number...
+                            // Again, it will have to be a case of 
+                            long ID = long.Parse(tiles[width * i + j]) - subAmount;
+
+                            if (ID != -1) // -1 is air!
+                            {
+                                PlaceTile(parent.transform, ID, j, i, height, width, layer, canCollide);
+                            }
                         }
                     }
                 }
@@ -137,7 +147,7 @@ public class LoadLevelFromXML : MonoBehaviour
 
         try
         {
-            tile = m_tiles[(int) tileID];
+            tile = m_tiles[(int)tileID];
         }
         catch (KeyNotFoundException)
         {
