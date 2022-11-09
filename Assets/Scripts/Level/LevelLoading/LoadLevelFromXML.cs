@@ -63,6 +63,7 @@ public class LoadLevelFromXML : MonoBehaviour
             if (node.Name.Equals("layer"))
             {
                 XmlElement levelElem = (XmlElement)node;
+                int layer = int.Parse(levelElem.GetAttributeNode("id").InnerXml);
                 int width = int.Parse(levelElem.GetAttributeNode("width").InnerXml);
                 int height = int.Parse(levelElem.GetAttributeNode("height").InnerXml);
 
@@ -70,7 +71,7 @@ public class LoadLevelFromXML : MonoBehaviour
 
                 for (int i = 0; i < height - 1; i++)
                 {
-                    for (int j = 0; j < width - 1; j++)
+                    for (int j =  0; j < width - 1; j++)
                     {
                         BetterDebugging.Instance.Assert(width * i + j < tiles.Length, $"{i}  {j}   {width}    {width * i + j}");
 
@@ -78,12 +79,36 @@ public class LoadLevelFromXML : MonoBehaviour
 
                         if (ID != 0)
                         {
-                            BetterDebugging.Instance.DebugLog(ID.ToString(), BetterDebugging.eDebugLevel.Message);
+                            PlaceTile(ID, j, i, height, width, layer, false);
                         }
-
                     }
                 }
             }
+        }
+    }
+
+    private void PlaceTile(long tileID, int row, int column, int width, int height, int renderOrder, bool isCollidable)
+    {
+        Vector2 tilePosition = new Vector2(row, height - column);
+
+        GameObject tile = null;
+
+        try
+        {
+            tile = m_tiles[(int) tileID];
+        }
+        catch (KeyNotFoundException)
+        {
+            tile = m_tiles[0];
+        }
+
+        GameObject tileGameObject = Instantiate(tile, tilePosition, Quaternion.identity, transform);
+
+        tileGameObject.GetComponent<SpriteRenderer>().sortingOrder = renderOrder;
+
+        if (isCollidable)
+        {
+            tileGameObject.AddComponent<BoxCollider2D>();
         }
     }
 }
