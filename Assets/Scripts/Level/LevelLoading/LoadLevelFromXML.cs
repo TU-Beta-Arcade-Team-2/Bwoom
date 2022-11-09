@@ -6,6 +6,10 @@ using UnityEngine.U2D;
 public class LoadLevelFromXML : MonoBehaviour
 {
     public TextAsset LevelXML;
+    public TextAsset TileSetXML;
+
+    private Dictionary<int, string> m_tileSetIds = new();
+
 
     [SerializeField] private SpriteAtlas m_spriteAtlas;
 
@@ -30,26 +34,46 @@ public class LoadLevelFromXML : MonoBehaviour
 
     private void BuildTileSet()
     {
-        Sprite[] sprites = new Sprite[m_spriteAtlas.spriteCount];
+        ParseTileSetXML();
 
-        int amount = m_spriteAtlas.GetSprites(sprites);
+        BetterDebugging.Instance.Assert(m_spriteAtlas.spriteCount > 0, "Texture atlas shouldn't be empty! Double check reference is assigned!");
 
-        BetterDebugging.Instance.Assert(amount > 0, "Texture atlas shouldn't be empty! Double check reference is assigned!");
-
-        for (int i = 0; i < sprites.Length; i++)
+        for (int i = 0; i < m_spriteAtlas.spriteCount; i++)
         {
             GameObject newTile = new GameObject
             {
-                name = sprites[i].name,
+                name = m_tileSetIds[i],
                 transform =
                 {
                     parent = transform
                 }
             };
 
-            newTile.AddComponent<SpriteRenderer>().sprite = sprites[i];
+            newTile.AddComponent<SpriteRenderer>().sprite = m_spriteAtlas.GetSprite(m_tileSetIds[i]);
 
             m_tiles.Add(i, newTile);
+        }
+    }
+
+    private void ParseTileSetXML()
+    {
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.LoadXml(TileSetXML.text);
+
+        foreach (XmlNode node in xmlDoc.DocumentElement.ChildNodes)
+        {
+            if (node.Name.Equals("tile"))
+            {
+                XmlElement tileElem = (XmlElement) node;
+
+                BetterDebugging.Instance.Assert(tileElem != null);
+
+                int id = int.Parse(tileElem.GetAttributeNode("id").InnerXml); 
+                
+                string @class = tileElem.GetAttributeNode("class").InnerXml;
+
+                m_tileSetIds.Add(id, @class);
+            }
         }
     }
 
@@ -63,6 +87,9 @@ public class LoadLevelFromXML : MonoBehaviour
             if (node.Name.Equals("layer"))
             {
                 XmlElement levelElem = (XmlElement)node;
+
+                BetterDebugging.Instance.Assert(levelElem != null);
+
                 int layer = int.Parse(levelElem.GetAttributeNode("id").InnerXml);
                 int width = int.Parse(levelElem.GetAttributeNode("width").InnerXml);
                 int height = int.Parse(levelElem.GetAttributeNode("height").InnerXml);
