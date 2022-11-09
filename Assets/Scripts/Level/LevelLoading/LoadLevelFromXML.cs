@@ -40,14 +40,7 @@ public class LoadLevelFromXML : MonoBehaviour
 
         for (int i = 0; i < m_spriteAtlas.spriteCount; i++)
         {
-            GameObject newTile = new GameObject
-            {
-                name = m_tileSetIds[i],
-                transform =
-                {
-                    parent = transform
-                }
-            };
+            GameObject newTile = new GameObject(m_tileSetIds[i]);
 
             newTile.AddComponent<SpriteRenderer>().sprite = m_spriteAtlas.GetSprite(m_tileSetIds[i]);
 
@@ -90,11 +83,15 @@ public class LoadLevelFromXML : MonoBehaviour
 
                 BetterDebugging.Instance.Assert(levelElem != null);
 
+                string layerName = levelElem.GetAttributeNode("name").InnerXml;
                 int layer = int.Parse(levelElem.GetAttributeNode("id").InnerXml);
                 int width = int.Parse(levelElem.GetAttributeNode("width").InnerXml);
                 int height = int.Parse(levelElem.GetAttributeNode("height").InnerXml);
 
                 string[] tiles = node.InnerText.Split(",");
+
+                // Create a gameObject to parent each layer to...
+                GameObject parent = Instantiate(new GameObject(layerName), Vector3.zero, Quaternion.identity, transform);
 
                 for (int i = 0; i < height - 1; i++)
                 {
@@ -102,11 +99,29 @@ public class LoadLevelFromXML : MonoBehaviour
                     {
                         BetterDebugging.Instance.Assert(width * i + j < tiles.Length, $"{i}  {j}   {width}    {width * i + j}");
 
-                        long ID = long.Parse(tiles[width * i + j]);
-
-                        if (ID != 0)
+                        // Because we have more than 1 tileset, we want to subtract the "gid" field from the appropriate one...
+                        // Hardcoding for now because I really CBA at the moment and just want this working. Future Tom can 
+                        // shout at me but present Tom is very very tired
+                        long subAmount = 0;
+                        if (layerName.Equals("debug_ground") || layerName.Equals("debug_tile_notations"))
                         {
-                            PlaceTile(ID, j, i, height, width, layer, false);
+                            subAmount = 1L;
+                        }
+                        else if (layerName.Equals("nature_ground"))
+                        {
+                            // Skipping nature_ground for now
+                            subAmount = 34L;
+                            //TODO: Remove skip
+                            continue;
+                        }
+
+                        // IDs are stored as longs because TILED is stupid and when a tile gets flipped it becomes a MASSIVE number...
+                        // Again, it will have to be a case of 
+                        long ID = long.Parse(tiles[width * i + j]) - subAmount;
+
+                        if (ID != -1) // -1 is air!
+                        {
+                            PlaceTile(parent.transform, ID, j, i, height, width, layer, false);
                         }
                     }
                 }
@@ -114,7 +129,7 @@ public class LoadLevelFromXML : MonoBehaviour
         }
     }
 
-    private void PlaceTile(long tileID, int row, int column, int width, int height, int renderOrder, bool isCollidable)
+    private void PlaceTile(Transform parent, long tileID, int row, int column, int width, int height, int renderOrder, bool isCollidable)
     {
         Vector2 tilePosition = new Vector2(row, height - column);
 
@@ -129,7 +144,7 @@ public class LoadLevelFromXML : MonoBehaviour
             tile = m_tiles[0];
         }
 
-        GameObject tileGameObject = Instantiate(tile, tilePosition, Quaternion.identity, transform);
+        GameObject tileGameObject = Instantiate(tile, tilePosition, Quaternion.identity, parent);
 
         tileGameObject.GetComponent<SpriteRenderer>().sortingOrder = renderOrder;
 
