@@ -33,7 +33,10 @@
             "dynamicWrapping": true
         }
     },
+    "last.exportedFilePath": "C:/Users/w9036922/Source/Bwoom/Assets/LevelDesign",
+    "last.externalTilesetPath": "C:/Users/w9036922/Source/Bwoom/Assets/LevelDesign/Tiled Levels",
     "last.imagePath": "C:/Users/dmh08/Documents/Uni Work/Year 3 Work/Beta Arcade/TiledWork",
+    "map.lastUsedExportFilter": "Tiled map files (*.tmx *.xml)",
     "map.lastUsedFormat": "tmx",
     "map.tileHeight": 64,
     "map.tileWidth": 64,
