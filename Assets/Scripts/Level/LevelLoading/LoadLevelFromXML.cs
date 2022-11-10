@@ -3,33 +3,38 @@ using UnityEngine;
 using System.Xml;
 using UnityEngine.U2D;
 
-public class LoadLevelFromXML : MonoBehaviour
+public class LoadLevelFromXML
 {
-    public TextAsset LevelXML;
-    public TextAsset TileSetXML;
+    private string m_levelXML;
+    private string m_tileSetXML;
 
-    private Dictionary<int, string> m_tileSetIds = new();
+    private Dictionary<int, string> m_tileSetIds;
 
+    private SpriteAtlas m_spriteAtlas;
 
-    [SerializeField] private SpriteAtlas m_spriteAtlas;
+    private Dictionary<int, GameObject> m_tiles;
 
-    private Dictionary<int, GameObject> m_tiles = new();
-    [SerializeField] private GameObject m_tilePrefab;
-
-
-    // Start is called before the first frame update
-    void Start()
+    public LoadLevelFromXML(string levelXml, string tileSetXml, SpriteAtlas spriteAtlas)
     {
+        m_levelXML = levelXml;
+        m_tileSetXML = tileSetXml;
+        m_spriteAtlas = spriteAtlas;
+
+        m_tileSetIds = new();
+        m_tiles = new();
+    }
+
+    public void BuildLevel()
+    {
+        BetterDebugging.Instance.Assert(m_levelXML != null, "LevelXML needs to be set! Check the references!");
+        BetterDebugging.Instance.Assert(m_tileSetXML != null, "LevelXML needs to be set! Check the references!");
+        BetterDebugging.Instance.Assert(m_spriteAtlas != null, "spriteAtlas needs to be set! Check the references!");
+
+
         BuildTileSet();
 
         // TODO: ANYTHING 30 make 19
         ParseLevelXML();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     private void BuildTileSet()
@@ -51,7 +56,7 @@ public class LoadLevelFromXML : MonoBehaviour
     private void ParseTileSetXML()
     {
         XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.LoadXml(TileSetXML.text);
+        xmlDoc.LoadXml(m_tileSetXML);
 
         foreach (XmlNode node in xmlDoc.DocumentElement.ChildNodes)
         {
@@ -73,7 +78,7 @@ public class LoadLevelFromXML : MonoBehaviour
     private void ParseLevelXML()
     {
         XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.LoadXml(LevelXML.text);
+        xmlDoc.LoadXml(m_levelXML);
 
         foreach (XmlNode node in xmlDoc.DocumentElement.ChildNodes)
         {
@@ -91,7 +96,7 @@ public class LoadLevelFromXML : MonoBehaviour
                 string[] tiles = node.InnerText.Split(",");
 
                 // Create a gameObject to parent each layer to...
-                GameObject parent = Instantiate(new GameObject(layerName), Vector3.zero, Quaternion.identity, transform);
+                GameObject parent = Object.Instantiate(new GameObject(layerName), Vector3.zero, Quaternion.identity);
 
                 for (int i = 0; i < height - 1; i++)
                 {
@@ -154,7 +159,7 @@ public class LoadLevelFromXML : MonoBehaviour
             tile = m_tiles[0];
         }
 
-        GameObject tileGameObject = Instantiate(tile, tilePosition, Quaternion.identity, parent);
+        GameObject tileGameObject = Object.Instantiate(tile, tilePosition, Quaternion.identity, parent);
 
         tileGameObject.GetComponent<SpriteRenderer>().sortingOrder = renderOrder;
 
