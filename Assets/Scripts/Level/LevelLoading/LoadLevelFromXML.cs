@@ -160,12 +160,34 @@ public class LoadLevelFromXML
         }
 
         GameObject tileGameObject = Object.Instantiate(tile, tilePosition, Quaternion.identity, parent);
-
+        
         tileGameObject.GetComponent<SpriteRenderer>().sortingOrder = renderOrder;
-
+        
         if (isCollidable)
         {
-            tileGameObject.AddComponent<BoxCollider2D>();
+            // If it's a one way platform (for now, 18, 19 and 20) apply the correct components...
+            if (tileID is 18 or 19 or 20)
+            {
+                BoxCollider2D collider = tileGameObject.AddComponent<BoxCollider2D>();
+
+                // Make the collider half height
+                collider.offset = new Vector2(0f, -0.32f);
+                collider.size = new Vector2(1f, 0.3f);
+
+                collider.usedByEffector = true;
+
+                // Add the platform effector component
+                PlatformEffector2D effector = tileGameObject.AddComponent<PlatformEffector2D>();
+
+                effector.surfaceArc = 170;
+            }
+            else
+            {
+                tileGameObject.AddComponent<BoxCollider2D>();
+            }
+
+            tileGameObject.layer = LayerMask.NameToLayer(StringConstants.SURFACE_LAYER);
+            tileGameObject.tag = StringConstants.GROUND_TAG;
         }
     }
 }
