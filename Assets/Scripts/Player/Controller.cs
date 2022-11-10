@@ -213,6 +213,9 @@ public class Controller : MonoBehaviour
     private void Flip()
     {
         m_facingRight = !m_facingRight;
+        m_playerStats.m_ComboAttackLaunchDistance1.x *= -1;
+        m_playerStats.m_ComboAttackLaunchDistance2.x *= -1;
+        m_playerStats.m_ComboAttackLaunchDistance3.x *= -1;
         transform.Rotate(0f, 180f, 0f);
     }
 
