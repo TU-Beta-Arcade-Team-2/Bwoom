@@ -12,16 +12,19 @@ public class LoadLevelFromXML
 
     private SpriteAtlas m_spriteAtlas;
 
-    private Dictionary<int, GameObject> m_tiles;
+    private Dictionary<int, Sprite> m_sprites;
 
-    public LoadLevelFromXML(string levelXml, string tileSetXml, SpriteAtlas spriteAtlas)
+    private GameObject m_tilePrefab;
+
+    public LoadLevelFromXML(string levelXml, string tileSetXml, SpriteAtlas spriteAtlas, GameObject tilePrefab)
     {
         m_levelXML = levelXml;
         m_tileSetXML = tileSetXml;
         m_spriteAtlas = spriteAtlas;
+        m_tilePrefab = tilePrefab;
 
         m_tileSetIds = new();
-        m_tiles = new();
+        m_sprites = new();
     }
 
     public void BuildLevel()
@@ -30,10 +33,8 @@ public class LoadLevelFromXML
         BetterDebugging.Instance.Assert(m_tileSetXML != null, "LevelXML needs to be set! Check the references!");
         BetterDebugging.Instance.Assert(m_spriteAtlas != null, "spriteAtlas needs to be set! Check the references!");
 
-
         BuildTileSet();
 
-        // TODO: ANYTHING 30 make 19
         ParseLevelXML();
     }
 
@@ -45,11 +46,7 @@ public class LoadLevelFromXML
 
         for (int i = 0; i < m_spriteAtlas.spriteCount; i++)
         {
-            GameObject newTile = new GameObject(m_tileSetIds[i]);
-
-            newTile.AddComponent<SpriteRenderer>().sprite = m_spriteAtlas.GetSprite(m_tileSetIds[i]);
-
-            m_tiles.Add(i, newTile);
+            m_sprites.Add(i, m_spriteAtlas.GetSprite(m_tileSetIds[i]));
         }
     }
 
@@ -148,20 +145,23 @@ public class LoadLevelFromXML
     {
         Vector2 tilePosition = new Vector2(row, height - column);
 
-        GameObject tile = null;
+        Sprite sprite = null;
 
         try
         {
-            tile = m_tiles[(int)tileID];
+            sprite = m_sprites[(int)tileID];
         }
         catch (KeyNotFoundException)
         {
-            tile = m_tiles[0];
+            sprite = m_sprites[0];
         }
 
-        GameObject tileGameObject = Object.Instantiate(tile, tilePosition, Quaternion.identity, parent);
-        
-        tileGameObject.GetComponent<SpriteRenderer>().sortingOrder = renderOrder;
+        GameObject tileGameObject = Object.Instantiate(m_tilePrefab, tilePosition, Quaternion.identity, parent);
+
+        SpriteRenderer spriteRenderer = tileGameObject.GetComponent<SpriteRenderer>();
+
+        spriteRenderer.sprite = sprite;
+        spriteRenderer.sortingOrder = renderOrder;
         
         if (isCollidable)
         {
