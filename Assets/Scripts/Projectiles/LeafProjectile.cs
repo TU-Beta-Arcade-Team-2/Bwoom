@@ -16,6 +16,11 @@ public class LeafProjectile : ProjectleBaseClass
 
         GameObject player = GameObject.FindGameObjectWithTag(StringConstants.PLAYER_TAG);
 
+        m_shaderGUItext = Shader.Find("UI/Default Font");
+        m_shaderSpritesDefault = Shader.Find("Sprites/Default");
+
+        m_hitstopManager = GameObject.Find("Hitstop Manager").GetComponent<HitstopManager>();
+
         m_playerStats = player.GetComponentInParent<PlayerStats>();
         m_natureMask = player.GetComponentInParent<NatureMask>();
         gameObject.transform.parent = null;
