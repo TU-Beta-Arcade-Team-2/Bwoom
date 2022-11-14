@@ -13,6 +13,7 @@ public class PlayerCombo : MonoBehaviour
     [SerializeField] private float m_attackDelay;
     [SerializeField] private Animator m_playerAnimator;
     [SerializeField] private PlayerAttackHitbox m_playerAttackHitbox;
+    [SerializeField] private HitstopManager m_hitstopManager;
     private float m_attackTimer;
 
     private enum eComboState
@@ -84,6 +85,7 @@ public class PlayerCombo : MonoBehaviour
         m_playerAttackHitbox.GetDamage(m_playerStats.m_ComboAttackDamage1);
         m_playerAnimator.SetTrigger(StringConstants.COMBO_ATTACK_ONE);
         m_playerAttackHitbox.SetLaunchForce(m_playerStats.m_ComboAttackLaunchDistance1);
+        m_hitstopManager.SetHitstopDuration(0.05f);
     }
 
     private void ComboAttack2()
@@ -91,6 +93,7 @@ public class PlayerCombo : MonoBehaviour
         m_playerAttackHitbox.GetDamage(m_playerStats.m_ComboAttackDamage2);
         m_playerAnimator.SetTrigger(StringConstants.COMBO_ATTACK_TWO);
         m_playerRigidbody.AddForce(m_playerStats.m_ComboAttackLaunchDistance2);
+        m_hitstopManager.SetHitstopDuration(0.05f);
     }
 
     private void ComboAttack3()
@@ -98,6 +101,7 @@ public class PlayerCombo : MonoBehaviour
         m_playerAttackHitbox.GetDamage(m_playerStats.m_ComboAttackDamage3);
         m_playerAnimator.SetTrigger(StringConstants.COMBO_ATTACK_THREE);
         m_playerAttackHitbox.SetLaunchForce(m_playerStats.m_ComboAttackLaunchDistance3);
+        m_hitstopManager.SetHitstopDuration(0.1f);
     }
 
 }
