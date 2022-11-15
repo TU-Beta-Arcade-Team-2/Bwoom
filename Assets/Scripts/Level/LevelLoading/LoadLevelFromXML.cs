@@ -10,28 +10,17 @@ public class LoadLevelFromXML
 
     private Dictionary<int, string> m_tileSetIds;
 
-    private SpriteAtlas m_spriteAtlas;
-
-    private Dictionary<int, Sprite> m_sprites;
-
-    private GameObject m_tilePrefab;
-
     public LoadLevelFromXML(string levelXml, string tileSetXml, SpriteAtlas spriteAtlas, GameObject tilePrefab)
     {
         m_levelXML = levelXml;
         m_tileSetXML = tileSetXml;
-        m_spriteAtlas = spriteAtlas;
-        m_tilePrefab = tilePrefab;
-
         m_tileSetIds = new();
-        m_sprites = new();
     }
 
     public void BuildLevel()
     {
         BetterDebugging.Instance.Assert(m_levelXML != null, "LevelXML needs to be set! Check the references!");
         BetterDebugging.Instance.Assert(m_tileSetXML != null, "LevelXML needs to be set! Check the references!");
-        BetterDebugging.Instance.Assert(m_spriteAtlas != null, "spriteAtlas needs to be set! Check the references!");
 
         BuildTileSet();
 
@@ -42,12 +31,7 @@ public class LoadLevelFromXML
     {
         ParseTileSetXML();
 
-        BetterDebugging.Instance.Assert(m_spriteAtlas.spriteCount > 0, "Texture atlas shouldn't be empty! Double check reference is assigned!");
-
-        for (int i = 0; i < m_spriteAtlas.spriteCount; i++)
-        {
-            m_sprites.Add(i, m_spriteAtlas.GetSprite(m_tileSetIds[i]));
-        }
+        BetterDebugging.Instance.Assert(m_tileSetIds.Count != 0, "TILE COUNT SHOULDN'T BE EMPTY!");
     }
 
     private void ParseTileSetXML()
@@ -90,55 +74,33 @@ public class LoadLevelFromXML
                 int width = int.Parse(levelElem.GetAttributeNode("width").InnerXml);
                 int height = int.Parse(levelElem.GetAttributeNode("height").InnerXml);
 
-                string[] tiles = node.InnerText.Split(",");
-
-                // Create a gameObject to parent each layer to...
-                GameObject parent = Object.Instantiate(new GameObject(layerName), Vector3.zero, Quaternion.identity);
-
-                for (int i = 0; i < height; i++)
+                if (layerName == "debug_ground")
                 {
-                    for (int j = 0; j < width; j++)
+                    string[] tiles = node.InnerText.Split(",");
+
+                    // Create a gameObject to parent each layer to...
+                    GameObject parent = Object.Instantiate(new GameObject(layerName), Vector3.zero, Quaternion.identity);
+
+                    for (int i = 0; i < height; i++)
                     {
-                        BetterDebugging.Instance.Assert(width * i + j < tiles.Length, $"{i}  {j}   {width}    {width * i + j}");
-
-                        if (layerName.Equals("debug_tile_notations"))
+                        for (int j = 0; j < width; j++)
                         {
-                            BetterDebugging.Instance.DebugLog("TILE NOTATION LAYER ISN'T DONE YET...", BetterDebugging.eDebugLevel.Warning);
-                        }
-                        else
-                        {
-                            long subAmount = 0;
-                            bool canCollide = false;
-                            bool hasSprite = true;
+                            BetterDebugging.Instance.Assert(width * i + j < tiles.Length, $"{i}  {j}   {width}    {width * i + j}");
 
-                            switch (layerName)
+                            if (layerName.Equals("debug_tile_notations"))
                             {
-                                // Because we have more than 1 tileset, we want to subtract the "gid" field from the appropriate one...
-                                // Hardcoding for now because I really CBA at the moment and just want this working. Future Tom can 
-                                // shout at me but present Tom is very very tired
-                                case "debug_ground":
-                                    subAmount = 1L;
-                                    canCollide = true;
-                                    hasSprite = false;
-                                    break;
-                                case "nature_ground":
-                                    // Skipping nature_ground for now
-                                    subAmount = 33L;
-                                    break;
-                                case "background":
-                                    // TODO: Remove skip!
-                                    continue;
-                                case "enemies":
-                                    continue;
+                                BetterDebugging.Instance.DebugLog("TILE NOTATION LAYER ISN'T DONE YET...", BetterDebugging.eDebugLevel.Warning);
                             }
-
-                            // IDs are stored as longs because TILED is stupid and when a tile gets flipped it becomes a MASSIVE number...
-                            // Again, it will have to be a case of 
-                            long ID = long.Parse(tiles[width * i + j]) - subAmount;
-
-                            if (ID != -1) // -1 is air!
+                            else
                             {
-                                PlaceTile(parent.transform, ID, j, i, height, width, layer, hasSprite, canCollide);
+                                // IDs are stored as longs because TILED is stupid and when a tile gets flipped it becomes a MASSIVE number...
+                                // Again, it will have to be a case of 
+                                long ID = long.Parse(tiles[width * i + j]) - 1;
+
+                                if (ID != -1) // -1 is air!
+                                {
+                                    PlaceTile(parent.transform, ID, j, i, height, width, layer, true);
+                                }
                             }
                         }
                     }
@@ -147,36 +109,11 @@ public class LoadLevelFromXML
         }
     }
 
-    private void PlaceTile(Transform parent, long tileID, int row, int column, int width, int height, int renderOrder, bool hasSprite, bool isCollidable)
+    private void PlaceTile(Transform parent, long tileID, int row, int column, int width, int height, int renderOrder, bool isCollidable)
     {
         Vector2 tilePosition = new Vector2(row, height - column);
 
-        GameObject tileGameObject = Object.Instantiate(m_tilePrefab, tilePosition, Quaternion.identity, parent);
-
-        if (hasSprite)
-        {
-            Sprite sprite = null;
-
-            try
-            {
-                sprite = m_sprites[(int)tileID];
-            }
-            catch (KeyNotFoundException)
-            {
-                // sprite = m_sprites[0];
-                if (tileID > 0)
-                {
-                    sprite = m_sprites[10];
-                }
-                BetterDebugging.Instance.DebugLog("KEY NOT PRESENT", BetterDebugging.eDebugLevel.Error);
-            }
-
-
-            SpriteRenderer spriteRenderer = tileGameObject.GetComponent<SpriteRenderer>();
-
-            spriteRenderer.sprite = sprite;
-            spriteRenderer.sortingOrder = renderOrder;
-        }
+        GameObject tileGameObject = Object.Instantiate(new GameObject($"Collider:{tileID}"), tilePosition, Quaternion.identity, parent);
         
         if (isCollidable)
         {
