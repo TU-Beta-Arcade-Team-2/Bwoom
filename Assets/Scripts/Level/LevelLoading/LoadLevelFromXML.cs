@@ -109,6 +109,7 @@ public class LoadLevelFromXML
                         {
                             long subAmount = 0;
                             bool canCollide = false;
+                            bool hasSprite = true;
 
                             switch (layerName)
                             {
@@ -118,12 +119,12 @@ public class LoadLevelFromXML
                                 case "debug_ground":
                                     subAmount = 1L;
                                     canCollide = true;
+                                    hasSprite = false;
                                     break;
                                 case "nature_ground":
                                     // Skipping nature_ground for now
-                                    subAmount = 34L;
-                                    //TODO: Remove skip
-                                    continue;
+                                    subAmount = 33L;
+                                    break;
                                 case "background":
                                     // TODO: Remove skip!
                                     continue;
@@ -137,7 +138,7 @@ public class LoadLevelFromXML
 
                             if (ID != -1) // -1 is air!
                             {
-                                PlaceTile(parent.transform, ID, j, i, height, width, layer, canCollide);
+                                PlaceTile(parent.transform, ID, j, i, height, width, layer, hasSprite, canCollide);
                             }
                         }
                     }
@@ -146,27 +147,36 @@ public class LoadLevelFromXML
         }
     }
 
-    private void PlaceTile(Transform parent, long tileID, int row, int column, int width, int height, int renderOrder, bool isCollidable)
+    private void PlaceTile(Transform parent, long tileID, int row, int column, int width, int height, int renderOrder, bool hasSprite, bool isCollidable)
     {
         Vector2 tilePosition = new Vector2(row, height - column);
 
-        Sprite sprite = null;
-
-        try
-        {
-            sprite = m_sprites[(int)tileID];
-        }
-        catch (KeyNotFoundException)
-        {
-            sprite = m_sprites[0];
-        }
-
         GameObject tileGameObject = Object.Instantiate(m_tilePrefab, tilePosition, Quaternion.identity, parent);
 
-        SpriteRenderer spriteRenderer = tileGameObject.GetComponent<SpriteRenderer>();
+        if (hasSprite)
+        {
+            Sprite sprite = null;
 
-        spriteRenderer.sprite = sprite;
-        spriteRenderer.sortingOrder = renderOrder;
+            try
+            {
+                sprite = m_sprites[(int)tileID];
+            }
+            catch (KeyNotFoundException)
+            {
+                // sprite = m_sprites[0];
+                if (tileID > 0)
+                {
+                    sprite = m_sprites[10];
+                }
+                BetterDebugging.Instance.DebugLog("KEY NOT PRESENT", BetterDebugging.eDebugLevel.Error);
+            }
+
+
+            SpriteRenderer spriteRenderer = tileGameObject.GetComponent<SpriteRenderer>();
+
+            spriteRenderer.sprite = sprite;
+            spriteRenderer.sortingOrder = renderOrder;
+        }
         
         if (isCollidable)
         {

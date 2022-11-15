@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: NatureSprites
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 6a54484d7d54aa047846c4e62b1077c2, type: 3}
+    - {fileID: 2800000, guid: cc07d6a221dc7894596f74f2d13e4991, type: 3}
+    - {fileID: 2800000, guid: cb429fe2858e25049b32932e998ca667, type: 3}
+    - {fileID: 2800000, guid: 8d6960ba4efe9e44d80252db089edd50, type: 3}
+    - {fileID: 2800000, guid: a8ee0c1c8f5c9e24787a1635077ba03d, type: 3}
+    - {fileID: 2800000, guid: 765119a4c5630594580e8305b4b8d763, type: 3}
+    - {fileID: 2800000, guid: 3099a7da8bdd1ff429bc84e40682642c, type: 3}
+    - {fileID: 2800000, guid: ecfe57fdd27b59a4c8a9556e5b616920, type: 3}
+    - {fileID: 2800000, guid: ae5cbd964ff65f34cbade0351fceea7d, type: 3}
+    - {fileID: 2800000, guid: b5ae9f582f61d2f40a56dd3811212bf2, type: 3}
+    - {fileID: 2800000, guid: ee0efd0e6f303964bb4e630f8eb92d6f, type: 3}
+    - {fileID: 2800000, guid: 37d9fc1349d52124dbe6c62fb6e6e13c, type: 3}
+    - {fileID: 2800000, guid: 7d62b110a08c69d42b4350e94593f66f, type: 3}
+    - {fileID: 2800000, guid: 96f44b35fb968264aad85cceb95f13c8, type: 3}
+    - {fileID: 2800000, guid: f1371298fcff5f64496c4a8ba672d2d6, type: 3}
+    - {fileID: 2800000, guid: cffed870ad738634b8260ace0b066ca6, type: 3}
+    - {fileID: 2800000, guid: 211067065043e7344bb7bdb4cd137d18, type: 3}
+    - {fileID: 2800000, guid: 6b3c6929fae79634983b1de3af4829ab, type: 3}
+    - {fileID: 2800000, guid: 371ecd83d1599e64da567e3708a2c986, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 7d62b110a08c69d42b4350e94593f66f, type: 3}
+  - {fileID: 21300000, guid: cffed870ad738634b8260ace0b066ca6, type: 3}
+  - {fileID: 21300000, guid: cc07d6a221dc7894596f74f2d13e4991, type: 3}
+  - {fileID: 21300000, guid: cb429fe2858e25049b32932e998ca667, type: 3}
+  - {fileID: 21300000, guid: 37d9fc1349d52124dbe6c62fb6e6e13c, type: 3}
+  - {fileID: 21300000, guid: 371ecd83d1599e64da567e3708a2c986, type: 3}
+  - {fileID: 21300000, guid: 765119a4c5630594580e8305b4b8d763, type: 3}
+  - {fileID: 21300000, guid: 96f44b35fb968264aad85cceb95f13c8, type: 3}
+  - {fileID: 21300000, guid: 211067065043e7344bb7bdb4cd137d18, type: 3}
+  - {fileID: 21300000, guid: ae5cbd964ff65f34cbade0351fceea7d, type: 3}
+  - {fileID: 21300000, guid: b5ae9f582f61d2f40a56dd3811212bf2, type: 3}
+  - {fileID: 21300000, guid: f1371298fcff5f64496c4a8ba672d2d6, type: 3}
+  - {fileID: 21300000, guid: 6b3c6929fae79634983b1de3af4829ab, type: 3}
+  - {fileID: 21300000, guid: 8d6960ba4efe9e44d80252db089edd50, type: 3}
+  - {fileID: 21300000, guid: 3099a7da8bdd1ff429bc84e40682642c, type: 3}
+  - {fileID: 21300000, guid: a8ee0c1c8f5c9e24787a1635077ba03d, type: 3}
+  - {fileID: 21300000, guid: 6a54484d7d54aa047846c4e62b1077c2, type: 3}
+  - {fileID: 21300000, guid: ecfe57fdd27b59a4c8a9556e5b616920, type: 3}
+  - {fileID: 21300000, guid: ee0efd0e6f303964bb4e630f8eb92d6f, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Grass_Block_1
+  - Grass_Block_4
+  - Corner_Block_2
+  - Corner_Block_3
+  - Dirt_Block_5
+  - Dirt_Decal
+  - Corner_Block_6
+  - Grass_Block_2
+  - Grass_Block_5
+  - Dirt_Block_2
+  - Dirt_Block_3
+  - Grass_Block_3
+  - Grass_Block_6
+  - Corner_Block_4
+  - Corner_Block_7
+  - Corner_Block_5
+  - Corner_Block_1
+  - Dirt_Block_1
+  - Dirt_Block_4
+  m_RenderDataMap: {}
+  m_Tag: NatureSprites
+  m_IsVariant: 0
