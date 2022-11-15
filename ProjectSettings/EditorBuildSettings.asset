@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SplashScreen.unity
     guid: f02953bdfc905a24ab458f0a1d5a0e88
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/BossArena.unity
     guid: aacb53254ca56ff408daecb5411ca9da
   - enabled: 1
     path: Assets/Scenes/TitleScreen.unity

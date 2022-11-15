@@ -10,16 +10,12 @@ ScriptedImporter:
   script: {fileID: 11500000, guid: 1fa25d03934ea624a82bf2fcee6f0873, type: 3}
   missingFiles: []
   errors: []
-  warnings:
-  - Pixels Per Unit mismatch between map (100) and tileset '../Debug_Tileset.tsx'
-    (64)
-  - Pixels Per Unit mismatch between map (100) and tileset '../Nature/NatureGround.tsx'
-    (64)
+  warnings: []
   missingSortingLayers: []
   missingLayers: []
   missingTags: []
   importerVersion: 26
-  pixelsPerUnit: 100
+  pixelsPerUnit: 64
   edgesPerEllipse: 32
   numberOfObjectsImported: 2
   tilesAsObjects: 0
