@@ -3,7 +3,7 @@
  <editorsettings>
   <export target="../NatureMap.xml" format="tmx"/>
  </editorsettings>
- <tileset firstgid="1" source="Debug_Tileset.tsx"/>
+ <tileset firstgid="1" source="../Debug_Tileset.tsx"/>
  <tileset firstgid="33" source="NatureGround.tsx"/>
  <layer id="4" name="debug_tile_notations" width="326" height="96">
   <data encoding="csv">

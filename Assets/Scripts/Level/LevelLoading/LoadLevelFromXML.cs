@@ -95,9 +95,9 @@ public class LoadLevelFromXML
                 // Create a gameObject to parent each layer to...
                 GameObject parent = Object.Instantiate(new GameObject(layerName), Vector3.zero, Quaternion.identity);
 
-                for (int i = 0; i < height - 1; i++)
+                for (int i = 0; i < height; i++)
                 {
-                    for (int j = 0; j < width - 1; j++)
+                    for (int j = 0; j < width; j++)
                     {
                         BetterDebugging.Instance.Assert(width * i + j < tiles.Length, $"{i}  {j}   {width}    {width * i + j}");
 
@@ -123,6 +123,11 @@ public class LoadLevelFromXML
                                     // Skipping nature_ground for now
                                     subAmount = 34L;
                                     //TODO: Remove skip
+                                    continue;
+                                case "background":
+                                    // TODO: Remove skip!
+                                    continue;
+                                case "enemies":
                                     continue;
                             }
 
@@ -180,6 +185,12 @@ public class LoadLevelFromXML
                 PlatformEffector2D effector = tileGameObject.AddComponent<PlatformEffector2D>();
 
                 effector.surfaceArc = 170;
+            }
+            else if(tileID <= 17 && tileID >= 9)
+            {
+                // These are invisible walls!
+                // spriteRenderer.sprite = null;
+                tileGameObject.AddComponent<BoxCollider2D>();
             }
             else
             {
