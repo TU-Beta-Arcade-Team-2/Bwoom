@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 1376389577}
   m_Father: {fileID: 8171535325487749776}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &924812939
 Animator:
@@ -231,7 +231,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8171535325487749776}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &517762481085286622
 GameObject:
@@ -421,7 +421,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3682733235662808337}
   - component: {fileID: 5187359896931855095}
-  - component: {fileID: 6360037}
   m_Layer: 7
   m_Name: Mask
   m_TagString: Untagged
@@ -436,13 +435,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7652149383901507236}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.003, y: 0.776, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.0029997826, y: 0.77600014, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8171535325487749776}
-  m_RootOrder: 2
+  m_Father: {fileID: 8171535325410661210}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5187359896931855095
 SpriteRenderer:
@@ -496,26 +495,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6360037
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7652149383901507236}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 26e7689e35d492b4095b5727b91ab189, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8171535324326012345
 GameObject:
   m_ObjectHideFlags: 0
@@ -578,8 +557,9 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5420125246354666554}
+  - {fileID: 3682733235662808337}
   m_Father: {fileID: 8171535325487749776}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8171535325410661209
 SpriteRenderer:
@@ -691,7 +671,6 @@ Transform:
   m_Children:
   - {fileID: 8171535324326012344}
   - {fileID: 5556730394396911537}
-  - {fileID: 3682733235662808337}
   - {fileID: 8171535325410661210}
   - {fileID: 1959386310}
   - {fileID: 924812938}
@@ -916,6 +895,7 @@ MonoBehaviour:
   m_attackMultiplier: 2
   m_damageResistanceMultiplier: 2
   m_specialAttackDamage: 2
+  m_jumpHeight: 10
   m_IsJumped: 0
   m_rb: {fileID: 8171535325487749779}
   m_attackAnim: {fileID: 924812939}

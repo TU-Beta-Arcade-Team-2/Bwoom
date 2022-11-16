@@ -27,12 +27,8 @@ public static class StringConstants
     public static string PLAYER_IDLE = "Idle";
     #endregion
     #region MASK_ANIMATIONS
-    public static string WAR_MASK_RUN = "WarMask_Run";
-    public static string NATURE_MASK_RUN = "NatureMask_Run";
-
-
-    public static string WAR_MASK_IDLE = "WarMask_Idle";
-    public static string NATURE_MASK_IDLE = "NatureMask_Idle";
+    public static string WAR_MASK = "WarMask";
+    public static string NATURE_MASK = "NatureMask";
     #endregion
     #region RHINO_ENEMY_ANIMATIONS
     public static string RHINO_WALK_CYCLE = "Walk_Cycle";

@@ -11,8 +11,7 @@ public class Controller : MonoBehaviour
 
     [SerializeField] private GameObject m_bodyGameObject;
     [SerializeField] private GameObject m_maskGameObject;
-    private Animator m_bodyAnimator;
-    private Animator m_maskAnimator;
+    private Animator m_animator;
 
 
     /// <summary> Player Hidden Variables </summary>
@@ -90,8 +89,7 @@ public class Controller : MonoBehaviour
         m_playerInput = GetComponent<PlayerInput>();
         m_playerStats = GetComponent<PlayerStats>();
 
-        m_bodyAnimator = m_bodyGameObject.GetComponent<Animator>();
-        m_maskAnimator = m_maskGameObject.GetComponent<Animator>();
+        m_animator = GetComponentInChildren<Animator>();
 
         m_rigidbody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
@@ -143,24 +141,27 @@ public class Controller : MonoBehaviour
 
         }
 
-        // HACK TO GET THE WALKING AND IDLE ANIMATIONS WORKING! REMOVE THIS AND DO PROPERLY AFTER THE CA MEETING PLEASE - TOM :)
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
-        {
-            m_bodyAnimator.SetTrigger(StringConstants.PLAYER_RUN);
+        m_animator.SetFloat("Movement", Mathf.Abs(m_playerInput.actions["Horizontal"].ReadValue<float>()));
 
-            m_maskAnimator.SetTrigger(m_masks == eMasks.War
+        /* COMMENTING THIS OUT NOW TO MAKE THE ANIMATION READING CLEANER, MASK TRIGGERES ARE NOW SET IN THE MASKINPUTS FUNCTION - DAN >:D
+        // HACK TO GET THE WALKING AND IDLE ANIMATIONS WORKING! REMOVE THIS AND DO PROPERLY AFTER THE CA MEETING PLEASE - TOM :)
+        if (m_playerInput.actions["Horizontal"].ReadValue<float>() == 0)
+        {
+            m_animator.SetTrigger(StringConstants.PLAYER_RUN);
+
+            m_animator.SetTrigger(m_masks == eMasks.War
                 ? StringConstants.WAR_MASK_RUN
                 : StringConstants.NATURE_MASK_RUN);
         }
         
-        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D))
+        if (m_playerInput.actions["Horizontal"].ReadValue<float>() != 0)
         {
-            m_bodyAnimator.SetTrigger(StringConstants.PLAYER_IDLE);
+            m_animator.SetTrigger(StringConstants.PLAYER_IDLE);
 
-            m_maskAnimator.SetTrigger(m_masks == eMasks.War
+            m_animator.SetTrigger(m_masks == eMasks.War
                 ? StringConstants.WAR_MASK_IDLE
                 : StringConstants.NATURE_MASK_IDLE);
-        }
+        }*/
     }
 
     // Update is called once per frame
@@ -320,11 +321,13 @@ public class Controller : MonoBehaviour
         if (m_playerInput.actions["WarMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
             m_masks = eMasks.War;
+            m_animator.SetTrigger(StringConstants.WAR_MASK);
         }
 
         if (m_playerInput.actions["NatureMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
             m_masks = eMasks.Nature;
+            m_animator.SetTrigger(StringConstants.NATURE_MASK);
         }
 
         if (m_playerInput.actions["EnergyMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
@@ -397,7 +400,7 @@ public class Controller : MonoBehaviour
     {
         if (m_playerInput.actions["Attack"].triggered)
         {
-            m_bodyAnimator.SetTrigger("Attack");
+            m_animator.SetTrigger("Attack");
         }
     }
 
