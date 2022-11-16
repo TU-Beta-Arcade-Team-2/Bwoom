@@ -10,7 +10,8 @@ public class PlayerAttackHitbox : MonoBehaviour
     [SerializeField] private Shader m_shaderSpritesDefault;
 
     private float m_damage;
-    private Vector3 m_force;
+    private Vector3 m_enemyForce;
+    private Vector3 m_playerForce;
 
     private void Start()
     {
@@ -23,9 +24,17 @@ public class PlayerAttackHitbox : MonoBehaviour
         m_damage = damage;
     }
 
-    public void SetLaunchForce(Vector3 force)
+    public void SetLaunchForce(Vector3 force, Vector3 playerForce)
     {
-        m_force = force;
+        if (playerForce == null)
+        {
+            playerForce = new Vector3(0, 0, 0);
+        }
+        else
+        {
+            m_playerForce = playerForce;
+        }
+        m_enemyForce = force;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -40,8 +49,9 @@ public class PlayerAttackHitbox : MonoBehaviour
             BetterDebugging.Instance.Assert(enemy != null, "Anything on the Enemy Layer should be an enemy!");
 
             //make the enemy take damage and add force
-            enemy.TakeDamage((int)(m_playerStats.m_AttackDamage));
-            enemyRb.AddForce(m_force,ForceMode2D.Impulse);
+            enemy.TakeDamage((int)(m_damage));
+            enemyRb.AddForce(m_enemyForce,ForceMode2D.Impulse);
+            m_playerStats.GetComponent<Rigidbody2D>().AddForce(m_playerForce, ForceMode2D.Impulse);
 
             //hitstop effect
             enemySprite.material.shader = m_shaderGUItext;
@@ -51,7 +61,7 @@ public class PlayerAttackHitbox : MonoBehaviour
 
             StartCoroutine(WaitForHitStopResume(enemySprite));
 
-            BetterDebugging.Instance.DebugLog($"Player Damage:  {m_playerStats.m_AttackDamage}");
+            BetterDebugging.Instance.DebugLog($"Player Damage:  {m_damage}");
         }
 
         IEnumerator WaitForHitStopResume(SpriteRenderer enemySprite)

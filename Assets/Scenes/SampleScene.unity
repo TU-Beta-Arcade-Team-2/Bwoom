@@ -4355,11 +4355,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_ComboAttackDamage2
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_ComboAttackDamage3
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_lives.Array.data[0]
@@ -4404,6 +4404,26 @@ PrefabInstance:
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_ComboAttackLaunchDistance3.y
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_ComboAttackEnemyLaunchVector1.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_ComboAttackEnemyLaunchVector3.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_ComboAttackPlayerLaunchVector1.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_ComboAttackPlayerLaunchVector2.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_ComboAttackPlayerLaunchVector3.x
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8171535325410661209, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_FlipX
