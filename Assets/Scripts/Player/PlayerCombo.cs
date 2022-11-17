@@ -53,10 +53,6 @@ public class PlayerCombo : MonoBehaviour
                     m_attackTimer = m_attackDelay;
                     ComboAttack1();
                 }
-                else
-                {
-                    m_playerAnimator.Play(StringConstants.PLAYER_IDLE);
-                }
                 break;
             case eComboState.attack1:
                 if (m_playerInput.actions["Attack"].triggered && m_attackTimer > 0)
@@ -87,7 +83,7 @@ public class PlayerCombo : MonoBehaviour
     private void ComboAttack1()
     {
         m_playerAttackHitbox.GetDamage(m_playerStats.m_ComboAttackDamage1);
-        m_playerAnimator.SetTrigger(StringConstants.COMBO_ATTACK_ONE);
+        m_playerAnimator.Play(StringConstants.COMBO_ATTACK_ONE);
         m_playerAttackHitbox.SetLaunchForce(m_playerStats.m_ComboAttackEnemyLaunchVector1,m_playerStats.m_ComboAttackPlayerLaunchVector1);
         m_hitstopManager.SetHitstopDuration(0.05f);
     }
@@ -95,7 +91,7 @@ public class PlayerCombo : MonoBehaviour
     private void ComboAttack2()
     {
         m_playerAttackHitbox.GetDamage(m_playerStats.m_ComboAttackDamage2);
-        m_playerAnimator.SetTrigger(StringConstants.COMBO_ATTACK_TWO);
+        m_playerAnimator.Play(StringConstants.COMBO_ATTACK_TWO);
         m_playerAttackHitbox.SetLaunchForce(m_playerStats.m_ComboAttackEnemyLaunchVector2, m_playerStats.m_ComboAttackPlayerLaunchVector2);
         m_hitstopManager.SetHitstopDuration(0.05f);
     }
@@ -103,7 +99,7 @@ public class PlayerCombo : MonoBehaviour
     private void ComboAttack3()
     {
         m_playerAttackHitbox.GetDamage(m_playerStats.m_ComboAttackDamage3);
-        m_playerAnimator.SetTrigger(StringConstants.COMBO_ATTACK_THREE);
+        m_playerAnimator.Play(StringConstants.COMBO_ATTACK_THREE);
         m_playerAttackHitbox.SetLaunchForce(m_playerStats.m_ComboAttackEnemyLaunchVector3, m_playerStats.m_ComboAttackPlayerLaunchVector3);
         m_hitstopManager.SetHitstopDuration(0.1f);
     }
