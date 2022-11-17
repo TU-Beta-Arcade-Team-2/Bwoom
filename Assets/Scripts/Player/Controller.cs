@@ -111,7 +111,6 @@ public class Controller : MonoBehaviour
         ///<Note> An exit function will need to made when switching on and off the booleans so the variables return back to default
         /// values that may cause weird behaviours in future </Note>
         Jumping();
-        Attack();
         SpecialAttack();
         MaskInputs();
 
@@ -215,6 +214,12 @@ public class Controller : MonoBehaviour
     private void Flip()
     {
         m_facingRight = !m_facingRight;
+        m_playerStats.m_ComboAttackEnemyLaunchVector1.x *= -1;
+        m_playerStats.m_ComboAttackEnemyLaunchVector2.x *= -1;
+        m_playerStats.m_ComboAttackEnemyLaunchVector3.x *= -1;
+        m_playerStats.m_ComboAttackPlayerLaunchVector1.x *= -1;
+        m_playerStats.m_ComboAttackPlayerLaunchVector2.x *= -1;
+        m_playerStats.m_ComboAttackPlayerLaunchVector3.x *= -1;
         transform.Rotate(0f, 180f, 0f);
     }
 
@@ -394,18 +399,6 @@ public class Controller : MonoBehaviour
         m_warMask.enabled = false;
         m_natureMask.enabled = false;
     }
-#endregion
-
-#region Base Combat Functions
-
-    private void Attack()
-    {
-        if (m_playerInput.actions["Attack"].triggered)
-        {
-            m_animator.SetTrigger("Attack");
-        }
-    }
-
 #endregion
 
 #region Extra Movement Functions

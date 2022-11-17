@@ -146,6 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe01bec943a71d4aba48f51862a47db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_histopDuration: 0.05
+  m_shaderGUItext: {fileID: 0}
+  m_shaderSpritesDefault: {fileID: 0}
+  m_hitstopManager: {fileID: 0}
   m_projectileSpeed: 10
   m_maxProjectileLifetime: 2
   m_playerStats: {fileID: 0}

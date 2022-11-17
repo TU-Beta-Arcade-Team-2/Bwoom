@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -54,6 +52,22 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float m_frenzyAttackMultiplier;
     [SerializeField] private float m_frenzyJumpMultiplier;
     [SerializeField] private float m_frenzyAttackSpeedMultiplier;
+
+    [Header("Combo Attack 1")]
+    public float m_ComboAttackDamage1;
+    [Tooltip("Launches enemy")]
+    public Vector3 m_ComboAttackEnemyLaunchVector1;
+    public Vector3 m_ComboAttackPlayerLaunchVector1;
+    [Header("Combo Attack 2")]
+    public float m_ComboAttackDamage2;
+    [Tooltip("Launches player")]
+    public Vector3 m_ComboAttackEnemyLaunchVector2;
+    public Vector3 m_ComboAttackPlayerLaunchVector2;
+    [Header("Combo Attack 3")]
+    public float m_ComboAttackDamage3;
+    [Tooltip("Launches enemy")]
+    public Vector3 m_ComboAttackEnemyLaunchVector3;
+    public Vector3 m_ComboAttackPlayerLaunchVector3;
 
     #region Main Functions
     private void Start()

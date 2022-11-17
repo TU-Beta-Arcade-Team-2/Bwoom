@@ -25,6 +25,9 @@ public static class StringConstants
     #region PLAYER_ANIMATIONS
     public static string PLAYER_RUN = "Run";
     public static string PLAYER_IDLE = "Idle";
+    public static string COMBO_ATTACK_ONE = "ComboAttack1";
+    public static string COMBO_ATTACK_TWO = "ComboAttack2";
+    public static string COMBO_ATTACK_THREE = "ComboAttack3";
     #endregion
     #region MASK_ANIMATIONS
     public static string WAR_MASK = "WarMask";
