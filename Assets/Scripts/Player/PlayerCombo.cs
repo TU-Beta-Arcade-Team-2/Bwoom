@@ -53,6 +53,10 @@ public class PlayerCombo : MonoBehaviour
                     m_attackTimer = m_attackDelay;
                     ComboAttack1();
                 }
+                else
+                {
+                    m_playerAnimator.Play(StringConstants.PLAYER_IDLE);
+                }
                 break;
             case eComboState.attack1:
                 if (m_playerInput.actions["Attack"].triggered && m_attackTimer > 0)

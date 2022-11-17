@@ -13,7 +13,7 @@ public class PlayerAttackHitbox : MonoBehaviour
     private Vector3 m_enemyForce;
     private Vector3 m_playerForce;
 
-    private void Start()
+    private void OnEnable()
     {
         m_shaderGUItext = Shader.Find("GUI/Text Shader");
         m_shaderSpritesDefault = Shader.Find("Sprites/Default");
