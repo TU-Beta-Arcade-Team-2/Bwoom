@@ -354,6 +354,7 @@ public class Controller : MonoBehaviour
                 {
                     RemoveMasks();
                     m_warMask.enabled = true;
+                    m_playerStats.MaskIconImage.sprite = m_playerStats.WarMaskIcon;
                 }
                 break;
             case eMasks.Nature:
@@ -361,6 +362,7 @@ public class Controller : MonoBehaviour
                 {
                     RemoveMasks();
                     m_natureMask.enabled = true;
+                    m_playerStats.MaskIconImage.sprite = m_playerStats.NatureMaskIcon;
                 }
                 break;
         }
