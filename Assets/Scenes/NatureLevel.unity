@@ -19677,6 +19677,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NatureMap
       objectReference: {fileID: 0}
+    - target: {fileID: 7179407468332869660, guid: 9d2b9d1f6e85c7a49baf123b938ed35e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7321142707659987809, guid: 9d2b9d1f6e85c7a49baf123b938ed35e, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -57312,6 +57316,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameHud: {fileID: 1257292420}
   DeathHud: {fileID: 1968415012}
+  RadialHudCanvas: {fileID: 0}
+  RadialHealthBar: {fileID: 0}
+  RadialMaskIcon: {fileID: 0}
+  HorizontalHudCanvas: {fileID: 0}
+  HorizontalHealthBar: {fileID: 0}
+  HorizontalMaskIcon: {fileID: 0}
+  gameHudAltButton:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!4 &1640944645
 Transform:
   m_ObjectHideFlags: 0
@@ -64248,7 +64267,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
@@ -74116,6 +74134,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8171535324326012344, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.747
+      objectReference: {fileID: 0}
     - target: {fileID: 8171535325487749776, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_RootOrder
       value: 3

@@ -27,7 +27,7 @@ public class AntEnemy : EnemyBase
     {
         m_rigidbody.velocity = new Vector2(
             (int)m_facingDirection * m_speed,
-            0f
+            m_rigidbody.velocity.y
         );
     }
 
