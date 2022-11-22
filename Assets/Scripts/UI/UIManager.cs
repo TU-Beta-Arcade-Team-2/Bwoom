@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class UIManager : Singleton<UIManager>
 {
     public Animator m_Transition;
@@ -10,13 +11,19 @@ public class UIManager : Singleton<UIManager>
     public bool IN_GAME;
     [SerializeField] private GameObject m_pauseMenu;
 
-    public void QuitGame()
-    {
-        
-        Application.Quit();
-  
-    }
+    [SerializeField] private GameObject m_continueButton;
 
+    private void Start()
+    {
+        // Show the Continue game button only if we've never saved
+        if(SaveLoad.DoesSaveGameExist())
+        {
+            m_continueButton.SetActive(true);
+        }else
+        {
+            m_continueButton.SetActive(false);
+        }
+    }
 
     private void Update()
     {
@@ -38,15 +45,30 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-
-    //Level Loader Code from a brackeys tutorial - https://www.youtube.com/watch?v=CE9VOZivb3I
-
-    public void LoadNextLevel(string sceneName)
+    public void StartNewGame()
     {
-        StartCoroutine(LoadLevel(sceneName));
+        StartCoroutine(LoadLevel(StringConstants.NATURE_LEVEL));
     }
 
-    
+    public void ContinueGame()
+    {
+        SaveLoad.LoadGame();
+    }
+
+    public void ShowOptionsMenu()
+    {
+
+    }
+
+    public void PauseGame()
+    {
+
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 
     IEnumerator LoadLevel(string sceneName)
     {
@@ -56,6 +78,4 @@ public class UIManager : Singleton<UIManager>
 
         SceneManager.LoadScene(sceneName);
     }
-
-
 }

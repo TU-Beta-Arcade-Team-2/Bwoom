@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -68,6 +69,7 @@ public class PlayerStats : MonoBehaviour
     [Tooltip("Launches enemy")]
     public Vector3 m_ComboAttackEnemyLaunchVector3;
     public Vector3 m_ComboAttackPlayerLaunchVector3;
+    private Vector3 m_lastCheckpointPosition;
 
     #region Main Functions
     private void Start()
@@ -177,4 +179,34 @@ public class PlayerStats : MonoBehaviour
     }
 
     #endregion
+
+    // TODO: This probably isn't the best place to put this but hey ho...
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag(StringConstants.CHECKPOINT_STRING))
+        {
+            m_lastCheckpointPosition = collision.gameObject.transform.position;
+            SaveLoad.SaveGame(this);
+        }
+    }
+
+    public int GetPoints()
+    {
+        return m_totalPoints;
+    }
+
+    public int GetHealth()
+    {
+        return m_playerHealth;
+    }
+
+    public Vector3 GetLastCheckpointPosition()
+    {
+        return m_lastCheckpointPosition;
+    }
+
+    public string GetCurrentLevelName()
+    {
+        return SceneManager.GetActiveScene().name;
+    }
 }

@@ -7,6 +7,7 @@ public static class StringConstants
     public static string GROUND_TAG = "Ground";
     public static string WALL_TAG = "Wall";
     public static string END_OF_PLATFORM_TAG = "End_Of_Platform";
+    public static string CHECKPOINT_STRING = "Checkpoint";
     #endregion
 
     #region LAYER_STRINGS
@@ -42,4 +43,9 @@ public static class StringConstants
     public static string RHINO_HEADBUTT = "Headbutt";
     #endregion
     #endregion
+
+    #region SCENE_NAMES
+    public static string NATURE_LEVEL = "NatureLevel";
+    public static string WAR_LEVEL = "WarLevel";
+    #endregion 
 }
