@@ -6,31 +6,18 @@ using UnityEngine;
 
 public class SaveLoad
 {
-    private static string levelName;
+    private static string m_sceneName;
     private static Vector3 m_lastCheckpointPosition;
     private static int m_playerHealth;
     private static int m_playerPoints;
 
+    public static string SCENE_NAME => m_sceneName;
 
-    public static string LEVEL_NAME
-    {
-        get => levelName;
-    }
+    public static Vector3 LAST_CHECKPOINT_POSITION => m_lastCheckpointPosition;
 
-    public static Vector3 LAST_CHECKPOINT_POSITION
-    {
-        get => m_lastCheckpointPosition;
-    }
+    public static int PLAYER_HEALTH => m_playerHealth;
 
-    public static int PLAYER_HEALTH
-    {
-        get => m_playerHealth;
-    }
-
-    public static int PLAYER_POINTS
-    {
-        get => m_playerPoints;
-    }
+    public static int PLAYER_POINTS => m_playerPoints;
 
 
 #if PLATFORM_STANDALONE_WIN
@@ -83,7 +70,7 @@ public class SaveLoad
         FileStream inStream = new FileStream($"{bwoomDirectory}\\save.savegame", FileMode.Open, FileAccess.Read);
         StreamReader reader = new StreamReader(inStream);
 
-        levelName = reader.ReadLine();
+        m_sceneName = reader.ReadLine();
 
         // vec3s get written out as (x, y, z) so will need to do some processing to read the values
         string checkpointPosition = reader.ReadLine().Replace("(", string.Empty).Replace(")", string.Empty).Replace(" ", string.Empty);

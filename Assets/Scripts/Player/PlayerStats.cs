@@ -209,4 +209,9 @@ public class PlayerStats : MonoBehaviour
     {
         return SceneManager.GetActiveScene().name;
     }
+
+    public void SetHealth(int playerHealth)
+    {
+        m_playerHealth = playerHealth;
+    }
 }
