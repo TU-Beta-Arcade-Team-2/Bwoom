@@ -25,11 +25,11 @@ public class GameManager : Singleton<GameManager>
     {
         if (SHOULD_LOAD_STATS)
         {
-            InitialiseGame();
+            InitialisePlayer();
         }
     }
 
-    public void InitialiseGame()
+    public void InitialisePlayer()
     {
         m_player.gameObject.transform.position = SaveLoad.LAST_CHECKPOINT_POSITION;
         m_player.AddPoints(SaveLoad.PLAYER_POINTS);
