@@ -17,6 +17,7 @@ public class PlayerAttackHitbox : MonoBehaviour
     {
         m_shaderGUItext = Shader.Find("GUI/Text Shader");
         m_shaderSpritesDefault = Shader.Find("Sprites/Default");
+        m_hitstopManager = GameObject.Find("Hitstop Manager").GetComponent<HitstopManager>();
     }
 
     public void GetDamage(float damage)

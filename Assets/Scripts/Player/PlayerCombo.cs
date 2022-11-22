@@ -33,6 +33,7 @@ public class PlayerCombo : MonoBehaviour
         m_playerStats = GetComponent<PlayerStats>();
         m_comboState = eComboState.none;
         m_attackTimer = m_attackDelay;
+        m_hitstopManager = GameObject.Find("Hitstop Manager").GetComponent<HitstopManager>();
     }
 
     // Update is called once per frame

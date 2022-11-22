@@ -7425,10 +7425,10 @@ MonoBehaviour:
   HorizontalHealthBar: {fileID: 0}
   HorizontalMaskIcon: {fileID: 0}
   gameHudAltButton:
-    m_Name: 
+    m_Name: Game Hud Alt Button
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: 
+    m_Id: 91643a83-7dac-4a2f-82c0-457540ec143a
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []
