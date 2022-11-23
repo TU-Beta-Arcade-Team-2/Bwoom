@@ -1,108 +1,75 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerCombo : MonoBehaviour
 {
-    /// <summary> Player References </summary>
     private PlayerInput m_playerInput;
-    private PlayerStats m_playerStats;
-    private Rigidbody2D m_playerRigidbody;
 
-    [SerializeField] private float m_attackDelay;
     [SerializeField] private Animator m_playerAnimator;
     [SerializeField] private PlayerAttackHitbox m_playerAttackHitbox;
     [SerializeField] private HitstopManager m_hitstopManager;
     private float m_attackTimer;
 
-    private enum eComboState
+    [System.Serializable]
+    private struct Combo
     {
-        none,
-        attack1,
-        attack2,
-        attack3
+        public string AnimationName;
+        public float Damage;
+        public float Cooldown;
+        public Vector2 EnemyLaunchVector;
+        public Vector2 PlayerLaunchVector;
+        public float HitStopDuration;
     }
 
-    private eComboState m_comboState;
+    [SerializeField] private List<Combo> m_combos;
+    private int m_comboCounter = 0;
 
     // Start is called before the first frame update
     void Start()
     {
         m_playerInput = GetComponent<PlayerInput>();
-        m_playerStats = GetComponent<PlayerStats>();
-        m_comboState = eComboState.none;
-        m_attackTimer = m_attackDelay;
-        m_hitstopManager = GameObject.Find("Hitstop Manager").GetComponent<HitstopManager>();
+
+        BetterDebugging.Instance.Assert(m_hitstopManager != null, "REMEMBER TO ASSIGN THE HITSTOP MANAGER!");
+        BetterDebugging.Instance.Assert(m_playerAttackHitbox != null, "REMEMBER TO ASSIGN THE ATTACK HITBOX MANAGER!");
     }
 
     // Update is called once per frame
     void Update()
     {
-        Attack();
+        if (m_comboCounter != m_combos.Count)
+        {
+            // If the attack timer has exceeded the cooldown, we can attack again! 
+            if (m_attackTimer > m_combos[m_comboCounter].Cooldown)
+            {
+                Attack();
+            }
+        }
+        else
+        {
+            if (m_attackTimer > m_combos[m_comboCounter - 1].Cooldown)
+            {
+                m_comboCounter = 0;
+            }
+        }
 
-        Debug.Log("Combo State : " + m_comboState);
+        m_attackTimer += Time.deltaTime;
     }
+
     private void Attack()
     {
-        switch(m_comboState)
+        if (m_playerInput.actions["Attack"].triggered)
         {
-            case eComboState.none:
-                if (m_playerInput.actions["Attack"].triggered)
-                {
-                    m_comboState = eComboState.attack1;
-                    m_attackTimer = m_attackDelay;
-                    ComboAttack1();
-                }
-                break;
-            case eComboState.attack1:
-                if (m_playerInput.actions["Attack"].triggered && m_attackTimer > 0)
-                {
-                    m_comboState = eComboState.attack2;
-                    m_attackTimer = m_attackDelay;
-                    ComboAttack2();
-                }
-                break;
-            case eComboState.attack2:
-                if (m_playerInput.actions["Attack"].triggered && m_attackTimer > 0)
-                {
-                    m_comboState = eComboState.attack3;
-                    m_attackTimer = m_attackDelay;
-                    ComboAttack3();
-                }
-                break;
-        }
+            m_attackTimer = 0f;
 
-        m_attackTimer -= Time.deltaTime;
+            m_playerAttackHitbox.GetDamage(m_combos[m_comboCounter].Damage);
 
-        if (m_attackTimer <= 0)
-        {
-            m_comboState = eComboState.none;
+            // TODO: We should make this go through the player controller... PlayerController.setAniamtion(string)...
+            m_playerAnimator.Play(m_combos[m_comboCounter].AnimationName);
+            m_playerAttackHitbox.SetLaunchForce(m_combos[m_comboCounter].EnemyLaunchVector, m_combos[m_comboCounter].PlayerLaunchVector);
+            m_hitstopManager.SetHitstopDuration(m_combos[m_comboCounter].HitStopDuration);
+
+            m_comboCounter++;
         }
     }
-
-    private void ComboAttack1()
-    {
-        m_playerAttackHitbox.GetDamage(m_playerStats.m_ComboAttackDamage1);
-        m_playerAnimator.Play(StringConstants.COMBO_ATTACK_ONE);
-        m_playerAttackHitbox.SetLaunchForce(m_playerStats.m_ComboAttackEnemyLaunchVector1,m_playerStats.m_ComboAttackPlayerLaunchVector1);
-        m_hitstopManager.SetHitstopDuration(0.05f);
-    }
-
-    private void ComboAttack2()
-    {
-        m_playerAttackHitbox.GetDamage(m_playerStats.m_ComboAttackDamage2);
-        m_playerAnimator.Play(StringConstants.COMBO_ATTACK_TWO);
-        m_playerAttackHitbox.SetLaunchForce(m_playerStats.m_ComboAttackEnemyLaunchVector2, m_playerStats.m_ComboAttackPlayerLaunchVector2);
-        m_hitstopManager.SetHitstopDuration(0.05f);
-    }
-
-    private void ComboAttack3()
-    {
-        m_playerAttackHitbox.GetDamage(m_playerStats.m_ComboAttackDamage3);
-        m_playerAnimator.Play(StringConstants.COMBO_ATTACK_THREE);
-        m_playerAttackHitbox.SetLaunchForce(m_playerStats.m_ComboAttackEnemyLaunchVector3, m_playerStats.m_ComboAttackPlayerLaunchVector3);
-        m_hitstopManager.SetHitstopDuration(0.1f);
-    }
-
 }

@@ -187,12 +187,12 @@ public class PlayerController : MonoBehaviour
     private void Flip()
     {
         m_facingRight = !m_facingRight;
-        m_playerStats.m_ComboAttackEnemyLaunchVector1.x *= -1;
-        m_playerStats.m_ComboAttackEnemyLaunchVector2.x *= -1;
-        m_playerStats.m_ComboAttackEnemyLaunchVector3.x *= -1;
-        m_playerStats.m_ComboAttackPlayerLaunchVector1.x *= -1;
-        m_playerStats.m_ComboAttackPlayerLaunchVector2.x *= -1;
-        m_playerStats.m_ComboAttackPlayerLaunchVector3.x *= -1;
+        //m_playerStats.m_ComboAttackEnemyLaunchVector1.x *= -1;
+        //m_playerStats.m_ComboAttackEnemyLaunchVector2.x *= -1;
+        //m_playerStats.m_ComboAttackEnemyLaunchVector3.x *= -1;
+        //m_playerStats.m_ComboAttackPlayerLaunchVector1.x *= -1;
+        //m_playerStats.m_ComboAttackPlayerLaunchVector2.x *= -1;
+        //m_playerStats.m_ComboAttackPlayerLaunchVector3.x *= -1;
         transform.Rotate(0f, 180f, 0f);
     }
 

@@ -1588,6 +1588,17 @@ Transform:
   m_Father: {fileID: 1085843917}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &249204499 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6904529791070064733, guid: 97820386ac96f2b4986d200277480b6f, type: 3}
+  m_PrefabInstance: {fileID: 1129252225}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c6d691c0d35dce46b5916fefb391043, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &251962728
 GameObject:
   m_ObjectHideFlags: 0
@@ -11574,6 +11585,78 @@ PrefabInstance:
     - target: {fileID: 2145512435, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_uppercutJumpHeight
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_hitstopManager
+      value: 
+      objectReference: {fileID: 249204499}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[0].Damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[1].Damage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[2].Damage
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[0].Cooldown
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[1].Cooldown
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[2].Cooldown
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[0].AnimationName
+      value: ComboAttack1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[1].AnimationName
+      value: ComboAttack2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[2].AnimationName
+      value: ComboAttack3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[0].HitStopDuration
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[1].HitStopDuration
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[2].HitStopDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[0].EnemyLaunchVector.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[0].EnemyLaunchVector.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[2].EnemyLaunchVector.x
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[2].EnemyLaunchVector.y
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_pointText
