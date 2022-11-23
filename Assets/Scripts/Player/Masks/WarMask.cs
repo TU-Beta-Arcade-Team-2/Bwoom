@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class WarMask : MaskClass
 {
-    [SerializeField] private float m_jumpHeight = 10;
+    [SerializeField] private float m_uppercutJumpHeight;
     public bool m_IsJumped;
     [SerializeField] private Rigidbody2D m_rb;
     [SerializeField] private Animator m_attackAnim;
@@ -18,18 +18,12 @@ public class WarMask : MaskClass
 
     private void OnEnable()
     {
-        m_maskRenderer = GameObject.Find("Mask").GetComponent<SpriteRenderer>();
-
-        m_maskRenderer.sprite = m_maskSprite;
-
-        m_playerController.MovementSpeed *= m_movementMultiplier;
-        m_playerStats.m_AttackDamage *= m_attackMultiplier;
-        m_playerStats.m_DamageResistance = m_damageResistanceMultiplier;
+        InitMask();
     }
 
     private void OnDisable()
     {
-        m_playerController.SetDefaultValues();
+        m_playerStats.ResetPlayerStats();
     }
 
     //Warmask special attack, an uppercut that sends the player and enemies up in the air
@@ -40,7 +34,7 @@ public class WarMask : MaskClass
             m_IsJumped = true;
 
             m_rb.velocity = new Vector2(m_rb.velocity.x, 0);
-            m_rb.AddForce(new Vector2(0, m_jumpHeight), ForceMode2D.Impulse);
+            m_rb.AddForce(new Vector2(0, m_uppercutJumpHeight), ForceMode2D.Impulse);
             m_attackAnim.Play("Warmask Special");
         }
     }

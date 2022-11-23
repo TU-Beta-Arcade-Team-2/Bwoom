@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Controller : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     /// <summary> Player References </summary>
     private PlayerInput m_playerInput;
@@ -27,11 +27,8 @@ public class Controller : MonoBehaviour
     [SerializeField] private LayerMask m_groundLayer;
     [Space(5)]
 
-    [Header("Speed Variables")]
-    /// <summary> Player Movement Stats </summary>
-    public float MovementSpeed;
     [SerializeField] private float m_fallingSpeed;
-    [SerializeField] private float m_jumpHeight;
+
     [Range(0, 1)]
     [SerializeField] private float m_dampingNormal = 0.5f;
     [Range(0, 1)]
@@ -56,6 +53,9 @@ public class Controller : MonoBehaviour
     public bool doubleJumpOn;
     public bool healingOn;
     [Space(5)]
+
+    private float m_jumpHeight;
+    private float m_movementSpeed;
 
 #if WALL_SLIDE
     [Header("Wall Jumping Values")]
@@ -82,7 +82,7 @@ public class Controller : MonoBehaviour
 
     [SerializeField] private eMasks m_masks;
 
-#region Main Functions
+    #region Main Functions
     // Start is called before the first frame update
     private void Start()
     {
@@ -93,17 +93,10 @@ public class Controller : MonoBehaviour
 
         m_rigidbody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
-        SetDefaultValues();
+
         //set default mask
         RemoveMasks();
         m_warMask.enabled = true;
-    }
-
-    public void SetDefaultValues()
-    {
-        MovementSpeed = m_playerStats.m_CurrentMovementSpeed;
-        m_playerStats.m_AttackDamage = m_playerStats.m_DefaultAttackDamage;
-        m_jumpHeight = m_playerStats.m_CurrentJumpHeight;
     }
 
     private void Update()
@@ -141,26 +134,6 @@ public class Controller : MonoBehaviour
         }
 
         m_animator.SetFloat("Movement", Mathf.Abs(m_playerInput.actions["Horizontal"].ReadValue<float>()));
-
-        /* COMMENTING THIS OUT NOW TO MAKE THE ANIMATION READING CLEANER, MASK TRIGGERES ARE NOW SET IN THE MASKINPUTS FUNCTION - DAN >:D
-        // HACK TO GET THE WALKING AND IDLE ANIMATIONS WORKING! REMOVE THIS AND DO PROPERLY AFTER THE CA MEETING PLEASE - TOM :)
-        if (m_playerInput.actions["Horizontal"].ReadValue<float>() == 0)
-        {
-            m_animator.SetTrigger(StringConstants.PLAYER_RUN);
-
-            m_animator.SetTrigger(m_masks == eMasks.War
-                ? StringConstants.WAR_MASK_RUN
-                : StringConstants.NATURE_MASK_RUN);
-        }
-        
-        if (m_playerInput.actions["Horizontal"].ReadValue<float>() != 0)
-        {
-            m_animator.SetTrigger(StringConstants.PLAYER_IDLE);
-
-            m_animator.SetTrigger(m_masks == eMasks.War
-                ? StringConstants.WAR_MASK_IDLE
-                : StringConstants.NATURE_MASK_IDLE);
-        }*/
     }
 
     // Update is called once per frame
@@ -169,15 +142,15 @@ public class Controller : MonoBehaviour
         Movement();
     }
 
-#endregion
+    #endregion
 
-#region Basic Movement Functions
+    #region Basic Movement Functions
     private void Movement()
     {
         m_rigidbody.velocity = new Vector2(HorizontalDrag(), m_rigidbody.velocity.y);
 
         Vector2 clamper = m_rigidbody.velocity;
-        clamper.x = Mathf.Clamp(clamper.x, -MovementSpeed, MovementSpeed);
+        clamper.x = Mathf.Clamp(clamper.x, -m_movementSpeed, m_movementSpeed);
         clamper.y = Mathf.Clamp(clamper.y, -m_fallingSpeed, m_jumpHeight);
 
         m_rigidbody.velocity = clamper;
@@ -193,22 +166,22 @@ public class Controller : MonoBehaviour
         float horizontalVelocity = m_rigidbody.velocity.x;
         horizontalVelocity += m_playerInput.actions["Horizontal"].ReadValue<float>();
 
+        float subValue;
+
         if (Mathf.Abs(m_playerInput.actions["Horizontal"].ReadValue<float>()) < 0.01f)
         {
-            horizontalVelocity *= Mathf.Pow(MovementSpeed - m_dampingStop, Time.fixedDeltaTime * -m_drag);
+            subValue = m_dampingStop;
         }
-            
         else if (Mathf.Sign(m_playerInput.actions["Horizontal"].ReadValue<float>()) != Mathf.Sign(horizontalVelocity))
         {
-            horizontalVelocity *= Mathf.Pow(MovementSpeed - m_dampingTurn, Time.fixedDeltaTime * -m_drag);
+            subValue = m_dampingTurn;
         }
-
         else
         {
-            horizontalVelocity *= Mathf.Pow(MovementSpeed - m_dampingNormal, Time.fixedDeltaTime * -m_drag);
+            subValue = m_dampingNormal;
         }
 
-        return horizontalVelocity;
+        return horizontalVelocity * Mathf.Pow(m_movementSpeed - subValue, Time.fixedDeltaTime * -m_drag);
     }
 
     private void Flip()
@@ -223,9 +196,9 @@ public class Controller : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
     }
 
-#endregion
+    #endregion
 
-#region Jumping Functions
+    #region Jumping Functions
 
     private void Jumping()
     {
@@ -258,9 +231,9 @@ public class Controller : MonoBehaviour
             else
             {
                 m_jumpInputTimer -= Time.fixedDeltaTime;
-            }  
-        } 
-        
+            }
+        }
+
         if (!IsGrounded())
         {
             m_holdTimer += Time.fixedDeltaTime;
@@ -300,17 +273,17 @@ public class Controller : MonoBehaviour
             boxCollider.sharedMaterial = slipperyMat;
             Debug.Log("AIRBORNE");
             return false;
-            
+
         }
 
         Debug.Log("GROUNDED");
-        
+
         if (m_ungroundedTimer > 0)
         {
             m_rigidbody.sharedMaterial = stickyMat;
             boxCollider.sharedMaterial = stickyMat;
         }
-        
+
         m_ungroundedTimer = 0.2f;
         m_holdTimer = 0f;
         m_warMask.m_IsJumped = false;
@@ -318,9 +291,9 @@ public class Controller : MonoBehaviour
         return true;
     }
 
-#endregion
+    #endregion
 
-#region Mask Input Function
+    #region Mask Input Function
     private void MaskInputs()
     {
         if (m_playerInput.actions["WarMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
@@ -399,9 +372,9 @@ public class Controller : MonoBehaviour
         m_warMask.enabled = false;
         m_natureMask.enabled = false;
     }
-#endregion
+    #endregion
 
-#region Extra Movement Functions
+    #region Extra Movement Functions
 #if WALL_SLIDE
     private void WallSlide()
     {
@@ -413,7 +386,7 @@ public class Controller : MonoBehaviour
             m_wallSliding = false;
     }
 #endif
-    
+
     private void DoubleJump()
     {
         if (!JumpAvaliable() && m_playerInput.actions["Jump"].triggered && !m_doubleJumped)
@@ -435,5 +408,11 @@ public class Controller : MonoBehaviour
         m_rigidbody.AddForce(force, ForceMode2D.Impulse);
     }
 
-#endregion
+    #endregion
+
+    public void SetMovementValues(PlayerStats.Stats stats)
+    {
+        m_jumpHeight = stats.JumpHeight;
+        m_movementSpeed = stats.MovementSpeed;
+    }
 }

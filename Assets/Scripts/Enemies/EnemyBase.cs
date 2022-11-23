@@ -98,7 +98,7 @@ public abstract class EnemyBase : MonoBehaviour
             BetterDebugging.eDebugLevel.Message
         );
 
-        m_playerStats.TakeDMG(damageAmount);
+        m_playerStats.TakeDamage(damageAmount);
     }
 
     [ExecuteInEditMode]
