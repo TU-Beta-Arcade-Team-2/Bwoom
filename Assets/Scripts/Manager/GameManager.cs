@@ -35,4 +35,9 @@ public class GameManager : Singleton<GameManager>
         m_player.AddPoints(SaveLoad.PLAYER_POINTS);
         m_player.SetHealth(SaveLoad.PLAYER_HEALTH);
     }
+
+    public void PlayerDied()
+    {
+        BetterDebugging.Instance.DebugLog("LOL", BetterDebugging.eDebugLevel.Error);
+    }
 }

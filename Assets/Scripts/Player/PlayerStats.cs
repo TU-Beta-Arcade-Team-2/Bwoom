@@ -6,18 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
-    private LevelManager m_lvlManager;
-    private PlayerInput m_playerInput;
     [SerializeField] private PlayerController m_playerController;
-    private Animator m_cameraAnim;
-
-    private enum eMasks
-    {
-        warMask,
-        natureMask,
-        seaMask,
-        energyMask
-    }
 
     [Header("Health Variables")]
     [SerializeField] private int m_playerHealth;
@@ -99,10 +88,6 @@ public class PlayerStats : MonoBehaviour
         m_pointText.text = m_totalPoints.ToString();
         MaskIconImage.sprite = WarMaskIcon;
 
-
-        m_lvlManager = FindObjectOfType<LevelManager>();
-        m_cameraAnim = Camera.main.gameObject.GetComponent<Animator>();
-        m_playerInput = GetComponent<PlayerInput>();
         m_frenzyTimer = m_frenzyModeDefaultTimer;
 
         DeactivateFrenzyMode();
@@ -119,16 +104,17 @@ public class PlayerStats : MonoBehaviour
         m_playerHealth -= actualDamage;
         m_radialHealthBar.fillAmount = m_playerHealth / (float)m_maxPlayerHealth;
 
-        m_cameraAnim.SetTrigger("LightShake");
+        // TODO: Tell Cinemachine to shake! m_cameraAnim.SetTrigger("LightShake");
 
-        if (m_playerHealth <= 0)
+        if (m_playerHealth > 0)
         {
-            m_lvlManager.Death();
-            Destroy(gameObject);
-            return;
+            // TODO: Play hurt animation      
         }
-
-        //Play hurt animation
+        else
+        {
+            GameManager.Instance.PlayerDied();
+            Destroy(gameObject);
+        }
     }
 
     public void HealPlayer(int healAmount)
@@ -138,7 +124,7 @@ public class PlayerStats : MonoBehaviour
         m_playerHealth = Mathf.Clamp(m_playerHealth + healAmount, 0, m_maxPlayerHealth);
         m_radialHealthBar.fillAmount = m_playerHealth / (float)m_maxPlayerHealth;
 
-        //Play heal animation
+        // TODO: Play heal animation
     }
     #endregion
 
