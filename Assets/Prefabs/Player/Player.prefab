@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e452f42ee9de544a42ce5b5d73f7a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerController: {fileID: 8171535325487749789}
+  m_playerPlayerController: {fileID: 0}
   m_warMask: {fileID: 2145512435}
   m_natureMask: {fileID: 2145512434}
 --- !u!1 &1959386309
@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e452f42ee9de544a42ce5b5d73f7a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerController: {fileID: 8171535325487749789}
+  m_playerPlayerController: {fileID: 0}
   m_warMask: {fileID: 2145512435}
   m_natureMask: {fileID: 2145512434}
 --- !u!1 &517762481085286622
@@ -672,7 +672,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8171535324326012345}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.31, z: 0}
+  m_LocalPosition: {x: 0, y: -0.747, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -820,7 +820,7 @@ Transform:
   m_GameObject: {fileID: 8171535325487749780}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.89, y: 1.67, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8171535324326012344}
@@ -946,6 +946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a983bf2f61e66f419a6d1ad03d2d04e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_playerController: {fileID: 8171535325487749789}
   m_playerHealth: 100
   m_maxPlayerHealth: 100
   m_totalPoints: 0
@@ -954,28 +955,18 @@ MonoBehaviour:
   MaskIconImage: {fileID: 0}
   WarMaskIcon: {fileID: 21300000, guid: 1dc523e2ac4e5144bb17e7414d4ca156, type: 3}
   NatureMaskIcon: {fileID: 21300000, guid: 204b47e265b136f4288188c51ca5ae15, type: 3}
-  m_DefaultMovementSpeed: 5
-  m_DefaultJumpHeight: 10
-  m_DefaultAttackDamage: 2
-  m_CurrentMovementSpeed: 5
-  m_CurrentJumpHeight: 10
-  m_AttackDamage: 4
-  m_DamageResistance: 2
+  m_defaultStats:
+    MovementSpeed: 7.5
+    JumpHeight: 10
+    AttackDamage: 4
+    DamageResistance: 2
+  m_frenzyStats:
+    MovementSpeed: 15
+    JumpHeight: 13
+    AttackDamage: 8
+    DamageResistance: 4
   m_frenzyModeDefaultTimer: 3
   m_frenzyTimerIncrement: 0.1
-  m_frenzySpeedMultiplier: 2
-  m_frenzyAttackMultiplier: 2
-  m_frenzyJumpMultiplier: 1.2
-  m_frenzyAttackSpeedMultiplier: 1
-  m_ComboAttackDamage1: 0
-  m_ComboAttackEnemyLaunchVector1: {x: 0, y: 0, z: 0}
-  m_ComboAttackPlayerLaunchVector1: {x: 0, y: 0, z: 0}
-  m_ComboAttackDamage2: 0
-  m_ComboAttackEnemyLaunchVector2: {x: 0, y: 0, z: 0}
-  m_ComboAttackPlayerLaunchVector2: {x: 0, y: 0, z: 0}
-  m_ComboAttackDamage3: 0
-  m_ComboAttackEnemyLaunchVector3: {x: 0, y: 0, z: 0}
-  m_ComboAttackPlayerLaunchVector3: {x: 0, y: 0, z: 0}
 --- !u!114 &8171535325487749789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -994,9 +985,7 @@ MonoBehaviour:
   m_groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  MovementSpeed: 7.5
   m_fallingSpeed: 10
-  m_jumpHeight: 10
   m_dampingNormal: 0.5
   m_dampingStop: 0.2
   m_dampingTurn: 0.75
@@ -1028,6 +1017,7 @@ MonoBehaviour:
   m_playerController: {fileID: 8171535325487749789}
   m_maskSprite: {fileID: 1105057892, guid: a2882edefa6cc1943ba5ee678be0dd0d, type: 3}
   m_movementMultiplier: 2
+  m_jumpHeightMultiplier: 1.8
   m_attackMultiplier: 1
   m_damageResistanceMultiplier: 1.1
   m_specialAttackDamage: 2
@@ -1050,10 +1040,11 @@ MonoBehaviour:
   m_playerController: {fileID: 8171535325487749789}
   m_maskSprite: {fileID: -1050699073, guid: 3c11c7e9b47067e47bd748609115ee9a, type: 3}
   m_movementMultiplier: 0.8
+  m_jumpHeightMultiplier: 1.2
   m_attackMultiplier: 2
   m_damageResistanceMultiplier: 2
   m_specialAttackDamage: 2
-  m_jumpHeight: 10
+  m_uppercutJumpHeight: 20
   m_IsJumped: 0
   m_rb: {fileID: 8171535325487749779}
   m_attackAnim: {fileID: 924812939}
@@ -1070,7 +1061,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e04e4457f98dd0459b9f5dd49144667, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_attackDelay: 5
   m_playerAnimator: {fileID: 460804608}
   m_playerAttackHitbox: {fileID: 1564724982}
   m_hitstopManager: {fileID: 0}
+  m_combos:
+  - AnimationName: ComboAttack1
+    Damage: 2
+    Cooldown: 0.2
+    EnemyLaunchVector: {x: 10, y: 5}
+    PlayerLaunchVector: {x: 0, y: 0}
+    HitStopDuration: 0.05
+  - AnimationName: ComboAttack2
+    Damage: 2
+    Cooldown: 0.2
+    EnemyLaunchVector: {x: 0, y: 0}
+    PlayerLaunchVector: {x: 0, y: 0}
+    HitStopDuration: 0.05
+  - AnimationName: ComboAttack3
+    Damage: 6
+    Cooldown: 0.5
+    EnemyLaunchVector: {x: 50, y: 50}
+    PlayerLaunchVector: {x: 0, y: 0}
+    HitStopDuration: 0.1
