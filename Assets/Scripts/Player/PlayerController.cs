@@ -1,4 +1,4 @@
-#undef WALL_SLIDE
+#undef UNUSED_ABILITES
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -45,19 +45,24 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private BoxCollider2D boxCollider;
     [Space(5)]
 
+#if UNUSED_ABILITIES
     [Header("Ability Bools")]
     /// <summary> Abilitiy Booleans </summary>
     public bool wallSlideOn;
     public bool groundPoundOn;
     public bool shootingOn;
-    public bool doubleJumpOn;
     public bool healingOn;
     [Space(5)]
+#endif
+    public bool doubleJumpOn;
 
+
+    [SerializeField] private float m_airTime;
+    [SerializeField] private float m_inputTime;
     private float m_jumpHeight;
     private float m_movementSpeed;
 
-#if WALL_SLIDE
+#if UNUSED_ABILITES
     [Header("Wall Jumping Values")]
     /// <summary> Wall Jump Values </summary>
     [SerializeField] private float m_xWallForce;
@@ -82,7 +87,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private eMasks m_masks;
 
-    #region Main Functions
+#region Main Functions
     // Start is called before the first frame update
     private void Start()
     {
@@ -101,18 +106,16 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        ///<Note> An exit function will need to made when switching on and off the booleans so the variables return back to default
-        /// values that may cause weird behaviours in future </Note>
         Jumping();
         SpecialAttack();
         MaskInputs();
 
-#if WALL_SLIDE
+#if UNUSED_ABILITES
         if (wallSlideOn)
         {
             WallSlide();
         }
-#endif
+
         if (groundPoundOn)
         {
 
@@ -132,6 +135,7 @@ public class PlayerController : MonoBehaviour
         {
 
         }
+#endif
 
         m_animator.SetFloat("Movement", Mathf.Abs(m_playerInput.actions["Horizontal"].ReadValue<float>()));
     }
@@ -142,9 +146,9 @@ public class PlayerController : MonoBehaviour
         Movement();
     }
 
-    #endregion
+#endregion
 
-    #region Basic Movement Functions
+#region Basic Movement Functions
     private void Movement()
     {
         m_rigidbody.velocity = new Vector2(HorizontalDrag(), m_rigidbody.velocity.y);
@@ -196,22 +200,22 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
     }
 
-    #endregion
+#endregion
 
-    #region Jumping Functions
+#region Jumping Functions
 
     private void Jumping()
     {
         if (m_playerInput.actions["Jump"].triggered)
         {
-            m_jumpInputTimer = 0.2f;
+            m_jumpInputTimer = m_airTime;
         }
 
 
         if (m_jumpInputTimer > 0)
         {
             if (JumpAvaliable()
-#if WALL_SLIDE
+#if UNUSED_ABILITES
                 && !m_wallSliding
 #endif
                 )
@@ -221,7 +225,7 @@ public class PlayerController : MonoBehaviour
 
                 m_ungroundedTimer = 0;
             }
-#if WALL_SLIDE
+#if UNUSED_ABILITES
             else if (m_wallSliding)
             {
                 m_rigidbody.velocity = new Vector2(m_xWallForce * -m_playerInput.actions["Horizontal"].ReadValue<float>(), m_yWallForce);
@@ -244,9 +248,9 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (m_playerInput.actions["Jump"].ReadValue<float>() == 0 || m_holdTimer > 0.5f)
+        if (m_playerInput.actions["Jump"].ReadValue<float>() == 0 || m_holdTimer > m_inputTime)
         {
-#if WALL_SLIDE
+#if UNUSED_ABILITES
             if (!m_wallSliding)
             {
                 m_rigidbody.AddForce(new Vector2(0, -0.5f), ForceMode2D.Impulse);
@@ -291,9 +295,9 @@ public class PlayerController : MonoBehaviour
         return true;
     }
 
-    #endregion
+#endregion
 
-    #region Mask Input Function
+#region Mask Input Function
     private void MaskInputs()
     {
         if (m_playerInput.actions["WarMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
@@ -372,10 +376,10 @@ public class PlayerController : MonoBehaviour
         m_warMask.enabled = false;
         m_natureMask.enabled = false;
     }
-    #endregion
+#endregion
 
-    #region Extra Movement Functions
-#if WALL_SLIDE
+#region Extra Movement Functions
+#if UNUSED_ABILITES
     private void WallSlide()
     {
         m_isTouchingFront = Physics2D.OverlapCircle(m_frontCheck.position, 0.1f, m_wallLayer);
@@ -408,7 +412,7 @@ public class PlayerController : MonoBehaviour
         m_rigidbody.AddForce(force, ForceMode2D.Impulse);
     }
 
-    #endregion
+#endregion
 
     public void SetMovementValues(PlayerStats.Stats stats)
     {
