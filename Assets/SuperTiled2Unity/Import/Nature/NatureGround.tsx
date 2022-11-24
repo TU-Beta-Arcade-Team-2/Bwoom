@@ -20,4 +20,9 @@
  <tile id="16" class="Dirt_Block_4"/>
  <tile id="17" class="Dirt_Block_5"/>
  <tile id="18" class="Dirt_Decal"/>
+ <tile id="19" class="Inward_Corner_1"/>
+ <tile id="20" class="Inward_Corner_2"/>
+ <tile id="21" class="Nature_Platform_CornerL"/>
+ <tile id="22" class="Nature_Platform"/>
+ <tile id="23" class="Nature_Platform_CornerR"/>
 </tileset>

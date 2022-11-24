@@ -8,7 +8,7 @@ public class GameManager : Singleton<GameManager>
 #if PLATFORM_STANDALONE_WIN
     private const int m_frameRate = 144;
 #elif UNITY_ANDROID
-    public int frameRate = 30;
+    public int m_frameRate = 30;
 #endif
 
     public static bool SHOULD_LOAD_STATS = false;
