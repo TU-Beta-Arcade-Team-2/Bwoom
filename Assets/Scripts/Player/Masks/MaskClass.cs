@@ -7,6 +7,7 @@ public abstract class MaskClass : MonoBehaviour
     [SerializeField] protected PlayerStats m_playerStats;
     [SerializeField] protected Controller m_playerController;
     [SerializeField] protected Sprite m_maskSprite;
+    [SerializeField] protected Animator m_playerAnimator;
     [SerializeField] protected float m_movementMultiplier;
     [SerializeField] protected float m_attackMultiplier;
     [SerializeField] protected float m_damageResistanceMultiplier;

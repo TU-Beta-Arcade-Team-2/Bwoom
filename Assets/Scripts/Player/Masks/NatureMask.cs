@@ -27,6 +27,7 @@ public class NatureMask : MaskClass
 
     public override void SpecialAttack()
     {
+        m_playerAnimator.Play("NatureMask_Special");
         Instantiate(m_projectile, m_projectileSpawner.position, transform.rotation);
     }
 }
