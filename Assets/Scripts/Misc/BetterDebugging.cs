@@ -1,4 +1,4 @@
-#define INSTANTIATE_INGAME_TEXT
+#undef INSTANTIATE_INGAME_TEXT
 // #undef INSTANTIATE_INGAME_TEXT
 using System;
 using System.Collections;
