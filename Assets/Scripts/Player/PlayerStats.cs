@@ -98,7 +98,7 @@ public class PlayerStats : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.PlayerDied();
+            GameManager.Instance.Death();
             Destroy(gameObject);
         }
     }
