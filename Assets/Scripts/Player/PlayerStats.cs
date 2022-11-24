@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
@@ -10,17 +11,33 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private PlayerController m_playerController;
 
     [Header("Health Variables")]
-    [SerializeField] private int m_playerHealth;
-    [SerializeField] private int m_maxPlayerHealth;
-    [Space(10)]
+    [SerializeField] private int m_maxHealth;
+    [SerializeField] private int m_health;
 
-    [Header("Game HUD Variables")]
-    [SerializeField] private int m_totalPoints;
-    [SerializeField] private TextMeshProUGUI m_pointText;
-    [SerializeField] private Image m_radialHealthBar;
-    public Image MaskIconImage;
-    public Sprite WarMaskIcon;
-    public Sprite NatureMaskIcon;
+    [HideInInspector]
+    public int Health
+    {
+        get => m_health;
+        set
+        {
+            GameHUD.Instance.UpdateHealthBar(value, m_maxHealth);
+            m_health = value;
+        }
+    }
+
+    [SerializeField] private int m_points;
+
+    [HideInInspector]
+    public int Points
+    {
+        get => m_points;
+        set
+        {
+            GameHUD.Instance.UpdatePoints(value);
+            m_points = value;
+        }
+    }
+
 
     [System.Serializable]
     public class Stats
@@ -69,10 +86,9 @@ public class PlayerStats : MonoBehaviour
         m_currentStats = m_defaultStats;
 
 
-        m_playerHealth = Mathf.Clamp(m_playerHealth, 0, m_maxPlayerHealth);
-        m_radialHealthBar.fillAmount = m_playerHealth / (float)m_maxPlayerHealth;
-        m_pointText.text = m_totalPoints.ToString();
-        MaskIconImage.sprite = WarMaskIcon;
+        Health = Mathf.Clamp(m_health, 0, m_maxHealth);
+        Points = 0;
+        
 
         m_frenzyTimer = m_frenzyModeDefaultTimer;
 
@@ -87,12 +103,11 @@ public class PlayerStats : MonoBehaviour
 
         BetterDebugging.Instance.DebugLog("Actual Damage : " + actualDamage, BetterDebugging.eDebugLevel.Message);
 
-        m_playerHealth -= actualDamage;
-        m_radialHealthBar.fillAmount = m_playerHealth / (float)m_maxPlayerHealth;
+        Health -= actualDamage;
 
         // TODO: Tell Cinemachine to shake! m_cameraAnim.SetTrigger("LightShake");
 
-        if (m_playerHealth > 0)
+        if (Health > 0)
         {
             // TODO: Play hurt animation      
         }
@@ -107,8 +122,7 @@ public class PlayerStats : MonoBehaviour
     {
         Debug.Log("HEAL TEST");
 
-        m_playerHealth = Mathf.Clamp(m_playerHealth + healAmount, 0, m_maxPlayerHealth);
-        m_radialHealthBar.fillAmount = m_playerHealth / (float)m_maxPlayerHealth;
+        Health = Mathf.Clamp(m_health + healAmount, 0, m_maxHealth);
 
         // TODO: Play heal animation
     }
@@ -116,8 +130,7 @@ public class PlayerStats : MonoBehaviour
 
     public void AddPoints(int pointsToAdd)
     {
-        m_totalPoints += pointsToAdd;
-        m_pointText.text = m_totalPoints.ToString();
+        Points += pointsToAdd;
     }
 
     #region Frenzy Functions
@@ -157,18 +170,6 @@ public class PlayerStats : MonoBehaviour
 
     #endregion
 
-    #region Debug
-
-    public void Switch(Image healthBar, Image maskIcon)
-    {
-        m_radialHealthBar = healthBar;
-        MaskIconImage = maskIcon;
-        m_radialHealthBar.fillAmount = m_playerHealth / (float)m_maxPlayerHealth;
-        MaskIconImage.sprite = WarMaskIcon;
-    }
-
-    #endregion
-
     // TODO: This probably isn't the best place to put this but hey ho...
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -181,12 +182,12 @@ public class PlayerStats : MonoBehaviour
 
     public int GetPoints()
     {
-        return m_totalPoints;
+        return m_points;
     }
 
     public int GetHealth()
     {
-        return m_playerHealth;
+        return m_health;
     }
 
     public Vector3 GetLastCheckpointPosition()
@@ -201,7 +202,7 @@ public class PlayerStats : MonoBehaviour
 
     public void SetHealth(int playerHealth)
     {
-        m_playerHealth = playerHealth;
+        m_health = playerHealth;
     }
 
     public void MultiplyStats(Stats maskMultiplier)
