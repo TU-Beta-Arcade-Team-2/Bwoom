@@ -2885,6 +2885,7 @@ MonoBehaviour:
   m_masterSlider: {fileID: 1459092648}
   m_musicSlider: {fileID: 1566944562}
   m_sfxSlider: {fileID: 1034314096}
+  m_videoSettingsButton: {fileID: 469248397}
   m_windowModeDropdown: {fileID: 1315651873}
   m_screenResolutionDropdown: {fileID: 1645728241}
   m_colourBlindnessDropdown: {fileID: 456906987}

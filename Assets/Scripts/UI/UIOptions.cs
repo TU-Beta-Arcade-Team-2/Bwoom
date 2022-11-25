@@ -21,6 +21,7 @@ public class UIOptions : MonoBehaviour
     [SerializeField] private Slider m_sfxSlider;
 
     [Header("VIDEO OPTIONS")]
+    [SerializeField] private GameObject m_videoSettingsButton;
     [SerializeField] private TMP_Dropdown m_windowModeDropdown;
     [SerializeField] private TMP_Dropdown m_screenResolutionDropdown;
 
@@ -41,6 +42,13 @@ public class UIOptions : MonoBehaviour
         LoadOptions();
 
         ShowAudioOptions();
+
+        // Only show the video button on windows
+#if UNITY_STANDALONE_WIN
+        m_videoSettingsButton.SetActive(true);
+#else
+        m_videoSettingsButton.SetActive(false);
+#endif
     }
 
     public void ShowAudioOptions()
@@ -87,12 +95,14 @@ public class UIOptions : MonoBehaviour
         m_audioPanel.SetActive(true);
     }
 
+#if UNITY_STANDALONE_WIN
     public void OnVideoButtonPress()
     {
         m_panelTitleText.text = StringConstants.VIDEO_SETTINGS;
         HideAllPanels();
         m_videoPanel.SetActive(true);
     }
+#endif
 
     public void OnControlsButtonPress()
     {
