@@ -13,6 +13,8 @@ public class UIManager : Singleton<UIManager>
 
     [SerializeField] private GameObject m_continueButton;
 
+    [SerializeField] private GameObject m_optionsMenu;
+
     private void Start()
     {
         // Show the Continue game button only if we've never saved
