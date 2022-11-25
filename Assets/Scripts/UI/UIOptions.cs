@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
 public class UIOptions : MonoBehaviour
@@ -25,6 +26,11 @@ public class UIOptions : MonoBehaviour
 
     [Header("ACCESSIBILITY OPTIONS")]
     [SerializeField] private TMP_Dropdown m_colourBlindnessDropdown;
+
+    [SerializeField] private PostProcessVolume m_achromaVolume; 
+    [SerializeField] private PostProcessVolume m_protoVolume;
+    [SerializeField] private PostProcessVolume m_deuteroVolume;
+    [SerializeField] private PostProcessVolume m_tritoVolume;
 
 
 

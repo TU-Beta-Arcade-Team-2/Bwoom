@@ -34,6 +34,8 @@ public class Options
 
     public enum eColourBlindness
     {
+        None,
+        Achromo,
         Proto,
         Deutero,
         Trito,
