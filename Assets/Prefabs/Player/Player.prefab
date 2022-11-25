@@ -533,6 +533,86 @@ MonoBehaviour:
   m_hitstopManager: {fileID: 0}
   m_shaderGUItext: {fileID: 0}
   m_shaderSpritesDefault: {fileID: 0}
+--- !u!1 &6294705108214134167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2227143387687848872}
+  - component: {fileID: 654244637388026072}
+  - component: {fileID: 5716718900548861630}
+  m_Layer: 8
+  m_Name: Hurtbox
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2227143387687848872
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6294705108214134167}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8171535325487749776}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &654244637388026072
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6294705108214134167}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!50 &5716718900548861630
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6294705108214134167}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &7477433693578160932
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,7 +884,7 @@ GameObject:
   - component: {fileID: 2145512434}
   - component: {fileID: 2145512435}
   - component: {fileID: 2145512438}
-  m_Layer: 8
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -828,6 +908,7 @@ Transform:
   - {fileID: 8171535325410661210}
   - {fileID: 1959386310}
   - {fileID: 924812938}
+  - {fileID: 2227143387687848872}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -947,14 +1028,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerController: {fileID: 8171535325487749789}
-  m_playerHealth: 100
-  m_maxPlayerHealth: 100
-  m_totalPoints: 0
-  m_pointText: {fileID: 0}
-  m_radialHealthBar: {fileID: 0}
-  MaskIconImage: {fileID: 0}
-  WarMaskIcon: {fileID: 21300000, guid: 1dc523e2ac4e5144bb17e7414d4ca156, type: 3}
-  NatureMaskIcon: {fileID: 21300000, guid: 204b47e265b136f4288188c51ca5ae15, type: 3}
+  m_maxHealth: 0
+  m_health: 0
+  m_points: 0
   m_defaultStats:
     MovementSpeed: 7.5
     JumpHeight: 10
@@ -993,11 +1069,9 @@ MonoBehaviour:
   slipperyMat: {fileID: 6200000, guid: bd6019b2ba952e44bb670fc8e4239a6e, type: 2}
   stickyMat: {fileID: 6200000, guid: f58e38f3fbbe38d44bbfdbae03021fed, type: 2}
   boxCollider: {fileID: 670068135037751130}
-  wallSlideOn: 0
-  groundPoundOn: 0
-  shootingOn: 0
   doubleJumpOn: 0
-  healingOn: 0
+  m_airTime: 0
+  m_inputTime: 0
   m_warMask: {fileID: 2145512435}
   m_natureMask: {fileID: 2145512434}
   m_masks: 0
