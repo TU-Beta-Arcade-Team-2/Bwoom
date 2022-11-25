@@ -47,5 +47,12 @@ public static class StringConstants
     #region SCENE_NAMES
     public static string NATURE_LEVEL = "NatureLevel";
     public static string WAR_LEVEL = "WarLevel";
+    #endregion
+
+    #region UI_STRINGS
+    public static string AUDIO_SETTINGS = "audio settings";
+    public static string VIDEO_SETTINGS = "video settings";
+    public static string CONTROLS_SETTINGS = "controls settings";
+    public static string ACCESSIBILITY_SETTINGS = "accessibility settings";
     #endregion 
 }

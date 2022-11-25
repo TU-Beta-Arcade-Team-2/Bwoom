@@ -51,11 +51,6 @@ public class UIManager : Singleton<UIManager>
         GameManager.SHOULD_LOAD_STATS = true;
     }
 
-    public void ShowOptionsMenu()
-    {
-
-    }
-
     public void PauseGame()
     {
 
@@ -78,5 +73,10 @@ public class UIManager : Singleton<UIManager>
         yield return new WaitForSeconds(1);
 
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void ToggleOptions()
+    {
+        m_optionsMenu.SetActive(!m_optionsMenu.activeSelf);
     }
 }

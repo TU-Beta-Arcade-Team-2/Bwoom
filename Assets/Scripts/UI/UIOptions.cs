@@ -70,6 +70,39 @@ public class UIOptions : MonoBehaviour
 
     }
 
+    public void OnAudioButtonPress()
+    {
+        m_panelTitleText.text = StringConstants.AUDIO_SETTINGS;
+        HideAllPanels();
+        m_audioPanel.SetActive(true);
+    }
+
+    public void OnVideoButtonPress()
+    {
+        m_panelTitleText.text = StringConstants.VIDEO_SETTINGS;
+        HideAllPanels();
+        m_videoPanel.SetActive(true);
+    }
+
+    public void OnControlsButtonPress()
+    {
+        m_panelTitleText.text = StringConstants.CONTROLS_SETTINGS;
+        HideAllPanels();
+        m_controlsPanel.SetActive(true);
+    }
+
+    public void OnAccessibilityButtonPress()
+    {
+        m_panelTitleText.text = StringConstants.ACCESSIBILITY_SETTINGS;
+        HideAllPanels();
+        m_accessibilityPanel.SetActive(true);
+    }
+
+    public void OnBackButtonPress()
+    {
+        UIManager.Instance.ToggleOptions();
+    }
+
     private void SaveOptions()
     {
     }
