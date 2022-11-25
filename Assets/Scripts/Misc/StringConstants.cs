@@ -54,5 +54,15 @@ public static class StringConstants
     public static string VIDEO_SETTINGS = "video settings";
     public static string CONTROLS_SETTINGS = "controls settings";
     public static string ACCESSIBILITY_SETTINGS = "accessibility settings";
-    #endregion 
+    #endregion
+
+    #region SFX_STRINGS
+    public static string UI_CLICK_SFX = "ButtonClickSFX";
+    #endregion
+
+    #region MUSIC_STRINGS
+    public static string NATURE_LEVEL_SOUNDTRACK = "BM_DeepGreen";
+    public static string WAR_LEVEL_SOUNDTRACK = "BM_DestructiveArt";
+    public static string BROKEN_MASK_SOUNDTRACK = "BM_BrokenMask";
+    #endregion
 }

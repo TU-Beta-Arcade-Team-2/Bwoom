@@ -64,6 +64,12 @@ public class UIManager : Singleton<UIManager>
         Application.Quit();
     }
 
+    public void PlayUiClick()
+    {
+        SoundManager.Instance.PlaySfx(StringConstants.UI_CLICK_SFX);
+    }
+
+
     private void LoadLevel(string sceneName)
     {
         StartCoroutine(AsyncLoadLevel(sceneName));

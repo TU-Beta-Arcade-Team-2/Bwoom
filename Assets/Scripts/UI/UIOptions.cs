@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
@@ -34,14 +31,12 @@ public class UIOptions : MonoBehaviour
     [SerializeField] private PostProcessVolume m_deuteroVolume;
     [SerializeField] private PostProcessVolume m_tritoVolume;
 
-
-
     void Awake()
     {
         // Load the previous saved Options
         LoadOptions();
 
-        ShowAudioOptions();
+        OnAudioButtonPress();
 
         // Only show the video button on windows
 #if UNITY_STANDALONE_WIN
@@ -49,13 +44,11 @@ public class UIOptions : MonoBehaviour
 #else
         m_videoSettingsButton.SetActive(false);
 #endif
+
+        // REMOVE AFTER TESTING
+        SoundManager.Instance.PlayMusic(StringConstants.NATURE_LEVEL_SOUNDTRACK, true);
     }
 
-    public void ShowAudioOptions()
-    {
-        HideAllPanels();
-        m_audioPanel.SetActive(true);
-    }
 
     public void BackButton()
     {
@@ -90,32 +83,24 @@ public class UIOptions : MonoBehaviour
 
     public void OnAudioButtonPress()
     {
-        m_panelTitleText.text = StringConstants.AUDIO_SETTINGS;
-        HideAllPanels();
-        m_audioPanel.SetActive(true);
+        ShowOptionsPanel(StringConstants.AUDIO_SETTINGS, m_audioPanel);
     }
 
 #if UNITY_STANDALONE_WIN
     public void OnVideoButtonPress()
     {
-        m_panelTitleText.text = StringConstants.VIDEO_SETTINGS;
-        HideAllPanels();
-        m_videoPanel.SetActive(true);
+        ShowOptionsPanel(StringConstants.VIDEO_SETTINGS, m_videoPanel);
     }
 #endif
 
     public void OnControlsButtonPress()
     {
-        m_panelTitleText.text = StringConstants.CONTROLS_SETTINGS;
-        HideAllPanels();
-        m_controlsPanel.SetActive(true);
+        ShowOptionsPanel(StringConstants.CONTROLS_SETTINGS, m_controlsPanel);
     }
 
     public void OnAccessibilityButtonPress()
     {
-        m_panelTitleText.text = StringConstants.ACCESSIBILITY_SETTINGS;
-        HideAllPanels();
-        m_accessibilityPanel.SetActive(true);
+        ShowOptionsPanel(StringConstants.ACCESSIBILITY_SETTINGS, m_accessibilityPanel);
     }
 
     public void OnBackButtonPress()
@@ -126,19 +111,27 @@ public class UIOptions : MonoBehaviour
     public void OnMasterVolumeChanged()
     {
         Options.MASTER_VOLUME = m_masterSlider.value;
-        // TODO: NOTIFY THE SOUND MANAGER
+        SoundManager.Instance.OnMasterVolumeChanged(Options.MASTER_VOLUME);
     }
 
     public void OnMusicVolumeChanged()
     {
-        Options.MUSIC_VOLUME = m_masterSlider.value;
-        // TODO: NOTIFY THE SOUND MANAGER
+        Options.MUSIC_VOLUME = m_musicSlider.value;
+        SoundManager.Instance.OnMusicVolumeChanged(Options.MUSIC_VOLUME);
     }
 
     public void OnSfxVolumeChanged()
     {
-        Options.SFX_VOLUME = m_masterSlider.value;
-        // TODO: NOTIFY THE SOUND MANAGER
+        Options.SFX_VOLUME = m_sfxSlider.value;
+        SoundManager.Instance.OnSfxVolumeChanged(Options.SFX_VOLUME);
+    }
+
+    private void ShowOptionsPanel(string panelTitle, GameObject panel)
+    {
+        m_panelTitleText.text = panelTitle;
+        HideAllPanels();
+        panel.SetActive(true);
+        UIManager.Instance.PlayUiClick();
     }
 
     public void OnScreenResolutionChanged()
