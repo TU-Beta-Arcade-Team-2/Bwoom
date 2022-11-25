@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -58,6 +59,8 @@ public class UIOptions : MonoBehaviour
     public void ToggleVsync()
     {
         Options.VSYNC = !Options.VSYNC;
+
+        QualitySettings.vSyncCount = Options.VSYNC ? 1 : 0;
     }
 
     public void ToggleHoldToCombo()
@@ -126,6 +129,30 @@ public class UIOptions : MonoBehaviour
         BetterDebugging.Instance.Assert(m_screenResolutionDropdown.value < (int)Options.eScreenResolution.Count, "MAKE SURE TO ADJUST THE SCREEN RESOLUTION ENUM WHEN ADDING NEW RESOLUTIONS");
 
         Options.SCREEN_RESOLUTION = (Options.eScreenResolution) m_screenResolutionDropdown.value;
+
+        FullScreenMode fsMode = Screen.fullScreenMode;
+
+        switch (Options.SCREEN_RESOLUTION)
+        {
+            case Options.eScreenResolution.r1920x1080:
+                Screen.SetResolution(1920, 1080, fsMode);
+                break;
+            case Options.eScreenResolution.r1280x960:
+                Screen.SetResolution(1280, 960, fsMode);
+                break;
+            case Options.eScreenResolution.r1024x768:
+                Screen.SetResolution(1024, 768, fsMode);
+                break;
+            case Options.eScreenResolution.r960x540:
+                Screen.SetResolution(960, 540, fsMode);
+                break;
+            case Options.eScreenResolution.r640x360:
+                Screen.SetResolution(640, 360, fsMode);
+                break;
+            default:
+                BetterDebugging.Instance.Assert(false, $"UNHANDLED CASE {Options.SCREEN_RESOLUTION}");
+                break;
+        }
     }
 
     public void OnWindowModeChanged()
@@ -133,6 +160,24 @@ public class UIOptions : MonoBehaviour
         BetterDebugging.Instance.Assert(m_windowModeDropdown.value < (int)Options.eWindowMode.Count, "MAKE SURE TO ADJUST THE WINDOW MODE ENUM WHEN ADDING NEW OPTIONS");
 
         Options.SCREEN_MODE = (Options.eWindowMode)m_windowModeDropdown.value;
+
+
+        switch (Options.SCREEN_MODE)
+        {
+            case Options.eWindowMode.Windowed:
+                Screen.fullScreenMode = FullScreenMode.Windowed;
+                break;
+            case Options.eWindowMode.Borderless:
+                Screen.fullScreenMode = FullScreenMode.MaximizedWindow;
+                break;
+            case Options.eWindowMode.FullScreen:
+                Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+                break;
+            default:
+                BetterDebugging.Instance.Assert(false, $"UNHANDLED CASE {Options.SCREEN_MODE}");
+                break;
+        }
+
     }
 
     public void OnColourBlindnessChanged()

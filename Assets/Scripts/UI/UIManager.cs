@@ -8,7 +8,7 @@ public class UIManager : Singleton<UIManager>
 {
     public Animator m_Transition;
 
-    public bool IN_GAME;
+    public bool IN_GAME = false;
     [SerializeField] private GameObject m_pauseMenu;
 
     [SerializeField] private GameObject m_continueButton;
@@ -17,8 +17,11 @@ public class UIManager : Singleton<UIManager>
 
     private void Start()
     {
-        // Show the Continue game button only if we've never saved
-        m_continueButton.SetActive(SaveLoad.DoesSaveGameExist());
+        if (!IN_GAME)
+        {
+            // Show the Continue game button only if we've never saved
+            m_continueButton.SetActive(SaveLoad.DoesSaveGameExist());
+        }
     }
 
     private void Update()
