@@ -15,19 +15,20 @@ public class UIOptions : MonoBehaviour
     [SerializeField] private GameObject m_audioPanel;
     [SerializeField] private GameObject m_controlsPanel;
 
-    [Header("AUDIO OPTIONS")] 
+    [Header("AUDIO OPTIONS")]
     [SerializeField] private Slider m_masterSlider;
     [SerializeField] private Slider m_musicSlider;
     [SerializeField] private Slider m_sfxSlider;
 
-    [Header("VIDEO OPTIONS")] 
+    [Header("VIDEO OPTIONS")]
     [SerializeField] private TMP_Dropdown m_windowModeDropdown;
     [SerializeField] private TMP_Dropdown m_screenResolutionDropdown;
 
     [Header("ACCESSIBILITY OPTIONS")]
     [SerializeField] private TMP_Dropdown m_colourBlindnessDropdown;
 
-    [SerializeField] private PostProcessVolume m_achromaVolume; 
+    [SerializeField] private PostProcessVolume m_normalVolume;
+    [SerializeField] private PostProcessVolume m_achromaVolume;
     [SerializeField] private PostProcessVolume m_protoVolume;
     [SerializeField] private PostProcessVolume m_deuteroVolume;
     [SerializeField] private PostProcessVolume m_tritoVolume;
@@ -134,7 +135,7 @@ public class UIOptions : MonoBehaviour
     {
         BetterDebugging.Instance.Assert(m_screenResolutionDropdown.value < (int)Options.eScreenResolution.Count, "MAKE SURE TO ADJUST THE SCREEN RESOLUTION ENUM WHEN ADDING NEW RESOLUTIONS");
 
-        Options.SCREEN_RESOLUTION = (Options.eScreenResolution) m_screenResolutionDropdown.value;
+        Options.SCREEN_RESOLUTION = (Options.eScreenResolution)m_screenResolutionDropdown.value;
 
         FullScreenMode fsMode = Screen.fullScreenMode;
 
@@ -188,9 +189,38 @@ public class UIOptions : MonoBehaviour
 
     public void OnColourBlindnessChanged()
     {
+        m_normalVolume.gameObject.SetActive(false);
+        m_achromaVolume.gameObject.SetActive(false);
+        m_protoVolume.gameObject.SetActive(false);
+        m_deuteroVolume.gameObject.SetActive(false);
+        m_tritoVolume.gameObject.SetActive(false);
+
+
         BetterDebugging.Instance.Assert(m_colourBlindnessDropdown.value < (int)Options.eColourBlindness.Count, "MAKE SURE TO ADJUST THE COLOUR BLINDNESS ENUM WHEN ADDING NEW OPTIONS");
 
         Options.COLOUR_BLINDNESS = (Options.eColourBlindness)m_colourBlindnessDropdown.value;
+
+        switch (Options.COLOUR_BLINDNESS)
+        {
+            case Options.eColourBlindness.None:
+                m_normalVolume.gameObject.SetActive(true);
+                break;
+            case Options.eColourBlindness.Achroma:
+                m_achromaVolume.gameObject.SetActive(true);
+                break;
+            case Options.eColourBlindness.Proto:
+                m_protoVolume.gameObject.SetActive(true);
+                break;
+            case Options.eColourBlindness.Deutero:
+                m_deuteroVolume.gameObject.SetActive(true);
+                break;
+            case Options.eColourBlindness.Trito:
+                m_tritoVolume.gameObject.SetActive(true);
+                break;
+            default:
+                BetterDebugging.Instance.Assert(false, $"UNHANDLED CASE {Options.COLOUR_BLINDNESS}");
+                break;
+        }
     }
 
     private void SaveOptions()
