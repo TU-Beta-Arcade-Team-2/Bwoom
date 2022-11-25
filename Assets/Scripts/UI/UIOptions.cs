@@ -57,17 +57,17 @@ public class UIOptions : MonoBehaviour
 
     public void ToggleVsync()
     {
-
+        Options.VSYNC = !Options.VSYNC;
     }
 
     public void ToggleHoldToCombo()
     {
-
+        Options.HOLD_TO_COMBO = !Options.HOLD_TO_COMBO;
     }
 
     public void ToggleControllerRumble()
     {
-
+        Options.CONTROLLER_RUMBLE = !Options.CONTROLLER_RUMBLE;
     }
 
     public void OnAudioButtonPress()
@@ -103,11 +103,52 @@ public class UIOptions : MonoBehaviour
         UIManager.Instance.ToggleOptions();
     }
 
+    public void OnMasterVolumeChanged()
+    {
+        Options.MASTER_VOLUME = m_masterSlider.value;
+        // TODO: NOTIFY THE SOUND MANAGER
+    }
+
+    public void OnMusicVolumeChanged()
+    {
+        Options.MUSIC_VOLUME = m_masterSlider.value;
+        // TODO: NOTIFY THE SOUND MANAGER
+    }
+
+    public void OnSfxVolumeChanged()
+    {
+        Options.SFX_VOLUME = m_masterSlider.value;
+        // TODO: NOTIFY THE SOUND MANAGER
+    }
+
+    public void OnScreenResolutionChanged()
+    {
+        BetterDebugging.Instance.Assert(m_screenResolutionDropdown.value < (int)Options.eScreenResolution.Count, "MAKE SURE TO ADJUST THE SCREEN RESOLUTION ENUM WHEN ADDING NEW RESOLUTIONS");
+
+        Options.SCREEN_RESOLUTION = (Options.eScreenResolution) m_screenResolutionDropdown.value;
+    }
+
+    public void OnWindowModeChanged()
+    {
+        BetterDebugging.Instance.Assert(m_windowModeDropdown.value < (int)Options.eWindowMode.Count, "MAKE SURE TO ADJUST THE WINDOW MODE ENUM WHEN ADDING NEW OPTIONS");
+
+        Options.SCREEN_MODE = (Options.eWindowMode)m_windowModeDropdown.value;
+    }
+
+    public void OnColourBlindnessChanged()
+    {
+        BetterDebugging.Instance.Assert(m_colourBlindnessDropdown.value < (int)Options.eColourBlindness.Count, "MAKE SURE TO ADJUST THE COLOUR BLINDNESS ENUM WHEN ADDING NEW OPTIONS");
+
+        Options.COLOUR_BLINDNESS = (Options.eColourBlindness)m_colourBlindnessDropdown.value;
+    }
+
     private void SaveOptions()
     {
+        // TODO: SERIALISE TO A .SETTINGS FILE
     }
 
     private void LoadOptions()
     {
+        // TODO: DESERIALISE FROM THE .SETTINGS FILE
     }
 }
