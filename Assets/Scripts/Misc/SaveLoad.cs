@@ -3,6 +3,8 @@ using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class SaveLoad
 {
@@ -25,6 +27,8 @@ public class SaveLoad
 #elif UNITY_ANDROID
     private static string BWOOM_DIRECTORY = "";
 #endif
+
+    private static string SAVE_PATH = $"{BWOOM_DIRECTORY}\\save.savegame";
 
     public static void SaveGame(PlayerStats playerStats)
     {
@@ -67,7 +71,7 @@ public class SaveLoad
         string bwoomDirectory = "";
 #endif
 
-        FileStream inStream = new FileStream($"{bwoomDirectory}\\save.savegame", FileMode.Open, FileAccess.Read);
+        FileStream inStream = new FileStream(SAVE_PATH, FileMode.Open, FileAccess.Read);
         StreamReader reader = new StreamReader(inStream);
 
         m_sceneName = reader.ReadLine();
@@ -90,10 +94,19 @@ public class SaveLoad
 
         reader.Close();
         inStream.Close();
+
+
+        BetterDebugging.Instance.Assert(!string.IsNullOrEmpty(SCENE_NAME), $"SCENE NAME FROM SAVEDATA WAS NULL OR EMPTY... DID THE FILE SAVE OKAY?\nLOCATION: {SAVE_PATH}");
+        LoadLevel(SCENE_NAME);
+    }
+
+    public static void LoadLevel(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 
     public static bool DoesSaveGameExist()
     {
-        return File.Exists($"{BWOOM_DIRECTORY}\\save.savegame");
+        return File.Exists(SAVE_PATH);
     }
 }

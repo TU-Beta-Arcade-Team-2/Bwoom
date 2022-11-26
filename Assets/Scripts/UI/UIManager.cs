@@ -6,35 +6,39 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : Singleton<UIManager>
 {
-    public Animator m_Transition;
-
-    public bool IN_GAME = false;
-
+    [Tooltip("This only needs to be assigned ")]
     [SerializeField] private GameObject m_continueButton;
 
     [SerializeField] private GameObject m_gameHUD;
     [SerializeField] private GameObject m_pauseMenu;
     [SerializeField] private GameObject m_optionsMenu;
 
+    private bool m_isMainMenu;
+
 
     private void Start()
     {
-        if (!IN_GAME)
+        if (SceneManager.GetActiveScene().name == StringConstants.TITLE_SCREEN_LEVEL)
         {
             // Show the Continue game button only if we've never saved
             m_continueButton.SetActive(SaveLoad.DoesSaveGameExist());
+
+            m_isMainMenu = true;
+        }
+        else
+        {
+            m_isMainMenu = false;
         }
     }
 
-    public void StartNewGame()
+    public void OnTitleScreenNewGamePressed()
     {
-        LoadLevel(StringConstants.NATURE_LEVEL);
+        SaveLoad.LoadLevel(StringConstants.NATURE_LEVEL);
     }
 
-    public void ContinueGame()
+    public void OnTitleScreenContinueGamePressed()
     {
         SaveLoad.LoadGame();
-        LoadLevel(SaveLoad.SCENE_NAME);
         GameManager.SHOULD_LOAD_STATS = true;
     }
 
@@ -52,12 +56,15 @@ public class UIManager : Singleton<UIManager>
 
     public void OnOptionsBackPressed()
     {
-        // TODO: Behave differently on the main menu vs in game
-        m_pauseMenu.SetActive(true);
+        if (m_isMainMenu)
+        {
+            m_pauseMenu.SetActive(true);
+        }
+
         m_optionsMenu.SetActive(false);
     }
 
-    public void QuitGame()
+    public void OnTitleScreenQuitPressed()
     {
         Application.Quit();
     }
@@ -65,21 +72,6 @@ public class UIManager : Singleton<UIManager>
     public void PlayUiClick()
     {
         SoundManager.Instance.PlaySfx(StringConstants.UI_CLICK_SFX);
-    }
-
-
-    private void LoadLevel(string sceneName)
-    {
-        StartCoroutine(AsyncLoadLevel(sceneName));
-    }
-
-    private IEnumerator AsyncLoadLevel(string sceneName)
-    {
-        m_Transition.SetTrigger("Fade");
-
-        yield return new WaitForSeconds(1);
-
-        SceneManager.LoadScene(sceneName);
     }
 
     public void ToggleOptions()

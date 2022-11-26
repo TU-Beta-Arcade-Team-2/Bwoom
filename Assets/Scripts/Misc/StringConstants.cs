@@ -45,6 +45,8 @@ public static class StringConstants
     #endregion
 
     #region SCENE_NAMES
+
+    public static string TITLE_SCREEN_LEVEL = "TitleScreen";
     public static string NATURE_LEVEL = "NatureLevel";
     public static string WAR_LEVEL = "WarLevel";
     #endregion
