@@ -56,17 +56,9 @@ public class UIManager : Singleton<UIManager>
 
     public void OnOptionsBackPressed()
     {
-        if (m_isMainMenu)
-        {
-            m_pauseMenu.SetActive(true);
-        }
-
+        m_pauseMenu.SetActive(true);
         m_optionsMenu.SetActive(false);
-    }
-
-    public void OnTitleScreenQuitPressed()
-    {
-        Application.Quit();
+        PlayUiClick();
     }
 
     public void PlayUiClick()
