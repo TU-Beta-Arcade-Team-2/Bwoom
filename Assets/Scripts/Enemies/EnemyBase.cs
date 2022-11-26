@@ -98,7 +98,7 @@ public abstract class EnemyBase : MonoBehaviour
             BetterDebugging.eDebugLevel.Message
         );
 
-        m_playerStats.TakeDMG(damageAmount);
+        m_playerStats.TakeDamage(damageAmount);
     }
 
     [ExecuteInEditMode]
@@ -123,6 +123,10 @@ public abstract class EnemyBase : MonoBehaviour
         [CanBeNull] GameObject itemToDrop = null)
     {
         m_playerStats.ActivateFrenzyMode();
+
+        m_playerStats.AddPoints(pointsToAward);
+        Destroy(gameObject);
+        Instantiate(deathParticleFx);
     }
 
     protected abstract void Move();

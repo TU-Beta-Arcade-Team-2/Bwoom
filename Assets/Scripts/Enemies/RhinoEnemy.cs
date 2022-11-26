@@ -198,7 +198,7 @@ public class RhinoEnemy : EnemyBase
         );
 
         // HACK - DON'T USE THIS IN FINAL GAME
-        m_playerStats.gameObject.GetComponent<Controller>().AddImpulse(force);
+        m_playerStats.gameObject.GetComponent<PlayerController>().AddImpulse(force);
 
         DamagePlayer(m_damage);
     }

@@ -1,8 +1,8 @@
-#undef WALL_SLIDE
+#undef UNUSED_ABILITES
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Controller : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     /// <summary> Player References </summary>
     private PlayerInput m_playerInput;
@@ -27,11 +27,8 @@ public class Controller : MonoBehaviour
     [SerializeField] private LayerMask m_groundLayer;
     [Space(5)]
 
-    [Header("Speed Variables")]
-    /// <summary> Player Movement Stats </summary>
-    public float MovementSpeed;
     [SerializeField] private float m_fallingSpeed;
-    [SerializeField] private float m_jumpHeight;
+
     [Range(0, 1)]
     [SerializeField] private float m_dampingNormal = 0.5f;
     [Range(0, 1)]
@@ -48,16 +45,24 @@ public class Controller : MonoBehaviour
     [SerializeField] private BoxCollider2D boxCollider;
     [Space(5)]
 
+#if UNUSED_ABILITIES
     [Header("Ability Bools")]
     /// <summary> Abilitiy Booleans </summary>
     public bool wallSlideOn;
     public bool groundPoundOn;
     public bool shootingOn;
-    public bool doubleJumpOn;
     public bool healingOn;
     [Space(5)]
+#endif
+    public bool doubleJumpOn;
 
-#if WALL_SLIDE
+
+    [SerializeField] private float m_airTime;
+    [SerializeField] private float m_inputTime;
+    private float m_jumpHeight;
+    private float m_movementSpeed;
+
+#if UNUSED_ABILITES
     [Header("Wall Jumping Values")]
     /// <summary> Wall Jump Values </summary>
     [SerializeField] private float m_xWallForce;
@@ -93,33 +98,24 @@ public class Controller : MonoBehaviour
 
         m_rigidbody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
-        SetDefaultValues();
+
         //set default mask
         RemoveMasks();
         m_warMask.enabled = true;
     }
 
-    public void SetDefaultValues()
-    {
-        MovementSpeed = m_playerStats.m_CurrentMovementSpeed;
-        m_playerStats.m_AttackDamage = m_playerStats.m_DefaultAttackDamage;
-        m_jumpHeight = m_playerStats.m_CurrentJumpHeight;
-    }
-
     private void Update()
     {
-        ///<Note> An exit function will need to made when switching on and off the booleans so the variables return back to default
-        /// values that may cause weird behaviours in future </Note>
         Jumping();
         SpecialAttack();
         MaskInputs();
 
-#if WALL_SLIDE
+#if UNUSED_ABILITES
         if (wallSlideOn)
         {
             WallSlide();
         }
-#endif
+
         if (groundPoundOn)
         {
 
@@ -139,28 +135,9 @@ public class Controller : MonoBehaviour
         {
 
         }
+#endif
 
         m_animator.SetFloat("Movement", Mathf.Abs(m_playerInput.actions["Horizontal"].ReadValue<float>()));
-
-        /* COMMENTING THIS OUT NOW TO MAKE THE ANIMATION READING CLEANER, MASK TRIGGERES ARE NOW SET IN THE MASKINPUTS FUNCTION - DAN >:D
-        // HACK TO GET THE WALKING AND IDLE ANIMATIONS WORKING! REMOVE THIS AND DO PROPERLY AFTER THE CA MEETING PLEASE - TOM :)
-        if (m_playerInput.actions["Horizontal"].ReadValue<float>() == 0)
-        {
-            m_animator.SetTrigger(StringConstants.PLAYER_RUN);
-
-            m_animator.SetTrigger(m_masks == eMasks.War
-                ? StringConstants.WAR_MASK_RUN
-                : StringConstants.NATURE_MASK_RUN);
-        }
-        
-        if (m_playerInput.actions["Horizontal"].ReadValue<float>() != 0)
-        {
-            m_animator.SetTrigger(StringConstants.PLAYER_IDLE);
-
-            m_animator.SetTrigger(m_masks == eMasks.War
-                ? StringConstants.WAR_MASK_IDLE
-                : StringConstants.NATURE_MASK_IDLE);
-        }*/
     }
 
     // Update is called once per frame
@@ -177,7 +154,7 @@ public class Controller : MonoBehaviour
         m_rigidbody.velocity = new Vector2(HorizontalDrag(), m_rigidbody.velocity.y);
 
         Vector2 clamper = m_rigidbody.velocity;
-        clamper.x = Mathf.Clamp(clamper.x, -MovementSpeed, MovementSpeed);
+        clamper.x = Mathf.Clamp(clamper.x, -m_movementSpeed, m_movementSpeed);
         clamper.y = Mathf.Clamp(clamper.y, -m_fallingSpeed, m_jumpHeight);
 
         m_rigidbody.velocity = clamper;
@@ -193,33 +170,33 @@ public class Controller : MonoBehaviour
         float horizontalVelocity = m_rigidbody.velocity.x;
         horizontalVelocity += m_playerInput.actions["Horizontal"].ReadValue<float>();
 
+        float subValue;
+
         if (Mathf.Abs(m_playerInput.actions["Horizontal"].ReadValue<float>()) < 0.01f)
         {
-            horizontalVelocity *= Mathf.Pow(MovementSpeed - m_dampingStop, Time.fixedDeltaTime * -m_drag);
+            subValue = m_dampingStop;
         }
-            
         else if (Mathf.Sign(m_playerInput.actions["Horizontal"].ReadValue<float>()) != Mathf.Sign(horizontalVelocity))
         {
-            horizontalVelocity *= Mathf.Pow(MovementSpeed - m_dampingTurn, Time.fixedDeltaTime * -m_drag);
+            subValue = m_dampingTurn;
         }
-
         else
         {
-            horizontalVelocity *= Mathf.Pow(MovementSpeed - m_dampingNormal, Time.fixedDeltaTime * -m_drag);
+            subValue = m_dampingNormal;
         }
 
-        return horizontalVelocity;
+        return horizontalVelocity * Mathf.Pow(m_movementSpeed - subValue, Time.fixedDeltaTime * -m_drag);
     }
 
     private void Flip()
     {
         m_facingRight = !m_facingRight;
-        m_playerStats.m_ComboAttackEnemyLaunchVector1.x *= -1;
-        m_playerStats.m_ComboAttackEnemyLaunchVector2.x *= -1;
-        m_playerStats.m_ComboAttackEnemyLaunchVector3.x *= -1;
-        m_playerStats.m_ComboAttackPlayerLaunchVector1.x *= -1;
-        m_playerStats.m_ComboAttackPlayerLaunchVector2.x *= -1;
-        m_playerStats.m_ComboAttackPlayerLaunchVector3.x *= -1;
+        //m_playerStats.m_ComboAttackEnemyLaunchVector1.x *= -1;
+        //m_playerStats.m_ComboAttackEnemyLaunchVector2.x *= -1;
+        //m_playerStats.m_ComboAttackEnemyLaunchVector3.x *= -1;
+        //m_playerStats.m_ComboAttackPlayerLaunchVector1.x *= -1;
+        //m_playerStats.m_ComboAttackPlayerLaunchVector2.x *= -1;
+        //m_playerStats.m_ComboAttackPlayerLaunchVector3.x *= -1;
         transform.Rotate(0f, 180f, 0f);
     }
 
@@ -231,14 +208,14 @@ public class Controller : MonoBehaviour
     {
         if (m_playerInput.actions["Jump"].triggered)
         {
-            m_jumpInputTimer = 0.2f;
+            m_jumpInputTimer = m_airTime;
         }
 
 
         if (m_jumpInputTimer > 0)
         {
             if (JumpAvaliable()
-#if WALL_SLIDE
+#if UNUSED_ABILITES
                 && !m_wallSliding
 #endif
                 )
@@ -248,7 +225,7 @@ public class Controller : MonoBehaviour
 
                 m_ungroundedTimer = 0;
             }
-#if WALL_SLIDE
+#if UNUSED_ABILITES
             else if (m_wallSliding)
             {
                 m_rigidbody.velocity = new Vector2(m_xWallForce * -m_playerInput.actions["Horizontal"].ReadValue<float>(), m_yWallForce);
@@ -258,9 +235,9 @@ public class Controller : MonoBehaviour
             else
             {
                 m_jumpInputTimer -= Time.fixedDeltaTime;
-            }  
-        } 
-        
+            }
+        }
+
         if (!IsGrounded())
         {
             m_holdTimer += Time.fixedDeltaTime;
@@ -271,9 +248,9 @@ public class Controller : MonoBehaviour
             }
         }
 
-        if (m_playerInput.actions["Jump"].ReadValue<float>() == 0 || m_holdTimer > 0.5f)
+        if (m_playerInput.actions["Jump"].ReadValue<float>() == 0 || m_holdTimer > m_inputTime)
         {
-#if WALL_SLIDE
+#if UNUSED_ABILITES
             if (!m_wallSliding)
             {
                 m_rigidbody.AddForce(new Vector2(0, -0.5f), ForceMode2D.Impulse);
@@ -300,17 +277,17 @@ public class Controller : MonoBehaviour
             boxCollider.sharedMaterial = slipperyMat;
             Debug.Log("AIRBORNE");
             return false;
-            
+
         }
 
         Debug.Log("GROUNDED");
-        
+
         if (m_ungroundedTimer > 0)
         {
             m_rigidbody.sharedMaterial = stickyMat;
             boxCollider.sharedMaterial = stickyMat;
         }
-        
+
         m_ungroundedTimer = 0.2f;
         m_holdTimer = 0f;
         m_warMask.m_IsJumped = false;
@@ -359,7 +336,7 @@ public class Controller : MonoBehaviour
                 {
                     RemoveMasks();
                     m_warMask.enabled = true;
-                    m_playerStats.MaskIconImage.sprite = m_playerStats.WarMaskIcon;
+                    GameHUD.Instance.UpdateMaskIcon(eMasks.War);
                 }
                 break;
             case eMasks.Nature:
@@ -367,7 +344,7 @@ public class Controller : MonoBehaviour
                 {
                     RemoveMasks();
                     m_natureMask.enabled = true;
-                    m_playerStats.MaskIconImage.sprite = m_playerStats.NatureMaskIcon;
+                    GameHUD.Instance.UpdateMaskIcon(eMasks.Nature);
                 }
                 break;
         }
@@ -402,7 +379,7 @@ public class Controller : MonoBehaviour
 #endregion
 
 #region Extra Movement Functions
-#if WALL_SLIDE
+#if UNUSED_ABILITES
     private void WallSlide()
     {
         m_isTouchingFront = Physics2D.OverlapCircle(m_frontCheck.position, 0.1f, m_wallLayer);
@@ -413,7 +390,7 @@ public class Controller : MonoBehaviour
             m_wallSliding = false;
     }
 #endif
-    
+
     private void DoubleJump()
     {
         if (!JumpAvaliable() && m_playerInput.actions["Jump"].triggered && !m_doubleJumped)
@@ -436,4 +413,10 @@ public class Controller : MonoBehaviour
     }
 
 #endregion
+
+    public void SetMovementValues(PlayerStats.Stats stats)
+    {
+        m_jumpHeight = stats.JumpHeight;
+        m_movementSpeed = stats.MovementSpeed;
+    }
 }

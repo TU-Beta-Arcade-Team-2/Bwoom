@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnergyMask : MaskClass
 {
-    [SerializeField] private Controller m_playerController;
+    [SerializeField] private PlayerController m_playerPlayerController;
 
     private void OnEnable()
     {

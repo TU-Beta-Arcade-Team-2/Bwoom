@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -15,18 +13,21 @@ public class GameManager : Singleton<GameManager>
 
     [SerializeField] private PlayerStats m_player;
 
-    private void Awake()
+    [SerializeField] private GameObject m_gameHud;
+    [SerializeField] private GameObject m_deathScreen;
+
+    private void Start()
     {
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = m_frameRate;
-    }
 
-    void Start()
-    {
         if (SHOULD_LOAD_STATS)
         {
             InitialisePlayer();
         }
+
+        m_gameHud.SetActive(true);
+        m_deathScreen.SetActive(false);
     }
 
     public void InitialisePlayer()
@@ -34,5 +35,22 @@ public class GameManager : Singleton<GameManager>
         m_player.gameObject.transform.position = SaveLoad.LAST_CHECKPOINT_POSITION;
         m_player.AddPoints(SaveLoad.PLAYER_POINTS);
         m_player.SetHealth(SaveLoad.PLAYER_HEALTH);
+    }
+
+    public void Death()
+    {
+        m_gameHud.SetActive(false);
+        m_deathScreen.SetActive(true);
+    }
+
+    public void Continue_Button()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+    }
+
+    public void Quit_Button()
+    {
+        SceneManager.LoadScene("TitleScreen");
     }
 }

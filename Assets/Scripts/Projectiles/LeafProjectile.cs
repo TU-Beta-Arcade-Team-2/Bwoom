@@ -53,7 +53,7 @@ public class LeafProjectile : ProjectleBaseClass
             if (enemy != null)
             {
                 enemy.TakeDamage(m_natureMask.m_specialAttackDamage);
-                m_playerStats.TakeHEAL(m_natureMask.m_HealAmount);
+                m_playerStats.HealPlayer(m_natureMask.m_HealAmount);
             }
         }
     }

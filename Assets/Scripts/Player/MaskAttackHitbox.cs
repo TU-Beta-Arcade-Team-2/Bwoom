@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MaskAttackHitbox : MonoBehaviour
 {
-    [SerializeField] private Controller m_playerController;
+    [SerializeField] private PlayerController m_playerPlayerController;
 
     [SerializeField] private WarMask m_warMask;
     [SerializeField] private NatureMask m_natureMask;
@@ -13,7 +13,7 @@ public class MaskAttackHitbox : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag(StringConstants.PLAYER_TAG);
 
-        m_playerController = player.GetComponent<Controller>();
+        m_playerPlayerController = player.GetComponent<PlayerController>();
         m_warMask = player.GetComponent<WarMask>();
         m_natureMask = player.GetComponent<NatureMask>();
     }
@@ -29,9 +29,9 @@ public class MaskAttackHitbox : MonoBehaviour
 
             if (enemy != null)
             {
-                switch (m_playerController.GetSelectedMask())
+                switch (m_playerPlayerController.GetSelectedMask())
                 {
-                    case Controller.eMasks.War:
+                    case PlayerController.eMasks.War:
                         enemy.TakeDamage(m_warMask.m_specialAttackDamage);
                         m_warMask.SpecialAttackEffect(other.GetComponent<Rigidbody2D>());
                         break;
