@@ -136,7 +136,6 @@ public class PlayerController : MonoBehaviour
 
         }
 #endif
-
         m_animator.SetFloat("Movement", Mathf.Abs(m_playerInput.actions["Horizontal"].ReadValue<float>()));
     }
 
@@ -314,7 +313,7 @@ public class PlayerController : MonoBehaviour
 
         if (m_playerInput.actions["EnergyMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            m_masks = eMasks.Energy; ;
+            m_masks = eMasks.Energy;
         }
 
         if (m_playerInput.actions["SeaMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
