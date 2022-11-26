@@ -1,5 +1,5 @@
 ﻿
-public class Options
+public class OptionsData
 {
     public static float MASTER_VOLUME;
     public static float MUSIC_VOLUME;
