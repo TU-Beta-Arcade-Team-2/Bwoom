@@ -413,6 +413,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.994879, y: 0.5}
   m_EdgeRadius: 0
+--- !u!95 &23553811 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 460804608, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+  m_PrefabInstance: {fileID: 8171535323749452087}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &32484107
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22915,6 +22920,14 @@ PrefabInstance:
       propertyPath: m_shaderSpritesDefault
       value: 
       objectReference: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 2145512434, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_playerAnimator
+      value: 
+      objectReference: {fileID: 23553811}
+    - target: {fileID: 2145512435, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_playerAnimator
+      value: 
+      objectReference: {fileID: 23553811}
     - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_hitstopManager
       value: 
