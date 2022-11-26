@@ -2383,7 +2383,7 @@ GameObject:
   - component: {fileID: 6254782840142862026}
   - component: {fileID: 6254782840142862025}
   m_Layer: 5
-  m_Name: Toggle (1)
+  m_Name: Rumble Toggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7303,7 +7303,7 @@ GameObject:
   - component: {fileID: 6254782840778832248}
   - component: {fileID: 6254782840778832135}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: Hold2Combo Toggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8670,7 +8670,7 @@ GameObject:
   - component: {fileID: 6254782840972075277}
   - component: {fileID: 6254782840972075276}
   m_Layer: 5
-  m_Name: Toggle
+  m_Name: VSync Toggle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12331,7 +12331,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6254782841494568210}
   m_Layer: 5
-  m_Name: RESOLUTION
+  m_Name: RUMBLE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12618,7 +12618,10 @@ MonoBehaviour:
   m_videoSettingsButton: {fileID: 6254782841498602314}
   m_windowModeDropdown: {fileID: 6254782840633353190}
   m_screenResolutionDropdown: {fileID: 6254782840300663606}
+  m_vsyncToggle: {fileID: 6254782840972075276}
   m_colourBlindnessDropdown: {fileID: 6254782841494207020}
+  m_holdToComboToggle: {fileID: 6254782840778832135}
+  m_controllerRumbleToggle: {fileID: 6254782840142862025}
   m_normalVolume: {fileID: 0}
   m_achromaVolume: {fileID: 0}
   m_protoVolume: {fileID: 0}

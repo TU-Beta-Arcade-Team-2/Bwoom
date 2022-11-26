@@ -17,7 +17,7 @@ public class SaveLoad
 
     private static GameData m_gameData = new GameData(Vector3.zero, 0, 0);
 
-    private static OptionsData m_optionsData = new OptionsData();
+    private static OptionsData m_optionsData = new OptionsData(OptionsData.Defaults);
 
 
 #if PLATFORM_STANDALONE_WIN
@@ -26,14 +26,22 @@ public class SaveLoad
     private static string BWOOM_DIRECTORY = "";
 #endif
 
-    private static string SAVE_PATH = $"{BWOOM_DIRECTORY}\\save.savegame";
+    private static readonly string m_savePath = $"{BWOOM_DIRECTORY}\\save.savegame";
+    private static readonly string m_optionsPath = $"{BWOOM_DIRECTORY}\\options.properties";
 
 
-    public static void SaveGame(GameData gd)
+    public static void SaveGame(GameData gameData)
     {
-        m_gameData = gd;
+        m_gameData = gameData;
 
         Save(eSaveLoadOptions.GameData);
+    }
+
+    public static void SaveOptions(OptionsData optionsData)
+    {
+        m_optionsData = optionsData;
+
+        Save(eSaveLoadOptions.OptionsData);
     }
 
     private static void Save(eSaveLoadOptions type)
@@ -60,29 +68,38 @@ public class SaveLoad
     {
         Load(eSaveLoadOptions.GameData);
 
-        BetterDebugging.Instance.Assert(!string.IsNullOrEmpty(m_gameData.SceneName), $"SCENE NAME FROM SAVEDATA WAS NULL OR EMPTY... DID THE FILE SAVE OKAY?\nLOCATION: {SAVE_PATH}");
+        BetterDebugging.Instance.Assert(!string.IsNullOrEmpty(m_gameData.SceneName), $"SCENE NAME FROM SAVEDATA WAS NULL OR EMPTY... DID THE FILE SAVE OKAY?\nLOCATION: {m_savePath}");
         LoadLevel(m_gameData.SceneName);
     }
 
-    public static void LoadOptions()
+    public static OptionsData LoadOptions()
     {
         Load(eSaveLoadOptions.OptionsData);
+
+        return m_optionsData;
     }
 
 
     private static void Load(eSaveLoadOptions type)
     {
 #if PLATFORM_STANDALONE_WIN
-        // Check if the Bwoom directory exists
         string bwoomDirectory = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Bwoom";
-
-        BetterDebugging.Instance.Assert(Directory.Exists(bwoomDirectory), "NO SAVE GAME FOUND!");
 
 #elif UNITY_ANDROID
         // TODO: Come up with a nice system for Android too! 
         string bwoomDirectory = "";
 #endif
-        FileStream inStream = new FileStream(GetSaveDataPath(type), FileMode.Open, FileAccess.Read);
+        string saveDataPath = GetSaveDataPath(type);
+
+        BetterDebugging.Instance.Assert(File.Exists(saveDataPath), $"NO SAVE DATA FOUND AT: {saveDataPath}");
+
+        if (!File.Exists(saveDataPath) && type == eSaveLoadOptions.OptionsData)
+        {
+            m_optionsData = OptionsData.Defaults;
+            return;
+        }
+
+        FileStream inStream = new FileStream(saveDataPath, FileMode.Open, FileAccess.Read);
         StreamReader reader = new StreamReader(inStream);
 
         GetSerialisable(type).Deserialise(reader);
@@ -98,7 +115,7 @@ public class SaveLoad
             case eSaveLoadOptions.GameData:
                 return m_gameData;
             case eSaveLoadOptions.OptionsData:
-                return null;
+                return m_optionsData;
             default:
                 BetterDebugging.Instance.Assert(false, "UNHANDLED SERIALISED DATA ");
                 return null;
@@ -110,9 +127,9 @@ public class SaveLoad
         switch (type)
         {
             case eSaveLoadOptions.GameData:
-                return SAVE_PATH;
+                return m_savePath;
             case eSaveLoadOptions.OptionsData:
-                return "";
+                return m_optionsPath;
             default:
                 BetterDebugging.Instance.Assert(false, "UNHANDLED SERIALISED DATA ");
                 return null;
@@ -126,7 +143,7 @@ public class SaveLoad
 
     public static bool DoesSaveGameExist()
     {
-        return File.Exists(SAVE_PATH);
+        return File.Exists(m_savePath);
     }
 
     public static void InitialisePlayer(PlayerStats player)
