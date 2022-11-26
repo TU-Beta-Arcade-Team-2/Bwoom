@@ -66,19 +66,19 @@ public class UIOptions : MonoBehaviour
 
     public void ToggleVsync()
     {
-        Options.VSYNC = !Options.VSYNC;
+        OptionsData.VSYNC = !OptionsData.VSYNC;
 
-        QualitySettings.vSyncCount = Options.VSYNC ? 1 : 0;
+        QualitySettings.vSyncCount = OptionsData.VSYNC ? 1 : 0;
     }
 
     public void ToggleHoldToCombo()
     {
-        Options.HOLD_TO_COMBO = !Options.HOLD_TO_COMBO;
+        OptionsData.HOLD_TO_COMBO = !OptionsData.HOLD_TO_COMBO;
     }
 
     public void ToggleControllerRumble()
     {
-        Options.CONTROLLER_RUMBLE = !Options.CONTROLLER_RUMBLE;
+        OptionsData.CONTROLLER_RUMBLE = !OptionsData.CONTROLLER_RUMBLE;
     }
 
     public void OnAudioButtonPress()
@@ -110,20 +110,20 @@ public class UIOptions : MonoBehaviour
 
     public void OnMasterVolumeChanged()
     {
-        Options.MASTER_VOLUME = m_masterSlider.value;
-        SoundManager.Instance.OnMasterVolumeChanged(Options.MASTER_VOLUME);
+        OptionsData.MASTER_VOLUME = m_masterSlider.value;
+        SoundManager.Instance.OnMasterVolumeChanged(OptionsData.MASTER_VOLUME);
     }
 
     public void OnMusicVolumeChanged()
     {
-        Options.MUSIC_VOLUME = m_musicSlider.value;
-        SoundManager.Instance.OnMusicVolumeChanged(Options.MUSIC_VOLUME);
+        OptionsData.MUSIC_VOLUME = m_musicSlider.value;
+        SoundManager.Instance.OnMusicVolumeChanged(OptionsData.MUSIC_VOLUME);
     }
 
     public void OnSfxVolumeChanged()
     {
-        Options.SFX_VOLUME = m_sfxSlider.value;
-        SoundManager.Instance.OnSfxVolumeChanged(Options.SFX_VOLUME);
+        OptionsData.SFX_VOLUME = m_sfxSlider.value;
+        SoundManager.Instance.OnSfxVolumeChanged(OptionsData.SFX_VOLUME);
     }
 
     private void ShowOptionsPanel(string panelTitle, GameObject panel)
@@ -136,55 +136,55 @@ public class UIOptions : MonoBehaviour
 
     public void OnScreenResolutionChanged()
     {
-        BetterDebugging.Instance.Assert(m_screenResolutionDropdown.value < (int)Options.eScreenResolution.Count, "MAKE SURE TO ADJUST THE SCREEN RESOLUTION ENUM WHEN ADDING NEW RESOLUTIONS");
+        BetterDebugging.Instance.Assert(m_screenResolutionDropdown.value < (int)OptionsData.eScreenResolution.Count, "MAKE SURE TO ADJUST THE SCREEN RESOLUTION ENUM WHEN ADDING NEW RESOLUTIONS");
 
-        Options.SCREEN_RESOLUTION = (Options.eScreenResolution)m_screenResolutionDropdown.value;
+        OptionsData.SCREEN_RESOLUTION = (OptionsData.eScreenResolution)m_screenResolutionDropdown.value;
 
         FullScreenMode fsMode = Screen.fullScreenMode;
 
-        switch (Options.SCREEN_RESOLUTION)
+        switch (OptionsData.SCREEN_RESOLUTION)
         {
-            case Options.eScreenResolution.r1920x1080:
+            case OptionsData.eScreenResolution.r1920x1080:
                 Screen.SetResolution(1920, 1080, fsMode);
                 break;
-            case Options.eScreenResolution.r1280x960:
+            case OptionsData.eScreenResolution.r1280x960:
                 Screen.SetResolution(1280, 960, fsMode);
                 break;
-            case Options.eScreenResolution.r1024x768:
+            case OptionsData.eScreenResolution.r1024x768:
                 Screen.SetResolution(1024, 768, fsMode);
                 break;
-            case Options.eScreenResolution.r960x540:
+            case OptionsData.eScreenResolution.r960x540:
                 Screen.SetResolution(960, 540, fsMode);
                 break;
-            case Options.eScreenResolution.r640x360:
+            case OptionsData.eScreenResolution.r640x360:
                 Screen.SetResolution(640, 360, fsMode);
                 break;
             default:
-                BetterDebugging.Instance.Assert(false, $"UNHANDLED CASE {Options.SCREEN_RESOLUTION}");
+                BetterDebugging.Instance.Assert(false, $"UNHANDLED CASE {OptionsData.SCREEN_RESOLUTION}");
                 break;
         }
     }
 
     public void OnWindowModeChanged()
     {
-        BetterDebugging.Instance.Assert(m_windowModeDropdown.value < (int)Options.eWindowMode.Count, "MAKE SURE TO ADJUST THE WINDOW MODE ENUM WHEN ADDING NEW OPTIONS");
+        BetterDebugging.Instance.Assert(m_windowModeDropdown.value < (int)OptionsData.eWindowMode.Count, "MAKE SURE TO ADJUST THE WINDOW MODE ENUM WHEN ADDING NEW OPTIONS");
 
-        Options.SCREEN_MODE = (Options.eWindowMode)m_windowModeDropdown.value;
+        OptionsData.SCREEN_MODE = (OptionsData.eWindowMode)m_windowModeDropdown.value;
 
 
-        switch (Options.SCREEN_MODE)
+        switch (OptionsData.SCREEN_MODE)
         {
-            case Options.eWindowMode.Windowed:
+            case OptionsData.eWindowMode.Windowed:
                 Screen.fullScreenMode = FullScreenMode.Windowed;
                 break;
-            case Options.eWindowMode.Borderless:
+            case OptionsData.eWindowMode.Borderless:
                 Screen.fullScreenMode = FullScreenMode.MaximizedWindow;
                 break;
-            case Options.eWindowMode.FullScreen:
+            case OptionsData.eWindowMode.FullScreen:
                 Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
                 break;
             default:
-                BetterDebugging.Instance.Assert(false, $"UNHANDLED CASE {Options.SCREEN_MODE}");
+                BetterDebugging.Instance.Assert(false, $"UNHANDLED CASE {OptionsData.SCREEN_MODE}");
                 break;
         }
 
@@ -199,29 +199,29 @@ public class UIOptions : MonoBehaviour
         m_tritoVolume.gameObject.SetActive(false);
 
 
-        BetterDebugging.Instance.Assert(m_colourBlindnessDropdown.value < (int)Options.eColourBlindness.Count, "MAKE SURE TO ADJUST THE COLOUR BLINDNESS ENUM WHEN ADDING NEW OPTIONS");
+        BetterDebugging.Instance.Assert(m_colourBlindnessDropdown.value < (int)OptionsData.eColourBlindness.Count, "MAKE SURE TO ADJUST THE COLOUR BLINDNESS ENUM WHEN ADDING NEW OPTIONS");
 
-        Options.COLOUR_BLINDNESS = (Options.eColourBlindness)m_colourBlindnessDropdown.value;
+        OptionsData.COLOUR_BLINDNESS = (OptionsData.eColourBlindness)m_colourBlindnessDropdown.value;
 
-        switch (Options.COLOUR_BLINDNESS)
+        switch (OptionsData.COLOUR_BLINDNESS)
         {
-            case Options.eColourBlindness.None:
+            case OptionsData.eColourBlindness.None:
                 m_normalVolume.gameObject.SetActive(true);
                 break;
-            case Options.eColourBlindness.Achroma:
+            case OptionsData.eColourBlindness.Achroma:
                 m_achromaVolume.gameObject.SetActive(true);
                 break;
-            case Options.eColourBlindness.Proto:
+            case OptionsData.eColourBlindness.Proto:
                 m_protoVolume.gameObject.SetActive(true);
                 break;
-            case Options.eColourBlindness.Deutero:
+            case OptionsData.eColourBlindness.Deutero:
                 m_deuteroVolume.gameObject.SetActive(true);
                 break;
-            case Options.eColourBlindness.Trito:
+            case OptionsData.eColourBlindness.Trito:
                 m_tritoVolume.gameObject.SetActive(true);
                 break;
             default:
-                BetterDebugging.Instance.Assert(false, $"UNHANDLED CASE {Options.COLOUR_BLINDNESS}");
+                BetterDebugging.Instance.Assert(false, $"UNHANDLED CASE {OptionsData.COLOUR_BLINDNESS}");
                 break;
         }
     }

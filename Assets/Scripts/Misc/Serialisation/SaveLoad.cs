@@ -17,6 +17,8 @@ public class SaveLoad
 
     private static GameData m_gameData = new GameData(Vector3.zero, 0, 0);
 
+    private static OptionsData m_optionsData = new OptionsData();
+
 
 #if PLATFORM_STANDALONE_WIN
     private static string BWOOM_DIRECTORY = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Bwoom";
@@ -64,7 +66,7 @@ public class SaveLoad
 
     public static void LoadOptions()
     {
-
+        Load(eSaveLoadOptions.OptionsData);
     }
 
 
