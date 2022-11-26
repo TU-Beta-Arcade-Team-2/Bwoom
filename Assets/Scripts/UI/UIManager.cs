@@ -9,11 +9,13 @@ public class UIManager : Singleton<UIManager>
     public Animator m_Transition;
 
     public bool IN_GAME = false;
-    [SerializeField] private GameObject m_pauseMenu;
 
     [SerializeField] private GameObject m_continueButton;
 
+    [SerializeField] private GameObject m_gameHUD;
+    [SerializeField] private GameObject m_pauseMenu;
     [SerializeField] private GameObject m_optionsMenu;
+
 
     private void Start()
     {
@@ -21,24 +23,6 @@ public class UIManager : Singleton<UIManager>
         {
             // Show the Continue game button only if we've never saved
             m_continueButton.SetActive(SaveLoad.DoesSaveGameExist());
-        }
-    }
-
-    private void Update()
-    {
-        if (IN_GAME && Input.GetKeyDown(KeyCode.Escape))
-        {
-            //TODO: Change to input manager
-            if (m_pauseMenu.activeSelf)
-            {
-                m_pauseMenu.SetActive(false);
-                Time.timeScale = 1f;
-            }
-            else
-            {
-                m_pauseMenu.SetActive(true);
-                Time.timeScale = 0f;
-            }
         }
     }
 
@@ -54,9 +38,23 @@ public class UIManager : Singleton<UIManager>
         GameManager.SHOULD_LOAD_STATS = true;
     }
 
-    public void PauseGame()
+    public void ShowPauseMenu()
     {
+        m_pauseMenu.SetActive(!m_pauseMenu.activeSelf);
+        m_gameHUD.SetActive(!m_pauseMenu.activeSelf);
+    }
 
+    public void ShowOptionsMenu()
+    {
+        m_pauseMenu.SetActive(false);
+        m_optionsMenu.SetActive(true);
+    }
+
+    public void OnOptionsBackPressed()
+    {
+        // TODO: Behave differently on the main menu vs in game
+        m_pauseMenu.SetActive(true);
+        m_optionsMenu.SetActive(false);
     }
 
     public void QuitGame()

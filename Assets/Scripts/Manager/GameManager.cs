@@ -1,4 +1,6 @@
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
@@ -16,11 +18,10 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject m_gameHud;
     [SerializeField] private GameObject m_deathScreen;
 
+    private bool m_paused = false;
+
     private void Start()
     {
-        QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = m_frameRate;
-
         if (SHOULD_LOAD_STATS)
         {
             InitialisePlayer();
@@ -43,6 +44,15 @@ public class GameManager : Singleton<GameManager>
         m_deathScreen.SetActive(true);
     }
 
+    public void PauseGame()
+    {
+        m_paused = !m_paused;
+
+        Time.timeScale = m_paused ? 0f : 1f;
+
+        UIManager.Instance.ShowPauseMenu();
+    }
+
     public void Continue_Button()
     {
         Scene scene = SceneManager.GetActiveScene();
@@ -52,5 +62,10 @@ public class GameManager : Singleton<GameManager>
     public void Quit_Button()
     {
         SceneManager.LoadScene("TitleScreen");
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
