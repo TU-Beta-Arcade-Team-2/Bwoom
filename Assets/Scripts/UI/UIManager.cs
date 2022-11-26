@@ -8,7 +8,7 @@ public class UIManager : Singleton<UIManager>
 {
     [SerializeField] private GameObject m_gameHUD;
     [SerializeField] private GameObject m_pauseMenu;
-    [SerializeField] private GameObject m_optionsMenu;
+    [SerializeField] private UIOptions m_optionsMenu;
 
     public void ShowPauseMenu()
     {
@@ -19,13 +19,16 @@ public class UIManager : Singleton<UIManager>
     public void ShowOptionsMenu()
     {
         m_pauseMenu.SetActive(false);
-        m_optionsMenu.SetActive(true);
+        m_optionsMenu.gameObject.SetActive(true);
     }
 
     public void OnOptionsBackPressed()
     {
         m_pauseMenu.SetActive(true);
-        m_optionsMenu.SetActive(false);
+
+        m_optionsMenu.gameObject.SetActive(false);
+        m_optionsMenu.SaveOptions();
+
         PlayUiClick();
     }
 
@@ -36,6 +39,13 @@ public class UIManager : Singleton<UIManager>
 
     public void ToggleOptions()
     {
-        m_optionsMenu.SetActive(!m_optionsMenu.activeSelf);
+        m_optionsMenu.gameObject.SetActive(!m_optionsMenu.gameObject.activeSelf);
+    }
+
+    public void QuitToTitle()
+    {
+        m_gameHUD.SetActive(false);
+        GameManager.Instance.PauseGame();
+        SaveLoad.LoadLevel(StringConstants.TITLE_SCREEN_LEVEL);
     }
 }

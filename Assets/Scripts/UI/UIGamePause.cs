@@ -28,7 +28,7 @@ public class UIGamePause : MonoBehaviour
 
     public void OnQuitPressed()
     {
-        UIManager.Instance.PlayUiClick();
-        SaveLoad.LoadLevel(StringConstants.TITLE_SCREEN_LEVEL);
+        // Unpause to reset timescale
+        UIManager.Instance.QuitToTitle();
     }
 }
