@@ -88,7 +88,7 @@ public class PlayerStats : MonoBehaviour
 
         Health = Mathf.Clamp(m_health, 0, m_maxHealth);
         Points = 0;
-        
+
 
         m_frenzyTimer = m_frenzyModeDefaultTimer;
 
@@ -176,7 +176,8 @@ public class PlayerStats : MonoBehaviour
         if (collision.CompareTag(StringConstants.CHECKPOINT_STRING))
         {
             m_lastCheckpointPosition = collision.gameObject.transform.position;
-            SaveLoad.SaveGame(this);
+
+            SaveLoad.SaveGame(new GameData(m_lastCheckpointPosition, m_health, m_points));
         }
     }
 

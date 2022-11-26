@@ -33,9 +33,7 @@ public class GameManager : Singleton<GameManager>
 
     public void InitialisePlayer()
     {
-        m_player.gameObject.transform.position = SaveLoad.LAST_CHECKPOINT_POSITION;
-        m_player.AddPoints(SaveLoad.PLAYER_POINTS);
-        m_player.SetHealth(SaveLoad.PLAYER_HEALTH);
+        SaveLoad.InitialisePlayer(m_player);
     }
 
     public void Death()
