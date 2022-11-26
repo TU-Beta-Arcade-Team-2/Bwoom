@@ -143,6 +143,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Movement();
+        m_animator.SetInteger("Jump", (int)m_rigidbody.velocity.y);
     }
 
 #endregion
