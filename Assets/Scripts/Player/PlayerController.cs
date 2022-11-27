@@ -137,13 +137,13 @@ public class PlayerController : MonoBehaviour
         }
 #endif
         m_animator.SetFloat("Movement", Mathf.Abs(m_playerInput.actions["Horizontal"].ReadValue<float>()));
+        m_animator.SetBool("IsGrounded", IsGrounded());
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
         Movement();
-        m_animator.SetInteger("Jump", (int)m_rigidbody.velocity.y);
     }
 
 #endregion
