@@ -36,14 +36,14 @@ public class GameData : Serialisable
 
     public override void Deserialise(StreamReader reader)
     {
-        BetterDebugging.Instance.Assert(reader != null);
+        BetterDebugging.Assert(reader != null);
 
         m_sceneName = reader.ReadLine();
 
         // vec3s get written out as (x, y, z) so will need to do some processing to read the values
         string checkpointPosition = reader.ReadLine().Replace("(", string.Empty).Replace(")", string.Empty).Replace(" ", string.Empty);
 
-        BetterDebugging.Instance.Assert(!string.IsNullOrEmpty(checkpointPosition), "PLAYER POSITION NULL FROM FILE!");
+        BetterDebugging.Assert(!string.IsNullOrEmpty(checkpointPosition), "PLAYER POSITION NULL FROM FILE!");
 
         string[] vectorValues = checkpointPosition.Split(",");
 

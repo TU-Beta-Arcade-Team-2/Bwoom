@@ -104,7 +104,7 @@ public class OptionsData : Serialisable
 
     public override void Deserialise(StreamReader reader)
     {
-        BetterDebugging.Instance.Assert(reader != null);
+        BetterDebugging.Assert(reader != null);
 
         MasterVolume = float.Parse(reader.ReadLine());
         MusicVolume = float.Parse(reader.ReadLine());

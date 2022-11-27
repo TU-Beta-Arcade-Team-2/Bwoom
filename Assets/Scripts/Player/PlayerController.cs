@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private eMasks m_masks;
 
-#region Main Functions
+    #region Main Functions
     // Start is called before the first frame update
     private void Start()
     {
@@ -151,9 +151,9 @@ public class PlayerController : MonoBehaviour
         Movement();
     }
 
-#endregion
+    #endregion
 
-#region Basic Movement Functions
+    #region Basic Movement Functions
     private void Movement()
     {
         m_rigidbody.velocity = new Vector2(HorizontalDrag(), m_rigidbody.velocity.y);
@@ -205,9 +205,9 @@ public class PlayerController : MonoBehaviour
         transform.Rotate(0f, 180f, 0f);
     }
 
-#endregion
+    #endregion
 
-#region Jumping Functions
+    #region Jumping Functions
 
     private void Jumping()
     {
@@ -280,12 +280,12 @@ public class PlayerController : MonoBehaviour
         {
             m_rigidbody.sharedMaterial = slipperyMat;
             boxCollider.sharedMaterial = slipperyMat;
-            Debug.Log("AIRBORNE");
+            BetterDebugging.Log("AIRBORNE");
             return false;
 
         }
 
-        Debug.Log("GROUNDED");
+        BetterDebugging.Log("GROUNDED");
 
         if (m_ungroundedTimer > 0)
         {
@@ -300,9 +300,9 @@ public class PlayerController : MonoBehaviour
         return true;
     }
 
-#endregion
+    #endregion
 
-#region Mask Input Function
+    #region Mask Input Function
     private void MaskInputs()
     {
         if (m_playerInput.actions["WarMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
@@ -381,9 +381,9 @@ public class PlayerController : MonoBehaviour
         m_warMask.enabled = false;
         m_natureMask.enabled = false;
     }
-#endregion
+    #endregion
 
-#region Extra Movement Functions
+    #region Extra Movement Functions
 #if UNUSED_ABILITES
     private void WallSlide()
     {
@@ -417,7 +417,7 @@ public class PlayerController : MonoBehaviour
         m_rigidbody.AddForce(force, ForceMode2D.Impulse);
     }
 
-#endregion
+    #endregion
 
     public void SetMovementValues(PlayerStats.Stats stats)
     {

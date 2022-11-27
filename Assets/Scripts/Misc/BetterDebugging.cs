@@ -9,7 +9,7 @@ using TMPro;
 using UnityEngine;
 
 
-public class BetterDebugging : Singleton<BetterDebugging>
+public class BetterDebugging
 {
     public enum eDebugLevel
     {
@@ -19,17 +19,17 @@ public class BetterDebugging : Singleton<BetterDebugging>
         Message = 2
     }
 
-    public eDebugLevel OutputLevel = eDebugLevel.Message;
+    public static eDebugLevel OutputLevel = eDebugLevel.Warning;
 
-    public void DebugLog(
-        string debugText, 
-        eDebugLevel level = eDebugLevel.Log, 
+    public static void Log(
+        string debugText,
+        eDebugLevel level = eDebugLevel.Log,
         [CallerFilePath] string originFile = null,
         [CallerMemberName] string functionName = null,
         [CallerLineNumber] int originLineNumber = 0)
     {
         // Only output the message if it is at or below the current OutPutLevel
-        if ((int) OutputLevel >= (int) level)
+        if ((int)OutputLevel >= (int)level)
         {
             string debugString;
             switch (level)
@@ -58,7 +58,7 @@ public class BetterDebugging : Singleton<BetterDebugging>
 
     // TODO: textOrigin doesn't need to be provided if parent is there, so I need to create
     // some better overloads for this function... 
-    public void SpawnDebugText(string debugText,
+    public static void SpawnDebugText(string debugText,
         Vector3 textOrigin,
         float lifeTime,
         Transform parent = null,
@@ -102,14 +102,14 @@ public class BetterDebugging : Singleton<BetterDebugging>
         }
         else
         {
-            DebugLog("Problem creating spawned in text!", eDebugLevel.Error);
+            Log("Problem creating spawned in text!", eDebugLevel.Error);
         }
 
         Destroy(go, lifeTime);
 #endif
     }
 
-    public void Assert(bool condition, 
+    public static void Assert(bool condition,
         string debugString = "",
         [CallerFilePath] string originFile = null,
         [CallerMemberName] string functionName = null,
@@ -117,13 +117,13 @@ public class BetterDebugging : Singleton<BetterDebugging>
     {
         if (!condition)
         {
-            DebugLog($"ASSERTION FAILED: {debugString}", eDebugLevel.Error, originFile, functionName, originLineNumber);
+            Log($"ASSERTION FAILED: {debugString}", eDebugLevel.Error, originFile, functionName, originLineNumber);
 
             Debug.Break();
         }
     }
 
-    private string GetFileName(string fullPath)
+    private static string GetFileName(string fullPath)
     {
         return fullPath?.Split('\\').Last();
     }

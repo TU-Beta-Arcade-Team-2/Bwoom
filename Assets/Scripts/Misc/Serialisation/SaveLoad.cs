@@ -1,10 +1,7 @@
 using System;
 using System.IO;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Runtime.Serialization;
 
 
 public class SaveLoad
@@ -68,7 +65,7 @@ public class SaveLoad
     {
         Load(eSaveLoadOptions.GameData);
 
-        BetterDebugging.Instance.Assert(!string.IsNullOrEmpty(m_gameData.SceneName), $"SCENE NAME FROM SAVEDATA WAS NULL OR EMPTY... DID THE FILE SAVE OKAY?\nLOCATION: {m_savePath}");
+        BetterDebugging.Assert(!string.IsNullOrEmpty(m_gameData.SceneName), $"SCENE NAME FROM SAVEDATA WAS NULL OR EMPTY... DID THE FILE SAVE OKAY?\nLOCATION: {m_savePath}");
         LoadLevel(m_gameData.SceneName);
     }
 
@@ -91,7 +88,7 @@ public class SaveLoad
 #endif
         string saveDataPath = GetSaveDataPath(type);
 
-        BetterDebugging.Instance.Assert(File.Exists(saveDataPath), $"NO SAVE DATA FOUND AT: {saveDataPath}");
+        BetterDebugging.Assert(File.Exists(saveDataPath), $"NO SAVE DATA FOUND AT: {saveDataPath}");
 
         if (!File.Exists(saveDataPath) && type == eSaveLoadOptions.OptionsData)
         {
@@ -117,7 +114,7 @@ public class SaveLoad
             case eSaveLoadOptions.OptionsData:
                 return m_optionsData;
             default:
-                BetterDebugging.Instance.Assert(false, "UNHANDLED SERIALISED DATA ");
+                BetterDebugging.Assert(false, "UNHANDLED SERIALISED DATA ");
                 return null;
         }
     }
@@ -131,7 +128,7 @@ public class SaveLoad
             case eSaveLoadOptions.OptionsData:
                 return m_optionsPath;
             default:
-                BetterDebugging.Instance.Assert(false, "UNHANDLED SERIALISED DATA ");
+                BetterDebugging.Assert(false, "UNHANDLED SERIALISED DATA ");
                 return null;
         }
     }

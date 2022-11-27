@@ -101,7 +101,7 @@ public class PlayerStats : MonoBehaviour
     {
         int actualDamage = (int)(incomingDamage / m_currentStats.DamageResistance);
 
-        BetterDebugging.Instance.DebugLog("Actual Damage : " + actualDamage, BetterDebugging.eDebugLevel.Message);
+        BetterDebugging.Log("Actual Damage : " + actualDamage, BetterDebugging.eDebugLevel.Message);
 
         Health -= actualDamage;
 
@@ -151,7 +151,7 @@ public class PlayerStats : MonoBehaviour
         m_playerController.SetMovementValues(m_frenzyStats);
 
         Invoke("DeactivateFrenzyMode", m_frenzyTimer);
-        Debug.Log("Frenzy Mode On!");
+        BetterDebugging.Log("Frenzy Mode On!");
         m_frenzyMode = true;
     }
 
@@ -164,7 +164,7 @@ public class PlayerStats : MonoBehaviour
         m_playerController.doubleJumpOn = false;
         m_playerController.SetMovementValues(m_defaultStats);
 
-        Debug.Log("No More Frenzy");
+        BetterDebugging.Log("No More Frenzy");
         m_frenzyMode = false;
     }
 

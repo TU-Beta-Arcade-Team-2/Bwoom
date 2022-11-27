@@ -116,10 +116,10 @@ public class RhinoEnemy : EnemyBase
         // If the player is within range, begin charging
         if (FindSqrDistanceToPlayer() <= m_minDistanceToPlayer.x * m_minDistanceToPlayer.x)
         {
-            // DebugLog("PLAYER IS IN RANGE!");
+            // Log("PLAYER IS IN RANGE!");
             Vector2 vectorToPlayer = GetVectorToPlayer();
 
-            // DebugLog($"PLAYER VECTOR {vectorToPlayer.x}  {vectorToPlayer.y}");
+            // Log($"PLAYER VECTOR {vectorToPlayer.x}  {vectorToPlayer.y}");
 
             // If we are facing the correct direction, and around the right height
             // range, charge at the player

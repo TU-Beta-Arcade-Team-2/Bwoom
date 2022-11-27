@@ -1,11 +1,9 @@
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    public static bool SHOULD_LOAD_STATS = false;
+    public static bool SHOULD_LOAD_SAVE = false;
 
     [SerializeField] private PlayerStats m_player;
 
@@ -14,12 +12,14 @@ public class GameManager : Singleton<GameManager>
 
     private bool m_paused = false;
 
-    private void Start()
+    protected override void InternalInit()
     {
-        if (SHOULD_LOAD_STATS)
+        if (SHOULD_LOAD_SAVE)
         {
             InitialisePlayer();
         }
+
+        SoundManager.Instance.PlayMusic(StringConstants.NATURE_LEVEL_SOUNDTRACK, true);
 
         m_gameHud.SetActive(true);
         m_deathScreen.SetActive(false);
@@ -58,6 +58,8 @@ public class GameManager : Singleton<GameManager>
 
     public void RestartGame()
     {
+        PauseGame();
+        SHOULD_LOAD_SAVE = false;
         SaveLoad.LoadLevel(SceneManager.GetActiveScene().name);
     }
 }

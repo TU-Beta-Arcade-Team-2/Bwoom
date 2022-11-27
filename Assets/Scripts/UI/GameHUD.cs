@@ -14,16 +14,16 @@ public class GameHUD : Singleton<GameHUD>
     [SerializeField] private TextMeshProUGUI m_pointText;
     [SerializeField] private Image m_radialHealthBar;
 
-    void Start()
+    protected override void InternalInit()
     {
-        BetterDebugging.Instance.Assert(m_uiMaskImage != null, "MASK IMAGE SHOULDN'T BE NULL!");
-        BetterDebugging.Instance.Assert(m_warMaskIcon != null, "WAR MASK IMAGE SHOULDN'T BE NULL!");
+        BetterDebugging.Assert(m_uiMaskImage != null, "MASK IMAGE SHOULDN'T BE NULL!");
+        BetterDebugging.Assert(m_warMaskIcon != null, "WAR MASK IMAGE SHOULDN'T BE NULL!");
 
-        BetterDebugging.Instance.Assert(m_natureMaskIcon != null, "NATURE MASK IMAGE SHOULDN'T BE NULL!");
+        BetterDebugging.Assert(m_natureMaskIcon != null, "NATURE MASK IMAGE SHOULDN'T BE NULL!");
 
-        BetterDebugging.Instance.Assert(m_pointText != null, "POINT TEXT SHOULDN'T BE NULL!");
+        BetterDebugging.Assert(m_pointText != null, "POINT TEXT SHOULDN'T BE NULL!");
 
-        BetterDebugging.Instance.Assert(m_radialHealthBar != null, "HEALTH BAR SHOULDN'T BE NULL!");
+        BetterDebugging.Assert(m_radialHealthBar != null, "HEALTH BAR SHOULDN'T BE NULL!");
     }
 
     public void UpdateHealthBar(int healthValue, int maxHealthValue)
@@ -47,7 +47,7 @@ public class GameHUD : Singleton<GameHUD>
                 m_uiMaskImage.sprite = m_natureMaskIcon;
                 break;
             default:
-                BetterDebugging.Instance.Assert(false, $"UNHANDLED MASK IN THE GAMEHUD {mask}");
+                BetterDebugging.Assert(false, $"UNHANDLED MASK IN THE GAMEHUD {mask}");
                 break;
         }
     }

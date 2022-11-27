@@ -185,7 +185,7 @@ public class UIOptions : MonoBehaviour
 
     public void OnScreenResolutionChanged()
     {
-        BetterDebugging.Instance.Assert(m_screenResolutionDropdown.value < (int)OptionsData.eScreenResolution.Count, "MAKE SURE TO ADJUST THE SCREEN RESOLUTION ENUM WHEN ADDING NEW RESOLUTIONS");
+        BetterDebugging.Assert(m_screenResolutionDropdown.value < (int)OptionsData.eScreenResolution.Count, "MAKE SURE TO ADJUST THE SCREEN RESOLUTION ENUM WHEN ADDING NEW RESOLUTIONS");
 
         SetScreenResolution((OptionsData.eScreenResolution)m_screenResolutionDropdown.value);
     }
@@ -214,14 +214,14 @@ public class UIOptions : MonoBehaviour
                 Screen.SetResolution(640, 360, fsMode);
                 break;
             default:
-                BetterDebugging.Instance.Assert(false, $"UNHANDLED CASE {m_optionsData.ScreenResolution}");
+                BetterDebugging.Assert(false, $"UNHANDLED CASE {m_optionsData.ScreenResolution}");
                 break;
         }
     }
 
     public void OnWindowModeChanged()
     {
-        BetterDebugging.Instance.Assert(m_windowModeDropdown.value < (int)OptionsData.eWindowMode.Count, "MAKE SURE TO ADJUST THE WINDOW MODE ENUM WHEN ADDING NEW OPTIONS");
+        BetterDebugging.Assert(m_windowModeDropdown.value < (int)OptionsData.eWindowMode.Count, "MAKE SURE TO ADJUST THE WINDOW MODE ENUM WHEN ADDING NEW OPTIONS");
 
         SetWindowMode((OptionsData.eWindowMode)m_windowModeDropdown.value);
 
@@ -244,14 +244,14 @@ public class UIOptions : MonoBehaviour
                 Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
                 break;
             default:
-                BetterDebugging.Instance.Assert(false, $"UNHANDLED CASE {m_optionsData.WindowMode}");
+                BetterDebugging.Assert(false, $"UNHANDLED CASE {m_optionsData.WindowMode}");
                 break;
         }
     }
 
     public void OnColourBlindnessChanged()
     {
-        BetterDebugging.Instance.Assert(m_colourBlindnessDropdown.value < (int)OptionsData.eColourBlindness.Count, "MAKE SURE TO ADJUST THE COLOUR BLINDNESS ENUM WHEN ADDING NEW OPTIONS");
+        BetterDebugging.Assert(m_colourBlindnessDropdown.value < (int)OptionsData.eColourBlindness.Count, "MAKE SURE TO ADJUST THE COLOUR BLINDNESS ENUM WHEN ADDING NEW OPTIONS");
 
         SetColourBlindness((OptionsData.eColourBlindness)m_colourBlindnessDropdown.value);
 
@@ -288,7 +288,7 @@ public class UIOptions : MonoBehaviour
                 m_tritoVolume.gameObject.SetActive(true);
                 break;
             default:
-                BetterDebugging.Instance.Assert(false, $"UNHANDLED CASE {m_optionsData.ColourBlindness}");
+                BetterDebugging.Assert(false, $"UNHANDLED CASE {m_optionsData.ColourBlindness}");
                 break;
         }
     }

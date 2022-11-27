@@ -26,7 +26,7 @@ public class UIMainMenu : MonoBehaviour
     public void OnContinueGamePressed()
     {
         SaveLoad.LoadGame();
-        GameManager.SHOULD_LOAD_STATS = true;
+        GameManager.SHOULD_LOAD_SAVE = true;
     }
 
     public void OnOptionsPressed()

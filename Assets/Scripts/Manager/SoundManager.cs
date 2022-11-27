@@ -11,7 +11,7 @@ public class SoundManager : Singleton<SoundManager>
 
     private readonly Dictionary<string, AudioClip> m_audioClips = new();
 
-    void Awake()
+    protected override void InternalInit()
     {
         AudioClip[] allSounds = Resources.LoadAll<AudioClip>("Audio");
 
@@ -21,9 +21,10 @@ public class SoundManager : Singleton<SoundManager>
         }
     }
 
+
     public void PlayMusic(string musicName, bool shouldLoop)
     {
-        BetterDebugging.Instance.Assert(m_audioClips.Keys.Contains(musicName), $"UNRECOGNISED TRACK NAME {musicName}");
+        BetterDebugging.Assert(m_audioClips.Keys.Contains(musicName), $"UNRECOGNISED TRACK NAME {musicName}");
 
         m_musicSource.clip = m_audioClips[musicName];
         m_musicSource.loop = shouldLoop;
@@ -32,7 +33,7 @@ public class SoundManager : Singleton<SoundManager>
 
     public void PlaySfx(string sfxName)
     {
-        BetterDebugging.Instance.Assert(m_audioClips.Keys.Contains(sfxName), $"UNRECOGNISED SOUND EFFECT {sfxName}");
+        BetterDebugging.Assert(m_audioClips.Keys.Contains(sfxName), $"UNRECOGNISED SOUND EFFECT {sfxName}");
         m_sfxSource.PlayOneShot(m_audioClips[sfxName]);
     }
 

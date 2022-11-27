@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 public class UIManager : Singleton<UIManager>
@@ -9,6 +6,12 @@ public class UIManager : Singleton<UIManager>
     [SerializeField] private GameObject m_gameHUD;
     [SerializeField] private GameObject m_pauseMenu;
     [SerializeField] private UIOptions m_optionsMenu;
+
+    protected override void InternalInit()
+    {
+        // Load and apply the ingame settings
+        m_optionsMenu.LoadOptions();
+    }
 
     public void ShowPauseMenu()
     {
