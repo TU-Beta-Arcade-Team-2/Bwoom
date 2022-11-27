@@ -10,7 +10,7 @@ public class UIGamePause : MonoBehaviour
 
     public void OnContinuePressed()
     {
-        GameManager.Instance.PauseGame();
+        GameManager.Instance.OnPauseButtonPressed();
         UIManager.Instance.PlayUiClick();
     }
 

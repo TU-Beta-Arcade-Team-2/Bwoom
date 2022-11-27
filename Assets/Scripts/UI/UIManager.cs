@@ -48,7 +48,26 @@ public class UIManager : Singleton<UIManager>
     public void QuitToTitle()
     {
         m_gameHUD.SetActive(false);
-        GameManager.Instance.PauseGame();
+        GameManager.Instance.OnPauseButtonPressed();
         SaveLoad.LoadLevel(StringConstants.TITLE_SCREEN_LEVEL);
+    }
+
+    public void OnPauseButtonPressed()
+    {
+        // If escape is pressed in the options sub-menu, show the pause menu again
+        if (m_optionsMenu.gameObject.activeSelf)
+        {
+            m_optionsMenu.gameObject.SetActive(false);
+            m_pauseMenu.SetActive(true);
+        }
+        else
+        {
+            ShowPauseMenu();
+        }
+    }
+
+    public bool IsStillPaused()
+    {
+        return m_pauseMenu.activeSelf;
     }
 }

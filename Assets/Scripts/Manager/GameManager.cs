@@ -36,13 +36,12 @@ public class GameManager : Singleton<GameManager>
         m_deathScreen.SetActive(true);
     }
 
-    public void PauseGame()
+    public void OnPauseButtonPressed()
     {
-        m_paused = !m_paused;
+        UIManager.Instance.OnPauseButtonPressed();
 
+        m_paused = UIManager.Instance.IsStillPaused();
         Time.timeScale = m_paused ? 0f : 1f;
-
-        UIManager.Instance.ShowPauseMenu();
     }
 
     public void Continue_Button()
@@ -58,7 +57,7 @@ public class GameManager : Singleton<GameManager>
 
     public void RestartGame()
     {
-        PauseGame();
+        OnPauseButtonPressed();
         SHOULD_LOAD_SAVE = false;
         SaveLoad.LoadLevel(SceneManager.GetActiveScene().name);
     }

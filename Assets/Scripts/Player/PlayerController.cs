@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
 #endif
         if (m_playerInput.actions["Pause"].triggered)
         {
-            GameManager.Instance.PauseGame();
+            GameManager.Instance.OnPauseButtonPressed();
         }
 
 
