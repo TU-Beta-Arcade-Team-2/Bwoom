@@ -31,7 +31,7 @@ public class LevelEditorGUI : Editor
             LoadLevelFromXML levelLoader = new LoadLevelFromXML(m_target.LevelXML.text, m_target.TileSetXML.text, m_target.SpriteAtlas, m_target.TilePrefab);
             levelLoader.BuildLevel();
 
-            BetterDebugging.Instance.DebugLog("Clicked!", BetterDebugging.eDebugLevel.Message);
+            BetterDebugging.Log("Clicked!", BetterDebugging.eDebugLevel.Message);
         }
 
         DrawDefaultInspector();

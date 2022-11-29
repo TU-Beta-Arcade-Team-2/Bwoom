@@ -69,10 +69,10 @@ public abstract class EnemyBase : MonoBehaviour
     {
         m_health = m_health -= damageAmount;
 
-        BetterDebugging.Instance.SpawnDebugText(
-            $"{m_name.ToUpper()} TAKING {damageAmount} DAMAGE", 
-            transform.position + new Vector3(0, 2), 
-            0.3f, 
+        BetterDebugging.SpawnDebugText(
+            $"{m_name.ToUpper()} TAKING {damageAmount} DAMAGE",
+            transform.position + new Vector3(0, 2),
+            0.3f,
             null,
             BetterDebugging.eDebugLevel.Message
         );
@@ -90,7 +90,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     public virtual void DamagePlayer(int damageAmount)
     {
-        BetterDebugging.Instance.SpawnDebugText(
+        BetterDebugging.SpawnDebugText(
             $"{m_name.ToUpper()} DEALING {damageAmount} DAMAGE",
             transform.position + new Vector3(0, 2),
             0.3f,
@@ -150,6 +150,6 @@ public abstract class EnemyBase : MonoBehaviour
 
     public void DebugLog(string debugMessage, BetterDebugging.eDebugLevel level = BetterDebugging.eDebugLevel.Log)
     {
-        BetterDebugging.Instance.DebugLog($"{m_name.ToUpper()}:  {debugMessage}", level);
+        BetterDebugging.Log($"{m_name.ToUpper()}:  {debugMessage}", level);
     }
 }

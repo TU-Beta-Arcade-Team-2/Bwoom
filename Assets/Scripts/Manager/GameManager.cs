@@ -3,28 +3,23 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-#if PLATFORM_STANDALONE_WIN
-    private const int m_frameRate = 144;
-#elif UNITY_ANDROID
-    public int m_frameRate = 30;
-#endif
-
-    public static bool SHOULD_LOAD_STATS = false;
+    public static bool SHOULD_LOAD_SAVE = false;
 
     [SerializeField] private PlayerStats m_player;
 
     [SerializeField] private GameObject m_gameHud;
     [SerializeField] private GameObject m_deathScreen;
 
-    private void Start()
-    {
-        QualitySettings.vSyncCount = 0;
-        Application.targetFrameRate = m_frameRate;
+    private bool m_paused = false;
 
-        if (SHOULD_LOAD_STATS)
+    protected override void InternalInit()
+    {
+        if (SHOULD_LOAD_SAVE)
         {
             InitialisePlayer();
         }
+
+        SoundManager.Instance.PlayMusic(StringConstants.NATURE_LEVEL_SOUNDTRACK, true);
 
         m_gameHud.SetActive(true);
         m_deathScreen.SetActive(false);
@@ -32,15 +27,21 @@ public class GameManager : Singleton<GameManager>
 
     public void InitialisePlayer()
     {
-        m_player.gameObject.transform.position = SaveLoad.LAST_CHECKPOINT_POSITION;
-        m_player.AddPoints(SaveLoad.PLAYER_POINTS);
-        m_player.SetHealth(SaveLoad.PLAYER_HEALTH);
+        SaveLoad.InitialisePlayer(m_player);
     }
 
     public void Death()
     {
         m_gameHud.SetActive(false);
         m_deathScreen.SetActive(true);
+    }
+
+    public void OnPauseButtonPressed()
+    {
+        UIManager.Instance.OnPauseButtonPressed();
+
+        m_paused = UIManager.Instance.IsStillPaused();
+        Time.timeScale = m_paused ? 0f : 1f;
     }
 
     public void Continue_Button()
@@ -52,5 +53,12 @@ public class GameManager : Singleton<GameManager>
     public void Quit_Button()
     {
         SceneManager.LoadScene("TitleScreen");
+    }
+
+    public void RestartGame()
+    {
+        OnPauseButtonPressed();
+        SHOULD_LOAD_SAVE = false;
+        SaveLoad.LoadLevel(SceneManager.GetActiveScene().name);
     }
 }

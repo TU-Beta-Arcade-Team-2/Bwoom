@@ -25,7 +25,7 @@ public class MaskAttackHitbox : MonoBehaviour
             EnemyBase enemy = other.GetComponent<EnemyBase>();
             // This assert shouldn't ever be hit, if it is, the other code will 
             // give NullReferenceExceptions anyway, so at least it will flag up where it happens! 
-            BetterDebugging.Instance.Assert(enemy != null, "Anything on the Enemy Layer should be an enemy!");
+            BetterDebugging.Assert(enemy != null, "Anything on the Enemy Layer should be an enemy!");
 
             if (enemy != null)
             {
@@ -40,7 +40,7 @@ public class MaskAttackHitbox : MonoBehaviour
                     //    m_natureMask.SpecialAttackEffect();
                     //    break;
                     default:
-                        BetterDebugging.Instance.DebugLog("Mask is either not added yet, or you messed up!", BetterDebugging.eDebugLevel.Error);
+                        BetterDebugging.Log("Mask is either not added yet, or you messed up!", BetterDebugging.eDebugLevel.Error);
                         break;
                 }
             }

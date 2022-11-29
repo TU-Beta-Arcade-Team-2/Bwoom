@@ -1,80 +1,73 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 
 public class UIManager : Singleton<UIManager>
 {
-    public Animator m_Transition;
-
-    public bool IN_GAME;
+    [SerializeField] private GameObject m_gameHUD;
     [SerializeField] private GameObject m_pauseMenu;
+    [SerializeField] private UIOptions m_optionsMenu;
 
-    [SerializeField] private GameObject m_continueButton;
-
-    private void Start()
+    protected override void InternalInit()
     {
-        // Show the Continue game button only if we've never saved
-        m_continueButton.SetActive(SaveLoad.DoesSaveGameExist());
+        // Load and apply the ingame settings
+        m_optionsMenu.LoadOptions();
     }
 
-    private void Update()
+    public void ShowPauseMenu()
     {
-        if (IN_GAME && Input.GetKeyDown(KeyCode.Escape))
-        {
-            //TODO: Change to input manager
-            if (m_pauseMenu.activeSelf)
-            {
-                m_pauseMenu.SetActive(false);
-                Time.timeScale = 1f;
-            }
-            else
-            {
-                m_pauseMenu.SetActive(true);
-                Time.timeScale = 0f;
-            }
-        }
-    }
-
-    public void StartNewGame()
-    {
-        LoadLevel(StringConstants.NATURE_LEVEL);
-    }
-
-    public void ContinueGame()
-    {
-        SaveLoad.LoadGame();
-        LoadLevel(SaveLoad.SCENE_NAME);
-        GameManager.SHOULD_LOAD_STATS = true;
+        m_pauseMenu.SetActive(!m_pauseMenu.activeSelf);
+        m_gameHUD.SetActive(!m_pauseMenu.activeSelf);
     }
 
     public void ShowOptionsMenu()
     {
-
+        m_pauseMenu.SetActive(false);
+        m_optionsMenu.gameObject.SetActive(true);
     }
 
-    public void PauseGame()
+    public void OnOptionsBackPressed()
     {
+        m_pauseMenu.SetActive(true);
 
+        m_optionsMenu.gameObject.SetActive(false);
+        m_optionsMenu.SaveOptions();
+
+        PlayUiClick();
     }
 
-    public void QuitGame()
+    public void PlayUiClick()
     {
-        Application.Quit();
+        SoundManager.Instance.PlaySfx(StringConstants.UI_CLICK_SFX);
     }
 
-    private void LoadLevel(string sceneName)
+    public void ToggleOptions()
     {
-        StartCoroutine(AsyncLoadLevel(sceneName));
+        m_optionsMenu.gameObject.SetActive(!m_optionsMenu.gameObject.activeSelf);
     }
 
-    private IEnumerator AsyncLoadLevel(string sceneName)
+    public void QuitToTitle()
     {
-        m_Transition.SetTrigger("Fade");
+        m_gameHUD.SetActive(false);
+        GameManager.Instance.OnPauseButtonPressed();
+        SaveLoad.LoadLevel(StringConstants.TITLE_SCREEN_LEVEL);
+    }
 
-        yield return new WaitForSeconds(1);
+    public void OnPauseButtonPressed()
+    {
+        // If escape is pressed in the options sub-menu, show the pause menu again
+        if (m_optionsMenu.gameObject.activeSelf)
+        {
+            m_optionsMenu.gameObject.SetActive(false);
+            m_pauseMenu.SetActive(true);
+        }
+        else
+        {
+            ShowPauseMenu();
+        }
+    }
 
-        SceneManager.LoadScene(sceneName);
+    public bool IsStillPaused()
+    {
+        return m_pauseMenu.activeSelf;
     }
 }

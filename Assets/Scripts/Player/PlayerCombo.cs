@@ -30,8 +30,8 @@ public class PlayerCombo : MonoBehaviour
     {
         m_playerInput = GetComponent<PlayerInput>();
 
-        BetterDebugging.Instance.Assert(m_hitstopManager != null, "REMEMBER TO ASSIGN THE HITSTOP MANAGER!");
-        BetterDebugging.Instance.Assert(m_playerAttackHitbox != null, "REMEMBER TO ASSIGN THE ATTACK HITBOX MANAGER!");
+        BetterDebugging.Assert(m_hitstopManager != null, "REMEMBER TO ASSIGN THE HITSTOP MANAGER!");
+        BetterDebugging.Assert(m_playerAttackHitbox != null, "REMEMBER TO ASSIGN THE ATTACK HITBOX MANAGER!");
     }
 
     // Update is called once per frame

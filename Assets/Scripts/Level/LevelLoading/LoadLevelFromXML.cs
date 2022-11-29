@@ -19,8 +19,8 @@ public class LoadLevelFromXML
 
     public void BuildLevel()
     {
-        BetterDebugging.Instance.Assert(m_levelXML != null, "LevelXML needs to be set! Check the references!");
-        BetterDebugging.Instance.Assert(m_tileSetXML != null, "LevelXML needs to be set! Check the references!");
+        BetterDebugging.Assert(m_levelXML != null, "LevelXML needs to be set! Check the references!");
+        BetterDebugging.Assert(m_tileSetXML != null, "LevelXML needs to be set! Check the references!");
 
         BuildTileSet();
 
@@ -31,7 +31,7 @@ public class LoadLevelFromXML
     {
         ParseTileSetXML();
 
-        BetterDebugging.Instance.Assert(m_tileSetIds.Count != 0, "TILE COUNT SHOULDN'T BE EMPTY!");
+        BetterDebugging.Assert(m_tileSetIds.Count != 0, "TILE COUNT SHOULDN'T BE EMPTY!");
     }
 
     private void ParseTileSetXML()
@@ -45,7 +45,7 @@ public class LoadLevelFromXML
             {
                 XmlElement tileElem = (XmlElement)node;
 
-                BetterDebugging.Instance.Assert(tileElem != null);
+                BetterDebugging.Assert(tileElem != null);
 
                 int id = int.Parse(tileElem.GetAttributeNode("id").InnerXml);
 
@@ -67,7 +67,7 @@ public class LoadLevelFromXML
             {
                 XmlElement levelElem = (XmlElement)node;
 
-                BetterDebugging.Instance.Assert(levelElem != null);
+                BetterDebugging.Assert(levelElem != null);
 
                 string layerName = levelElem.GetAttributeNode("name").InnerXml;
                 int layer = int.Parse(levelElem.GetAttributeNode("id").InnerXml);
@@ -85,11 +85,11 @@ public class LoadLevelFromXML
                     {
                         for (int j = 0; j < width; j++)
                         {
-                            BetterDebugging.Instance.Assert(width * i + j < tiles.Length, $"{i}  {j}   {width}    {width * i + j}");
+                            BetterDebugging.Assert(width * i + j < tiles.Length, $"{i}  {j}   {width}    {width * i + j}");
 
                             if (layerName.Equals("debug_tile_notations"))
                             {
-                                BetterDebugging.Instance.DebugLog("TILE NOTATION LAYER ISN'T DONE YET...", BetterDebugging.eDebugLevel.Warning);
+                                BetterDebugging.Log("TILE NOTATION LAYER ISN'T DONE YET...", BetterDebugging.eDebugLevel.Warning);
                             }
                             else
                             {
@@ -114,7 +114,7 @@ public class LoadLevelFromXML
         Vector2 tilePosition = new Vector2(row, height - column);
 
         GameObject tileGameObject = Object.Instantiate(new GameObject($"Collider:{tileID}"), tilePosition, Quaternion.identity, parent);
-        
+
         if (isCollidable)
         {
             // If it's a one way platform (for now, 18, 19 and 20) apply the correct components...
@@ -133,7 +133,7 @@ public class LoadLevelFromXML
 
                 effector.surfaceArc = 170;
             }
-            else if(tileID <= 17 && tileID >= 9)
+            else if (tileID <= 17 && tileID >= 9)
             {
                 // These are invisible walls!
                 // spriteRenderer.sprite = null;

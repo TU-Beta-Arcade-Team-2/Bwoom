@@ -48,7 +48,7 @@ public class LeafProjectile : ProjectleBaseClass
         {
             EnemyBase enemy = other.GetComponent<EnemyBase>();
 
-            BetterDebugging.Instance.Assert(enemy != null, "Not colliding with the Enemy!");
+            BetterDebugging.Assert(enemy != null, "Not colliding with the Enemy!");
 
             if (enemy != null)
             {
