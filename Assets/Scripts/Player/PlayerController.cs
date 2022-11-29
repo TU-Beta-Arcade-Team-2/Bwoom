@@ -136,13 +136,14 @@ public class PlayerController : MonoBehaviour
 
         }
 #endif
+
         if (m_playerInput.actions["Pause"].triggered)
         {
             GameManager.Instance.OnPauseButtonPressed();
         }
 
-
         m_animator.SetFloat("Movement", Mathf.Abs(m_playerInput.actions["Horizontal"].ReadValue<float>()));
+        m_animator.SetBool("IsGrounded", IsGrounded());
     }
 
     // Update is called once per frame
@@ -319,7 +320,7 @@ public class PlayerController : MonoBehaviour
 
         if (m_playerInput.actions["EnergyMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            m_masks = eMasks.Energy; ;
+            m_masks = eMasks.Energy;
         }
 
         if (m_playerInput.actions["SeaMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked

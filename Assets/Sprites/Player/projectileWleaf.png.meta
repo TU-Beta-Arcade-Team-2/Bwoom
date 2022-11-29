@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: db89255fa96e35642b5af88683bca180
+guid: c5510c23fa2410c4d93fa198cbcb1065
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -63,7 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -82,7 +82,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -94,7 +94,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,7 +106,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -118,7 +118,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -129,85 +129,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: punch 1_0
+      name: projectileWleaf_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
-        width: 72
-        height: 91
+        x: 157
+        y: 8
+        width: 36
+        height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd198aee37309ca43b911e75ef39d15c
-      internalID: -1416118263
+      spriteID: 5734fad6766fb094c9ca4481985c0a1a
+      internalID: -1518463981
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: punch 1_1
+      name: projectileWleaf_1
       rect:
         serializedVersion: 2
-        x: 139
-        y: 0
-        width: 72
-        height: 91
+        x: 207
+        y: 8
+        width: 36
+        height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ecbbb1dd15e6b44cbf10e19bbd9f954
-      internalID: 1883762343
+      spriteID: aad8112522f9476428342b02606c99a0
+      internalID: -1911807204
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: punch 1_2
+      name: projectileWleaf_2
       rect:
         serializedVersion: 2
         x: 257
-        y: 0
-        width: 72
-        height: 91
+        y: 8
+        width: 36
+        height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40ba9d9e49648ae47b0fd27a44525256
-      internalID: 1264597103
+      spriteID: 6077559bb95ef5849ae872b50ca72265
+      internalID: -1777987752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: punch 1_3
+      name: projectileWleaf_5
       rect:
         serializedVersion: 2
-        x: 380
-        y: 0
-        width: 72
-        height: 91
+        x: 21
+        y: 8
+        width: 36
+        height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97ff9dd0b1ac42640a53a75a62dbcafe
-      internalID: 1889431912
+      spriteID: 50ba7ab92f61c0e4dbf889ef457bce18
+      internalID: 818827510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectileWleaf_6
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 8
+        width: 36
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 33a8ef29dc353604a8fc08e69494c8b4
+      internalID: -1251673103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectileWleaf_7
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 8
+        width: 36
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 227240d300e540e4081f0d5e01a5bbdd
+      internalID: -50534054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectileWleaf_8
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 8
+        width: 36
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ceccbad73850f984896789aced882073
+      internalID: 1470139185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: projectileWleaf_9
+      rect:
+        serializedVersion: 2
+        x: 356
+        y: 8
+        width: 36
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52262c30c88128e41a29f9e5830396fb
+      internalID: 438397488
       vertices: []
       indices: 
       edges: []
@@ -223,11 +307,17 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      punch 1_2: 1264597103
-      punch 1_4: -1458211563
-      punch 1_3: 1889431912
-      punch 1_0: -1416118263
-      punch 1_1: 1883762343
+      projectileWleaf_6: -1251673103
+      projectileWleaf_7: -50534054
+      projectileWleaf_10: -1348805829
+      projectileWleaf_3: -1444924535
+      projectileWleaf_1: -1911807204
+      projectileWleaf_0: -1518463981
+      projectileWleaf_8: 1470139185
+      projectileWleaf_9: 438397488
+      projectileWleaf_4: 440041151
+      projectileWleaf_2: -1777987752
+      projectileWleaf_5: 818827510
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: db89255fa96e35642b5af88683bca180
+guid: a08f2ff6695766947afb47a92e998f8d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -63,7 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -82,7 +82,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -94,7 +94,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,7 +106,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -118,7 +118,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -129,10 +129,10 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: punch 1_0
+      name: specialATKprojectileTHROW_0
       rect:
         serializedVersion: 2
-        x: 16
+        x: 11
         y: 0
         width: 72
         height: 91
@@ -143,17 +143,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd198aee37309ca43b911e75ef39d15c
-      internalID: -1416118263
+      spriteID: a9c9332de478566429b6e35ff2e1bdfd
+      internalID: 1135054409
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: punch 1_1
+      name: specialATKprojectileTHROW_1
       rect:
         serializedVersion: 2
-        x: 139
+        x: 145
         y: 0
         width: 72
         height: 91
@@ -164,17 +164,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ecbbb1dd15e6b44cbf10e19bbd9f954
-      internalID: 1883762343
+      spriteID: 067d086f9fba91f4080b85adfe31abae
+      internalID: 1717726958
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: punch 1_2
+      name: specialATKprojectileTHROW_2
       rect:
         serializedVersion: 2
-        x: 257
+        x: 273
         y: 0
         width: 72
         height: 91
@@ -185,17 +185,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40ba9d9e49648ae47b0fd27a44525256
-      internalID: 1264597103
+      spriteID: 880a55d3780e8b242ae6d9d0f18cd5c2
+      internalID: 1479059474
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: punch 1_3
+      name: specialATKprojectileTHROW_3
       rect:
         serializedVersion: 2
-        x: 380
+        x: 417
         y: 0
         width: 72
         height: 91
@@ -206,8 +206,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97ff9dd0b1ac42640a53a75a62dbcafe
-      internalID: 1889431912
+      spriteID: 49cec956d71577f418f0e3dfda4484d1
+      internalID: -2035575815
       vertices: []
       indices: 
       edges: []
@@ -223,11 +223,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      punch 1_2: 1264597103
-      punch 1_4: -1458211563
-      punch 1_3: 1889431912
-      punch 1_0: -1416118263
-      punch 1_1: 1883762343
+      specialATKprojectileTHROW_3: -2035575815
+      specialATKprojectileTHROW_0: 1135054409
+      specialATKprojectileTHROW_2: 1479059474
+      specialATKprojectileTHROW_1: 1717726958
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

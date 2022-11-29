@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: db89255fa96e35642b5af88683bca180
+guid: ebcb62ad819de62409cedcf9cbde49eb
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -63,7 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -82,7 +82,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -94,7 +94,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,7 +106,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -118,7 +118,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -129,85 +129,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: punch 1_0
+      name: Run(head)_SpriteSheet-final(nature)_0
       rect:
         serializedVersion: 2
-        x: 16
-        y: 0
-        width: 72
-        height: 91
+        x: 23
+        y: 66
+        width: 25
+        height: 57
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd198aee37309ca43b911e75ef39d15c
-      internalID: -1416118263
+      spriteID: 1f711ca4792563d4ea5ca44f47abe6db
+      internalID: -1374816920
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: punch 1_1
+      name: Run(head)_SpriteSheet-final(nature)_1
       rect:
         serializedVersion: 2
-        x: 139
-        y: 0
-        width: 72
-        height: 91
+        x: 86
+        y: 66
+        width: 25
+        height: 57
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ecbbb1dd15e6b44cbf10e19bbd9f954
-      internalID: 1883762343
+      spriteID: 27129d68df2b33f4a9285f80cfe6e388
+      internalID: -1849386783
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: punch 1_2
+      name: Run(head)_SpriteSheet-final(nature)_2
       rect:
         serializedVersion: 2
-        x: 257
-        y: 0
-        width: 72
-        height: 91
+        x: 152
+        y: 66
+        width: 25
+        height: 57
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40ba9d9e49648ae47b0fd27a44525256
-      internalID: 1264597103
+      spriteID: 62c16b506c67de648997982db10496d6
+      internalID: 661056075
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: punch 1_3
+      name: Run(head)_SpriteSheet-final(nature)_3
       rect:
         serializedVersion: 2
-        x: 380
-        y: 0
-        width: 72
-        height: 91
+        x: 215
+        y: 66
+        width: 25
+        height: 57
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97ff9dd0b1ac42640a53a75a62dbcafe
-      internalID: 1889431912
+      spriteID: 98b027de07719c7448e971801d714cd5
+      internalID: 521620432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Run(head)_SpriteSheet-final(nature)_4
+      rect:
+        serializedVersion: 2
+        x: 278
+        y: 66
+        width: 25
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e75065a992516bf4ab6546b4af3849b4
+      internalID: -620337505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Run(head)_SpriteSheet-final(nature)_5
+      rect:
+        serializedVersion: 2
+        x: 342
+        y: 66
+        width: 25
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9478894db697f346b7dcf5c82185e3c
+      internalID: -1146429836
       vertices: []
       indices: 
       edges: []
@@ -223,11 +265,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      punch 1_2: 1264597103
-      punch 1_4: -1458211563
-      punch 1_3: 1889431912
-      punch 1_0: -1416118263
-      punch 1_1: 1883762343
+      Run(head)_SpriteSheet-final(nature)_1: -1849386783
+      Run(head)_SpriteSheet-final(nature)_0: -1374816920
+      Run(head)_SpriteSheet-final(nature)_5: -1146429836
+      Run(head)_SpriteSheet-final(nature)_4: -620337505
+      Run(head)_SpriteSheet-final(nature)_2: 661056075
+      Run(head)_SpriteSheet-final(nature)_3: 521620432
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

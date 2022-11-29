@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: db89255fa96e35642b5af88683bca180
+guid: b22f5ed638f12f841996cfaa3e16836e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -63,7 +63,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
-  cookieLightType: 1
+  cookieLightType: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -82,7 +82,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -94,7 +94,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,7 +106,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -118,7 +118,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -129,13 +129,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: punch 1_0
+      name: Idle(body)_Sprite_Sheets(nature)_0
       rect:
         serializedVersion: 2
-        x: 16
+        x: 102
         y: 0
-        width: 72
-        height: 91
+        width: 52
+        height: 89
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -143,19 +143,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd198aee37309ca43b911e75ef39d15c
-      internalID: -1416118263
+      spriteID: 1eaa4990162720d48877ad57e22d1777
+      internalID: 1986702762
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: punch 1_1
+      name: Idle(body)_Sprite_Sheets(nature)_1
       rect:
         serializedVersion: 2
-        x: 139
+        x: 166
         y: 0
-        width: 72
+        width: 49
         height: 91
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -164,20 +164,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1ecbbb1dd15e6b44cbf10e19bbd9f954
-      internalID: 1883762343
+      spriteID: 5144c93bd4701384dbb155f30d769dc8
+      internalID: -90526707
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: punch 1_2
+      name: Idle(body)_Sprite_Sheets(nature)_2
       rect:
         serializedVersion: 2
-        x: 257
+        x: 231
         y: 0
-        width: 72
-        height: 91
+        width: 46
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,29 +185,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 40ba9d9e49648ae47b0fd27a44525256
-      internalID: 1264597103
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: punch 1_3
-      rect:
-        serializedVersion: 2
-        x: 380
-        y: 0
-        width: 72
-        height: 91
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 97ff9dd0b1ac42640a53a75a62dbcafe
-      internalID: 1889431912
+      spriteID: a09f995e2ed302f40bb6cc7df8edf579
+      internalID: -1681905505
       vertices: []
       indices: 
       edges: []
@@ -223,11 +202,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      punch 1_2: 1264597103
-      punch 1_4: -1458211563
-      punch 1_3: 1889431912
-      punch 1_0: -1416118263
-      punch 1_1: 1883762343
+      Idle(body)_Sprite_Sheets(nature)_1: -90526707
+      Idle(body)_Sprite_Sheets(nature)_2: -1681905505
+      Idle(body)_Sprite_Sheets(nature)_0: 1986702762
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

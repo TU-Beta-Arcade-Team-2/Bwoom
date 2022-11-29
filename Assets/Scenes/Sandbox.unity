@@ -2765,7 +2765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55100942cda4c364391e970d83c45a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frameRate: 60
+  m_player: {fileID: 0}
 --- !u!4 &766743229
 Transform:
   m_ObjectHideFlags: 0
@@ -5970,6 +5970,26 @@ PrefabInstance:
       propertyPath: m_attackAnim
       value: 
       objectReference: {fileID: 2145512436, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+    - target: {fileID: 517762481085286622, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5420125246354666554, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.19306466
+      objectReference: {fileID: 0}
+    - target: {fileID: 5420125246354666554, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1349166
+      objectReference: {fileID: 0}
+    - target: {fileID: 5420125246354666554, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5420125246354666554, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8171535325487749776, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_RootOrder
       value: 0
