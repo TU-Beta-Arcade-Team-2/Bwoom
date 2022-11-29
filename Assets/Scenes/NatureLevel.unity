@@ -2779,6 +2779,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3411300311742536864, guid: f0cc65c5b8267b743971d3293f5cddd9, type: 3}
   m_PrefabInstance: {fileID: 243068965}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &243351426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1968415012, guid: abed43effcefdc84fb1b5ddf86032125, type: 3}
+  m_PrefabInstance: {fileID: 820444850}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &248340169
 GameObject:
   m_ObjectHideFlags: 0
@@ -4511,8 +4516,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_player: {fileID: 8171535323749452088}
-  m_gameHud: {fileID: 0}
-  m_deathScreen: {fileID: 0}
+  m_gameHud: {fileID: 1703887038}
+  m_deathScreen: {fileID: 243351426}
 --- !u!4 &372334633
 Transform:
   m_ObjectHideFlags: 0
@@ -16903,6 +16908,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c6d691c0d35dce46b5916fefb391043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1703887038 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 293004981306882965, guid: abed43effcefdc84fb1b5ddf86032125, type: 3}
+  m_PrefabInstance: {fileID: 820444850}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1716924276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22047,6 +22057,14 @@ PrefabInstance:
       propertyPath: m_hitstopManager
       value: 
       objectReference: {fileID: 1692868989}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[2].EnemyLaunchVector.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[2].EnemyLaunchVector.y
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_health
       value: 100
@@ -22069,15 +22087,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_frenzyStats.JumpHeight
-      value: 12
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_defaultStats.JumpHeight
-      value: 12
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_frenzyStats.MovementSpeed
+      value: 21.5
       objectReference: {fileID: 0}
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_defaultStats.MovementSpeed
-      value: 9.5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8171535324326012344, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_LocalPosition.y

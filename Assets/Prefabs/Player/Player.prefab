@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e452f42ee9de544a42ce5b5d73f7a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerPlayerController: {fileID: 0}
+  m_playerPlayerController: {fileID: 8171535325487749789}
   m_warMask: {fileID: 2145512435}
   m_natureMask: {fileID: 2145512434}
 --- !u!1 &1959386309
@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54e452f42ee9de544a42ce5b5d73f7a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_playerPlayerController: {fileID: 0}
+  m_playerPlayerController: {fileID: 8171535325487749789}
   m_warMask: {fileID: 2145512435}
   m_natureMask: {fileID: 2145512434}
 --- !u!1 &517762481085286622
@@ -531,8 +531,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerStats: {fileID: 675374325409127699}
   m_hitstopManager: {fileID: 0}
-  m_shaderGUItext: {fileID: 0}
-  m_shaderSpritesDefault: {fileID: 0}
+  m_shaderGUItext: {fileID: 10101, guid: 0000000000000000e000000000000000, type: 0}
+  m_shaderSpritesDefault: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!1 &6294705108214134167
 GameObject:
   m_ObjectHideFlags: 0
@@ -1028,17 +1028,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerController: {fileID: 8171535325487749789}
-  m_maxHealth: 0
-  m_health: 0
+  m_maxHealth: 100
+  m_health: 100
   m_points: 0
   m_defaultStats:
-    MovementSpeed: 7.5
-    JumpHeight: 10
+    MovementSpeed: 15
+    JumpHeight: 13
     AttackDamage: 4
     DamageResistance: 2
   m_frenzyStats:
-    MovementSpeed: 15
-    JumpHeight: 13
+    MovementSpeed: 21.5
+    JumpHeight: 17
     AttackDamage: 8
     DamageResistance: 4
   m_frenzyModeDefaultTimer: 3
@@ -1061,7 +1061,7 @@ MonoBehaviour:
   m_groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  m_fallingSpeed: 10
+  m_fallingSpeed: 20
   m_dampingNormal: 0.5
   m_dampingStop: 0.2
   m_dampingTurn: 0.75
@@ -1070,8 +1070,8 @@ MonoBehaviour:
   stickyMat: {fileID: 6200000, guid: f58e38f3fbbe38d44bbfdbae03021fed, type: 2}
   boxCollider: {fileID: 670068135037751130}
   doubleJumpOn: 0
-  m_airTime: 0
-  m_inputTime: 0
+  m_airTime: 0.5
+  m_inputTime: 0.8
   m_warMask: {fileID: 2145512435}
   m_natureMask: {fileID: 2145512434}
   m_masks: 0
@@ -1090,6 +1090,7 @@ MonoBehaviour:
   m_playerStats: {fileID: 675374325409127699}
   m_playerController: {fileID: 8171535325487749789}
   m_maskSprite: {fileID: 1105057892, guid: a2882edefa6cc1943ba5ee678be0dd0d, type: 3}
+  m_playerAnimator: {fileID: 460804608}
   m_movementMultiplier: 2
   m_jumpHeightMultiplier: 1.8
   m_attackMultiplier: 1
@@ -1113,6 +1114,7 @@ MonoBehaviour:
   m_playerStats: {fileID: 675374325409127699}
   m_playerController: {fileID: 8171535325487749789}
   m_maskSprite: {fileID: -1050699073, guid: 3c11c7e9b47067e47bd748609115ee9a, type: 3}
+  m_playerAnimator: {fileID: 460804608}
   m_movementMultiplier: 0.8
   m_jumpHeightMultiplier: 1.2
   m_attackMultiplier: 2
@@ -1154,6 +1156,6 @@ MonoBehaviour:
   - AnimationName: ComboAttack3
     Damage: 6
     Cooldown: 0.5
-    EnemyLaunchVector: {x: 50, y: 50}
+    EnemyLaunchVector: {x: 10, y: 35}
     PlayerLaunchVector: {x: 0, y: 0}
     HitStopDuration: 0.1

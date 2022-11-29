@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerStats: {fileID: 0}
-  m_health: 50
+  m_health: 10
   m_damage: 10
   m_pointsToAward: 10
   m_deathSoundFxName: 
