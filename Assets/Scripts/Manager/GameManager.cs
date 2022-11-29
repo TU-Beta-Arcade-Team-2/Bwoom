@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,7 @@ public class GameManager : Singleton<GameManager>
 {
     public static bool SHOULD_LOAD_SAVE = false;
 
+    [SerializeField] private PlayerController m_playerController;
     [SerializeField] private PlayerStats m_player;
 
     [SerializeField] private GameObject m_gameHud;
@@ -60,5 +62,21 @@ public class GameManager : Singleton<GameManager>
         OnPauseButtonPressed();
         SHOULD_LOAD_SAVE = false;
         SaveLoad.LoadLevel(SceneManager.GetActiveScene().name);
+    }
+
+    public void RespawnAtLastCheckpoint()
+    {
+        m_playerController.SetCanTakeInput(false);
+
+        StartCoroutine(WaitForSecondsCoroutine(1.5f));
+    }
+
+    private IEnumerator WaitForSecondsCoroutine(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+
+        m_player.Respawn();
+
+        m_playerController.SetCanTakeInput(true);
     }
 }

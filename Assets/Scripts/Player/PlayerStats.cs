@@ -222,4 +222,9 @@ public class PlayerStats : MonoBehaviour
     {
         m_currentStats = m_defaultStats;
     }
+
+    public void Respawn()
+    {
+        gameObject.transform.position = m_lastCheckpointPosition;
+    }
 }

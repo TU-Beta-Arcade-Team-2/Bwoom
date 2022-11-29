@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
     }
 
     [SerializeField] private eMasks m_masks;
+    private bool m_canTakeInput = true;
 
     #region Main Functions
     // Start is called before the first frame update
@@ -106,9 +107,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        Jumping();
-        SpecialAttack();
-        MaskInputs();
+        if (m_canTakeInput)
+        {
+            Jumping();
+            SpecialAttack();
+            MaskInputs();
 
 #if UNUSED_ABILITES
         if (wallSlideOn)
@@ -137,19 +140,24 @@ public class PlayerController : MonoBehaviour
         }
 #endif
 
-        if (m_playerInput.actions["Pause"].triggered)
-        {
-            GameManager.Instance.OnPauseButtonPressed();
+            if (m_playerInput.actions["Pause"].triggered)
+            {
+                GameManager.Instance.OnPauseButtonPressed();
+            }
+
+            m_animator.SetFloat("Movement", Mathf.Abs(m_playerInput.actions["Horizontal"].ReadValue<float>()));
         }
 
-        m_animator.SetFloat("Movement", Mathf.Abs(m_playerInput.actions["Horizontal"].ReadValue<float>()));
         m_animator.SetBool("IsGrounded", IsGrounded());
     }
 
     // Update is called once per frame
     private void FixedUpdate()
     {
-        Movement();
+        if (m_canTakeInput)
+        {
+            Movement();
+        }
     }
 
     #endregion
@@ -424,5 +432,10 @@ public class PlayerController : MonoBehaviour
     {
         m_jumpHeight = stats.JumpHeight;
         m_movementSpeed = stats.MovementSpeed;
+    }
+
+    public void SetCanTakeInput(bool canTakeInput)
+    {
+        m_canTakeInput = canTakeInput;
     }
 }
