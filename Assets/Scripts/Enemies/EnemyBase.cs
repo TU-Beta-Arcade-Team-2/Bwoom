@@ -134,7 +134,7 @@ public abstract class EnemyBase : MonoBehaviour
 
         if (m_deathParticleFx != null)
         {
-            Instantiate(deathParticleFx);
+            Instantiate(deathParticleFx, transform.position, Quaternion.identity);
         }
 
         Destroy(gameObject);

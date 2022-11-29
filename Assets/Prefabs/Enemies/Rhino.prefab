@@ -155,7 +155,7 @@ MonoBehaviour:
   m_attackSfxName: RhinoHeadbuttSFX
   m_deathSoundFxName: RhinoDeathSFX
   m_speed: 5
-  m_deathParticleFx: {fileID: 0}
+  m_deathParticleFx: {fileID: 8448831293929244682, guid: bba77eaed12c93d4cadcb86a170ac2fc, type: 3}
   m_deathDropItem: {fileID: 0}
   m_preChargeDuration: 1.5
   m_chargeDuration: 0.75

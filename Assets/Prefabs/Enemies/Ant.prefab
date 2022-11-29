@@ -155,7 +155,7 @@ MonoBehaviour:
   m_attackSfxName: 
   m_deathSoundFxName: InsectDeathSFX
   m_speed: 3.2
-  m_deathParticleFx: {fileID: 0}
+  m_deathParticleFx: {fileID: 77842918626606518, guid: 7a3d8ca6b345e014eb7f5bf7fd543c64, type: 3}
   m_deathDropItem: {fileID: 0}
 --- !u!95 &-8148383821453433378
 Animator:

@@ -155,7 +155,7 @@ MonoBehaviour:
   m_attackSfxName: WaspStingSFX
   m_deathSoundFxName: InsectDeathSFX
   m_speed: 5
-  m_deathParticleFx: {fileID: 0}
+  m_deathParticleFx: {fileID: 2750980778787247488, guid: b5f17093e744a6a4d84be7bd11b5a516, type: 3}
   m_deathDropItem: {fileID: 0}
   m_bobHeight: 1.2
   m_bobSpeed: 5
