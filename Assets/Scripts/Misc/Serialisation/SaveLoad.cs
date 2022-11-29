@@ -92,8 +92,7 @@ public class SaveLoad
 
         if (!File.Exists(saveDataPath) && type == eSaveLoadOptions.OptionsData)
         {
-            m_optionsData = OptionsData.Defaults;
-            return;
+            SaveOptions(OptionsData.Defaults);
         }
 
         FileStream inStream = new FileStream(saveDataPath, FileMode.Open, FileAccess.Read);
