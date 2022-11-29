@@ -87,10 +87,12 @@ public class RhinoEnemy : EnemyBase
                 break;
             case eState.Charging:
                 m_animator.SetTrigger(StringConstants.RHINO_CHARGE);
+                SoundManager.Instance.PlaySfx("RhinoChargeSFX");
                 break;
             case eState.Headbutt:
                 DebugLog("HEADBUTT!", BetterDebugging.eDebugLevel.Warning);
                 m_animator.SetTrigger(StringConstants.RHINO_HEADBUTT);
+                SoundManager.Instance.PlaySfx(m_attackSfxName);
                 break;
             case eState.CoolDown:
                 m_animator.ResetTrigger(StringConstants.RHINO_WALK_CYCLE);

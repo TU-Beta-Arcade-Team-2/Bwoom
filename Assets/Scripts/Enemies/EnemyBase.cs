@@ -25,7 +25,9 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected int m_health;
     [SerializeField] protected int m_damage;
     [SerializeField] protected int m_pointsToAward;
-    [SerializeField] protected string m_deathSoundFxName; // This is probably going to change in the future, I'm just assuming we'll be using some sort of Dictionary to store the SFX with a string name being the key!
+    [SerializeField] protected string m_hurtSfxName;
+    [SerializeField] protected string m_attackSfxName;
+    [SerializeField] protected string m_deathSoundFxName;
     [SerializeField] protected float m_speed;
     [SerializeField] protected GameObject m_deathParticleFx;
     [SerializeField] protected GameObject m_deathDropItem;
@@ -77,6 +79,8 @@ public abstract class EnemyBase : MonoBehaviour
             BetterDebugging.eDebugLevel.Message
         );
 
+        SoundManager.Instance.PlaySfx(m_hurtSfxName);
+
         if (m_health <= 0)
         {
             OnDeath(m_deathSoundFxName, m_pointsToAward, m_deathParticleFx, m_deathDropItem);
@@ -125,8 +129,15 @@ public abstract class EnemyBase : MonoBehaviour
         m_playerStats.ActivateFrenzyMode();
 
         m_playerStats.AddPoints(pointsToAward);
+        
+        SoundManager.Instance.PlaySfx(m_deathSoundFxName);
+
+        if (m_deathParticleFx != null)
+        {
+            Instantiate(deathParticleFx);
+        }
+
         Destroy(gameObject);
-        Instantiate(deathParticleFx);
     }
 
     protected abstract void Move();

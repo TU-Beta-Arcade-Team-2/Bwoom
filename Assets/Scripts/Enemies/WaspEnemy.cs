@@ -15,6 +15,7 @@ public class WaspEnemy : EnemyBase
     [SerializeField] private float m_diveBombSpeed;
 
     [SerializeField] private float m_attackCooldownDuration;
+
     private float m_attackCooldownTimer = 0f;
 
     private bool m_hasRisen = false;
@@ -180,17 +181,14 @@ public class WaspEnemy : EnemyBase
     protected override void Attack()
     {
         m_rigidbody.velocity = Vector2.zero;
-        // TODO: Play sting animation
-        // TODO: Play Sound Effect
-        // TODO: Damage the Player
-
-        // TODO: REPLACE WITH PROPER ATTACK STUFF... KEEPING IN PLACE FOR NOW
         StartCoroutine("AttackPlayer");
     }
 
     private IEnumerator AttackPlayer()
     {
         DebugLog("DAMAGING THE PLAYER!", BetterDebugging.eDebugLevel.Message);
+        SoundManager.Instance.PlaySfx(m_attackSfxName);
+        m_playerStats.TakeDamage(m_damage);
         yield return new WaitForSeconds(1.0f);
         SetWaspState(eState.CoolDown);
         DebugLog("FINISHED ATTACKING, RISING BACK UP", BetterDebugging.eDebugLevel.Message);

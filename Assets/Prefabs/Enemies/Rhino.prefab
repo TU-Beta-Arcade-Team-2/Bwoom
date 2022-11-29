@@ -150,8 +150,10 @@ MonoBehaviour:
   m_playerStats: {fileID: 0}
   m_health: 30
   m_damage: 50
-  m_pointsToAward: 10
-  m_deathSoundFxName: 
+  m_pointsToAward: 120
+  m_hurtSfxName: RhinoHurtSFX
+  m_attackSfxName: RhinoHeadbuttSFX
+  m_deathSoundFxName: RhinoDeathSFX
   m_speed: 5
   m_deathParticleFx: {fileID: 0}
   m_deathDropItem: {fileID: 0}
