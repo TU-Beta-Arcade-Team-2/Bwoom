@@ -23,6 +23,8 @@ public class GameManager : Singleton<GameManager>
 
         SoundManager.Instance.PlayMusic(StringConstants.NATURE_LEVEL_SOUNDTRACK, true);
 
+        Application.targetFrameRate = 60;
+
         m_gameHud.SetActive(true);
         m_deathScreen.SetActive(false);
     }
