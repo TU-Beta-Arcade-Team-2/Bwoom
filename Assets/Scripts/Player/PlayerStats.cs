@@ -174,6 +174,8 @@ public class PlayerStats : MonoBehaviour
 
         BetterDebugging.Log("Frenzy Mode On!");
         m_frenzyMode = true;
+
+        SoundManager.Instance.PlayMusic(StringConstants.WAR_LEVEL_SOUNDTRACK, true, true);
     }
 
     private void DeactivateFrenzyMode()
@@ -186,6 +188,8 @@ public class PlayerStats : MonoBehaviour
 
         BetterDebugging.Log("No More Frenzy");
         m_frenzyMode = false;
+
+        SoundManager.Instance.PlayMusic(StringConstants.NATURE_LEVEL_SOUNDTRACK, true, true);
     }
 
     #endregion
