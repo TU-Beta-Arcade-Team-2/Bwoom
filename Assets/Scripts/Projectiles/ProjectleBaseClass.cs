@@ -17,6 +17,15 @@ public abstract class ProjectleBaseClass : MonoBehaviour
     public delegate void OnCollision(Collider2D other);
     [SerializeField] protected OnCollision collisionDelegate;
 
+    protected PlayerStats m_player;
+
+    protected void Init()
+    {
+        m_player = FindObjectOfType<PlayerStats>();
+
+        BetterDebugging.Assert(m_player != null, "PLAYER SHOULDN'T BE NULL!");
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (collisionDelegate != null)
