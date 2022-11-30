@@ -69,6 +69,7 @@ public class GameManager : Singleton<GameManager>
     public void RespawnAtLastCheckpoint()
     {
         m_playerController.SetCanTakeInput(false);
+        m_playerController.gameObject.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 
         StartCoroutine(WaitForSecondsCoroutine(1.5f));
     }
