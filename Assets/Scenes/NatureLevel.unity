@@ -23663,6 +23663,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1083844671}
     m_Modifications:
     - target: {fileID: 129577446047843074, guid: d74cd58b81dc58a4fa5ba64a067838a2, type: 3}
+      propertyPath: m_damage
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 129577446047843074, guid: d74cd58b81dc58a4fa5ba64a067838a2, type: 3}
       propertyPath: m_playerStats
       value: 
       objectReference: {fileID: 8171535323749452088}
@@ -32868,11 +32872,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2972312549137326673, guid: 14665156b0c8a9947abcdd03a6c75f0b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.9
+      value: 45.239998
       objectReference: {fileID: 0}
     - target: {fileID: 2972312549137326673, guid: 14665156b0c8a9947abcdd03a6c75f0b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 51.8
+      value: 53.73
       objectReference: {fileID: 0}
     - target: {fileID: 2972312549137326673, guid: 14665156b0c8a9947abcdd03a6c75f0b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -32949,11 +32953,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4428914433741803191, guid: 5dd15d8124a098841b78f877d65f1fd5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.9
+      value: 45.239998
       objectReference: {fileID: 0}
     - target: {fileID: 4428914433741803191, guid: 5dd15d8124a098841b78f877d65f1fd5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 51.8
+      value: 53.73
       objectReference: {fileID: 0}
     - target: {fileID: 4428914433741803191, guid: 5dd15d8124a098841b78f877d65f1fd5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -33123,6 +33127,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1692868989}
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_frenzyTimerIncrement
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_frenzyModeDefaultTimer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_defaultStats.JumpHeight
       value: 13
       objectReference: {fileID: 0}
@@ -33132,11 +33144,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8171535325487749776, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.42
+      value: 59.76
       objectReference: {fileID: 0}
     - target: {fileID: 8171535325487749776, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.2
+      value: 6.13
       objectReference: {fileID: 0}
     - target: {fileID: 8171535325487749776, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_LocalPosition.z

@@ -1192,6 +1192,54 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4882316323728229928, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
+      propertyPath: m_lowHealthColour.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882316323728229928, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
+      propertyPath: m_lowHealthColour.b
+      value: 0.20140013
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882316323728229928, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
+      propertyPath: m_lowHealthColour.g
+      value: 0.0990566
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882316323728229928, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
+      propertyPath: m_lowHealthColour.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882316323728229928, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
+      propertyPath: m_midHealthColour.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882316323728229928, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
+      propertyPath: m_midHealthColour.b
+      value: 0.41960788
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882316323728229928, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
+      propertyPath: m_midHealthColour.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882316323728229928, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
+      propertyPath: m_midHealthColour.r
+      value: 0.9990218
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882316323728229928, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
+      propertyPath: m_fullHealthColour.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882316323728229928, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
+      propertyPath: m_fullHealthColour.b
+      value: 0.41960788
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882316323728229928, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
+      propertyPath: m_fullHealthColour.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4882316323728229928, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
+      propertyPath: m_fullHealthColour.r
+      value: 0.54509807
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 293004980906614515, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: de8c6e18105392a4189381a5839e8d84, type: 3}

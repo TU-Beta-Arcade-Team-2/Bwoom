@@ -14,6 +14,10 @@ public class GameHUD : Singleton<GameHUD>
     [SerializeField] private TextMeshProUGUI m_pointText;
     [SerializeField] private Image m_radialHealthBar;
 
+    [SerializeField] private Color m_lowHealthColour;
+    [SerializeField] private Color m_midHealthColour;
+    [SerializeField] private Color m_fullHealthColour;
+
     protected override void InternalInit()
     {
         BetterDebugging.Assert(m_uiMaskImage != null, "MASK IMAGE SHOULDN'T BE NULL!");
@@ -28,7 +32,16 @@ public class GameHUD : Singleton<GameHUD>
 
     public void UpdateHealthBar(int healthValue, int maxHealthValue)
     {
-        m_radialHealthBar.fillAmount = healthValue / (float)maxHealthValue;
+        float percentage = (float)healthValue / maxHealthValue;
+
+        m_radialHealthBar.color = percentage switch
+        {
+            <= 0.15f => m_lowHealthColour,
+            < 0.6f => m_midHealthColour,
+            >= 0.6f => m_fullHealthColour
+        };
+
+        m_radialHealthBar.fillAmount = percentage;
     }
 
     public void UpdatePoints(int value)
