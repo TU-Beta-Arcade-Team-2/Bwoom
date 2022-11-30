@@ -13,6 +13,7 @@ public class GameHUD : Singleton<GameHUD>
 
     [SerializeField] private TextMeshProUGUI m_pointText;
     [SerializeField] private Image m_radialHealthBar;
+    [SerializeField] private Image m_radialFrenzyBar;
 
     [SerializeField] private Color m_lowHealthColour;
     [SerializeField] private Color m_midHealthColour;
@@ -42,6 +43,13 @@ public class GameHUD : Singleton<GameHUD>
         };
 
         m_radialHealthBar.fillAmount = percentage;
+    }
+
+    public void UpdateFrenzyBar(float frenzyTime, float maxFrenzyTime)
+    {
+        float fillAmount = frenzyTime / maxFrenzyTime;
+
+        m_radialFrenzyBar.fillAmount = fillAmount;
     }
 
     public void UpdatePoints(int value)

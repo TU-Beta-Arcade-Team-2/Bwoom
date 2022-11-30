@@ -19,7 +19,7 @@ public class BetterDebugging
         Message = 2
     }
 
-    public static eDebugLevel OutputLevel = eDebugLevel.Warning;
+    public static eDebugLevel OutputLevel = eDebugLevel.Message;
 
     public static void Log(
         string debugText,

@@ -73,13 +73,25 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Frenzy Mode Values")]
     private bool m_frenzyMode;
-    [SerializeField] private float m_frenzyModeDefaultTimer;
+    [SerializeField] private float m_frenzyDuration;
     [SerializeField] private float m_frenzyTimerIncrement;
+
+    [HideInInspector]
+    public float FrenzyTimer
+    {
+        get => m_frenzyTimer;
+        set
+        {
+            m_frenzyTimer = value;
+            GameHUD.Instance.UpdateFrenzyBar(m_frenzyTimer, m_frenzyDuration);
+        }
+    }
+
+
     private float m_frenzyTimer;
 
     private Vector3 m_lastCheckpointPosition;
 
-    #region Main Functions
     private void Start()
     {
         // Set the current stats to the default ones...
@@ -89,12 +101,23 @@ public class PlayerStats : MonoBehaviour
         Health = Mathf.Clamp(m_health, 0, m_maxHealth);
         Points = 0;
 
-
-        m_frenzyTimer = m_frenzyModeDefaultTimer;
+        FrenzyTimer = 0f;
 
         DeactivateFrenzyMode();
     }
-    #endregion
+
+    private void FixedUpdate()
+    {
+        if (m_frenzyMode)
+        {
+            FrenzyTimer -= Time.deltaTime;
+
+            if (m_frenzyTimer <= 0f)
+            {
+                DeactivateFrenzyMode();
+            }
+        }
+    }
 
     #region Health & Point Functions
     public void TakeDamage(int incomingDamage)
@@ -138,11 +161,8 @@ public class PlayerStats : MonoBehaviour
     {
         if (m_frenzyMode)
         {
-            m_frenzyTimer += m_frenzyTimerIncrement;
-            CancelInvoke("DeactivateFrenzyMode");
-            Invoke("DeactivateFrenzyMode", m_frenzyTimer);
-            Debug.Log("Frenzy Mode Replenished");
-
+            FrenzyTimer += m_frenzyTimerIncrement;
+            BetterDebugging.Log("Frenzy Mode Replenished");
             return;
         }
 
@@ -150,22 +170,26 @@ public class PlayerStats : MonoBehaviour
         m_playerController.doubleJumpOn = true;
         m_playerController.SetMovementValues(m_frenzyStats);
 
-        Invoke("DeactivateFrenzyMode", m_frenzyTimer);
+        FrenzyTimer = m_frenzyDuration;
+
         BetterDebugging.Log("Frenzy Mode On!");
         m_frenzyMode = true;
+
+        SoundManager.Instance.PlayMusic(StringConstants.WAR_LEVEL_SOUNDTRACK, true, true);
     }
 
     private void DeactivateFrenzyMode()
     {
-        m_frenzyTimer = m_frenzyModeDefaultTimer;
+        FrenzyTimer = 0f;
 
         m_currentStats = new(m_defaultStats);
-
         m_playerController.doubleJumpOn = false;
         m_playerController.SetMovementValues(m_defaultStats);
 
         BetterDebugging.Log("No More Frenzy");
         m_frenzyMode = false;
+
+        SoundManager.Instance.PlayMusic(StringConstants.NATURE_LEVEL_SOUNDTRACK, true, true);
     }
 
     #endregion

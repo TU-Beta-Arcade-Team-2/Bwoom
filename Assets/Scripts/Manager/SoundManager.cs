@@ -19,13 +19,20 @@ public class SoundManager : Singleton<SoundManager>
         }
     }
 
-
-    public void PlayMusic(string musicName, bool shouldLoop)
+    public void PlayMusic(string musicName, bool shouldLoop, bool playAtCurrentTimeStamp = false)
     {
         BetterDebugging.Assert(m_audioClips.Keys.Contains(musicName), $"UNRECOGNISED TRACK NAME {musicName}");
 
+        float timeStamp = 0f;
+
+        if (playAtCurrentTimeStamp)
+        {
+            timeStamp = m_musicSource.time;
+        }
+
         m_musicSource.clip = m_audioClips[musicName];
         m_musicSource.loop = shouldLoop;
+        m_musicSource.time = timeStamp;
         m_musicSource.Play();
     }
 
