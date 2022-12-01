@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerStats: {fileID: 0}
   m_health: 8
-  m_damage: 10
+  m_damage: 40
   m_pointsToAward: 30
   m_hurtSfxName: InsectHurtSFX
   m_attackSfxName: WaspStingSFX

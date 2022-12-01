@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_playerStats: {fileID: 0}
   m_health: 30
-  m_damage: 50
+  m_damage: 80
   m_pointsToAward: 120
   m_hurtSfxName: RhinoHurtSFX
   m_attackSfxName: RhinoHeadbuttSFX

@@ -30,10 +30,12 @@ public static class StringConstants
     public static string COMBO_ATTACK_TWO = "ComboAttack2";
     public static string COMBO_ATTACK_THREE = "ComboAttack3";
     #endregion
+
     #region MASK_ANIMATIONS
     public static string WAR_MASK = "WarMask";
     public static string NATURE_MASK = "NatureMask";
     #endregion
+
     #region RHINO_ENEMY_ANIMATIONS
     public static string RHINO_WALK_CYCLE = "Walk_Cycle";
     public static string RHINO_CHARGE = "Charge";
@@ -42,10 +44,14 @@ public static class StringConstants
     public static string RHINO_PRE_CHARGE = "Pre_Charge";
     public static string RHINO_HEADBUTT = "Headbutt";
     #endregion
+
+    #region ANT_ENEMY_ANIMATIONS
+    public static string ANT_WALK_CYCLE = "WalkCycle";
+    public static string ANT_BITE = "Bite";
+    #endregion
     #endregion
 
     #region SCENE_NAMES
-
     public static string TITLE_SCREEN_LEVEL = "TitleScreen";
     public static string NATURE_LEVEL = "NatureLevel";
     public static string WAR_LEVEL = "WarLevel";

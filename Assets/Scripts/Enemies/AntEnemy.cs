@@ -5,6 +5,33 @@ using UnityEngine;
 
 public class AntEnemy : EnemyBase
 {
+    [SerializeField] private float m_coolDownDuration;
+    private float m_coolDownTimer;
+
+    private enum eAntState
+    {
+        Move,
+        CoolDown
+    }
+
+    private eAntState m_antState = eAntState.Move;
+
+    private eAntState AntState
+    {
+        get => m_antState; 
+        
+        set
+        {
+            switch(value)
+            {
+                case eAntState.Move:
+                    m_animator.SetTrigger(StringConstants.ANT_WALK_CYCLE);
+                    break;
+            }
+            m_antState = value;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,13 +41,29 @@ public class AntEnemy : EnemyBase
     // Update is called once per frame
     void Update()
     {
-        Move();
+        switch(AntState)
+        {
+            case eAntState.Move:
+                Move();
+                break;
+            case eAntState.CoolDown:
+                m_coolDownTimer += Time.deltaTime;
+                if(m_coolDownTimer > m_coolDownDuration)
+                {
+                    AntState = eAntState.Move;
+                    m_coolDownTimer = 0f;
+                }
+                break;
+        }
     }
 
     protected override void Attack()
     {
-        // From the brief, the ant doesn't attack, it just idly walks around
-        // This could change though
+        m_playerStats.TakeDamage(m_damage);
+
+        m_animator.SetTrigger(StringConstants.ANT_BITE);
+
+        AntState = eAntState.CoolDown;
     }
 
     protected override void Move()
@@ -36,6 +79,18 @@ public class AntEnemy : EnemyBase
         if (other.gameObject.CompareTag(StringConstants.END_OF_PLATFORM_TAG))
         {
             TurnAround();
+        }
+
+        if(m_antState != eAntState.CoolDown && other.gameObject.CompareTag(StringConstants.PLAYER_TAG))
+        {
+            // Get the distance to the player
+            Vector2 d = other.transform.position - transform.position;
+
+            if (d.x > 0 && m_facingDirection == eDirection.Right || 
+                d.x < 0 && m_facingDirection == eDirection.Left)
+            {
+                Attack();
+            }
         }
     }
 
