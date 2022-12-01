@@ -49,6 +49,10 @@ public static class StringConstants
     public static string ANT_WALK_CYCLE = "WalkCycle";
     public static string ANT_BITE = "Bite";
     #endregion
+    #region ANT_ENEMY_ANIMATIONS
+    public static string WASP_FLY = "Fly";
+    public static string WASP_STING = "Sting";
+    #endregion
     #endregion
 
     #region SCENE_NAMES

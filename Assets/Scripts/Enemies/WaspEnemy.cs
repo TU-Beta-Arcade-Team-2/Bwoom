@@ -73,16 +73,15 @@ public class WaspEnemy : EnemyBase
     {
         m_state = state;
 
-        // TODO: FILL THESE IN WITH THE ANIMATION TRIGGERS!
         switch (m_state)
         {
             case eState.Flying:
-                break;
             case eState.DiveBomb:
-                break;
             case eState.CoolDown:
+                m_animator.SetTrigger(StringConstants.WASP_FLY);
                 break;
             case eState.Attack:
+                m_animator.SetTrigger(StringConstants.WASP_STING);
                 break;
             default:
                 DebugLog($"UNHANDLED CASE {m_state}");
@@ -189,7 +188,8 @@ public class WaspEnemy : EnemyBase
         DebugLog("DAMAGING THE PLAYER!", BetterDebugging.eDebugLevel.Message);
         SoundManager.Instance.PlaySfx(m_attackSfxName);
         m_playerStats.TakeDamage(m_damage);
-        yield return new WaitForSeconds(1.0f);
+        SetWaspState(eState.Attack);
+        yield return new WaitForSeconds(2.0f);
         SetWaspState(eState.CoolDown);
         DebugLog("FINISHED ATTACKING, RISING BACK UP", BetterDebugging.eDebugLevel.Message);
     }
