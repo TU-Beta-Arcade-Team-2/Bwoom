@@ -25,7 +25,9 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected int m_health;
     [SerializeField] protected int m_damage;
     [SerializeField] protected int m_pointsToAward;
-    [SerializeField] protected string m_deathSoundFxName; // This is probably going to change in the future, I'm just assuming we'll be using some sort of Dictionary to store the SFX with a string name being the key!
+    [SerializeField] protected string m_hurtSfxName;
+    [SerializeField] protected string m_attackSfxName;
+    [SerializeField] protected string m_deathSoundFxName;
     [SerializeField] protected float m_speed;
     [SerializeField] protected GameObject m_deathParticleFx;
     [SerializeField] protected GameObject m_deathDropItem;
@@ -69,13 +71,15 @@ public abstract class EnemyBase : MonoBehaviour
     {
         m_health = m_health -= damageAmount;
 
-        BetterDebugging.Instance.SpawnDebugText(
-            $"{m_name.ToUpper()} TAKING {damageAmount} DAMAGE", 
-            transform.position + new Vector3(0, 2), 
-            0.3f, 
+        BetterDebugging.SpawnDebugText(
+            $"{m_name.ToUpper()} TAKING {damageAmount} DAMAGE",
+            transform.position + new Vector3(0, 2),
+            0.3f,
             null,
             BetterDebugging.eDebugLevel.Message
         );
+
+        SoundManager.Instance.PlaySfx(m_hurtSfxName);
 
         if (m_health <= 0)
         {
@@ -90,7 +94,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     public virtual void DamagePlayer(int damageAmount)
     {
-        BetterDebugging.Instance.SpawnDebugText(
+        BetterDebugging.SpawnDebugText(
             $"{m_name.ToUpper()} DEALING {damageAmount} DAMAGE",
             transform.position + new Vector3(0, 2),
             0.3f,
@@ -98,7 +102,7 @@ public abstract class EnemyBase : MonoBehaviour
             BetterDebugging.eDebugLevel.Message
         );
 
-        m_playerStats.TakeDMG(damageAmount);
+        m_playerStats.TakeDamage(damageAmount);
     }
 
     [ExecuteInEditMode]
@@ -123,6 +127,23 @@ public abstract class EnemyBase : MonoBehaviour
         [CanBeNull] GameObject itemToDrop = null)
     {
         m_playerStats.ActivateFrenzyMode();
+
+        m_playerStats.AddPoints(pointsToAward);
+        
+        SoundManager.Instance.PlaySfx(m_deathSoundFxName);
+
+        if (m_deathParticleFx != null)
+        {
+            Instantiate(deathParticleFx, transform.position, Quaternion.identity);
+        }
+
+        if(itemToDrop != null)
+        {
+            GameObject deathObject = Instantiate(itemToDrop);
+            deathObject.SetActive(true);
+        }
+
+        Destroy(gameObject);
     }
 
     protected abstract void Move();
@@ -146,6 +167,6 @@ public abstract class EnemyBase : MonoBehaviour
 
     public void DebugLog(string debugMessage, BetterDebugging.eDebugLevel level = BetterDebugging.eDebugLevel.Log)
     {
-        BetterDebugging.Instance.DebugLog($"{m_name.ToUpper()}:  {debugMessage}", level);
+        BetterDebugging.Log($"{m_name.ToUpper()}:  {debugMessage}", level);
     }
 }

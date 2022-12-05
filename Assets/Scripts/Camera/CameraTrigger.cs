@@ -36,20 +36,21 @@ public class CameraTrigger : MonoBehaviour
         CameraController cameraController = CameraControllerObject.GetComponent<CameraController>();
         m_cameraController = cameraController;
 
-        BetterDebugging.Instance.Assert(cameraController != null);
+        BetterDebugging.Assert(cameraController != null);
     }
 
-    [ExecuteInEditMode] public void SetCameraController(GameObject cameraObject)
+    [ExecuteInEditMode]
+    public void SetCameraController(GameObject cameraObject)
     {
         CameraControllerObject = cameraObject;
-        BetterDebugging.Instance.DebugLog("SETTING CAMERA CONTROLLER", BetterDebugging.eDebugLevel.Message);
+        BetterDebugging.Log("SETTING CAMERA CONTROLLER", BetterDebugging.eDebugLevel.Message);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.gameObject.CompareTag(StringConstants.PLAYER_TAG)) { return; }
 
-        BetterDebugging.Instance.DebugLog(
+        BetterDebugging.Log(
             "Hit the player!",
             BetterDebugging.eDebugLevel.Message
         );
@@ -64,8 +65,8 @@ public class CameraTrigger : MonoBehaviour
             {
                 case eTriggerProperty.Zoom:
                     m_cameraController.SetCameraZoom(ZoomAmount, ZoomDuration);
-                    
-                    BetterDebugging.Instance.DebugLog(
+
+                    BetterDebugging.Log(
                         $"Setting camera zoom to {ZoomAmount} over {ZoomDuration} seconds",
                         BetterDebugging.eDebugLevel.Message
                     );
@@ -81,7 +82,7 @@ public class CameraTrigger : MonoBehaviour
                 case eTriggerProperty.LockX:
                     m_cameraController.LockCoordX(LockedCoordX);
 
-                    BetterDebugging.Instance.DebugLog(
+                    BetterDebugging.Log(
                         $"Locking camera X Coordinate to {LockedCoordX}",
                         BetterDebugging.eDebugLevel.Message
                     );
@@ -93,7 +94,7 @@ public class CameraTrigger : MonoBehaviour
                 case eTriggerProperty.LockY:
                     m_cameraController.LockCoordY(LockedCoordY);
 
-                    BetterDebugging.Instance.DebugLog(
+                    BetterDebugging.Log(
                         $"Locking camera Y Coordinate to {LockedCoordY}",
                         BetterDebugging.eDebugLevel.Message
                     );

@@ -87,10 +87,12 @@ public class RhinoEnemy : EnemyBase
                 break;
             case eState.Charging:
                 m_animator.SetTrigger(StringConstants.RHINO_CHARGE);
+                SoundManager.Instance.PlaySfx("RhinoChargeSFX");
                 break;
             case eState.Headbutt:
                 DebugLog("HEADBUTT!", BetterDebugging.eDebugLevel.Warning);
                 m_animator.SetTrigger(StringConstants.RHINO_HEADBUTT);
+                SoundManager.Instance.PlaySfx(m_attackSfxName);
                 break;
             case eState.CoolDown:
                 m_animator.ResetTrigger(StringConstants.RHINO_WALK_CYCLE);
@@ -116,10 +118,10 @@ public class RhinoEnemy : EnemyBase
         // If the player is within range, begin charging
         if (FindSqrDistanceToPlayer() <= m_minDistanceToPlayer.x * m_minDistanceToPlayer.x)
         {
-            // DebugLog("PLAYER IS IN RANGE!");
+            // Log("PLAYER IS IN RANGE!");
             Vector2 vectorToPlayer = GetVectorToPlayer();
 
-            // DebugLog($"PLAYER VECTOR {vectorToPlayer.x}  {vectorToPlayer.y}");
+            // Log($"PLAYER VECTOR {vectorToPlayer.x}  {vectorToPlayer.y}");
 
             // If we are facing the correct direction, and around the right height
             // range, charge at the player
@@ -198,7 +200,7 @@ public class RhinoEnemy : EnemyBase
         );
 
         // HACK - DON'T USE THIS IN FINAL GAME
-        m_playerStats.gameObject.GetComponent<Controller>().AddImpulse(force);
+        m_playerStats.gameObject.GetComponent<PlayerController>().AddImpulse(force);
 
         DamagePlayer(m_damage);
     }

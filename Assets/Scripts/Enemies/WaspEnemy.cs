@@ -15,6 +15,7 @@ public class WaspEnemy : EnemyBase
     [SerializeField] private float m_diveBombSpeed;
 
     [SerializeField] private float m_attackCooldownDuration;
+
     private float m_attackCooldownTimer = 0f;
 
     private bool m_hasRisen = false;
@@ -72,16 +73,15 @@ public class WaspEnemy : EnemyBase
     {
         m_state = state;
 
-        // TODO: FILL THESE IN WITH THE ANIMATION TRIGGERS!
         switch (m_state)
         {
             case eState.Flying:
-                break;
             case eState.DiveBomb:
-                break;
             case eState.CoolDown:
+                m_animator.SetTrigger(StringConstants.WASP_FLY);
                 break;
             case eState.Attack:
+                m_animator.SetTrigger(StringConstants.WASP_STING);
                 break;
             default:
                 DebugLog($"UNHANDLED CASE {m_state}");
@@ -180,18 +180,16 @@ public class WaspEnemy : EnemyBase
     protected override void Attack()
     {
         m_rigidbody.velocity = Vector2.zero;
-        // TODO: Play sting animation
-        // TODO: Play Sound Effect
-        // TODO: Damage the Player
-
-        // TODO: REPLACE WITH PROPER ATTACK STUFF... KEEPING IN PLACE FOR NOW
         StartCoroutine("AttackPlayer");
     }
 
     private IEnumerator AttackPlayer()
     {
         DebugLog("DAMAGING THE PLAYER!", BetterDebugging.eDebugLevel.Message);
-        yield return new WaitForSeconds(1.0f);
+        SoundManager.Instance.PlaySfx(m_attackSfxName);
+        m_playerStats.TakeDamage(m_damage);
+        SetWaspState(eState.Attack);
+        yield return new WaitForSeconds(2.0f);
         SetWaspState(eState.CoolDown);
         DebugLog("FINISHED ATTACKING, RISING BACK UP", BetterDebugging.eDebugLevel.Message);
     }

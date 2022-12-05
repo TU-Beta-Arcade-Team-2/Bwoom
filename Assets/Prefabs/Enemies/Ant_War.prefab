@@ -126,7 +126,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.859375, y: 0.546875}
+    oldSize: {x: 1.71875, y: 1.09375}
     newSize: {x: 1.734375, y: 1.09375}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -148,13 +148,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerStats: {fileID: 0}
-  m_health: 50
-  m_damage: 10
+  m_health: 25
+  m_damage: 60
   m_pointsToAward: 10
-  m_deathSoundFxName: 
-  m_speed: 3.2
-  m_deathParticleFx: {fileID: 0}
+  m_hurtSfxName: InsectHurtSFX
+  m_attackSfxName: 
+  m_deathSoundFxName: InsectDeathSFX
+  m_speed: 2
+  m_deathParticleFx: {fileID: 77842918626606518, guid: 292aa753705bb3a428799e28f78f8b25, type: 3}
   m_deathDropItem: {fileID: 0}
+  m_coolDownDuration: 2
 --- !u!95 &-8148383821453433378
 Animator:
   serializedVersion: 4

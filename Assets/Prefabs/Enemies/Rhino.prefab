@@ -148,19 +148,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerStats: {fileID: 0}
-  m_health: 200
-  m_damage: 50
-  m_pointsToAward: 10
-  m_deathSoundFxName: 
+  m_health: 30
+  m_damage: 70
+  m_pointsToAward: 120
+  m_hurtSfxName: RhinoHurtSFX
+  m_attackSfxName: RhinoHeadbuttSFX
+  m_deathSoundFxName: RhinoDeathSFX
   m_speed: 5
-  m_deathParticleFx: {fileID: 0}
+  m_deathParticleFx: {fileID: 8448831293929244682, guid: bba77eaed12c93d4cadcb86a170ac2fc, type: 3}
   m_deathDropItem: {fileID: 0}
-  m_preChargeDuration: 1.5
+  m_preChargeDuration: 1
   m_chargeDuration: 0.75
   m_headbuttDuration: 1
   m_knockbackAmount: 5000
   m_knockbackHeight: 1000
-  m_coolDownDuration: 5
+  m_coolDownDuration: 2
   m_minDistanceToPlayer: {x: 10, y: 3}
   m_chargeCurve:
     serializedVersion: 2

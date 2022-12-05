@@ -2765,7 +2765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55100942cda4c364391e970d83c45a59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  frameRate: 60
+  m_player: {fileID: 0}
 --- !u!4 &766743229
 Transform:
   m_ObjectHideFlags: 0
@@ -3266,6 +3266,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8357854008957463018, guid: 2aa876847d3a6044cbefaf2610fec84b, type: 3}
   m_PrefabInstance: {fileID: 1723051079}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &916964134
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6904529791070064732, guid: 97820386ac96f2b4986d200277480b6f, type: 3}
+      propertyPath: m_Name
+      value: Hitstop Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904529791070064734, guid: 97820386ac96f2b4986d200277480b6f, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904529791070064734, guid: 97820386ac96f2b4986d200277480b6f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904529791070064734, guid: 97820386ac96f2b4986d200277480b6f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904529791070064734, guid: 97820386ac96f2b4986d200277480b6f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904529791070064734, guid: 97820386ac96f2b4986d200277480b6f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904529791070064734, guid: 97820386ac96f2b4986d200277480b6f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904529791070064734, guid: 97820386ac96f2b4986d200277480b6f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904529791070064734, guid: 97820386ac96f2b4986d200277480b6f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904529791070064734, guid: 97820386ac96f2b4986d200277480b6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904529791070064734, guid: 97820386ac96f2b4986d200277480b6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6904529791070064734, guid: 97820386ac96f2b4986d200277480b6f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 97820386ac96f2b4986d200277480b6f, type: 3}
 --- !u!1001 &928561879
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5913,6 +5970,26 @@ PrefabInstance:
       propertyPath: m_attackAnim
       value: 
       objectReference: {fileID: 2145512436, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+    - target: {fileID: 517762481085286622, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5420125246354666554, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.19306466
+      objectReference: {fileID: 0}
+    - target: {fileID: 5420125246354666554, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1349166
+      objectReference: {fileID: 0}
+    - target: {fileID: 5420125246354666554, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5420125246354666554, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8171535325487749776, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_RootOrder
       value: 0

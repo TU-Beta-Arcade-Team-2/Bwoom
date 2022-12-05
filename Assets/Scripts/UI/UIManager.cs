@@ -1,61 +1,73 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class UIManager : Singleton<UIManager>
 {
-    public Animator m_Transition;
-
-    public bool IN_GAME;
+    [SerializeField] private GameObject m_gameHUD;
     [SerializeField] private GameObject m_pauseMenu;
+    [SerializeField] private UIOptions m_optionsMenu;
 
-    public void QuitGame()
+    protected override void InternalInit()
     {
-        
-        Application.Quit();
-  
+        // Load and apply the ingame settings
+        m_optionsMenu.LoadOptions();
     }
 
-
-    private void Update()
+    public void ShowPauseMenu()
     {
-        if (IN_GAME)
+        m_pauseMenu.SetActive(!m_pauseMenu.activeSelf);
+        m_gameHUD.SetActive(!m_pauseMenu.activeSelf);
+    }
+
+    public void ShowOptionsMenu()
+    {
+        m_pauseMenu.SetActive(false);
+        m_optionsMenu.gameObject.SetActive(true);
+    }
+
+    public void OnOptionsBackPressed()
+    {
+        m_pauseMenu.SetActive(true);
+
+        m_optionsMenu.gameObject.SetActive(false);
+        m_optionsMenu.SaveOptions();
+
+        PlayUiClick();
+    }
+
+    public void PlayUiClick()
+    {
+        SoundManager.Instance.PlaySfx(StringConstants.UI_CLICK_SFX);
+    }
+
+    public void ToggleOptions()
+    {
+        m_optionsMenu.gameObject.SetActive(!m_optionsMenu.gameObject.activeSelf);
+    }
+
+    public void QuitToTitle()
+    {
+        m_gameHUD.SetActive(false);
+        GameManager.Instance.OnPauseButtonPressed();
+        SaveLoad.LoadLevel(StringConstants.TITLE_SCREEN_LEVEL);
+    }
+
+    public void OnPauseButtonPressed()
+    {
+        // If escape is pressed in the options sub-menu, show the pause menu again
+        if (m_optionsMenu.gameObject.activeSelf)
         {
-            if (Input.GetKeyDown(KeyCode.Escape)) //TODO: Change to input maager
-            {
-                if (m_pauseMenu.activeSelf)
-                {
-                    m_pauseMenu.SetActive(false);
-                    Time.timeScale = 1f;
-                }
-                else
-                {
-                    m_pauseMenu.SetActive(true);
-                    Time.timeScale = 0f;
-                }
-            }
+            m_optionsMenu.gameObject.SetActive(false);
+            m_pauseMenu.SetActive(true);
+        }
+        else
+        {
+            ShowPauseMenu();
         }
     }
 
-
-    //Level Loader Code from a brackeys tutorial - https://www.youtube.com/watch?v=CE9VOZivb3I
-
-    public void LoadNextLevel(string sceneName)
+    public bool IsStillPaused()
     {
-        StartCoroutine(LoadLevel(sceneName));
+        return m_pauseMenu.activeSelf;
     }
-
-    
-
-    IEnumerator LoadLevel(string sceneName)
-    {
-        m_Transition.SetTrigger("Fade");
-
-        yield return new WaitForSeconds(1);
-
-        SceneManager.LoadScene(sceneName);
-    }
-
-
 }

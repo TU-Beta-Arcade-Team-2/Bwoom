@@ -17,6 +17,7 @@ public class PlayerAttackHitbox : MonoBehaviour
     {
         m_shaderGUItext = Shader.Find("GUI/Text Shader");
         m_shaderSpritesDefault = Shader.Find("Sprites/Default");
+        m_hitstopManager = GameObject.Find("Hitstop Manager").GetComponent<HitstopManager>();
     }
 
     public void GetDamage(float damage)
@@ -46,11 +47,11 @@ public class PlayerAttackHitbox : MonoBehaviour
             Rigidbody2D enemyRb = other.GetComponent<Rigidbody2D>();
             // This assert shouldn't ever be hit, if it is, the other code will 
             // give NullReferenceExceptions anyway, so at least it will flag up where it happens! 
-            BetterDebugging.Instance.Assert(enemy != null, "Anything on the Enemy Layer should be an enemy!");
+            BetterDebugging.Assert(enemy != null, "Anything on the Enemy Layer should be an enemy!");
 
             //make the enemy take damage and add force
             enemy.TakeDamage((int)(m_damage));
-            enemyRb.AddForce(m_enemyForce,ForceMode2D.Impulse);
+            enemyRb.AddForce(m_enemyForce, ForceMode2D.Impulse);
             m_playerStats.GetComponent<Rigidbody2D>().AddForce(m_playerForce, ForceMode2D.Impulse);
 
             //hitstop effect
@@ -61,7 +62,7 @@ public class PlayerAttackHitbox : MonoBehaviour
 
             StartCoroutine(WaitForHitStopResume(enemySprite));
 
-            BetterDebugging.Instance.DebugLog($"Player Damage:  {m_damage}");
+            BetterDebugging.Log($"Player Damage:  {m_damage}");
         }
 
         IEnumerator WaitForHitStopResume(SpriteRenderer enemySprite)

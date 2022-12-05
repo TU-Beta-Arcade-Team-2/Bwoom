@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MaskAttackHitbox : MonoBehaviour
 {
-    [SerializeField] private Controller m_playerController;
+    [SerializeField] private PlayerController m_playerPlayerController;
 
     [SerializeField] private WarMask m_warMask;
     [SerializeField] private NatureMask m_natureMask;
@@ -13,7 +13,7 @@ public class MaskAttackHitbox : MonoBehaviour
     {
         GameObject player = GameObject.FindGameObjectWithTag(StringConstants.PLAYER_TAG);
 
-        m_playerController = player.GetComponent<Controller>();
+        m_playerPlayerController = player.GetComponent<PlayerController>();
         m_warMask = player.GetComponent<WarMask>();
         m_natureMask = player.GetComponent<NatureMask>();
     }
@@ -25,13 +25,13 @@ public class MaskAttackHitbox : MonoBehaviour
             EnemyBase enemy = other.GetComponent<EnemyBase>();
             // This assert shouldn't ever be hit, if it is, the other code will 
             // give NullReferenceExceptions anyway, so at least it will flag up where it happens! 
-            BetterDebugging.Instance.Assert(enemy != null, "Anything on the Enemy Layer should be an enemy!");
+            BetterDebugging.Assert(enemy != null, "Anything on the Enemy Layer should be an enemy!");
 
             if (enemy != null)
             {
-                switch (m_playerController.GetSelectedMask())
+                switch (m_playerPlayerController.GetSelectedMask())
                 {
-                    case Controller.eMasks.War:
+                    case PlayerController.eMasks.War:
                         enemy.TakeDamage(m_warMask.m_specialAttackDamage);
                         m_warMask.SpecialAttackEffect(other.GetComponent<Rigidbody2D>());
                         break;
@@ -40,7 +40,7 @@ public class MaskAttackHitbox : MonoBehaviour
                     //    m_natureMask.SpecialAttackEffect();
                     //    break;
                     default:
-                        BetterDebugging.Instance.DebugLog("Mask is either not added yet, or you messed up!", BetterDebugging.eDebugLevel.Error);
+                        BetterDebugging.Log("Mask is either not added yet, or you messed up!", BetterDebugging.eDebugLevel.Error);
                         break;
                 }
             }

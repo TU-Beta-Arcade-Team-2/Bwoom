@@ -6,28 +6,23 @@ public class LeafProjectile : ProjectleBaseClass
 {
     [SerializeField] private float m_projectileSpeed;
     [SerializeField] private float m_maxProjectileLifetime;
-    [SerializeField] private PlayerStats m_playerStats;
     [SerializeField] private NatureMask m_natureMask;
     private float m_lifeTimer;
 
     void Awake()
     {
+        Init();
+
         m_lifeTimer = m_maxProjectileLifetime;
-
-        GameObject player = GameObject.FindGameObjectWithTag(StringConstants.PLAYER_TAG);
-
         m_shaderGUItext = Shader.Find("UI/Default Font");
         m_shaderSpritesDefault = Shader.Find("Sprites/Default");
 
         m_hitstopManager = GameObject.Find("Hitstop Manager").GetComponent<HitstopManager>();
 
-        m_playerStats = player.GetComponentInParent<PlayerStats>();
-        m_natureMask = player.GetComponentInParent<NatureMask>();
+        m_natureMask = m_player.gameObject.GetComponent<NatureMask>();
         gameObject.transform.parent = null;
 
         collisionDelegate += OnProjectileHit;
-
-        Debug.Log("Delegate Name : " + collisionDelegate);
     }
 
     // Update is called once per frame
@@ -48,12 +43,12 @@ public class LeafProjectile : ProjectleBaseClass
         {
             EnemyBase enemy = other.GetComponent<EnemyBase>();
 
-            BetterDebugging.Instance.Assert(enemy != null, "Not colliding with the Enemy!");
+            BetterDebugging.Assert(enemy != null, "Not colliding with the Enemy!");
 
             if (enemy != null)
             {
                 enemy.TakeDamage(m_natureMask.m_specialAttackDamage);
-                m_playerStats.TakeHEAL(m_natureMask.m_HealAmount);
+                m_player.HealPlayer(m_natureMask.m_HealAmount);
             }
         }
     }

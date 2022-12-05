@@ -122,18 +122,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.035649538, y: 0.03564906}
+  m_Offset: {x: 0.12950397, y: 0.064950585}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 22.68, y: 22.68}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7915645, y: 1.6082273}
+  m_Size: {x: 1.4612575, y: 1.6668303}
   m_EdgeRadius: 0
 --- !u!114 &169322923249398929
 MonoBehaviour:
@@ -148,12 +148,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerStats: {fileID: 0}
-  m_health: 10
-  m_damage: 20
-  m_pointsToAward: 0
-  m_deathSoundFxName: 
+  m_health: 8
+  m_damage: 40
+  m_pointsToAward: 30
+  m_hurtSfxName: InsectHurtSFX
+  m_attackSfxName: WaspStingSFX
+  m_deathSoundFxName: InsectDeathSFX
   m_speed: 5
-  m_deathParticleFx: {fileID: 0}
+  m_deathParticleFx: {fileID: 2750980778787247488, guid: b5f17093e744a6a4d84be7bd11b5a516, type: 3}
   m_deathDropItem: {fileID: 0}
   m_bobHeight: 1.2
   m_bobSpeed: 5
@@ -171,7 +173,7 @@ Animator:
   m_GameObject: {fileID: 169322923249398928}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b0f65ab3e6d125a4585622395cf2bf70, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
