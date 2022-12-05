@@ -137,6 +137,12 @@ public abstract class EnemyBase : MonoBehaviour
             Instantiate(deathParticleFx, transform.position, Quaternion.identity);
         }
 
+        if(itemToDrop != null)
+        {
+            GameObject deathObject = Instantiate(itemToDrop);
+            deathObject.SetActive(true);
+        }
+
         Destroy(gameObject);
     }
 
