@@ -7,6 +7,7 @@ public class LeafProjectile : ProjectleBaseClass
     [SerializeField] private float m_projectileSpeed;
     [SerializeField] private float m_maxProjectileLifetime;
     [SerializeField] private NatureMask m_natureMask;
+    [SerializeField] private GameObject m_vFX;
     private float m_lifeTimer;
 
     void Awake()
@@ -49,6 +50,7 @@ public class LeafProjectile : ProjectleBaseClass
             {
                 enemy.TakeDamage(m_natureMask.m_specialAttackDamage);
                 m_player.HealPlayer(m_natureMask.m_HealAmount);
+                GameObject.Instantiate(m_vFX, transform.position, transform.rotation);
             }
         }
     }

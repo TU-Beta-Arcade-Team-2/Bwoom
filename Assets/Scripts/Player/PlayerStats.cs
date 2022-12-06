@@ -97,8 +97,6 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private ParticleSystem m_particleSystem2;
     [SerializeField] private ParticleSystem m_particleSystem3;
 
-    [SerializeField] private FrenzySwitch m_frenzySwitch;
-
     private float m_frenzyTimer;
 
     private Vector3 m_lastCheckpointPosition;
