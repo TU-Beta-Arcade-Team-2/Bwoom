@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_pointsToAward: 10
+  m_VFX: {fileID: 7242068727432921153, guid: 45be8201a6c8b5348bdfb7d399bde9c7, type: 3}
 --- !u!95 &764725113763134824
 Animator:
   serializedVersion: 4

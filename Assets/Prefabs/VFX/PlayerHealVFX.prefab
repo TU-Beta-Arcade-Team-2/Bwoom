@@ -4880,7 +4880,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 423108124798344911}
-  - component: {fileID: 2009781595541113599}
+  - component: {fileID: 1315286110635406219}
   m_Layer: 0
   m_Name: PlayerHealVFX
   m_TagString: Untagged
@@ -4904,7 +4904,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2009781595541113599
+--- !u!114 &1315286110635406219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4913,10 +4913,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3408032983241102422}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a2c4f2664916894e825cbf0a61d1176, type: 3}
+  m_Script: {fileID: 11500000, guid: 6beefb7e6a9ca114fbd47e79f22fe011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_destructionTimer: 0
+  m_time: 1
 --- !u!1 &5047332813625609916
 GameObject:
   m_ObjectHideFlags: 0
