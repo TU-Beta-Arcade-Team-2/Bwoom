@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerAnimationControl : MonoBehaviour
+public class PlayerAnimationEvents : MonoBehaviour
 {
     public void AnimPlaySmallWoosh()
     {

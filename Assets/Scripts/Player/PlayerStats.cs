@@ -92,6 +92,11 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private GameObject m_lightHitVFX;
     [SerializeField] private GameObject m_heavyHitVFX;
     [SerializeField] private GameObject m_healVFX;
+
+    [SerializeField] private ParticleSystem m_particleSystem1;
+    [SerializeField] private ParticleSystem m_particleSystem2;
+    [SerializeField] private ParticleSystem m_particleSystem3;
+
     [SerializeField] private FrenzySwitch m_frenzySwitch;
 
     private float m_frenzyTimer;
@@ -194,7 +199,13 @@ public class PlayerStats : MonoBehaviour
 
         BetterDebugging.Log("Frenzy Mode On!");
         m_frenzyMode = true;
-        m_frenzySwitch.FrenzySwitcher(true);
+
+        if (m_particleSystem1.isStopped)
+        {
+            m_particleSystem1.Play();
+            m_particleSystem2.Play();
+            m_particleSystem3.Play();
+        }
 
         SoundManager.Instance.PlayMusic(StringConstants.WAR_LEVEL_SOUNDTRACK, true, true);
     }
@@ -209,7 +220,13 @@ public class PlayerStats : MonoBehaviour
 
         BetterDebugging.Log("No More Frenzy");
         m_frenzyMode = false;
-        m_frenzySwitch.FrenzySwitcher(false);
+
+        if (m_particleSystem1.isPlaying)
+        {
+            m_particleSystem1.Stop();
+            m_particleSystem2.Stop();
+            m_particleSystem3.Stop();
+        }
 
         SoundManager.Instance.PlayMusic(StringConstants.NATURE_LEVEL_SOUNDTRACK, true, true);
     }
