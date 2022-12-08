@@ -285,6 +285,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsGrounded()
     {
+
         if (!Physics2D.OverlapCircle(m_groundCheck.position, 0.1f, m_groundLayer))
         {
             m_rigidbody.sharedMaterial = slipperyMat;

@@ -35,7 +35,8 @@ public class WarMask : MaskClass
 
             m_rb.velocity = new Vector2(m_rb.velocity.x, 0);
             m_rb.AddForce(new Vector2(0, m_uppercutJumpHeight), ForceMode2D.Impulse);
-            m_attackAnim.Play("Warmask Special");
+            m_playerAnimator.Play("Warmask Special");
+            m_playerAnimator.SetBool("Special", true);
         }
     }
 

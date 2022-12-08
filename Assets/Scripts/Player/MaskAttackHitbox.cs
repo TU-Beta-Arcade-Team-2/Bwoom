@@ -7,7 +7,6 @@ public class MaskAttackHitbox : MonoBehaviour
     [SerializeField] private PlayerController m_playerPlayerController;
 
     [SerializeField] private WarMask m_warMask;
-    [SerializeField] private NatureMask m_natureMask;
 
     private void Awake()
     {
@@ -15,7 +14,6 @@ public class MaskAttackHitbox : MonoBehaviour
 
         m_playerPlayerController = player.GetComponent<PlayerController>();
         m_warMask = player.GetComponent<WarMask>();
-        m_natureMask = player.GetComponent<NatureMask>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
