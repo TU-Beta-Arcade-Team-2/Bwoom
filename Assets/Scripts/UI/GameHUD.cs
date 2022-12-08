@@ -54,7 +54,7 @@ public class GameHUD : Singleton<GameHUD>
 
     public void UpdatePoints(int value)
     {
-        m_pointText.text = value.ToString();
+        m_pointText.text = string.Format("x{0}", value.ToString());
     }
 
     public void UpdateMaskIcon(PlayerController.eMasks mask)
