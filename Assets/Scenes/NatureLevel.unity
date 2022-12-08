@@ -37612,19 +37612,27 @@ PrefabInstance:
       objectReference: {fileID: 1692868989}
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_frenzyDuration
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_frenzyTimerIncrement
-      value: 2.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_frenzyModeDefaultTimer
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_frenzyStats.JumpHeight
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_defaultStats.JumpHeight
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_frenzyStats.MovementSpeed
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 8171535325487749776, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_RootOrder
