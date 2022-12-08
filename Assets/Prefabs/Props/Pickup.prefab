@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 916454526a810384e9d0bac22d2f1a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_pointsToAward: 10
+  m_pointsToAward: 1
 --- !u!95 &764725113763134824
 Animator:
   serializedVersion: 4
