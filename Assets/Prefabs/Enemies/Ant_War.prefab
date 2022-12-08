@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerStats: {fileID: 0}
-  m_health: 25
-  m_damage: 60
+  m_health: 10
+  m_damage: 30
   m_pointsToAward: 10
   m_hurtSfxName: InsectHurtSFX
   m_attackSfxName: 
