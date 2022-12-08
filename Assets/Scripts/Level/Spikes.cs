@@ -8,7 +8,8 @@ public class Spikes : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag(StringConstants.PLAYER_TAG))
+        if (other.gameObject.CompareTag(StringConstants.PLAYER_TAG) && 
+            other.transform.position.y > transform.position.y)
         {
             PlayerStats stats = FindObjectOfType<PlayerStats>();
             stats.TakeDamage(m_playerDamage);

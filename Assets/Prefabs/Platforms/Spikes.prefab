@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7185809229878237669}
   - component: {fileID: 7185809229878237666}
   - component: {fileID: 7185809229878237667}
-  - component: {fileID: 7185809229878237664}
+  - component: {fileID: 633394726046001691}
   m_Layer: 0
   m_Name: Spikes
   m_TagString: Untagged
@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_playerDamage: 20
---- !u!60 &7185809229878237664
-PolygonCollider2D:
+--- !u!61 &633394726046001691
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -109,10 +109,10 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.2890644}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -122,29 +122,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.50142384, y: -0.8541031}
-      - {x: 0.38021946, y: -0.38734436}
-      - {x: 0.26724052, y: -0.9534874}
-      - {x: 0.15625, y: 0.46875}
-      - {x: 0.0625, y: 0.4375}
-      - {x: -0.03652954, y: -0.96445847}
-      - {x: -0.12841606, y: -0.21390915}
-      - {x: -0.21299934, y: -0.5001297}
-      - {x: -0.26266575, y: -0.96040726}
-      - {x: -0.40441608, y: -0.428051}
-      - {x: -0.4150324, y: 0.026031494}
-      - {x: -0.51266575, y: 0.25979996}
-      - {x: -0.5537176, y: -0.95715714}
-      - {x: -0.62009907, y: -0.93997574}
-      - {x: -0.6978111, y: -0.5197258}
-      - {x: -0.7915611, y: -0.14256668}
-      - {x: -0.8858204, y: -0.6528778}
-      - {x: -1, y: -1}
-      - {x: 0.9840193, y: -0.97602844}
-      - {x: 0.95169353, y: -0.5498352}
-      - {x: 0.78818893, y: -0.032268524}
-      - {x: 0.6636009, y: -0.8686104}
-      - {x: 0.5625, y: 0.46875}
-      - {x: 0.48631573, y: 0.21792603}
+  serializedVersion: 2
+  m_Size: {x: 2, y: 1.4218712}
+  m_EdgeRadius: 0
