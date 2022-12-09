@@ -127,8 +127,8 @@ MonoBehaviour:
   m_hitstopManager: {fileID: 0}
   m_projectileSpeed: 10
   m_maxProjectileLifetime: 2
-  m_playerStats: {fileID: 0}
   m_natureMask: {fileID: 0}
+  m_vFX: {fileID: 8146836139241791148, guid: b232eed6356874247b50306d2bbabfd8, type: 3}
 --- !u!95 &8491791517239224601
 Animator:
   serializedVersion: 4

@@ -86,7 +86,16 @@ public class PlayerStats : MonoBehaviour
             GameHUD.Instance.UpdateFrenzyBar(m_frenzyTimer, m_frenzyDuration);
         }
     }
+    [Space(10)]
 
+    [Header("VFX Prefabs")]
+    [SerializeField] private GameObject m_lightHitVFX;
+    [SerializeField] private GameObject m_heavyHitVFX;
+    [SerializeField] private GameObject m_healVFX;
+
+    [SerializeField] private ParticleSystem m_particleSystem1;
+    [SerializeField] private ParticleSystem m_particleSystem2;
+    [SerializeField] private ParticleSystem m_particleSystem3;
 
     private float m_frenzyTimer;
 
@@ -132,8 +141,20 @@ public class PlayerStats : MonoBehaviour
 
         if (Health > 0)
         {
-            // TODO: Play hurt animation      
+            // TODO: Play hurt animation
+            if (incomingDamage > 30)
+            {
+                GameObject.Instantiate(m_heavyHitVFX, transform.position, transform.rotation);
+                SoundManager.Instance.PlaySfx("PlayerHeavyImpactSFX");
+            }
+
+            else
+            {
+                GameObject.Instantiate(m_lightHitVFX, transform.position, transform.rotation);
+                SoundManager.Instance.PlaySfx("PlayerSmallImpactSFX");
+            }
         }
+
         else
         {
             GameManager.Instance.Death();
@@ -147,13 +168,15 @@ public class PlayerStats : MonoBehaviour
 
         Health = Mathf.Clamp(m_health + healAmount, 0, m_maxHealth);
 
-        // TODO: Play heal animation
+        GameObject.Instantiate(m_healVFX, transform.position, transform.rotation);
+        SoundManager.Instance.PlaySfx("HealSFX");
     }
     #endregion
 
     public void AddPoints(int pointsToAdd)
     {
         Points += pointsToAdd;
+        SoundManager.Instance.PlaySfx("PointSFX");
     }
 
     #region Frenzy Functions
@@ -175,6 +198,13 @@ public class PlayerStats : MonoBehaviour
         BetterDebugging.Log("Frenzy Mode On!");
         m_frenzyMode = true;
 
+        if (m_particleSystem1.isStopped)
+        {
+            m_particleSystem1.Play();
+            m_particleSystem2.Play();
+            m_particleSystem3.Play();
+        }
+
         SoundManager.Instance.PlayMusic(StringConstants.WAR_LEVEL_SOUNDTRACK, true, true);
     }
 
@@ -188,6 +218,13 @@ public class PlayerStats : MonoBehaviour
 
         BetterDebugging.Log("No More Frenzy");
         m_frenzyMode = false;
+
+        if (m_particleSystem1.isPlaying)
+        {
+            m_particleSystem1.Stop();
+            m_particleSystem2.Stop();
+            m_particleSystem3.Stop();
+        }
 
         SoundManager.Instance.PlayMusic(StringConstants.NATURE_LEVEL_SOUNDTRACK, true, true);
     }

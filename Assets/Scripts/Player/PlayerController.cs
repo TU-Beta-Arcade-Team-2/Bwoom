@@ -237,6 +237,7 @@ public class PlayerController : MonoBehaviour
                 m_rigidbody.velocity = new Vector2(m_rigidbody.velocity.x, 0);
                 m_rigidbody.AddForce(new Vector2(0, m_jumpHeight), ForceMode2D.Impulse);
 
+                SoundManager.Instance.PlaySfx("PlayerJumpSFX");
                 m_ungroundedTimer = 0;
             }
 #if UNUSED_ABILITES
@@ -352,6 +353,7 @@ public class PlayerController : MonoBehaviour
                     RemoveMasks();
                     m_warMask.enabled = true;
                     GameHUD.Instance.UpdateMaskIcon(eMasks.War);
+                    SoundManager.Instance.PlaySfx("MaskChangeSFX");
                 }
                 break;
             case eMasks.Nature:
@@ -360,6 +362,7 @@ public class PlayerController : MonoBehaviour
                     RemoveMasks();
                     m_natureMask.enabled = true;
                     GameHUD.Instance.UpdateMaskIcon(eMasks.Nature);
+                    SoundManager.Instance.PlaySfx("MaskChangeSFX");
                 }
                 break;
         }
@@ -378,9 +381,11 @@ public class PlayerController : MonoBehaviour
             {
                 case eMasks.War:
                     m_warMask.SpecialAttack();
+                    SoundManager.Instance.PlaySfx("UppercutSFX");
                     break;
                 case eMasks.Nature:
                     m_natureMask.SpecialAttack();
+                    SoundManager.Instance.PlaySfx("HealShootSFX");
                     break;
             }
         }

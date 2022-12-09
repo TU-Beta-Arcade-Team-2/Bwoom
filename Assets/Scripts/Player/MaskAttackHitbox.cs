@@ -25,6 +25,8 @@ public class MaskAttackHitbox : MonoBehaviour
             // give NullReferenceExceptions anyway, so at least it will flag up where it happens! 
             BetterDebugging.Assert(enemy != null, "Anything on the Enemy Layer should be an enemy!");
 
+            SoundManager.Instance.PlaySfx("PlayerStepSFX");
+
             if (enemy != null)
             {
                 switch (m_playerPlayerController.GetSelectedMask())

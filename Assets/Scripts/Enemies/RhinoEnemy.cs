@@ -35,6 +35,8 @@ public class RhinoEnemy : EnemyBase
 
     [SerializeField] private float m_chargeSpeed;
 
+    [SerializeField] private GameObject chargeVFX;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -152,6 +154,9 @@ public class RhinoEnemy : EnemyBase
         if (m_preChargeTimer <= m_preChargeDuration) { return; }
 
         SetRhinoState(eState.Charging);
+
+        GameObject vfx = GameObject.Instantiate(chargeVFX, transform.position, transform.rotation);
+        vfx.transform.parent = transform;
 
         m_preChargeTimer = 0f;
     }
