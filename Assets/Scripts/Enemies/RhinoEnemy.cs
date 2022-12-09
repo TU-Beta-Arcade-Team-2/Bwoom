@@ -275,7 +275,9 @@ public class RhinoEnemy : EnemyBase
             SetRhinoState(eState.Headbutt);
         }
     }
+}
 
+#if UNITY_EDITOR
     [CustomEditor(typeof(RhinoEnemy))]
     public class RhinoEnemyEditor : Editor
     {
@@ -318,4 +320,4 @@ public class RhinoEnemy : EnemyBase
             DrawDefaultInspector();
         }
     }
-}
+#endif

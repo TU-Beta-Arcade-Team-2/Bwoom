@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -11,7 +12,6 @@ public class LevelEditorTool : MonoBehaviour
     public GameObject TilePrefab;
     public SpriteAtlas SpriteAtlas;
 }
-
 
 [CustomEditor(typeof(LevelEditorTool))]
 [CanEditMultipleObjects]
@@ -37,3 +37,4 @@ public class LevelEditorGUI : Editor
         DrawDefaultInspector();
     }
 }
+#endif

@@ -231,7 +231,8 @@ public class WaspEnemy : EnemyBase
             Attack();
         }
     }
-
+}
+#if UNITY_EDITOR
     [CustomEditor(typeof(WaspEnemy))]
     public class WaspEnemyEditor : Editor
     {
@@ -273,4 +274,4 @@ public class WaspEnemy : EnemyBase
             DrawDefaultInspector();
         }
     }
-}
+#endif
