@@ -9,12 +9,14 @@ public class PlayerCombo : MonoBehaviour
     [SerializeField] private Animator m_playerAnimator;
     [SerializeField] private PlayerAttackHitbox m_playerAttackHitbox;
     [SerializeField] private HitstopManager m_hitstopManager;
+    [SerializeField] private PlayerController m_playerController;
     private float m_attackTimer;
 
     [System.Serializable]
     private struct Combo
     {
         public string AnimationName;
+        public string NatureMaskAnimationName;
         public float Damage;
         public float Cooldown;
         public Vector2 EnemyLaunchVector;
@@ -29,6 +31,7 @@ public class PlayerCombo : MonoBehaviour
     void Start()
     {
         m_playerInput = GetComponent<PlayerInput>();
+        m_playerController = GetComponent<PlayerController>();
 
         BetterDebugging.Assert(m_hitstopManager != null, "REMEMBER TO ASSIGN THE HITSTOP MANAGER!");
         BetterDebugging.Assert(m_playerAttackHitbox != null, "REMEMBER TO ASSIGN THE ATTACK HITBOX MANAGER!");
@@ -65,7 +68,16 @@ public class PlayerCombo : MonoBehaviour
             m_playerAttackHitbox.GetDamage(m_combos[m_comboCounter].Damage);
 
             // TODO: We should make this go through the player controller... PlayerController.setAniamtion(string)...
-            m_playerAnimator.Play(m_combos[m_comboCounter].AnimationName);
+            if (m_playerController.masks == PlayerController.eMasks.War)
+            {
+                m_playerAnimator.Play(m_combos[m_comboCounter].AnimationName);
+            }
+            else
+            {
+                {
+                    m_playerAnimator.Play(m_combos[m_comboCounter].NatureMaskAnimationName);
+                }
+            }
             m_playerAttackHitbox.SetLaunchForce(m_combos[m_comboCounter].EnemyLaunchVector, m_combos[m_comboCounter].PlayerLaunchVector);
             m_hitstopManager.SetHitstopDuration(m_combos[m_comboCounter].HitStopDuration);
 

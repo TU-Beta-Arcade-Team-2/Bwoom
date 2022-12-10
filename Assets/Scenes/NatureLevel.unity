@@ -37742,6 +37742,22 @@ PrefabInstance:
       propertyPath: m_hitstopManager
       value: 
       objectReference: {fileID: 1692868989}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_playerController
+      value: 
+      objectReference: {fileID: 8171535323749452089}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[0].NatureMaskAnimationName
+      value: Nature_ComboAttack1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[1].NatureMaskAnimationName
+      value: Nature_ComboAttack2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[2].NatureMaskAnimationName
+      value: Nature_ComboAttack3
+      objectReference: {fileID: 0}
     - target: {fileID: 3997681120428832773, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_Enabled
       value: 1

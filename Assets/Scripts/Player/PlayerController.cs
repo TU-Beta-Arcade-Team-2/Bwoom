@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
         Energy
     }
 
-    [SerializeField] private eMasks m_masks;
+   public eMasks masks;
     private bool m_canTakeInput = true;
 
     #region Main Functions
@@ -318,24 +318,24 @@ public class PlayerController : MonoBehaviour
     {
         if (m_playerInput.actions["WarMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            m_masks = eMasks.War;
+            masks = eMasks.War;
             m_animator.SetTrigger(StringConstants.WAR_MASK);
         }
 
         if (m_playerInput.actions["NatureMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            m_masks = eMasks.Nature;
+            masks = eMasks.Nature;
             m_animator.SetTrigger(StringConstants.NATURE_MASK);
         }
 
         if (m_playerInput.actions["EnergyMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            m_masks = eMasks.Energy;
+            masks = eMasks.Energy;
         }
 
         if (m_playerInput.actions["SeaMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
-            m_masks = eMasks.Sea;
+            masks = eMasks.Sea;
         }
 
         MaskChange();
@@ -345,7 +345,7 @@ public class PlayerController : MonoBehaviour
     {
         //TODO : Add other m_masks
 
-        switch (m_masks)
+        switch (masks)
         {
             case eMasks.War:
                 if (!m_warMask.enabled)
@@ -370,14 +370,14 @@ public class PlayerController : MonoBehaviour
 
     public eMasks GetSelectedMask()
     {
-        return m_masks;
+        return masks;
     }
 
     private void SpecialAttack()
     {
         if (m_playerInput.actions["Special"].triggered)
         {
-            switch (m_masks)
+            switch (masks)
             {
                 case eMasks.War:
                     m_warMask.SpecialAttack();
