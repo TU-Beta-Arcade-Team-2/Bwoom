@@ -49,8 +49,6 @@ public abstract class ProjectleBaseClass : MonoBehaviour
 
             StartCoroutine(WaitForHitStopResume(targetSprite));
         }
-
-        Destroy(this.gameObject);
     }
 
 
@@ -61,6 +59,9 @@ public abstract class ProjectleBaseClass : MonoBehaviour
             yield return null;
         }
         targetSprite.material.shader = m_shaderSpritesDefault;
+        Debug.Log("SPRITE : " + targetSprite.material.shader);
         targetSprite.color = Color.white;
+
+        Destroy(this.gameObject);
     }
 }

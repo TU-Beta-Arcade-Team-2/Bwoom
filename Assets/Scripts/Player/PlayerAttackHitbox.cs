@@ -15,7 +15,7 @@ public class PlayerAttackHitbox : MonoBehaviour
 
     private void OnEnable()
     {
-        m_shaderGUItext = Shader.Find("GUI/Text Shader");
+        m_shaderGUItext = Shader.Find("Sprites/ColorFlash");
         m_shaderSpritesDefault = Shader.Find("Sprites/Default");
         m_hitstopManager = GameObject.Find("Hitstop Manager").GetComponent<HitstopManager>();
     }

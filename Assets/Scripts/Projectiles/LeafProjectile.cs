@@ -15,7 +15,7 @@ public class LeafProjectile : ProjectleBaseClass
         Init();
 
         m_lifeTimer = m_maxProjectileLifetime;
-        m_shaderGUItext = Shader.Find("UI/Default Font");
+        m_shaderGUItext = Shader.Find("Sprites/ColorFlash");
         m_shaderSpritesDefault = Shader.Find("Sprites/Default");
 
         m_hitstopManager = GameObject.Find("Hitstop Manager").GetComponent<HitstopManager>();
