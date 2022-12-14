@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Sign : MonoBehaviour
 {
-    private TextMesh m_text;
+    [SerializeField] private TextMesh m_text;
     private Animator m_animator;
 
     [TextArea][SerializeField] private string m_pcPrompt;
@@ -13,7 +13,6 @@ public class Sign : MonoBehaviour
     private void Start()
     {
         m_animator = GetComponent<Animator>();
-        m_text = GetComponentInChildren<TextMesh>();
 
         m_text.text =
 #if UNITY_STANDALONE_WIN

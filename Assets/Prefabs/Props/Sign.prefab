@@ -74,9 +74,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43c73b8770edabc48882212590c1bb65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_text: {fileID: 1192517164041070054}
-  m_pcPrompt: 
-  m_mobilePrompt: 
+  m_text: {fileID: 1192517164041070056}
+  m_pcPrompt: PC Text Goes Here
+  m_mobilePrompt: Mobile Text Goes Here
 --- !u!95 &1647952227423601682
 Animator:
   serializedVersion: 4
