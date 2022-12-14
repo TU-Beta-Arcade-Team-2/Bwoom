@@ -381,11 +381,11 @@ public class PlayerController : MonoBehaviour
             {
                 case eMasks.War:
                     m_warMask.SpecialAttack();
-                    SoundManager.Instance.PlaySfx("UppercutSFX");
+                    
                     break;
                 case eMasks.Nature:
                     m_natureMask.SpecialAttack();
-                    SoundManager.Instance.PlaySfx("HealShootSFX");
+                    
                     break;
             }
         }
