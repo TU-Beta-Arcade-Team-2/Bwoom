@@ -16,6 +16,5 @@ public class OnBeginHop : MonoBehaviour
     {
         m_sprite.color = new Color(m_sprite.color.r, m_sprite.color.b, m_sprite.color.g, m_alphaValue);
         m_alphaValue = m_alphaValue - Time.deltaTime;
-        Debug.Log(m_alphaValue);
     }
 }

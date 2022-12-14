@@ -64,6 +64,8 @@ public class GameManager : Singleton<GameManager>
         OnPauseButtonPressed();
         SHOULD_LOAD_SAVE = false;
         SaveLoad.LoadLevel(SceneManager.GetActiveScene().name);
+
+        OnPauseButtonPressed();
     }
 
     public void RespawnAtLastCheckpoint()
