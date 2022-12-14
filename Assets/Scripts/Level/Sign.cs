@@ -7,28 +7,25 @@ public class Sign : MonoBehaviour
     private TextMesh m_text;
     private Animator m_animator;
 
-    [TextArea]
-    [SerializeField] private string m_pcPrompt;
-    [TextArea]
-    [SerializeField] private string m_mobilePrompt;
+    [TextArea][SerializeField] private string m_pcPrompt;
+    [TextArea][SerializeField] private string m_mobilePrompt;
 
     private void Start()
     {
         m_animator = GetComponent<Animator>();
         m_text = GetComponentInChildren<TextMesh>();
 
-#if UNITY_ANDROID
-        m_text.text = m_pcPrompt;
-#endif
-
+        m_text.text =
 #if UNITY_STANDALONE_WIN
-        m_text.text = m_mobilePrompt;
+        m_pcPrompt;
+#elif UNITY_ANDROID
+        m_mobilePrompt;
 #endif
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag(StringConstants.PLAYER_TAG))
+        if (collision.gameObject.CompareTag(StringConstants.PLAYER_TAG))
         {
             CancelInvoke("SetInactiveInTime");
             m_animator.Play("InteractedSign");
@@ -37,7 +34,7 @@ public class Sign : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag(StringConstants.PLAYER_TAG))
+        if (collision.gameObject.CompareTag(StringConstants.PLAYER_TAG))
         {
             Invoke("SetInactiveInTime", 2f);
         }
