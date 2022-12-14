@@ -248,6 +248,7 @@ public class PlayerController : MonoBehaviour
 
                 SoundManager.Instance.PlaySfx("PlayerJumpSFX");
                 m_ungroundedTimer = 0;
+                m_jumpInputTimer = 0;
             }
 #if UNUSED_ABILITES
             else if (m_wallSliding)
@@ -313,7 +314,7 @@ public class PlayerController : MonoBehaviour
             boxCollider.sharedMaterial = stickyMat;
         }
 
-        m_ungroundedTimer = 0.2f;
+        m_ungroundedTimer = 0.075f;
         m_holdTimer = 0f;
         m_warMask.m_IsJumped = false;
         m_doubleJumped = false;
