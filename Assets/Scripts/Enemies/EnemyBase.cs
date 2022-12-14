@@ -134,7 +134,11 @@ public abstract class EnemyBase : MonoBehaviour
 
         if (m_deathParticleFx != null)
         {
-            Instantiate(deathParticleFx, transform.position, Quaternion.identity);
+            GameObject fx = Instantiate(deathParticleFx, transform.position, Quaternion.identity);
+            if (m_facingDirection == eDirection.Left)
+            {
+                fx.transform.localScale = new Vector2(-fx.transform.localScale.x, fx.transform.localScale.y);
+            }
         }
 
         if(itemToDrop != null)
