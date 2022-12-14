@@ -1499,7 +1499,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6804654100150553402, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7443198772230728559, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
       propertyPath: m_MobileScreen

@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float m_inputTime;
     private float m_jumpHeight;
     private float m_movementSpeed;
+    private bool m_natureMaskSelected = false;
 
 #if UNUSED_ABILITES
     [Header("Wall Jumping Values")]
@@ -182,7 +183,15 @@ public class PlayerController : MonoBehaviour
     private float HorizontalDrag()
     {
         float horizontalVelocity = m_rigidbody.velocity.x;
-        horizontalVelocity += m_playerInput.actions["Horizontal"].ReadValue<float>();
+
+        if (m_playerInput.actions["Horizontal"].ReadValue<float>() > 0)
+        {
+            horizontalVelocity += 1;
+        }
+        else if (m_playerInput.actions["Horizontal"].ReadValue<float>() < 0)
+        {
+            horizontalVelocity -= 1;
+        }
 
         float subValue;
 
@@ -336,6 +345,23 @@ public class PlayerController : MonoBehaviour
         if (m_playerInput.actions["SeaMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
             masks = eMasks.Sea;
+        }
+
+        if (m_playerInput.actions["Switch"].triggered) //will also include an if statement checking if the selected mask has been unlocked
+        {
+            if (m_natureMaskSelected)
+            {
+                masks = eMasks.War;
+                m_animator.SetTrigger(StringConstants.WAR_MASK);
+            }
+
+            else
+            {
+                masks = eMasks.Nature;
+                m_animator.SetTrigger(StringConstants.NATURE_MASK);
+            }
+
+            m_natureMaskSelected = !m_natureMaskSelected;
         }
 
         MaskChange();
