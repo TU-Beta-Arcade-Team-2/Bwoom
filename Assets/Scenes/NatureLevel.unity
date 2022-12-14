@@ -37847,6 +37847,10 @@ PrefabInstance:
       propertyPath: m_coolDownTime
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2145512435, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_coolDownTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_hitstopManager
       value: 

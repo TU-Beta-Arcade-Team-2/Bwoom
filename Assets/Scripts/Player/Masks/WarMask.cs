@@ -11,6 +11,9 @@ public class WarMask : MaskClass
     [SerializeField] private Animator m_attackAnim;
     [SerializeField] private float m_launchForce;
 
+    [SerializeField] private float m_coolDownTime;
+    private bool m_coolDownOver = true;
+
     private void Start()
     {
         m_IsJumped = false;
@@ -29,9 +32,12 @@ public class WarMask : MaskClass
     //Warmask special attack, an uppercut that sends the player and enemies up in the air
     public override void SpecialAttack()
     {
-        if (!m_IsJumped)
+        if (!m_IsJumped && m_coolDownOver)
         {
             m_IsJumped = true;
+            m_coolDownOver = false;
+
+            Invoke("OffCoolDown", m_coolDownTime);
 
             SoundManager.Instance.PlaySfx("UppercutSFX");
             m_rb.velocity = new Vector2(m_rb.velocity.x, 0);
@@ -44,5 +50,10 @@ public class WarMask : MaskClass
     public void SpecialAttackEffect(Rigidbody2D target)
     {
         target.AddForce(new Vector2(0,m_launchForce), ForceMode2D.Impulse);
+    }
+
+    private void OffCoolDown()
+    {
+        m_coolDownOver = true;
     }
 }
