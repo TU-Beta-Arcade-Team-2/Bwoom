@@ -20,6 +20,9 @@ public class PlayerController : MonoBehaviour
     private float m_holdTimer;
     private bool m_doubleJumped;
     private bool m_facingRight = true;
+#if UNITY_ANDROID || UNITY_IOS
+    private MobileScreenControls m_screenControls;
+#endif
 
     [Header("Ground Checking")]
     /// <summary> Player Physics </summary>
@@ -100,6 +103,10 @@ public class PlayerController : MonoBehaviour
 
         m_rigidbody = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+
+#if UNITY_ANDROID || UNITY_IOS
+        m_screenControls = FindObjectOfType<MobileScreenControls>();
+#endif
 
         //set default mask
         RemoveMasks();
@@ -330,12 +337,20 @@ public class PlayerController : MonoBehaviour
         {
             masks = eMasks.War;
             m_animator.SetTrigger(StringConstants.WAR_MASK);
+
+#if UNITY_ANDROID || UNITY_IOS
+            m_screenControls.Switch(true);
+#endif
         }
 
         if (m_playerInput.actions["NatureMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
             masks = eMasks.Nature;
             m_animator.SetTrigger(StringConstants.NATURE_MASK);
+
+#if UNITY_ANDROID || UNITY_IOS
+            m_screenControls.Switch(false);
+#endif
         }
 
         if (m_playerInput.actions["EnergyMask"].triggered) //will also include an if statement checking if the selected mask has been unlocked
@@ -354,12 +369,20 @@ public class PlayerController : MonoBehaviour
             {
                 masks = eMasks.War;
                 m_animator.SetTrigger(StringConstants.WAR_MASK);
+
+#if UNITY_ANDROID || UNITY_IOS
+                m_screenControls.Switch(true);
+#endif
             }
 
             else
             {
                 masks = eMasks.Nature;
                 m_animator.SetTrigger(StringConstants.NATURE_MASK);
+
+#if UNITY_ANDROID || UNITY_IOS
+                m_screenControls.Switch(false);
+#endif
             }
 
             m_natureMaskSelected = !m_natureMaskSelected;
