@@ -342,7 +342,7 @@ MonoBehaviour:
     Joystick: {fileID: 736576142, guid: d4b4a73db69268c44be6b1c80986d9a9, type: 3}
     ButtonSwitch: {fileID: 21300000, guid: d18a61e6e5efcfc49be30b6231d1c416, type: 3}
     ButtonJump: {fileID: 21300000, guid: d200ec17ded35574d84d2fac51c391ee, type: 3}
-    ButtonSpecial: {fileID: 21300000, guid: 87257b53bd026d142883f0583e57b828, type: 3}
+    ButtonSpecial: {fileID: 21300000, guid: 27ec110ec4c0ba44fa803f3319fa1dac, type: 3}
     ButtonAttack: {fileID: 21300000, guid: 09e414f8b550eeb4e9ae47e72affb78f, type: 3}
     ButtonPause: {fileID: 21300000, guid: 6081ca0f488952a4dbbcc8e8a370e0d8, type: 3}
   m_natureButtons:
@@ -350,7 +350,7 @@ MonoBehaviour:
     Joystick: {fileID: -701284040, guid: c14e9102bcbae664983c2d44caf232ff, type: 3}
     ButtonSwitch: {fileID: 21300000, guid: 83c9a64a49efd1e4b95104444a524d67, type: 3}
     ButtonJump: {fileID: 21300000, guid: 0013b7f9b9e6f70468e5359fe7190fea, type: 3}
-    ButtonSpecial: {fileID: 21300000, guid: 448264582c40201468cef0202c1867a5, type: 3}
+    ButtonSpecial: {fileID: 21300000, guid: cec7136d82107ae42abc859eabfa8ccf, type: 3}
     ButtonAttack: {fileID: 21300000, guid: 1d6f6118c84c0fd4c89fbddf5d156904, type: 3}
     ButtonPause: {fileID: 21300000, guid: 4aa0e8e8a802f0a4ca766b2bdc6b3bcb, type: 3}
 --- !u!114 &4882316323728229928
@@ -883,7 +883,6 @@ GameObject:
   - component: {fileID: 3525253689447696153}
   - component: {fileID: 2779268368013858577}
   - component: {fileID: 6049205789489172341}
-  - component: {fileID: 2306769386926672935}
   m_Layer: 5
   m_Name: Button Special
   m_TagString: Untagged
@@ -962,26 +961,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ControlPath: <Gamepad>/buttonNorth
---- !u!95 &2306769386926672935
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5243839448370165255}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f3c403bf4fa6e6d41951752a9fbfa5c5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5299624664167234863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1085,7 +1064,6 @@ GameObject:
   - component: {fileID: 6878265272328359857}
   - component: {fileID: 5330336342027967278}
   - component: {fileID: 2049133502280211499}
-  - component: {fileID: 3003456493799811426}
   m_Layer: 5
   m_Name: Button Switch
   m_TagString: Untagged
@@ -1164,26 +1142,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ControlPath: <Gamepad>/buttonEast
---- !u!95 &3003456493799811426
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5818774403716956990}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f3c403bf4fa6e6d41951752a9fbfa5c5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6127478299240873556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,7 +1154,6 @@ GameObject:
   - component: {fileID: 3923569523178701109}
   - component: {fileID: 212175255729600458}
   - component: {fileID: 8588887711367653412}
-  - component: {fileID: 6663970460860802172}
   m_Layer: 5
   m_Name: Button Attack
   m_TagString: Untagged
@@ -1275,26 +1232,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ControlPath: <Gamepad>/buttonWest
---- !u!95 &6663970460860802172
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6127478299240873556}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f3c403bf4fa6e6d41951752a9fbfa5c5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6804654100150553402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1389,7 +1326,6 @@ GameObject:
   - component: {fileID: 683111199394003543}
   - component: {fileID: 4906475181358478923}
   - component: {fileID: 5922491951812450782}
-  - component: {fileID: 5973003811556289896}
   m_Layer: 5
   m_Name: Button Pause
   m_TagString: Untagged
@@ -1468,26 +1404,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ControlPath: <Keyboard>/p
---- !u!95 &5973003811556289896
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7672947898533315527}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f3c403bf4fa6e6d41951752a9fbfa5c5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7892868281128256624
 GameObject:
   m_ObjectHideFlags: 0
@@ -1578,7 +1494,6 @@ GameObject:
   - component: {fileID: 537569721108090644}
   - component: {fileID: 7972704991622903815}
   - component: {fileID: 4625504213114731025}
-  - component: {fileID: 7318894892162427959}
   m_Layer: 5
   m_Name: Button Jump
   m_TagString: Untagged
@@ -1657,23 +1572,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ControlPath: <Gamepad>/buttonSouth
---- !u!95 &7318894892162427959
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8686809408261272280}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f3c403bf4fa6e6d41951752a9fbfa5c5, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0

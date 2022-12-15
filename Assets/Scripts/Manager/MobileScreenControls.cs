@@ -39,6 +39,7 @@ public class MobileScreenControls : MonoBehaviour
     private void Awake()
     {
         m_mobileScreen.SetActive(true);
+        Switch(true);
     }
 
     public void Switch(bool war)

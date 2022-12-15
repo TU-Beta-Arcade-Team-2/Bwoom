@@ -1140,7 +1140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1192517163436622086, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
       propertyPath: m_mobilePrompt
-      value: Tap Left Button to attack
+      value: Tap Punch Button to attack
       objectReference: {fileID: 0}
     - target: {fileID: 1192517163436622087, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
       propertyPath: m_RootOrder
@@ -3997,7 +3997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1192517163436622086, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
       propertyPath: m_mobilePrompt
-      value: "Tap Top Button to use the \nNATURE MASK Healing Barrage"
+      value: "Tap Projectile Button to use the \nNATURE MASK Healing Barrage"
       objectReference: {fileID: 0}
     - target: {fileID: 1192517163436622087, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
       propertyPath: m_RootOrder
@@ -13925,7 +13925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1192517163436622086, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
       propertyPath: m_mobilePrompt
-      value: "Tap Top Button to use the \nWAR MASK uppercut"
+      value: "Tap Uppercut Button to use the \nWAR MASK uppercut"
       objectReference: {fileID: 0}
     - target: {fileID: 1192517163436622087, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
       propertyPath: m_RootOrder
@@ -20439,7 +20439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1192517163436622086, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
       propertyPath: m_mobilePrompt
-      value: Tap Right Button to Jump
+      value: Tap Up Arrow Button to Jump
       objectReference: {fileID: 0}
     - target: {fileID: 1192517163436622087, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
       propertyPath: m_RootOrder
