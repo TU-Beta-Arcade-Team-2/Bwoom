@@ -20,7 +20,7 @@ public class SaveLoad
 #if PLATFORM_STANDALONE_WIN
     private static string BWOOM_DIRECTORY = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Bwoom";
 #elif UNITY_ANDROID
-    private static string BWOOM_DIRECTORY = "";
+    private static string BWOOM_DIRECTORY = Application.persistentDataPath + "\\Bwoom";
 #endif
 
     private static readonly string m_savePath = $"{BWOOM_DIRECTORY}\\save.savegame";
@@ -43,15 +43,11 @@ public class SaveLoad
 
     private static void Save(eSaveLoadOptions type)
     {
-#if PLATFORM_STANDALONE_WIN
         if (!Directory.Exists(BWOOM_DIRECTORY))
         {
             Directory.CreateDirectory(BWOOM_DIRECTORY);
         }
-#elif UNITY_ANDROID
-        // TODO: Come up with a nice system for Android too! 
-        string bwoomDirectory = "";
-#endif
+
         FileStream outStream = File.Create(GetSaveDataPath(type));
         StreamWriter writer = new StreamWriter(outStream);
 
@@ -79,13 +75,6 @@ public class SaveLoad
 
     private static void Load(eSaveLoadOptions type)
     {
-#if PLATFORM_STANDALONE_WIN
-        string bwoomDirectory = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\\Bwoom";
-
-#elif UNITY_ANDROID
-        // TODO: Come up with a nice system for Android too! 
-        string bwoomDirectory = "";
-#endif
         string saveDataPath = GetSaveDataPath(type);
 
         BetterDebugging.Assert(File.Exists(saveDataPath), $"NO SAVE DATA FOUND AT: {saveDataPath}");
