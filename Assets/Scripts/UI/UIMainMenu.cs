@@ -8,7 +8,7 @@ public class UIMainMenu : MonoBehaviour
     [SerializeField] private GameObject m_continueButton;
     [SerializeField] private UIOptions m_optionsMenu;
     [SerializeField] private GameObject m_titleHolder;
-
+    [SerializeField] private Animator m_buttonAnim;
 
     void Start()
     {
@@ -16,6 +16,7 @@ public class UIMainMenu : MonoBehaviour
 
         // Show the Continue game button only if we've never saved
         m_continueButton.SetActive(SaveLoad.DoesSaveGameExist());
+        m_buttonAnim.Play("ButtonAnimation");
     }
 
     public void OnNewGamePressed()

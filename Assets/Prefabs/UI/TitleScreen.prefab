@@ -813,6 +813,7 @@ MonoBehaviour:
   m_continueButton: {fileID: 3373473271929100099}
   m_optionsMenu: {fileID: 0}
   m_titleHolder: {fileID: 3373473271610554217}
+  m_buttonAnim: {fileID: 3373473272754116879}
 --- !u!1 &3373473272125563360
 GameObject:
   m_ObjectHideFlags: 0
