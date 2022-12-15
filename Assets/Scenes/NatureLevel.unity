@@ -37839,6 +37839,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1727608201}
     m_Modifications:
+    - target: {fileID: 1376389576, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1564724982, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_hitstopManager
       value: 
