@@ -337,6 +337,10 @@ MonoBehaviour:
   m_buttonSpecialImage: {fileID: 2779268368013858577}
   m_buttonAttackImage: {fileID: 212175255729600458}
   m_buttonPauseImage: {fileID: 4906475181358478923}
+  m_buttonSwitchAnimator: {fileID: 7977014346255928339}
+  m_buttonJumpAnimator: {fileID: 3809745592572218767}
+  m_buttonSpecialAnimator: {fileID: 8886186202548065840}
+  m_buttonAttackAnimator: {fileID: 7481050038664083417}
   m_warButtons:
     JoystickBackground: {fileID: 21300000, guid: 21a31612f69fa2342ab6940b06a48b20, type: 3}
     Joystick: {fileID: 736576142, guid: d4b4a73db69268c44be6b1c80986d9a9, type: 3}
@@ -883,6 +887,7 @@ GameObject:
   - component: {fileID: 3525253689447696153}
   - component: {fileID: 2779268368013858577}
   - component: {fileID: 6049205789489172341}
+  - component: {fileID: 8886186202548065840}
   m_Layer: 5
   m_Name: Button Special
   m_TagString: Untagged
@@ -961,6 +966,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ControlPath: <Gamepad>/buttonNorth
+--- !u!95 &8886186202548065840
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5243839448370165255}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3761053a64ea2b1429e286883e6dcf20, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5299624664167234863
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,6 +1089,7 @@ GameObject:
   - component: {fileID: 6878265272328359857}
   - component: {fileID: 5330336342027967278}
   - component: {fileID: 2049133502280211499}
+  - component: {fileID: 7977014346255928339}
   m_Layer: 5
   m_Name: Button Switch
   m_TagString: Untagged
@@ -1142,6 +1168,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ControlPath: <Gamepad>/buttonEast
+--- !u!95 &7977014346255928339
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5818774403716956990}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3761053a64ea2b1429e286883e6dcf20, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6127478299240873556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,6 +1200,7 @@ GameObject:
   - component: {fileID: 3923569523178701109}
   - component: {fileID: 212175255729600458}
   - component: {fileID: 8588887711367653412}
+  - component: {fileID: 7481050038664083417}
   m_Layer: 5
   m_Name: Button Attack
   m_TagString: Untagged
@@ -1232,6 +1279,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ControlPath: <Gamepad>/buttonWest
+--- !u!95 &7481050038664083417
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6127478299240873556}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3761053a64ea2b1429e286883e6dcf20, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6804654100150553402
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,7 +1441,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.7058824}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1494,6 +1561,7 @@ GameObject:
   - component: {fileID: 537569721108090644}
   - component: {fileID: 7972704991622903815}
   - component: {fileID: 4625504213114731025}
+  - component: {fileID: 3809745592572218767}
   m_Layer: 5
   m_Name: Button Jump
   m_TagString: Untagged
@@ -1572,3 +1640,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ControlPath: <Gamepad>/buttonSouth
+--- !u!95 &3809745592572218767
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8686809408261272280}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3761053a64ea2b1429e286883e6dcf20, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

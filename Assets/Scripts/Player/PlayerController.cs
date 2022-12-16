@@ -152,7 +152,12 @@ public class PlayerController : MonoBehaviour
             {
                 GameManager.Instance.OnPauseButtonPressed();
             }
-
+#if UNITY_ANDROID || UNITY_IOS
+            if (m_playerInput.actions["Attack"].triggered)
+            {
+                m_screenControls.AttackButtonAnim();
+            }
+#endif
             m_animator.SetFloat("Movement", Mathf.Abs(m_playerInput.actions["Horizontal"].ReadValue<float>()));
         }
 
@@ -238,6 +243,9 @@ public class PlayerController : MonoBehaviour
     {
         if (m_playerInput.actions["Jump"].triggered)
         {
+#if UNITY_ANDROID || UNITY_IOS
+            m_screenControls.JumpButtonAnim();
+#endif
             m_jumpInputTimer = m_airTime;
         }
 
@@ -365,6 +373,10 @@ public class PlayerController : MonoBehaviour
 
         if (m_playerInput.actions["Switch"].triggered) //will also include an if statement checking if the selected mask has been unlocked
         {
+#if UNITY_ANDROID || UNITY_IOS
+            m_screenControls.SwitchButtonAnim();
+#endif
+
             if (m_natureMaskSelected)
             {
                 masks = eMasks.War;
@@ -427,6 +439,10 @@ public class PlayerController : MonoBehaviour
     {
         if (m_playerInput.actions["Special"].triggered)
         {
+#if UNITY_ANDROID || UNITY_IOS
+            m_screenControls.SpecialButtonAnim();
+#endif
+
             switch (masks)
             {
                 case eMasks.War:

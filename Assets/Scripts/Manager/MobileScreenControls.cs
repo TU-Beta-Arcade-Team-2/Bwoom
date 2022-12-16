@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 [System.Serializable]
 public class MobileButtonSprites
@@ -32,14 +33,43 @@ public class MobileScreenControls : MonoBehaviour
     [SerializeField] private Image m_buttonPauseImage;
     [Space(10)]
 
+    [Header("Animation Controllers")]
+    [SerializeField] private Animator m_buttonSwitchAnimator;
+    [SerializeField] private Animator m_buttonJumpAnimator;
+    [SerializeField] private Animator m_buttonSpecialAnimator;
+    [SerializeField] private Animator m_buttonAttackAnimator;
+    [Space(10)]
+
     [Header("WarButtonSprites")]
     [SerializeField] private MobileButtonSprites m_warButtons;
     [SerializeField] private MobileButtonSprites m_natureButtons;
+
+    private PlayerInput m_playerInput;
 
     private void Awake()
     {
         m_mobileScreen.SetActive(true);
         Switch(true);
+    }
+
+    public void SwitchButtonAnim()
+    {
+        m_buttonSwitchAnimator.SetTrigger("Tap");
+    }
+
+    public void JumpButtonAnim()
+    {
+        m_buttonJumpAnimator.SetTrigger("Tap");
+    }
+
+    public void SpecialButtonAnim()
+    {
+        m_buttonSpecialAnimator.SetTrigger("Tap");
+    }
+
+    public void AttackButtonAnim()
+    {
+        m_buttonAttackAnimator.SetTrigger("Tap");
     }
 
     public void Switch(bool war)
