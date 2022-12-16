@@ -5717,6 +5717,7 @@ Transform:
   - {fileID: 730112796}
   - {fileID: 260980619}
   - {fileID: 183531842}
+  - {fileID: 922410777}
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13941,7 +13942,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1192517163436622087, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.41
+      value: 29.48
       objectReference: {fileID: 0}
     - target: {fileID: 1192517163436622087, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
       propertyPath: m_LocalPosition.z
@@ -17298,6 +17299,84 @@ BoxCollider2D:
 Transform:
   m_CorrespondingSourceObject: {fileID: 7045729537722711174, guid: 147cb786e0f67074d9b9a41f8915c110, type: 3}
   m_PrefabInstance: {fileID: 1993810139}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &922410776
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 285124972}
+    m_Modifications:
+    - target: {fileID: 1192517163436622082, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
+      propertyPath: m_Name
+      value: WAR_PROMPT (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1192517163436622086, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
+      propertyPath: m_pcPrompt
+      value: Hold space to jump HIGHER!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1192517163436622086, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
+      propertyPath: m_mobilePrompt
+      value: Hold up arrow to jump HIGHER!
+      objectReference: {fileID: 0}
+    - target: {fileID: 1192517163436622087, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1192517163436622087, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 27.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 1192517163436622087, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1192517163436622087, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.28168538
+      objectReference: {fileID: 0}
+    - target: {fileID: 1192517163436622087, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1192517163436622087, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1192517163436622087, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1192517163436622087, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1192517163436622087, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1192517163436622087, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1192517163436622087, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1192517164041070056, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
+      propertyPath: m_Text
+      value: "Right Click to use the \nWAR MASK uppercut"
+      objectReference: {fileID: 0}
+    - target: {fileID: 1192517164041070057, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
+--- !u!4 &922410777 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1192517163436622087, guid: 4da275263f16e2a46b6faaffc156e616, type: 3}
+  m_PrefabInstance: {fileID: 922410776}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &922671884
 GameObject:
