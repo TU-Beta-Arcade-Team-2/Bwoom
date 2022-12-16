@@ -17,6 +17,7 @@ public class UIMainMenu : MonoBehaviour
         // Show the Continue game button only if we've never saved
         m_continueButton.SetActive(SaveLoad.DoesSaveGameExist());
         m_buttonAnim.Play("ButtonAnimation");
+        SoundManager.Instance.PlayMusic("BM_TitleScreen", true, false);
     }
 
     public void OnNewGamePressed()

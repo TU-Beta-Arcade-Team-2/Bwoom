@@ -926,11 +926,11 @@ MonoBehaviour:
   m_jumpHeightMultiplier: 1
   m_attackMultiplier: 1
   m_damageResistanceMultiplier: 1.1
-  m_specialAttackDamage: 2
+  m_specialAttackDamage: 4
   m_projectile: {fileID: 4535511604616509338, guid: 253cb738d3f8ef6459e0176ca40a6900, type: 3}
   m_projectileSpawner: {fileID: 1959386310}
   m_coolDownTime: 0.5
-  m_HealAmount: 2
+  m_HealAmount: 4
 --- !u!114 &2145512435
 MonoBehaviour:
   m_ObjectHideFlags: 0
