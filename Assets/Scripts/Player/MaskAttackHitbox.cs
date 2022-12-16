@@ -8,7 +8,7 @@ public class MaskAttackHitbox : MonoBehaviour
 
     [SerializeField] private WarMask m_warMask;
 
-    private void Awake()
+    private void OnAwake()
     {
         GameObject player = GameObject.FindGameObjectWithTag(StringConstants.PLAYER_TAG);
 
