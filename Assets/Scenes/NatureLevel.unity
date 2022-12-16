@@ -15340,6 +15340,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 293004980074882333, guid: abed43effcefdc84fb1b5ddf86032125, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 91a497ea2f561684fa500f613f326c1f, type: 2}
+    - target: {fileID: 293004980074882333, guid: abed43effcefdc84fb1b5ddf86032125, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -4922323821769789171, guid: 91a497ea2f561684fa500f613f326c1f, type: 2}
     - target: {fileID: 623638375812980444, guid: abed43effcefdc84fb1b5ddf86032125, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -37875,6 +37883,14 @@ PrefabInstance:
       propertyPath: m_hitstopManager
       value: 
       objectReference: {fileID: 1692868989}
+    - target: {fileID: 2145512434, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_HealAmount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512434, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_coolDownTime
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_hitstopManager
       value: 
