@@ -10,6 +10,7 @@ public class WarMask : MaskClass
     [SerializeField] private Rigidbody2D m_rb;
     [SerializeField] private Animator m_attackAnim;
     [SerializeField] private float m_launchForce;
+    [SerializeField] private GameObject uppercutVFX;
 
     [SerializeField] private float m_coolDownTime;
     private bool m_coolDownOver = true;
@@ -40,6 +41,10 @@ public class WarMask : MaskClass
             Invoke("OffCoolDown", m_coolDownTime);
 
             SoundManager.Instance.PlaySfx("UppercutSFX");
+
+            GameObject vfx = Instantiate(uppercutVFX, transform.position, transform.rotation);
+            vfx.transform.parent = this.transform;
+
             m_rb.velocity = new Vector2(m_rb.velocity.x, 0);
             m_rb.AddForce(new Vector2(0, m_uppercutJumpHeight), ForceMode2D.Impulse);
             m_playerAnimator.Play("Warmask Special");

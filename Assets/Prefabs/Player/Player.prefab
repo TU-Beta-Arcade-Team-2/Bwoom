@@ -957,6 +957,7 @@ MonoBehaviour:
   m_rb: {fileID: 8171535325487749779}
   m_attackAnim: {fileID: 0}
   m_launchForce: 5
+  uppercutVFX: {fileID: 3801953292505362839, guid: be3b0967f7dd94b41b0a5ae4f068dc70, type: 3}
   m_coolDownTime: 1.5
 --- !u!114 &2145512438
 MonoBehaviour:
