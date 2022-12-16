@@ -15363,7 +15363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 623638375812980444, guid: abed43effcefdc84fb1b5ddf86032125, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -112.420586
+      value: -98.19198
       objectReference: {fileID: 0}
     - target: {fileID: 681809727789140899, guid: abed43effcefdc84fb1b5ddf86032125, type: 3}
       propertyPath: m_AnchorMax.y
@@ -15379,7 +15379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 681809727789140899, guid: abed43effcefdc84fb1b5ddf86032125, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -337.26175
+      value: -294.57593
       objectReference: {fileID: 0}
     - target: {fileID: 1771785474587889011, guid: abed43effcefdc84fb1b5ddf86032125, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -15479,7 +15479,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6588261041089108851, guid: abed43effcefdc84fb1b5ddf86032125, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -786.9441
+      value: -687.3438
       objectReference: {fileID: 0}
     - target: {fileID: 7935290097086190755, guid: abed43effcefdc84fb1b5ddf86032125, type: 3}
       propertyPath: m_RootOrder
@@ -15555,7 +15555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8713954386163539085, guid: abed43effcefdc84fb1b5ddf86032125, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -113.5819
+      value: -238.304
       objectReference: {fileID: 0}
     - target: {fileID: 8713954386163539085, guid: abed43effcefdc84fb1b5ddf86032125, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -15563,7 +15563,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8713954386163539085, guid: abed43effcefdc84fb1b5ddf86032125, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -56.79094
+      value: -119.152
       objectReference: {fileID: 0}
     - target: {fileID: 9050130274795119246, guid: abed43effcefdc84fb1b5ddf86032125, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -15587,7 +15587,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9219180803243355414, guid: abed43effcefdc84fb1b5ddf86032125, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -562.1029
+      value: -490.9599
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abed43effcefdc84fb1b5ddf86032125, type: 3}
@@ -17580,6 +17580,71 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 764725113763134827, guid: b4c67d250e3ef2841b5a14eee12ecb94, type: 3}
   m_PrefabInstance: {fileID: 926458725}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &930573655 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2972312549137326765, guid: 14665156b0c8a9947abcdd03a6c75f0b, type: 3}
+  m_PrefabInstance: {fileID: 2972312548959951569}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &930573656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930573655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 580749490}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 2147483647
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 0
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!1 &933167712
 GameObject:
   m_ObjectHideFlags: 0
