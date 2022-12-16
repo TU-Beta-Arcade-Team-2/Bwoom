@@ -189,8 +189,8 @@ public class PlayerStats : MonoBehaviour
             return;
         }
 
-        m_currentStats = new(m_frenzyStats);
-        m_playerController.doubleJumpOn = true;
+        m_currentStats = m_frenzyStats;
+        //m_playerController.doubleJumpOn = true;
         m_playerController.SetMovementValues(m_frenzyStats);
 
         FrenzyTimer = m_frenzyDuration;
@@ -213,7 +213,7 @@ public class PlayerStats : MonoBehaviour
         FrenzyTimer = 0f;
 
         m_currentStats = new(m_defaultStats);
-        m_playerController.doubleJumpOn = false;
+        //m_playerController.doubleJumpOn = false;
         m_playerController.SetMovementValues(m_defaultStats);
 
         BetterDebugging.Log("No More Frenzy");

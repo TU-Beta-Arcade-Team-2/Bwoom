@@ -37847,6 +37847,34 @@ PrefabInstance:
       propertyPath: m_hitstopManager
       value: 
       objectReference: {fileID: 1692868989}
+    - target: {fileID: 2145512434, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_HealAmount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512434, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_coolDownTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512434, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_movementMultiplier
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512434, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_jumpHeightMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512435, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_movementMultiplier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512435, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_jumpHeightMultiplier
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512435, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_damageResistanceMultiplier
+      value: 1.75
+      objectReference: {fileID: 0}
     - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_hitstopManager
       value: 
@@ -37866,6 +37894,26 @@ PrefabInstance:
     - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_combos.Array.data[2].NatureMaskAnimationName
       value: Nature_ComboAttack3
+      objectReference: {fileID: 0}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_frenzyTimerIncrement
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_frenzyStats.JumpHeight
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_defaultStats.JumpHeight
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_frenzyStats.AttackDamage
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 675374325409127699, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_frenzyStats.MovementSpeed
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 3997681120428832773, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_Enabled

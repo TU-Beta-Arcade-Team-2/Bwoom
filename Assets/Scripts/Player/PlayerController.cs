@@ -487,6 +487,7 @@ public class PlayerController : MonoBehaviour
     public void SetMovementValues(PlayerStats.Stats stats)
     {
         m_jumpHeight = stats.JumpHeight;
+        Debug.Log("Jump height is now: " + m_jumpHeight);
         m_movementSpeed = stats.MovementSpeed;
     }
 

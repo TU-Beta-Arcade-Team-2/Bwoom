@@ -858,16 +858,16 @@ MonoBehaviour:
   m_points: 0
   m_defaultStats:
     MovementSpeed: 15
-    JumpHeight: 13
+    JumpHeight: 10
     AttackDamage: 4
     DamageResistance: 2
   m_frenzyStats:
     MovementSpeed: 18
-    JumpHeight: 15
+    JumpHeight: 12
     AttackDamage: 8
     DamageResistance: 4
   m_frenzyDuration: 5
-  m_frenzyTimerIncrement: 5
+  m_frenzyTimerIncrement: 2
   m_lightHitVFX: {fileID: 3494062636651270955, guid: 6268fd7e957385143a0a86db5e1e0bba, type: 3}
   m_heavyHitVFX: {fileID: 3494062636651270955, guid: 51312f7a350557c43a49701f345cbfb7, type: 3}
   m_healVFX: {fileID: 3408032983241102422, guid: 1f37afcfe20aa21419f3c38da8fc0ece, type: 3}
@@ -922,15 +922,15 @@ MonoBehaviour:
   m_playerController: {fileID: 8171535325487749789}
   m_maskSprite: {fileID: 1105057892, guid: a2882edefa6cc1943ba5ee678be0dd0d, type: 3}
   m_playerAnimator: {fileID: 460804608}
-  m_movementMultiplier: 2
+  m_movementMultiplier: 1.1
   m_jumpHeightMultiplier: 1
   m_attackMultiplier: 1
   m_damageResistanceMultiplier: 1.1
   m_specialAttackDamage: 2
   m_projectile: {fileID: 4535511604616509338, guid: 253cb738d3f8ef6459e0176ca40a6900, type: 3}
   m_projectileSpawner: {fileID: 1959386310}
-  m_coolDownTime: 2.5
-  m_HealAmount: 5
+  m_coolDownTime: 0.5
+  m_HealAmount: 2
 --- !u!114 &2145512435
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -947,10 +947,10 @@ MonoBehaviour:
   m_playerController: {fileID: 8171535325487749789}
   m_maskSprite: {fileID: -1050699073, guid: 3c11c7e9b47067e47bd748609115ee9a, type: 3}
   m_playerAnimator: {fileID: 460804608}
-  m_movementMultiplier: 0.8
-  m_jumpHeightMultiplier: 0.8
+  m_movementMultiplier: 1
+  m_jumpHeightMultiplier: 1.05
   m_attackMultiplier: 2
-  m_damageResistanceMultiplier: 2
+  m_damageResistanceMultiplier: 1.75
   m_specialAttackDamage: 8
   m_uppercutJumpHeight: 20
   m_IsJumped: 0
@@ -973,24 +973,24 @@ MonoBehaviour:
   m_playerAnimator: {fileID: 460804608}
   m_playerAttackHitbox: {fileID: 1564724982}
   m_hitstopManager: {fileID: 0}
-  m_playerController: {fileID: 0}
+  m_playerController: {fileID: 8171535325487749789}
   m_combos:
   - AnimationName: ComboAttack1
-    NatureMaskAnimationName: 
+    NatureMaskAnimationName: Nature_ComboAttack1
     Damage: 2
     Cooldown: 0.2
     EnemyLaunchVector: {x: 10, y: 5}
     PlayerLaunchVector: {x: 0, y: 0}
     HitStopDuration: 0.05
   - AnimationName: ComboAttack2
-    NatureMaskAnimationName: 
+    NatureMaskAnimationName: Nature_ComboAttack2
     Damage: 2
     Cooldown: 0.2
     EnemyLaunchVector: {x: 0, y: 0}
     PlayerLaunchVector: {x: 0, y: 0}
     HitStopDuration: 0.05
   - AnimationName: ComboAttack3
-    NatureMaskAnimationName: 
+    NatureMaskAnimationName: Nature_ComboAttack3
     Damage: 6
     Cooldown: 0.5
     EnemyLaunchVector: {x: 10, y: 35}
