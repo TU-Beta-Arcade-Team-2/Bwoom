@@ -31611,6 +31611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01614664b831546d2ae94a42149d80ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
@@ -37878,6 +37879,22 @@ PrefabInstance:
       propertyPath: m_hitstopManager
       value: 
       objectReference: {fileID: 1692868989}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[1].Cooldown
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[0].HitStopDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[1].HitStopDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2145512438, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
+      propertyPath: m_combos.Array.data[2].HitStopDuration
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 3997681120428832773, guid: 87cbc86813d78054387dd226c11cd974, type: 3}
       propertyPath: m_Enabled
       value: 0
