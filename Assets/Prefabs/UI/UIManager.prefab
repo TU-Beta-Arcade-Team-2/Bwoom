@@ -1505,6 +1505,22 @@ PrefabInstance:
       propertyPath: m_MobileScreen
       value: 
       objectReference: {fileID: 6804654099474001489}
+    - target: {fileID: 8079781953173102783, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8079781953173102783, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8079781953173102783, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 62.832153
+      objectReference: {fileID: 0}
+    - target: {fileID: 8079781953173102783, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -360
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 293004980906614515, guid: de8c6e18105392a4189381a5839e8d84, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: de8c6e18105392a4189381a5839e8d84, type: 3}

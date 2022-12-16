@@ -212,7 +212,7 @@ public class PlayerStats : MonoBehaviour
     {
         FrenzyTimer = 0f;
 
-        m_currentStats = new(m_defaultStats);
+        m_currentStats = m_defaultStats;
         //m_playerController.doubleJumpOn = false;
         m_playerController.SetMovementValues(m_defaultStats);
 
